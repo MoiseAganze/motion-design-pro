@@ -13,7 +13,8 @@
 ## Ce qui a été mesuré / regardé
 - `hyperframes check` : 0 erreur (un avertissement de taille de fichier sur stage.html, gardé : le plan-séquence du téléphone est une seule scène).
 - Planches `snapshot --review`, plages autour de chaque toucher, du whip, du défilement et du drop : relues.
-- Son : mesuré avec `hyperframes audio` et ffmpeg, pas écouté.
+- Son du MP4 final (mesuré avec `hyperframes audio` et ffmpeg, pas écouté) : -15,8 LUFS intégrés, crête vraie -1,5 dBTP, aucun écrêtage ; voix environ 10 dB au-dessus de la musique ; clics présents sur les touchers (6,02 / 8,01 / 12,44 / 22,31 s) ; l'impact culmine sur le drop (max court terme -12 LUFS).
+- Rendu : renders/minesursi-pub-tiktok.mp4, H.264 1080 x 1920, 30 fps, AAC 48 kHz, 29,03 s, 12,7 Mo.
 
 ## Corrigé pendant la revue
 - t=3,6 s · les mots de l'accroche passaient sur le téléphone → sortie avancée à 3,29 s.
