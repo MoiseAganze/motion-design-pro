@@ -4,7 +4,7 @@ GOAL:    à la fin, le spectateur sait qu'il existe une application officielle d
          pour signaler un abus depuis son téléphone, que le Ministère le voit sur une carte
          nationale et le traite selon un circuit tracé — et il a l'adresse pour le faire.
 OUTPUT:  HyperFrames, 1920 × 1080, 30 fps.
-TIME:    60,0 s × 30 = 1800 frames. Musique 124 BPM → 1 temps = 0,4839 s (14,52 f), 1 mesure =
+TIME:    61,94 s × 30 ≈ 1858 frames (rév. 2 : tout ce qui suit le hook décalé d'une mesure). Musique 124 BPM → 1 temps = 0,4839 s (14,52 f), 1 mesure =
          1,9355 s. La piste démarre à 48,425 s (un temps fort) : coupure de 2 mesures à 9,68 s,
          reprise (drop) à 13,54 s, fin naturelle 58–60 s.
 

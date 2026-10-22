@@ -1,4 +1,4 @@
-# REVIEW — ESURSI · Signalement national (60 s, 1920×1080, 30 fps)
+# REVIEW — ESURSI · Signalement national (62 s, 1920×1080, 30 fps)
 
 ## Ce qui a été construit
 
@@ -9,7 +9,7 @@ de la carte).
 
 | Temps | Scène | Contenu réel montré |
 | --- | --- | --- |
-| 0–9,7 s | Hook | Abus tirés des 13 catégories officielles du site, puis le mur des 13 catégories « noirci » (sous silence) |
+| 0–11,6 s | Hook | 9 abus tirés des catégories officielles, chacun dit par la voix sur un temps de la musique, puis le mur des 13 catégories qui se décolore et s'écrase en une ligne plate (« sous silence ») |
 | 9,7–19,7 s | Révélation | Affiche officielle « Signalez les abus » ; sceau ; nom complet du Ministère, mot à mot avec la voix |
 | 19,2–30 s | Téléphone | Accueil mobile réel + les 8 étapes réelles du formulaire (captures iPhone @3×), référence + code de suivi |
 | 29–39 s | Carte | Tableau de bord national réel → carte reconstruite depuis le GeoJSON de l'application (26 provinces) → clic Kinshasa → panneau des établissements |
@@ -68,3 +68,15 @@ de la carte).
 - Son mesuré sur le fichier final : −14,7 LUFS intégré, pic vrai −1,4 dBTP, aucun écrêtage.
 - Rendu local : `npx hyperframes render --quality delivery --output renders/esursi-signalement-national.mp4`
   (GSAP est embarqué dans `assets/vendor/`, le rendu ne dépend d'aucun réseau).
+
+## Révision 2 (retours du client)
+
+- Tous les abus affichés au début sont maintenant **dits** : une seconde ligne de voix (même voix,
+  `assets/audio/vo-list.mp3`) dit « Fraude aux examens. Chantage. Plagiat. Détournement de fonds.
+  Favoritisme. Faux relevés de cotes. », découpée en 6 clips calés chacun sur un temps.
+- Nouvelle animation du silence : les 13 catégories se décolorent puis sont écrasées en une seule
+  ligne plate (signal coupé) au moment où la voix dit « sous silence ».
+- Le texte affiché est « Chaque voix compte », comme la voix.
+- Pour faire de la place, tout ce qui suit l'ouverture est décalé d'une mesure (1,94 s) et la musique
+  démarre une mesure plus tôt (46,49 s) : coupure, reprise et fin naturelle restent synchronisées.
+  Durée : 61,97 s. Son : −14,4 LUFS, pic vrai −1,5 dBTP, sans écrêtage.
