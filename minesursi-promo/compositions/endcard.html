@@ -46,26 +46,39 @@
       line-height: 1.1;
       white-space: nowrap;
     }
-    #ec-tag1 { top: 690px; font-size: 54px; font-weight: 700; }
-    #ec-tag2 { top: 762px; font-size: 78px; font-weight: 800; letter-spacing: -0.015em; color: var(--yellow, #f5d522); }
+    #ec-tag1 { top: 684px; font-size: 52px; font-weight: 700; }
+    .ec-name-line { font-size: 40px; font-weight: 600; color: #c2d9ff; }
+    #ec-tag1b { top: 752px; }
+    #ec-tag1c { top: 800px; }
+    #ec-tag1d { top: 848px; }
+    #ec-tag2 { top: 912px; font-size: 78px; font-weight: 800; letter-spacing: -0.015em; color: var(--yellow, #f5d522); }
     .ec-tag .w { display: inline-block; }
   </style>
   <div data-hf-id="hf-00mi" id="root" data-composition-id="endcard" data-width="1080" data-height="1920">
     <div data-hf-id="hf-y2na" id="ec-seal" data-layout-allow-overflow><img data-hf-id="hf-w3zb" src="assets/screens/seal-crop.png" alt="" /></div>
     <div data-hf-id="hf-yrrr" id="ec-name"><span data-hf-id="hf-i0hw">M</span><span data-hf-id="hf-jlq0">I</span><span data-hf-id="hf-gtkt">N</span><span data-hf-id="hf-l6y4">E</span><span data-hf-id="hf-fmnq">S</span><span data-hf-id="hf-eu1o">U</span><span data-hf-id="hf-f8cp">R</span><span data-hf-id="hf-wgd6">S</span><span data-hf-id="hf-ry4w">I</span></div>
-    <div data-hf-id="hf-fqgf" id="ec-tag1" class="ec-tag"><span data-hf-id="hf-9ryf" class="w">La</span> <span data-hf-id="hf-n45h" class="w">plateforme</span> <span data-hf-id="hf-fmk3" class="w">du</span> <span data-hf-id="hf-nxsf" class="w">Ministère,</span></div>
+    <div data-hf-id="hf-fqgf" id="ec-tag1" class="ec-tag"><span class="w">La</span> <span class="w">plateforme</span> <span class="w">du</span> <span class="w">Ministère</span></div>
+    <div id="ec-tag1b" class="ec-tag ec-name-line"><span class="w">de</span> <span class="w">l'Enseignement</span> <span class="w">Supérieur</span></div>
+    <div id="ec-tag1c" class="ec-tag ec-name-line"><span class="w">et</span> <span class="w">Universitaire,</span> <span class="w">de</span> <span class="w">la</span> <span class="w">Recherche</span></div>
+    <div id="ec-tag1d" class="ec-tag ec-name-line"><span class="w">Scientifique</span> <span class="w">et</span> <span class="w">de</span> <span class="w">l'Innovation,</span></div>
     <div data-hf-id="hf-4uys" id="ec-tag2" class="ec-tag"><span data-hf-id="hf-qgso" class="w">à</span> <span data-hf-id="hf-mxy9" class="w">portée</span> <span data-hf-id="hf-99nn" class="w">de</span> <span data-hf-id="hf-0wad" class="w">main</span></div>
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
       const ft = (sel, from, to, at) => tl.fromTo(sel, from, Object.assign({ immediateRender: false }, to), at);
-      const drop = 0.326; // 23.226 s in the film: the music's full section and the spoken name
-      gsap.set(["#ec-seal", "#ec-name span", "#ec-tag1 .w", "#ec-tag2 .w"], { opacity: 0 });
+      const drop = 0.326; // 26.129 s in the film: the music's full section and the spoken name
+      gsap.set(["#ec-seal", "#ec-name span", ".ec-tag .w"], { opacity: 0 });
       ft("#ec-seal", { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.4)" }, drop);
       ft("#ec-name span", { opacity: 0, filter: "blur(10px)", scale: 1.25 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.22, ease: "power3.out", stagger: 0.045 }, drop + 0.06);
-      ft("#ec-tag1 .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.09 }, 1.4);
-      ft("#ec-tag2 .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out", stagger: 0.1 }, 2.95);
+      // the slogan follows the voice line by line (ElevenLabs alignment)
+      const line = (sel, at, gap) =>
+        ft(sel + " .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: gap }, at);
+      line("#ec-tag1", 1.484, 0.12);
+      line("#ec-tag1b", 2.724, 0.16);
+      line("#ec-tag1c", 4.004, 0.16);
+      line("#ec-tag1d", 5.844, 0.16);
+      ft("#ec-tag2 .w", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out", stagger: 0.1 }, 7.684);
       window.__timelines["endcard"] = tl;
     })();
   </script>

@@ -48,7 +48,7 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="29.03"
+      data-duration="35.81"
       data-width="1080"
       data-height="1920"
     >
@@ -58,7 +58,7 @@
         data-composition-id="stage"
         data-composition-src="compositions/stage.html"
         data-start="0"
-        data-duration="29.03"
+        data-duration="35.81"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1080"
@@ -70,7 +70,7 @@
         data-composition-id="hook"
         data-composition-src="compositions/hook.html"
         data-start="0"
-        data-duration="3.8"
+        data-duration="6.7"
         data-track-index="2"
         data-track-kind="graphics"
         data-width="1080"
@@ -81,8 +81,8 @@
         id="endcard"
         data-composition-id="endcard"
         data-composition-src="compositions/endcard.html"
-        data-start="22.9"
-        data-duration="6.13"
+        data-start="25.803"
+        data-duration="10.007"
         data-track-index="3"
         data-track-kind="graphics"
         data-width="1080"
@@ -90,55 +90,41 @@
         style="z-index: 3"
       ></div>
 
-      <!-- music: the person's track from bar 4 (7.742 s); its full section lands on "Minesursi" at 23.226 s -->
-      <audio data-hf-id="hf-uldi"
+      <!-- music: the person's track from 4.839 s; its full section lands on "Minesursi" at 26.129 s -->
+      <audio
         id="music"
         class="clip"
         src="assets/audio/music.mp3"
         data-start="0"
-        data-duration="29.03"
-        data-media-start="7.742"
+        data-duration="35.81"
+        data-media-start="4.839"
         data-track-index="10"
         data-volume="1"
         data-fade-in="0.05"
         data-fade-out="1.6"
-        data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0.34},{&quot;t&quot;:0.3,&quot;v&quot;:0.22},{&quot;t&quot;:22.25,&quot;v&quot;:0.22},{&quot;t&quot;:22.9,&quot;v&quot;:0.4},{&quot;t&quot;:23.15,&quot;v&quot;:0.27},{&quot;t&quot;:26.8,&quot;v&quot;:0.27},{&quot;t&quot;:27.3,&quot;v&quot;:0.5}]}]}"
+        data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0.42},{&quot;t&quot;:0.3,&quot;v&quot;:0.28},{&quot;t&quot;:25.25,&quot;v&quot;:0.28},{&quot;t&quot;:25.85,&quot;v&quot;:0.5},{&quot;t&quot;:26.08,&quot;v&quot;:0.34},{&quot;t&quot;:34.4,&quot;v&quot;:0.34},{&quot;t&quot;:34.85,&quot;v&quot;:0.62}]}]}"
       ></audio>
 
-      <!-- voiceover (ElevenLabs, voice McVZB9hVxVSk3Equu8EH), split at the pause before the name -->
-      <audio data-hf-id="hf-4d1m"
-        id="vo-a"
-        class="clip"
-        src="assets/audio/voiceover.mp3"
-        data-start="0.3"
-        data-duration="22.05"
-        data-media-start="0"
-        data-track-index="11"
-        data-volume="1.9"
-        data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-a-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"
-      ></audio>
-      <audio data-hf-id="hf-7ej8"
-        id="vo-b"
-        class="clip"
-        src="assets/audio/voiceover.mp3"
-        data-start="23.032"
-        data-duration="3.76"
-        data-media-start="22.05"
-        data-track-index="12"
-        data-volume="1.9"
-        data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-b-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"
-      ></audio>
+      <!-- voiceover (ElevenLabs, voice McVZB9hVxVSk3Equu8EH), one clip per sentence, each placed on its shot -->
+      <audio id="vo-1" class="clip" src="assets/audio/voiceover.mp3" data-start="0.3" data-duration="8.64" data-media-start="0.0" data-track-index="11" data-volume="2.4" data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-1-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"></audio>
+      <audio id="vo-2" class="clip" src="assets/audio/voiceover.mp3" data-start="9.143" data-duration="1.864" data-media-start="8.636" data-track-index="12" data-volume="2.4" data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-2-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"></audio>
+      <audio id="vo-3" class="clip" src="assets/audio/voiceover.mp3" data-start="11.113" data-duration="2.162" data-media-start="10.558" data-track-index="11" data-volume="2.4" data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-3-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"></audio>
+      <audio id="vo-4" class="clip" src="assets/audio/voiceover.mp3" data-start="13.433" data-duration="2.146" data-media-start="12.774" data-track-index="12" data-volume="2.4" data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-4-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"></audio>
+      <audio id="vo-5" class="clip" src="assets/audio/voiceover.mp3" data-start="15.673" data-duration="3.438" data-media-start="15.062" data-track-index="11" data-volume="2.4" data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-5-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"></audio>
+      <audio id="vo-6" class="clip" src="assets/audio/voiceover.mp3" data-start="19.243" data-duration="2.98" data-media-start="18.63" data-track-index="12" data-volume="2.4" data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-6-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"></audio>
+      <audio id="vo-7" class="clip" src="assets/audio/voiceover.mp3" data-start="22.283" data-duration="2.933" data-media-start="21.667" data-track-index="11" data-volume="2.4" data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-7-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"></audio>
+      <audio id="vo-8" class="clip" src="assets/audio/voiceover.mp3" data-start="26.029" data-duration="8.338" data-media-start="24.702" data-track-index="12" data-volume="2.4" data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;limiter&quot;,&quot;id&quot;:&quot;vo-8-lim&quot;,&quot;label&quot;:&quot;Peak safety&quot;,&quot;params&quot;:{&quot;limit&quot;:-1}}]}"></audio>
 
       <!-- sound on visible actions -->
-      <audio data-hf-id="hf-rzd4" id="sfx-rise" class="clip" src="assets/sfx/whoosh.mp3" data-start="3.36" data-duration="0.57" data-track-index="13" data-volume="0.45"></audio>
-      <audio data-hf-id="hf-47yi" id="sfx-tap1" class="clip" src="assets/sfx/click-soft.mp3" data-start="5.977" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
-      <audio data-hf-id="hf-uczz" id="sfx-tap2" class="clip" src="assets/sfx/click-soft.mp3" data-start="8.017" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
-      <audio data-hf-id="hf-zubj" id="sfx-tap3" class="clip" src="assets/sfx/click-soft.mp3" data-start="10.387" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
-      <audio data-hf-id="hf-8aeo" id="sfx-whip1" class="clip" src="assets/sfx/whoosh.mp3" data-start="12.04" data-duration="0.5" data-track-index="13" data-volume="0.35" data-playback-rate="1.15"></audio>
-      <audio data-hf-id="hf-o0kl" id="sfx-tap4" class="clip" src="assets/sfx/click-soft.mp3" data-start="12.397" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
-      <audio data-hf-id="hf-5h0u" id="sfx-fling" class="clip" src="assets/sfx/whoosh.mp3" data-start="16.17" data-duration="0.6" data-track-index="13" data-volume="0.35" data-playback-rate="0.9"></audio>
-      <audio data-hf-id="hf-j03l" id="sfx-tap5" class="clip" src="assets/sfx/click-soft.mp3" data-start="22.267" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
-      <audio data-hf-id="hf-5jcw" id="sfx-impact" class="clip" src="assets/sfx/impact-bass-2.mp3" data-start="21.273" data-duration="2.59" data-track-index="15" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-rzd4" id="sfx-rise" class="clip" src="assets/sfx/whoosh.mp3" data-start="6.263" data-duration="0.57" data-track-index="13" data-volume="0.45"></audio>
+      <audio data-hf-id="hf-47yi" id="sfx-tap1" class="clip" src="assets/sfx/click-soft.mp3" data-start="8.880" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
+      <audio data-hf-id="hf-uczz" id="sfx-tap2" class="clip" src="assets/sfx/click-soft.mp3" data-start="10.920" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
+      <audio data-hf-id="hf-zubj" id="sfx-tap3" class="clip" src="assets/sfx/click-soft.mp3" data-start="13.290" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
+      <audio data-hf-id="hf-8aeo" id="sfx-whip1" class="clip" src="assets/sfx/whoosh.mp3" data-start="14.943" data-duration="0.5" data-track-index="13" data-volume="0.35" data-playback-rate="1.15"></audio>
+      <audio data-hf-id="hf-o0kl" id="sfx-tap4" class="clip" src="assets/sfx/click-soft.mp3" data-start="15.300" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
+      <audio data-hf-id="hf-5h0u" id="sfx-fling" class="clip" src="assets/sfx/whoosh.mp3" data-start="19.073" data-duration="0.6" data-track-index="13" data-volume="0.35" data-playback-rate="0.9"></audio>
+      <audio data-hf-id="hf-j03l" id="sfx-tap5" class="clip" src="assets/sfx/click-soft.mp3" data-start="25.170" data-duration="0.37" data-track-index="14" data-volume="0.6"></audio>
+      <audio data-hf-id="hf-5jcw" id="sfx-impact" class="clip" src="assets/sfx/impact-bass-2.mp3" data-start="24.176" data-duration="2.59" data-track-index="15" data-volume="0.55"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};

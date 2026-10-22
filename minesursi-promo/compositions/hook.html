@@ -8,40 +8,47 @@
     .hk-line {
       position: absolute;
       left: 96px;
-      font-size: 116px;
+      font-size: 84px;
       font-weight: 800;
       line-height: 1;
       letter-spacing: -0.02em;
       color: #5e76a2;
       white-space: nowrap;
     }
-    #hk-l1 { top: 520px; color: #ffffff; }
-    #hk-l2 { top: 640px; }
-    #hk-l3 { top: 790px; }
-    #hk-l4 { top: 910px; }
+    #hk-l1 { top: 440px; color: #ffffff; }
+    #hk-l2 { top: 534px; }
+    #hk-l3 { top: 628px; }
+    #hk-l4 { top: 722px; }
+    #hk-l5 { top: 816px; }
+    #hk-l6 { top: 910px; }
+    #hk-l7 { top: 1004px; }
   </style>
-  <div data-hf-id="hf-srfg" id="root" data-composition-id="hook" data-width="1080" data-height="1920">
-    <div data-hf-id="hf-lr5f" id="hk-l1" class="hk-line">Enseignement</div>
-    <div data-hf-id="hf-qlj8" id="hk-l2" class="hk-line">supérieur,</div>
-    <div data-hf-id="hf-2k1s" id="hk-l3" class="hk-line">Recherche,</div>
-    <div data-hf-id="hf-u2pf" id="hk-l4" class="hk-line">Innovation</div>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hk-l1" class="hk-line">Ministère de</div>
+    <div id="hk-l2" class="hk-line">l'Enseignement</div>
+    <div id="hk-l3" class="hk-line">Supérieur et</div>
+    <div id="hk-l4" class="hk-line">Universitaire,</div>
+    <div id="hk-l5" class="hk-line">de la Recherche</div>
+    <div id="hk-l6" class="hk-line">Scientifique</div>
+    <div id="hk-l7" class="hk-line">et de l'Innovation</div>
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
       const lit = "#ffffff";
       const dim = "#5e76a2";
-      // each pillar lights up as the voice names it (voice starts at 0.30 s)
-      tl.fromTo("#hk-l2", { color: dim }, { color: lit, duration: 0.15, ease: "power2.out", immediateRender: false }, 0.75);
-      tl.fromTo("#hk-l3", { color: dim }, { color: lit, duration: 0.15, ease: "power2.out", immediateRender: false }, 1.5);
-      tl.fromTo("#hk-l4", { color: dim }, { color: lit, duration: 0.15, ease: "power2.out", immediateRender: false }, 2.42);
-      // exit just before the stripe rises (beat 7 = 3.387 s)
-      ["#hk-l1", "#hk-l2", "#hk-l3", "#hk-l4"].forEach(function (sel, i) {
+      // each line lights up as the voice reaches it (voice placed at 0.30 s; times from the ElevenLabs alignment)
+      const lights = { "#hk-l2": 0.98, "#hk-l3": 1.58, "#hk-l4": 2.5, "#hk-l5": 3.38, "#hk-l6": 4.14, "#hk-l7": 4.78 };
+      Object.keys(lights).forEach(function (sel) {
+        tl.fromTo(sel, { color: dim }, { color: lit, duration: 0.15, ease: "power2.out", immediateRender: false }, lights[sel]);
+      });
+      // exit just before the stripe rises (beat 13 = 6.290 s)
+      ["#hk-l1", "#hk-l2", "#hk-l3", "#hk-l4", "#hk-l5", "#hk-l6", "#hk-l7"].forEach(function (sel, i) {
         tl.fromTo(
           sel,
           { opacity: 1, filter: "blur(0px)", y: 0 },
           { opacity: 0, filter: "blur(10px)", y: -40, duration: 0.16, ease: "power2.in", immediateRender: false },
-          3.29 + i * 0.03,
+          6.19 + i * 0.025,
         );
       });
       window.__timelines["hook"] = tl;

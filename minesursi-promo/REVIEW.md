@@ -1,5 +1,14 @@
 # REVIEW — MINESURSI, pub TikTok
 
+## Version 2 (demande : nom complet du Ministère au début et à la fin)
+- Nouvelle voix ElevenLabs (même voix, eleven_v4, prise 1 sur 2, 33 s) : ouverture « Ministère de l'Enseignement Supérieur et Universitaire, de la Recherche Scientifique et de l'Innovation… tout le Ministère, désormais dans votre poche », fin « Minesursi. La plateforme du Ministère de l'Enseignement Supérieur et Universitaire, de la Recherche Scientifique et de l'Innovation, à portée de main ».
+- Minutage mot à mot : alignement ElevenLabs (il reprend le texte envoyé, ce n'est pas une vérification indépendante de la prononciation).
+- Accroche : le nom complet sur 7 lignes qui s'allument au fil de la voix. Tout le parcours est décalé de 6 temps (2,903 s) ; musique lue à partir de 4,839 s pour que le drop tombe toujours sur « Minesursi » (26,129 s). Une phrase de voix par clip, posée sur son plan.
+- Carte finale : slogan complet ligne par ligne, téléphone réduit (×0,5).
+- Durée : 35,8 s (le nom complet prononcé deux fois ajoute ~6 s). Son : -17 LUFS, crête vraie -1,6 dBTP, sans écrêtage (mesuré, pas écouté).
+
+## Version 1
+
 ## Choix créatifs
 - Piste A « Le Ministère dans la poche » (voir STORYLINES.md). Pistes B (veille d'inscription) et C (mur d'écrans) écartées : B exigerait un écran de résultat de vérification absent des captures.
 - 1080 x 1920, 30 fps, 29,03 s (fin sur une barre de mesure de la musique).
