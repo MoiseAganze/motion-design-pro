@@ -1,0 +1,558 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Source Serif 4";
+      src: url("assets/fonts/SourceSerif4-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    @font-face {
+      font-family: "Source Sans 3";
+      src: url("assets/fonts/SourceSans3-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    #ph-scene {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #e8f4ff;
+      clip-path: polygon(0px 0px, 0px 0px, -250px 1080px, 0px 1080px);
+    }
+    #ph-stripe {
+      position: absolute;
+      left: 980px;
+      top: -260px;
+      width: 300px;
+      height: 1700px;
+      opacity: 0.11;
+      background: linear-gradient(90deg, #f7d618 0 14%, #ce1021 14% 86%, #f7d618 86% 100%);
+    }
+    #ph-edge {
+      position: absolute;
+      top: -60px;
+      left: -29px;
+      width: 58px;
+      height: 1200px;
+      background: linear-gradient(90deg, #f7d618 0 16%, #ce1021 16% 84%, #f7d618 84% 100%);
+      transform-origin: 0 0;
+    }
+    /* phone: local units are the screen's CSS pixels (393 x 852) */
+    #ph {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 852px;
+    }
+    #ph-body {
+      position: absolute;
+      left: -14px;
+      top: -14px;
+      width: 421px;
+      height: 880px;
+      border-radius: 66px;
+      background: linear-gradient(135deg, #3a4452 0%, #1c2430 45%, #2c3542 100%);
+      box-shadow: 0 50px 90px rgba(0, 38, 84, 0.28), 0 0 0 1.5px #59636f inset;
+    }
+    #ph-screen {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 852px;
+      border-radius: 53px;
+      overflow: hidden;
+      background: #fff;
+    }
+    #ph-view {
+      position: absolute;
+      left: 0;
+      top: 47px;
+      width: 393px;
+      height: 725px;
+      overflow: hidden;
+      background: #fff;
+    }
+    #ph-page {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 2300px;
+    }
+    .ph-st {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      opacity: 0;
+    }
+    .ph-blank {
+      position: absolute;
+      background: #fff;
+      opacity: 0;
+    }
+    #ph-sticky {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 73px;
+      opacity: 0;
+      box-shadow: 0 2px 10px rgba(0, 38, 84, 0.12);
+    }
+    #ph-status {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 47px;
+      background: #002654;
+      color: #fff;
+    }
+    #ph-time {
+      position: absolute;
+      left: 44px;
+      top: 15px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+    }
+    #ph-icons {
+      position: absolute;
+      right: 30px;
+      top: 17px;
+      width: 70px;
+      height: 13px;
+    }
+    #ph-island {
+      position: absolute;
+      left: 136px;
+      top: 11px;
+      width: 121px;
+      height: 35px;
+      border-radius: 20px;
+      background: #000;
+    }
+    #ph-bar {
+      position: absolute;
+      left: 0;
+      top: 772px;
+      width: 393px;
+      height: 80px;
+      background: #f2f3f7;
+      border-top: 1px solid #dfe2e8;
+    }
+    #ph-url {
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      width: 365px;
+      height: 44px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 16px;
+      color: #1f2937;
+    }
+    #ph-url svg {
+      width: 11px;
+      height: 13px;
+    }
+    #ph-home-ind {
+      position: absolute;
+      left: 130px;
+      top: 64px;
+      width: 134px;
+      height: 5px;
+      border-radius: 3px;
+      background: #111;
+    }
+    #ph-touch {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 46px;
+      height: 46px;
+      margin: -23px 0 0 -23px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.42);
+      border: 2.5px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 14px rgba(0, 38, 84, 0.35);
+      opacity: 0;
+    }
+    /* right rail: the form's own 8 steps, at a readable size */
+    #ph-rail {
+      position: absolute;
+      left: 1060px;
+      top: 300px;
+      width: 780px;
+      height: 460px;
+      opacity: 0;
+    }
+    #ph-rail-count {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 40px;
+      width: 780px;
+      overflow: hidden;
+    }
+    .ph-count {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ce1021;
+      opacity: 0;
+    }
+    #ph-rail-name {
+      position: absolute;
+      left: 0;
+      top: 52px;
+      width: 780px;
+      height: 112px;
+      overflow: hidden;
+    }
+    .ph-name {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 78px;
+      line-height: 104px;
+      letter-spacing: -0.01em;
+      color: #0057b8;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    #ph-prog {
+      position: absolute;
+      left: 0;
+      top: 196px;
+      width: 760px;
+      height: 10px;
+      border-radius: 6px;
+      background: #d6e2ee;
+      overflow: hidden;
+    }
+    #ph-prog-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 760px;
+      height: 10px;
+      background: linear-gradient(90deg, #007fff, #f7d618);
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+    }
+    #ph-dots {
+      position: absolute;
+      left: 0;
+      top: 236px;
+      width: 780px;
+      height: 70px;
+    }
+    .ph-dot {
+      position: absolute;
+      top: 0;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 3px solid #cbd5e1;
+      background: #fff;
+      color: #4f6378;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 56px;
+      text-align: center;
+    }
+    /* receipt: reference + tracking code */
+    #ph-receipt {
+      position: absolute;
+      left: 980px;
+      top: 300px;
+      width: 760px;
+      height: 470px;
+      background: #fff;
+      border: 1px solid #94a3b8;
+      border-radius: 8px;
+      box-shadow: 0 40px 80px rgba(0, 38, 84, 0.18);
+      opacity: 0;
+      overflow: visible;
+    }
+    #ph-receipt-band {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 7px;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(115deg, #007fff 0 38%, #f7d618 38% 41%, #ce1021 41% 59%, #f7d618 59% 62%, #007fff 62% 100%);
+    }
+    #ph-receipt h3 {
+      position: absolute;
+      left: 46px;
+      top: 40px;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 1.1;
+      color: #0057b8;
+    }
+    .ph-lab {
+      position: absolute;
+      left: 46px;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #0057b8;
+    }
+    .ph-field {
+      position: absolute;
+      left: 46px;
+      width: 668px;
+      height: 74px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      background: #f8fafc;
+      font-family: "Source Code Pro", monospace;
+      font-weight: 600;
+      font-size: 38px;
+      line-height: 71px;
+      padding-left: 22px;
+      color: #0f2744;
+    }
+    #ph-chip {
+      position: absolute;
+      left: 46px;
+      top: 182px;
+      height: 74px;
+      padding: 0 24px;
+      border-radius: 6px;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      font-family: "Source Code Pro", monospace;
+      font-weight: 600;
+      font-size: 38px;
+      line-height: 71px;
+      color: #0f2744;
+      white-space: nowrap;
+    }
+    #ph-help {
+      position: absolute;
+      left: 46px;
+      top: 404px;
+      font-size: 26px;
+      color: #4f6378;
+    }
+  </style>
+  <div data-hf-id="hf-ypkp" id="root" data-composition-id="phone" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-hs6a" id="ph-scene">
+      <div data-hf-id="hf-vv8t" id="ph-stripe"></div>
+
+      <div data-hf-id="hf-je8t" id="ph">
+        <div data-hf-id="hf-rccm" id="ph-body"></div>
+        <div data-hf-id="hf-8nbi" id="ph-screen">
+          <div data-hf-id="hf-hvbx" id="ph-view">
+            <div data-hf-id="hf-2eav" id="ph-page">
+              <img data-hf-id="hf-0luh" class="ph-st" id="st-home" src="assets/ui/phone/home.jpg" alt="Accueil mobile ESURSI" />
+              <img data-hf-id="hf-docy" class="ph-st" id="st-s1a" src="assets/ui/phone/s1_pre.jpg" alt="Étape 1 : catégorie" />
+              <img data-hf-id="hf-1xzv" class="ph-st" id="st-s1b" src="assets/ui/phone/s1_post.jpg" alt="Catégorie Corruption choisie" />
+              <img data-hf-id="hf-9hqk" class="ph-st" id="st-s2a" src="assets/ui/phone/s2_pre.jpg" alt="Étape 2 : province" />
+              <img data-hf-id="hf-qk03" class="ph-st" id="st-s2b" src="assets/ui/phone/s2_post.jpg" alt="Province Kinshasa" />
+              <img data-hf-id="hf-8yqx" class="ph-st" id="st-s3" src="assets/ui/phone/s3_list.jpg" alt="Étape 3 : établissement" />
+              <img data-hf-id="hf-mf6c" class="ph-st" id="st-s4" src="assets/ui/phone/s4_post.jpg" alt="Étape 4 : personne concernée" />
+              <img data-hf-id="hf-ibxb" class="ph-st" id="st-s5a" src="assets/ui/phone/s5_pre.jpg" alt="Étape 5 : description" />
+              <div data-hf-id="hf-lobr" class="ph-blank" id="bl-t" style="left: 47px; top: 721px; width: 300px; height: 34px"></div>
+              <div data-hf-id="hf-3jra" class="ph-blank" id="bl-d" style="left: 47px; top: 810px; width: 300px; height: 72px"></div>
+              <img data-hf-id="hf-u3o6" class="ph-st ph-ty" id="ty-t" src="assets/ui/phone/ty_t.jpg" alt="" style="left: 50px; top: 724px; width: 295px; height: 26px" />
+              <img data-hf-id="hf-otn2" class="ph-st ph-ty" id="ty-d1" src="assets/ui/phone/ty_d1.jpg" alt="" style="left: 50px; top: 815px; width: 295px; height: 23px" />
+              <img data-hf-id="hf-pc9a" class="ph-st ph-ty" id="ty-d2" src="assets/ui/phone/ty_d2.jpg" alt="" style="left: 50px; top: 839px; width: 295px; height: 21px" />
+              <img data-hf-id="hf-33gp" class="ph-st ph-ty" id="ty-d3" src="assets/ui/phone/ty_d3.jpg" alt="" style="left: 50px; top: 861px; width: 295px; height: 21px" />
+              <img data-hf-id="hf-2url" class="ph-st" id="st-s5b" src="assets/ui/phone/s5_post.jpg" alt="Description saisie" />
+              <img data-hf-id="hf-ngca" class="ph-st" id="st-s6a" src="assets/ui/phone/s6_pre.jpg" alt="Étape 6 : preuves" />
+              <img data-hf-id="hf-rwzf" class="ph-st" id="st-s6b" src="assets/ui/phone/s6_post.jpg" alt="Preuve jointe" />
+              <img data-hf-id="hf-2s90" class="ph-st" id="st-s7" src="assets/ui/phone/s7.jpg" alt="Étape 7 : mode anonyme" />
+              <img data-hf-id="hf-ziwo" class="ph-st" id="st-s8a" src="assets/ui/phone/s8_pre.jpg" alt="Étape 8 : prévisualisation" />
+              <img data-hf-id="hf-kw8u" class="ph-st" id="st-s8b" src="assets/ui/phone/s8_post.jpg" alt="Certification cochée" />
+              <div data-hf-id="hf-oub7" id="ph-touch"></div>
+            </div>
+            <img data-hf-id="hf-msl2" id="ph-sticky" src="assets/ui/phone/header.jpg" alt="" />
+          </div>
+          <div data-hf-id="hf-kh54" id="ph-status">
+            <span data-hf-id="hf-cif4" id="ph-time">9:41</span>
+            <svg data-hf-id="hf-bpe4" id="ph-icons" viewBox="0 0 70 13" aria-hidden="true">
+              <g data-hf-id="hf-6ioo" fill="#fff">
+                <rect data-hf-id="hf-zrgi" x="0" y="8" width="3" height="5" rx="1" /><rect data-hf-id="hf-sq7y" x="5" y="5.5" width="3" height="7.5" rx="1" />
+                <rect data-hf-id="hf-yfp8" x="10" y="3" width="3" height="10" rx="1" /><rect data-hf-id="hf-te0k" x="15" y="0.5" width="3" height="12.5" rx="1" />
+                <path data-hf-id="hf-fd9s" d="M30 4.2a9 9 0 0 1 11.6 0l-1.3 1.4a7 7 0 0 0-9 0zM32.4 6.8a5.4 5.4 0 0 1 6.8 0l-1.4 1.4a3.4 3.4 0 0 0-4 0zM34.8 9.3a2 2 0 0 1 2 0L35.8 11z" />
+                <rect data-hf-id="hf-x8u8" x="47" y="1" width="20" height="11" rx="3" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.2" />
+                <rect data-hf-id="hf-zmex" x="49" y="3" width="14" height="7" rx="1.5" /><rect data-hf-id="hf-ckkl" x="68" y="4.5" width="1.6" height="4" rx=".8" fill-opacity=".55" />
+              </g>
+            </svg>
+            <div data-hf-id="hf-wdmx" id="ph-island"></div>
+          </div>
+          <div data-hf-id="hf-wojp" id="ph-bar">
+            <div data-hf-id="hf-20fh" id="ph-url">
+              <svg data-hf-id="hf-98l2" viewBox="0 0 11 13" aria-hidden="true"><path data-hf-id="hf-1yqv" fill="#4b5563" d="M2 6V4a3.5 3.5 0 0 1 7 0v2h.5A1.5 1.5 0 0 1 11 7.5v4A1.5 1.5 0 0 1 9.5 13h-8A1.5 1.5 0 0 1 0 11.5v-4A1.5 1.5 0 0 1 1.5 6zm1.5 0h4V4a2 2 0 0 0-4 0z" /></svg>
+              <span data-hf-id="hf-qo14">signal.minesursi.gouv.cd</span>
+            </div>
+            <div data-hf-id="hf-3cxb" id="ph-home-ind"></div>
+          </div>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-5shi" id="ph-rail">
+        <div data-hf-id="hf-agic" id="ph-rail-count">
+          <p data-hf-id="hf-3izq" class="ph-count" id="rc-1">Étape 1 sur 8</p><p data-hf-id="hf-9zpa" class="ph-count" id="rc-2">Étape 2 sur 8</p>
+          <p data-hf-id="hf-vmla" class="ph-count" id="rc-3">Étape 3 sur 8</p><p data-hf-id="hf-blly" class="ph-count" id="rc-4">Étape 4 sur 8</p>
+          <p data-hf-id="hf-hi52" class="ph-count" id="rc-5">Étape 5 sur 8</p><p data-hf-id="hf-4wzi" class="ph-count" id="rc-6">Étape 6 sur 8</p>
+          <p data-hf-id="hf-ynse" class="ph-count" id="rc-7">Étape 7 sur 8</p><p data-hf-id="hf-xiae" class="ph-count" id="rc-8">Étape 8 sur 8</p>
+        </div>
+        <div data-hf-id="hf-2eru" id="ph-rail-name">
+          <p data-hf-id="hf-anqc" class="ph-name" id="rn-1">Catégorie</p><p data-hf-id="hf-o64e" class="ph-name" id="rn-2">Province</p>
+          <p data-hf-id="hf-8qsf" class="ph-name" id="rn-3">Établissement</p><p data-hf-id="hf-cn4i" class="ph-name" id="rn-4">Personne concernée</p>
+          <p data-hf-id="hf-zak9" class="ph-name" id="rn-5">Description</p><p data-hf-id="hf-rsy4" class="ph-name" id="rn-6">Preuves</p>
+          <p data-hf-id="hf-pp37" class="ph-name" id="rn-7">Mode anonyme</p><p data-hf-id="hf-ib16" class="ph-name" id="rn-8">Prévisualisation</p>
+        </div>
+        <div data-hf-id="hf-dgey" id="ph-prog"><div data-hf-id="hf-jb38" id="ph-prog-fill"></div></div>
+        <div data-hf-id="hf-tzku" id="ph-dots">
+          <div data-hf-id="hf-v6xc" class="ph-dot" id="pd-1" style="left: 0px">1</div><div data-hf-id="hf-3cdd" class="ph-dot" id="pd-2" style="left: 98px">2</div>
+          <div data-hf-id="hf-fuz4" class="ph-dot" id="pd-3" style="left: 196px">3</div><div data-hf-id="hf-pmqb" class="ph-dot" id="pd-4" style="left: 294px">4</div>
+          <div data-hf-id="hf-ss3e" class="ph-dot" id="pd-5" style="left: 392px">5</div><div data-hf-id="hf-nkcx" class="ph-dot" id="pd-6" style="left: 490px">6</div>
+          <div data-hf-id="hf-qykn" class="ph-dot" id="pd-7" style="left: 588px">7</div><div data-hf-id="hf-lhxs" class="ph-dot" id="pd-8" style="left: 686px">8</div>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-a5kq" id="ph-receipt">
+        <div data-hf-id="hf-eehi" id="ph-receipt-band"></div>
+        <h3 data-hf-id="hf-qox1">Conservez votre référence<br data-hf-id="hf-x5px" />et votre code de suivi</h3>
+        <p data-hf-id="hf-4eia" class="ph-lab" style="top: 146px">Référence</p>
+        <p data-hf-id="hf-coq9" class="ph-lab" style="top: 278px">Code de suivi</p>
+        <p data-hf-id="hf-cokd" class="ph-field" id="ph-code" style="top: 314px">••••••••••</p>
+        <p data-hf-id="hf-c3al" id="ph-help">Conservez ce code secret. Ne le communiquez à personne.</p>
+        <p data-hf-id="hf-o8eo" id="ph-chip">SIG-ESURSI-2026-4F7A2D</p>
+      </div>
+    </div>
+    <div data-hf-id="hf-1z4t" id="ph-edge"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // local time = film time - 19.15
+      const L = (film) => +(film - 19.15).toFixed(3);
+      const PH = "#ph";
+      // --- the phone world wipes in on the flag diagonal
+      tl.to("#ph-scene", { clipPath: "polygon(0px 0px, 2200px 0px, 1950px 1080px, 0px 1080px)", duration: 0.55, ease: "power3.inOut" }, 0);
+      tl.fromTo("#ph-edge", { x: 14, rotation: 13 }, { x: 2214, rotation: 13, duration: 0.55, ease: "power3.inOut" }, 0);
+      tl.fromTo("#ph-stripe", { x: -80, rotation: -25 }, { x: 40, rotation: -25, duration: 10.8, ease: "none" }, 0);
+
+      // --- camera states (phone local units = screen css px)
+      const REST = { x: 690, y: 76, scale: 1.08 };
+      const PUNCH = { x: 300, y: -250, scale: 1.62 };
+      tl.fromTo(PH, { x: REST.x, y: 1180, scale: REST.scale, transformOrigin: "0px 0px" },
+        { x: REST.x, y: REST.y, duration: 0.85, ease: "expo.out" }, 0.12);
+      tl.to(PH, { x: 470, duration: 0.7, ease: "power2.inOut" }, L(20.2));
+      tl.to(PH, { ...PUNCH, duration: 0.7, ease: "power2.inOut" }, L(20.85));
+      tl.to(PH, { x: 248, y: -412, scale: 2.0, duration: 0.55, ease: "power2.inOut" }, L(24.45));
+      tl.to(PH, { ...PUNCH, y: -250, duration: 0.5, ease: "power2.inOut" }, L(25.3));
+      tl.to(PH, { x: 240, y: 76, scale: 1.08, duration: 0.7, ease: "power2.inOut" }, L(26.2));
+
+      // --- page states
+      const show = (id, t, scroll, slide) => {
+        tl.set("#ph-page .ph-st", { opacity: 0 }, t);
+        tl.set("#ph-page", { y: -scroll }, t);
+        if (slide) tl.fromTo(id, { opacity: 0, x: 36 }, { opacity: 1, x: 0, duration: 0.24, ease: "expo.out" }, t);
+        else tl.set(id, { opacity: 1, x: 0 }, t);
+        tl.set("#ph-sticky", { opacity: scroll >= 139 ? 1 : 0 }, t);
+      };
+      const tap = (x, y, t) => {
+        tl.set("#ph-touch", { x: x, y: y }, t - 0.12);
+        tl.fromTo("#ph-touch", { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: 0.1, ease: "power2.out" }, t - 0.12);
+        tl.to("#ph-touch", { scale: 0.82, duration: 0.06, ease: "power2.in" }, t - 0.02);
+        tl.to("#ph-touch", { scale: 1.1, opacity: 0, duration: 0.18, ease: "power2.out" }, t + 0.06);
+      };
+      show("#st-home", 0, 0, false);
+      tap(125, 481, L(20.55));
+      show("#st-s1a", L(20.72), 0, true);
+      tl.to("#ph-page", { y: -330, duration: 0.42, ease: "power2.inOut" }, L(21.0));
+      tl.set("#ph-sticky", { opacity: 1 }, L(21.18));
+      tap(196, 796, L(21.58));
+      tl.set("#st-s1b", { opacity: 1 }, L(21.6));
+      show("#st-s2a", L(21.98), 330, true);
+      tap(196, 797, L(22.32));
+      tl.set("#st-s2b", { opacity: 1 }, L(22.36));
+      show("#st-s3", L(22.55), 400, true);
+      show("#st-s4", L(22.9), 330, true);
+      show("#st-s5a", L(23.2), 330, true);
+      // typing: the placeholder clears, the text arrives line by line
+      tl.set(["#bl-t", "#bl-d"], { opacity: 1 }, L(23.3));
+      tl.set(["#ty-t", "#ty-d1", "#ty-d2", "#ty-d3"], { opacity: 1 }, L(23.3));
+      tl.fromTo("#ty-t", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.24, ease: "none" }, L(23.3));
+      tl.fromTo("#ty-d1", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.16, ease: "none" }, L(23.56));
+      tl.fromTo("#ty-d2", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.16, ease: "none" }, L(23.72));
+      tl.fromTo("#ty-d3", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.1, ease: "none" }, L(23.88));
+      tl.set("#st-s5b", { opacity: 1 }, L(23.9));
+      show("#st-s6a", L(23.98), 330, true);
+      tl.set(["#bl-t", "#bl-d"], { opacity: 0 }, L(23.98));
+      tl.set("#st-s6b", { opacity: 1 }, L(24.16));
+      tl.fromTo("#st-s6b", { clipPath: "inset(898px 40px 334px 40px)" }, { clipPath: "inset(0px 0px 0px 0px)", duration: 0.3, ease: "expo.out" }, L(24.16));
+      show("#st-s7", L(24.5), 330, true);
+      tap(196, 749, L(24.8));
+      show("#st-s8a", L(25.45), 1450, true);
+      tap(47, 1727, L(25.72));
+      tl.set("#st-s8b", { opacity: 1 }, L(25.74));
+      tap(122, 1983, L(26.07));
+
+      // --- the rail: the form's own steps, readable
+      const steps = [[1, 21.05], [2, 21.98], [3, 22.55], [4, 22.9], [5, 23.2], [6, 23.98], [7, 24.5], [8, 25.45]];
+      tl.fromTo("#ph-rail", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.5, ease: "expo.out" }, L(20.95));
+      steps.forEach(([n, f], i) => {
+        const t = L(f);
+        tl.fromTo("#rn-" + n, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.26, ease: "expo.out" }, t);
+        tl.fromTo("#rc-" + n, { opacity: 0 }, { opacity: 1, duration: 0.14 }, t);
+        if (i > 0) {
+          tl.to("#rn-" + steps[i - 1][0], { opacity: 0, y: -60, duration: 0.18, ease: "power2.in" }, t - 0.02);
+          tl.to("#rc-" + steps[i - 1][0], { opacity: 0, duration: 0.1 }, t - 0.02);
+          tl.to("#pd-" + steps[i - 1][0], { backgroundColor: "#ffffff", borderColor: "#0057b8", color: "#0057b8", duration: 0.15 }, t);
+        }
+        tl.to("#pd-" + n, { backgroundColor: "#0057b8", borderColor: "#0057b8", color: "#ffffff", duration: 0.15 }, t);
+        tl.fromTo("#pd-" + n, { scale: 1.25 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, t);
+        tl.to("#ph-prog-fill", { scaleX: n / 8, duration: 0.3, ease: "power2.out" }, t);
+      });
+      tl.to("#ph-rail", { opacity: 0, x: 60, duration: 0.3, ease: "power2.in" }, L(26.12));
+
+      // --- after sending: reference and tracking code
+      tl.fromTo("#ph-receipt", { opacity: 0, x: -140, scale: 0.92, transformOrigin: "0% 50%" },
+        { opacity: 1, x: 0, scale: 1, duration: 0.6, ease: "expo.out" }, L(26.35));
+      tl.fromTo("#ph-chip", { opacity: 0, clipPath: "inset(0% 100% 0% 0%)" },
+        { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "power2.out" }, L(26.6));
+      tl.fromTo("#ph-code", { opacity: 0, clipPath: "inset(0% 100% 0% 0%)" },
+        { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, L(27.6));
+
+      // --- the reference lifts off and leaves for the Ministry
+      tl.to("#ph-chip", { backgroundColor: "#0057b8", color: "#ffffff", borderColor: "#0057b8", borderRadius: 40, scale: 1.08,
+        boxShadow: "0 24px 50px rgba(0,38,84,0.35)", duration: 0.3, ease: "power2.out" }, L(28.05));
+      tl.to("#ph-chip", { x: -140, y: -620, scale: 0.9, filter: "blur(3px)", duration: 0.5, ease: "power3.in" }, L(28.4));
+      tl.set("#ph-chip", { opacity: 0 }, L(28.9));
+      tl.to(PH, { y: 1200, duration: 0.55, ease: "power3.in" }, L(28.45));
+      tl.to("#ph-receipt", { y: 900, duration: 0.55, ease: "power3.in" }, L(28.55));
+      window.__timelines["phone"] = tl;
+    })();
+  </script>
+</template>

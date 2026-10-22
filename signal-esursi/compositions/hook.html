@@ -1,0 +1,220 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Source Serif 4";
+      src: url("assets/fonts/SourceSerif4-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    @font-face {
+      font-family: "Source Sans 3";
+      src: url("assets/fonts/SourceSans3-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #f5f9fc;
+    }
+    .hk-field {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    .hk-inner {
+      position: absolute;
+      left: 150px;
+      top: 0;
+      bottom: 0;
+      width: 1640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hk-kicker {
+      font-family: "Source Sans 3", sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+    .hk-word {
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 168px;
+      line-height: 1;
+      letter-spacing: -0.015em;
+    }
+    .hk-band {
+      position: absolute;
+      top: -300px;
+      width: 260px;
+      height: 1700px;
+      transform-origin: 50% 50%;
+      background: linear-gradient(90deg, #f7d618 0 14%, #ce1021 14% 86%, #f7d618 86% 100%);
+    }
+    #hk-wall {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: #f5f9fc;
+    }
+    #hk-wall-kicker {
+      position: absolute;
+      left: 150px;
+      top: 64px;
+      font-family: "Source Sans 3", sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ce1021;
+    }
+    #hk-wall-list {
+      position: absolute;
+      left: 150px;
+      top: 124px;
+      list-style: none;
+    }
+    #hk-wall-list li {
+      height: 66px;
+    }
+    .hk-line {
+      position: relative;
+      display: inline-block;
+      font-family: "Source Serif 4", serif;
+      font-weight: 600;
+      font-size: 54px;
+      line-height: 66px;
+      color: #0f2744;
+      white-space: nowrap;
+    }
+    .hk-bar {
+      position: absolute;
+      left: -10px;
+      right: -10px;
+      top: 9px;
+      bottom: 7px;
+      background: #002654;
+      transform-origin: 0 50%;
+    }
+  </style>
+  <div data-hf-id="hf-ktv8" id="root" data-composition-id="hook" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-ppqh" id="hk-f1" class="hk-field" style="background: #0057b8; color: #fff">
+      <div data-hf-id="hf-tulj" id="hk-band-1" class="hk-band" style="left: 1340px"></div>
+      <div data-hf-id="hf-frn0" class="hk-inner">
+        <p data-hf-id="hf-abt3" id="hk-k1" class="hk-kicker" style="color: #f7d618">Corruption</p>
+        <p data-hf-id="hf-n587" id="hk-w1" class="hk-word">Vente de points</p>
+      </div>
+    </div>
+    <div data-hf-id="hf-udv3" id="hk-f2" class="hk-field" style="background: #f7d618; color: #002654">
+      <div data-hf-id="hf-jxhg" class="hk-inner">
+        <p data-hf-id="hf-w9p4" id="hk-k2" class="hk-kicker" style="color: #ce1021">Faux diplôme</p>
+        <p data-hf-id="hf-lwwi" id="hk-w2" class="hk-word">Faux diplômes</p>
+      </div>
+    </div>
+    <div data-hf-id="hf-ngqp" id="hk-f3" class="hk-field" style="background: #ce1021; color: #fff">
+      <div data-hf-id="hf-iqkd" class="hk-inner">
+        <p data-hf-id="hf-g3sx" id="hk-k3" class="hk-kicker" style="color: #f7d618">Harcèlement et discrimination</p>
+        <p data-hf-id="hf-87xa" id="hk-w3" class="hk-word">Harcèlement</p>
+      </div>
+    </div>
+    <div data-hf-id="hf-xs69" id="hk-f4" class="hk-field" style="background: #002654; color: #fff">
+      <div data-hf-id="hf-j4ve" class="hk-inner">
+        <p data-hf-id="hf-j61g" id="hk-k4" class="hk-kicker" style="color: #f7d618">Fraude</p>
+        <p data-hf-id="hf-zq6m" id="hk-w4" class="hk-word">Fraude aux examens</p>
+      </div>
+    </div>
+    <div data-hf-id="hf-6ob5" id="hk-f5" class="hk-field" style="background: #ffffff; color: #0057b8">
+      <div data-hf-id="hf-l4ej" class="hk-inner">
+        <p data-hf-id="hf-re8g" id="hk-k5" class="hk-kicker" style="color: #ce1021">Abus des enseignants</p>
+        <p data-hf-id="hf-bxwi" id="hk-w5" class="hk-word">Chantage</p>
+      </div>
+    </div>
+    <div data-hf-id="hf-a4sz" id="hk-f6" class="hk-field" style="background: #007fff; color: #fff">
+      <div data-hf-id="hf-lipk" class="hk-inner">
+        <p data-hf-id="hf-au18" id="hk-k6" class="hk-kicker" style="color: #002654">Intégrité scientifique</p>
+        <p data-hf-id="hf-oe68" id="hk-w6" class="hk-word">Plagiat</p>
+      </div>
+    </div>
+    <div data-hf-id="hf-yq6u" id="hk-f7" class="hk-field" style="background: #f7d618; color: #002654">
+      <div data-hf-id="hf-kbsh" class="hk-inner">
+        <p data-hf-id="hf-dgbw" id="hk-k7" class="hk-kicker" style="color: #ce1021">Détournement</p>
+        <p data-hf-id="hf-ny2g" id="hk-w7" class="hk-word">Détournement de fonds</p>
+      </div>
+    </div>
+    <div data-hf-id="hf-cxma" id="hk-f8" class="hk-field" style="background: #0057b8; color: #fff">
+      <div data-hf-id="hf-dska" id="hk-band-2" class="hk-band" style="left: -120px"></div>
+      <div data-hf-id="hf-kq3i" class="hk-inner">
+        <p data-hf-id="hf-96ju" id="hk-k8" class="hk-kicker" style="color: #f7d618">Abus administratifs et de pouvoir</p>
+        <p data-hf-id="hf-nbbr" id="hk-w8" class="hk-word">Favoritisme</p>
+      </div>
+    </div>
+    <div data-hf-id="hf-fbyr" id="hk-f9" class="hk-field" style="background: #ce1021; color: #fff">
+      <div data-hf-id="hf-mpmn" class="hk-inner">
+        <p data-hf-id="hf-a4f5" id="hk-k9" class="hk-kicker" style="color: #f7d618">Faux diplôme</p>
+        <p data-hf-id="hf-25dq" id="hk-w9" class="hk-word">Faux relevés de cotes</p>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-0rdj" id="hk-wall">
+      <p data-hf-id="hf-2l99" id="hk-wall-kicker">13 catégories officielles</p>
+      <ol data-hf-id="hf-q8fq" id="hk-wall-list">
+        <li data-hf-id="hf-a4s6"><span data-hf-id="hf-05kc" class="hk-line">Corruption<i data-hf-id="hf-mw3j" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-9x5m"><span data-hf-id="hf-docr" class="hk-line">Abus des enseignants<i data-hf-id="hf-yha7" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-abgn"><span data-hf-id="hf-5jfa" class="hk-line">Faux diplôme<i data-hf-id="hf-y2z6" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-apro"><span data-hf-id="hf-z00c" class="hk-line">Fraude<i data-hf-id="hf-xoo5" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-b42p"><span data-hf-id="hf-26qq" class="hk-line">Harcèlement et discrimination<i data-hf-id="hf-0gtc" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-bidq"><span data-hf-id="hf-jgae" class="hk-line">Abus administratifs et de pouvoir<i data-hf-id="hf-02ib" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-bwor"><span data-hf-id="hf-1nll" class="hk-line">Abus académique<i data-hf-id="hf-zo7a" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-cazs"><span data-hf-id="hf-88ud" class="hk-line">Détournement<i data-hf-id="hf-z9w9" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-cpat"><span data-hf-id="hf-v0bn" class="hk-line">Abus financiers et de gestion<i data-hf-id="hf-vp50" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-d3lu"><span data-hf-id="hf-0tz5" class="hk-line">Intégrité scientifique<i data-hf-id="hf-vatz" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-cye6"><span data-hf-id="hf-znhv" class="hk-line">Violations éthiques en recherche<i data-hf-id="hf-uqcd" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-ck35"><span data-hf-id="hf-lkyo" class="hk-line">Sécurité et conformité réglementaire<i data-hf-id="hf-v4ne" class="hk-bar"></i></span></li>
+        <li data-hf-id="hf-dr08"><span data-hf-id="hf-8tnd" class="hk-line">Autres irrégularités<i data-hf-id="hf-viyf" class="hk-bar"></i></span></li>
+      </ol>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const BEAT = 60 / 124;
+      const b = (k) => Math.round(k * BEAT * 30) / 30;
+      // field n starts on beat index; hard cuts between them
+      const starts = [0, b(3), b(5), b(7), b(8), b(9), b(10), b(11), b(12)];
+      const wallAt = b(13);
+      starts.forEach((t, i) => {
+        const n = i + 1;
+        const end = i < starts.length - 1 ? starts[i + 1] : wallAt;
+        const slow = i < 3;
+        tl.set("#hk-f" + n, { opacity: 1 }, t);
+        tl.set("#hk-f" + n, { opacity: 0 }, end);
+        if (i === 0) {
+          // frame 0 is the thumbnail: the first word is already standing
+          tl.set("#hk-w1", { opacity: 1, filter: "blur(0px)", scale: 1 }, 0);
+          tl.set("#hk-k1", { opacity: 1 }, 0);
+        } else {
+          tl.fromTo("#hk-w" + n, { opacity: 0, filter: "blur(12px)", scale: 1.05, transformOrigin: "0% 50%" },
+            { opacity: 1, filter: "blur(0px)", scale: 1, duration: slow ? 0.24 : 0.16, ease: "expo.out" }, t);
+          tl.fromTo("#hk-k" + n, { opacity: 0 }, { opacity: 0.92, duration: 0.14, ease: "power2.out" }, t + 0.05);
+        }
+      });
+      // the flag stripe drifts behind the first words (the world moves, the words do not)
+      tl.fromTo("#hk-band-1", { x: -40, rotation: -25 }, { x: 70, rotation: -25, duration: starts[1], ease: "none" }, 0);
+      tl.fromTo("#hk-band-2", { x: 0, rotation: -25 }, { x: 90, rotation: -25, duration: starts[8] - starts[7], ease: "none" }, starts[7]);
+
+      // the wall of the 13 official categories
+      tl.set("#hk-wall", { opacity: 1 }, wallAt);
+      tl.fromTo("#hk-wall-kicker", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, wallAt);
+      tl.fromTo("#hk-wall-list .hk-line", { opacity: 0, x: 90, filter: "blur(8px)" },
+        { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.34, ease: "expo.out", stagger: 0.035 }, wallAt + 0.02);
+      // "...restent sous silence": every abuse is blacked out, line by line
+      tl.fromTo("#hk-wall-list .hk-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.inOut", stagger: 0.032 }, 7.62);
+      tl.to("#hk-wall-kicker", { color: "#8a9bb0", duration: 0.3 }, 7.7);
+      window.__timelines["hook"] = tl;
+    })();
+  </script>
+</template>

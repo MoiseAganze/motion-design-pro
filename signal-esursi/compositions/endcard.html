@@ -1,0 +1,152 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Source Serif 4";
+      src: url("assets/fonts/SourceSerif4-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    @font-face {
+      font-family: "Source Sans 3";
+      src: url("assets/fonts/SourceSans3-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    #ec-scene {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      clip-path: polygon(0px 0px, 0px 0px, -250px 1080px, 0px 1080px);
+    }
+    #ec-edge {
+      position: absolute;
+      top: -60px;
+      left: -29px;
+      width: 58px;
+      height: 1200px;
+      background: linear-gradient(90deg, #f7d618 0 16%, #ce1021 16% 84%, #f7d618 84% 100%);
+      transform-origin: 0 0;
+    }
+    #ec-band {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 12px;
+      background: linear-gradient(115deg, #007fff 0 38%, #f7d618 38% 41%, #ce1021 41% 59%, #f7d618 59% 62%, #007fff 62% 100%);
+    }
+    #ec-seal {
+      position: absolute;
+      left: 868px;
+      top: 92px;
+      width: 184px;
+      height: 184px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(0, 38, 84, 0.18);
+    }
+    #ec-seal img {
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      width: 168px;
+      height: 168px;
+    }
+    .ec-c {
+      position: absolute;
+      left: 0;
+      width: 1920px;
+      text-align: center;
+    }
+    #ec-name {
+      top: 296px;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 156px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: #0057b8;
+    }
+    #ec-sub {
+      top: 466px;
+      font-weight: 700;
+      font-size: 34px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #4f6378;
+    }
+    #ec-min {
+      top: 538px;
+      font-family: "Source Serif 4", serif;
+      font-weight: 600;
+      font-size: 38px;
+      line-height: 50px;
+      color: #0f2744;
+    }
+    #ec-tag {
+      top: 670px;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #8a6d00;
+    }
+    #ec-cta {
+      position: absolute;
+      left: 0;
+      top: 770px;
+      width: 1920px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 44px;
+    }
+    #ec-btn {
+      padding: 24px 46px;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #f7d618 0%, #e6b800 100%);
+      box-shadow: 0 3px 0 #b89400, 0 14px 30px rgba(230, 184, 0, 0.4);
+      color: #002654;
+      font-weight: 700;
+      font-size: 40px;
+    }
+    #ec-url {
+      font-weight: 700;
+      font-size: 44px;
+      color: #002654;
+    }
+  </style>
+  <div data-hf-id="hf-32ii" id="root" data-composition-id="endcard" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-oche" id="ec-scene">
+      <div data-hf-id="hf-5dxz" id="ec-band"></div>
+      <div data-hf-id="hf-8zqp" id="ec-seal"><img data-hf-id="hf-bql5" src="assets/img/seal.png" alt="Sceau de la République Démocratique du Congo" /></div>
+      <p data-hf-id="hf-70t4" class="ec-c" id="ec-name">ESURSI</p>
+      <p data-hf-id="hf-ogvq" class="ec-c" id="ec-sub">Application de signalement</p>
+      <p data-hf-id="hf-cs8k" class="ec-c" id="ec-min">Ministère de l'Enseignement Supérieur et Universitaire,<br data-hf-id="hf-x5px" />de la Recherche Scientifique et de l'Innovation</p>
+      <p data-hf-id="hf-x973" class="ec-c" id="ec-tag">Justice · Transparence · Mérite</p>
+      <div data-hf-id="hf-f8i0" id="ec-cta"><span data-hf-id="hf-q6ed" id="ec-btn">Déposer un signalement</span><span data-hf-id="hf-8yo3" id="ec-url">signal.minesursi.gouv.cd</span></div>
+    </div>
+    <div data-hf-id="hf-eap9" id="ec-edge"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // local time = film time - 56.0; the music's last hit is at 0.13
+      tl.to("#ec-scene", { clipPath: "polygon(0px 0px, 2200px 0px, 1950px 1080px, 0px 1080px)", duration: 0.4, ease: "power3.inOut" }, 0);
+      tl.fromTo("#ec-edge", { x: 14, rotation: 13 }, { x: 2214, rotation: 13, duration: 0.4, ease: "power3.inOut" }, 0);
+      tl.fromTo("#ec-band", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "expo.out" }, 0.2);
+      tl.fromTo("#ec-seal", { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.6)" }, 0.13);
+      tl.fromTo("#ec-name", { opacity: 0, clipPath: "inset(0% 50% 0% 50%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.5, ease: "expo.out" }, 0.3);
+      tl.fromTo("#ec-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 0.48);
+      tl.fromTo("#ec-min", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 0.45);
+      tl.fromTo("#ec-tag", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.6);
+      tl.fromTo("#ec-btn", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 0.75);
+      tl.fromTo("#ec-url", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, 0.9);
+      window.__timelines["endcard"] = tl;
+    })();
+  </script>
+</template>
