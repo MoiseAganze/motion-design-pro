@@ -141,6 +141,8 @@
     .st-ttl { position: absolute; left: 112px; top: 227px; color: #ffffff; }
     .st-ttl .st-l { font-size: 84px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
     .st-ttl .w { display: inline-block; opacity: 0; }
+    #st-t2 .st-l { font-size: 72px; }
+    #st-t2 .st-bar { height: 134px; }
     .st-bar { position: absolute; left: -40px; top: 6px; width: 12px; height: 156px; background: #ce0f1e; transform-origin: 50% 0; }
   </style>
 
@@ -222,8 +224,8 @@
 
     <div data-hf-id="hf-87c4" id="st-titles">
       <div data-hf-id="hf-lps4" id="st-t2" class="st-ttl"><i data-hf-id="hf-n71d" class="st-bar"></i>
-        <div data-hf-id="hf-wgyq" class="st-l"><span data-hf-id="hf-bd6j" class="w">Le</span> <span data-hf-id="hf-elbt" class="w">Ministère</span></div>
-        <div data-hf-id="hf-pkue" class="st-l"><span data-hf-id="hf-z6w0" class="w">dans</span> <span data-hf-id="hf-ekms" class="w">votre</span> <span data-hf-id="hf-4nj5" class="w">poche</span></div>
+        <div data-hf-id="hf-wgyq" class="st-l"><span data-hf-id="hf-bd6j" class="w">Sa</span> <span data-hf-id="hf-elbt" class="w">toute</span> <span class="w">nouvelle</span></div>
+        <div data-hf-id="hf-pkue" class="st-l"><span data-hf-id="hf-z6w0" class="w">application</span> <span data-hf-id="hf-ekms" class="w">mobile</span></div>
       </div>
       <div data-hf-id="hf-mhfx" id="st-t3" class="st-ttl"><i data-hf-id="hf-abud" class="st-bar"></i>
         <div data-hf-id="hf-pz5f" class="st-l"><span data-hf-id="hf-t320" class="w">Communiqués</span></div>
@@ -360,7 +362,7 @@
       // ---- shelf and stripe: the stripe draws under the hook, rises to close the title shelf, then underlines the name
       gsap.set("#st-shelf", { y: -774 });
       gsap.set(["#st-seg-b", "#st-seg-y", "#st-seg-r"], { scaleX: 0 });
-      ft("#st-seg-b", { scaleX: 0 }, { scaleX: 1, duration: 2.6, ease: "power1.inOut" }, 0.3);
+      ft("#st-seg-b", { scaleX: 0 }, { scaleX: 1, duration: 2.7, ease: "power1.inOut" }, 0.3);
       ft("#st-shelf", { y: -774 }, { y: -1450, duration: 0.55, ease: "power3.inOut" }, 3.387);
       ft("#st-shelf", { y: -1450 }, { y: -1264, duration: 0.42, ease: "power3.inOut" }, 22.95);
       ft("#st-stripe", { scaleX: 1, transformOrigin: "50% 50%" }, { scaleX: 0.7037, transformOrigin: "50% 50%", duration: 0.42, ease: "power3.inOut" }, 22.95);
@@ -405,9 +407,9 @@
         ft(bar(id), { scaleY: 1 }, { scaleY: 0, duration: 0.15, ease: "power2.in" }, at);
       };
 
-      barIn("st-t2", 3.95);
-      blurWords("#st-t2 .st-l:nth-child(2) .w", 3.95);
-      blurWords("#st-t2 .st-l:nth-child(3) .w", 4.85);
+      barIn("st-t2", 3.757);
+      blurWords("#st-t2 .st-l:nth-child(2) .w", 3.757);
+      blurWords("#st-t2 .st-l:nth-child(3) .w", 4.647);
       titleOut("st-t2", 6.05);
 
       barIn("st-t3", 6.3);
@@ -447,8 +449,8 @@
         if (c.startTime() >= 3.2) c.startTime(c.startTime() + SHIFT);
       });
       // stripe segments drawn under the long name (added after the shift on purpose)
-      ft("#st-seg-y", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "expo.out" }, 3.38);
-      ft("#st-seg-r", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 4.78);
+      ft("#st-seg-y", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "expo.out" }, 3.54);
+      ft("#st-seg-r", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 4.94);
       window.__timelines["stage"] = tl;
     })();
   </script>

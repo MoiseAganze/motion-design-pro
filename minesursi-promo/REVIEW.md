@@ -1,5 +1,10 @@
 # REVIEW — MINESURSI, pub TikTok
 
+## Version 3 (nouvelle phrase d'ouverture)
+- Ouverture régénérée seule (même voix, eleven_v4) : « Le Ministère de l'Enseignement Supérieur et Universitaire, de la Recherche Scientifique et de l'Innovation vous présente sa toute nouvelle application mobile. » (« sa toute nouvelle » : accord féminin d'« application »). Fichier assets/audio/voiceover-open.mp3, le reste de la voix v2 est conservé.
+- Accroche : « Le Ministère de… » ; titre du bandeau à l'apparition du téléphone : « Sa toute nouvelle / application mobile ».
+- Son du MP4 livré normalisé après rendu (ffmpeg loudnorm, image copiée sans réencodage) : -16,2 LUFS, crête vraie -1,6 dBTP.
+
 ## Version 2 (demande : nom complet du Ministère au début et à la fin)
 - Nouvelle voix ElevenLabs (même voix, eleven_v4, prise 1 sur 2, 33 s) : ouverture « Ministère de l'Enseignement Supérieur et Universitaire, de la Recherche Scientifique et de l'Innovation… tout le Ministère, désormais dans votre poche », fin « Minesursi. La plateforme du Ministère de l'Enseignement Supérieur et Universitaire, de la Recherche Scientifique et de l'Innovation, à portée de main ».
 - Minutage mot à mot : alignement ElevenLabs (il reprend le texte envoyé, ce n'est pas une vérification indépendante de la prononciation).
