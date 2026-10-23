@@ -82,7 +82,10 @@ Version 3 : le film suit mot pour mot le nouveau script du client. Même voix (E
 
 ## Rendu
 
-- `renders/esursi-signalement-national.mp4` — voir les mesures ci-dessous.
+- `renders/esursi-signalement-national.mp4` : 70,2 s, 1920×1080, 30 fps, H.264 + AAC, ~23 Mo
+  (qualité « delivery »).
+- Son mesuré sur le fichier final : −14,1 LUFS intégré, pic vrai −1,3 dBTP, aucun écrêtage.
+- Huit images extraites du MP4 final ont été comparées aux aperçus : identiques.
 - Rendu local : `npx hyperframes render --quality delivery --output renders/esursi-signalement-national.mp4`
   (GSAP est embarqué dans `assets/vendor/`, le rendu ne dépend d'aucun réseau).
 
