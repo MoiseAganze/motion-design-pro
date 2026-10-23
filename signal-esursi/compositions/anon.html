@@ -1,0 +1,550 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Source Serif 4";
+      src: url("assets/fonts/SourceSerif4-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    @font-face {
+      font-family: "Source Sans 3";
+      src: url("assets/fonts/SourceSans3-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    /* phone frame: local units are the screen's CSS pixels (393 x 852) */
+    .pf {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 852px;
+    }
+    .pf-body {
+      position: absolute;
+      left: -14px;
+      top: -14px;
+      width: 421px;
+      height: 880px;
+      border-radius: 66px;
+      background: linear-gradient(135deg, #3a4452 0%, #1c2430 45%, #2c3542 100%);
+      box-shadow: 0 50px 90px rgba(0, 38, 84, 0.28), 0 0 0 1.5px #59636f inset;
+    }
+    .pf-screen {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 852px;
+      border-radius: 53px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .pf-view {
+      position: absolute;
+      left: 0;
+      top: 47px;
+      width: 393px;
+      height: 725px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .pf-page {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 2300px;
+    }
+    .pf-st {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      opacity: 0;
+    }
+    .pf-sticky {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 73px;
+      opacity: 0;
+      box-shadow: 0 2px 10px rgba(0, 38, 84, 0.12);
+    }
+    .pf-status {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 393px;
+      height: 47px;
+      background: #002654;
+      color: #fff;
+    }
+    .pf-time {
+      position: absolute;
+      left: 44px;
+      top: 15px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+    }
+    .pf-icons {
+      position: absolute;
+      right: 30px;
+      top: 17px;
+      width: 70px;
+      height: 13px;
+    }
+    .pf-island {
+      position: absolute;
+      left: 136px;
+      top: 11px;
+      width: 121px;
+      height: 35px;
+      border-radius: 20px;
+      background: #000;
+    }
+    .pf-bar {
+      position: absolute;
+      left: 0;
+      top: 772px;
+      width: 393px;
+      height: 80px;
+      background: #f2f3f7;
+      border-top: 1px solid #dfe2e8;
+    }
+    .pf-url {
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      width: 365px;
+      height: 44px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 16px;
+      color: #1f2937;
+    }
+    .pf-url svg {
+      width: 11px;
+      height: 13px;
+    }
+    .pf-home {
+      position: absolute;
+      left: 130px;
+      top: 64px;
+      width: 134px;
+      height: 5px;
+      border-radius: 3px;
+      background: #111;
+    }
+    .pf-touch {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 46px;
+      height: 46px;
+      margin: -23px 0 0 -23px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.42);
+      border: 2.5px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 14px rgba(0, 38, 84, 0.35);
+      opacity: 0;
+    }
+    .bg-light {
+      position: absolute;
+      inset: 0;
+      background: #e8f4ff;
+    }
+    .bg-stripe {
+      position: absolute;
+      left: 980px;
+      top: -260px;
+      width: 300px;
+      height: 1700px;
+      opacity: 0.11;
+      background: linear-gradient(90deg, #f7d618 0 14%, #ce1021 14% 86%, #f7d618 86% 100%);
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    .ico {
+      position: absolute;
+    }
+    /* the step pill handed over by the phone scene, which becomes the switch's knob */
+    #an-row {
+      position: absolute;
+      left: 628px;
+      top: 806px;
+      width: 880px;
+      height: 76px;
+    }
+    #an-row-c {
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #b5c9de;
+    }
+    #an-row-l {
+      position: absolute;
+      left: 92px;
+      top: 0;
+      font-weight: 600;
+      font-size: 38px;
+      line-height: 76px;
+      color: #fff;
+      white-space: nowrap;
+    }
+    #an-row-l b {
+      font-weight: 700;
+      color: #f7d618;
+      margin-right: 8px;
+    }
+    #an-tg {
+      position: absolute;
+      left: 680px;
+      top: 300px;
+      width: 1160px;
+      height: 200px;
+    }
+    #an-track {
+      position: absolute;
+      inset: 0;
+      border-radius: 100px;
+      background: #ffffff;
+      border: 2px solid #c9d8e8;
+      box-shadow: 0 24px 50px rgba(0, 38, 84, 0.14);
+      opacity: 0;
+    }
+    #an-knob {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 556px;
+      height: 176px;
+      border-radius: 88px;
+      background: #0057b8;
+      box-shadow: 0 14px 30px rgba(0, 87, 184, 0.3);
+    }
+    .an-half {
+      position: absolute;
+      top: 0;
+      width: 580px;
+      height: 200px;
+      opacity: 0;
+    }
+    .an-lab {
+      position: absolute;
+      left: 170px;
+      top: 34px;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 58px;
+      line-height: 1.1;
+      color: #002654;
+    }
+    .an-sub {
+      position: absolute;
+      left: 172px;
+      top: 104px;
+      width: 370px;
+      font-size: 24px;
+      line-height: 29px;
+      color: #4f6378;
+    }
+    #an-cap {
+      position: absolute;
+      left: 680px;
+      top: 590px;
+      font-family: "Source Serif 4", serif;
+      font-weight: 600;
+      font-size: 64px;
+      line-height: 1.2;
+      color: #002654;
+      white-space: nowrap;
+    }
+    #an-cap .w {
+      position: relative;
+      display: inline-block;
+      opacity: 0;
+    }
+    .an-ul {
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(115deg, #007fff 0 38%, #f7d618 38% 41%, #ce1021 41% 59%, #f7d618 59% 62%, #007fff 62% 100%);
+      transform-origin: 0% 50%;
+      transform: scaleX(0);
+    }
+    /* personal data that is never kept */
+    .an-chip {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 330px;
+      height: 84px;
+      border-radius: 42px;
+      background: #ffffff;
+      border: 2px solid #c9d8e8;
+      box-shadow: 0 12px 26px rgba(0, 38, 84, 0.12);
+      opacity: 0;
+    }
+    .an-chip .ico {
+      left: 14px;
+      top: 14px;
+    }
+    .an-chip p {
+      position: absolute;
+      left: 84px;
+      top: 0;
+      font-weight: 600;
+      font-size: 34px;
+      line-height: 80px;
+      color: #0f2744;
+      white-space: nowrap;
+    }
+    .an-strike {
+      position: absolute;
+      left: 80px;
+      top: 40px;
+      width: 220px;
+      height: 5px;
+      border-radius: 3px;
+      background: #ce1021;
+      transform-origin: 0% 50%;
+      transform: scaleX(0);
+    }
+    #an-db-wrap {
+      position: absolute;
+      left: 1420px;
+      top: 300px;
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+    }
+    #an-zero {
+      position: absolute;
+      left: 196px;
+      top: -14px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #ce1021;
+      border: 6px solid #ffffff;
+      box-shadow: 0 12px 26px rgba(206, 16, 33, 0.35);
+      color: #ffffff;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 68px;
+      line-height: 106px;
+      text-align: center;
+      opacity: 0;
+    }
+    .an-puff {
+      position: absolute;
+      left: 1215px;
+      width: 90px;
+      height: 90px;
+      margin: -45px 0 0 -45px;
+      border-radius: 50%;
+      border: 4px solid #8a9bb0;
+      opacity: 0;
+    }
+    #an-quote {
+      position: absolute;
+      left: 680px;
+      top: 800px;
+      font-family: "Source Serif 4", serif;
+      font-weight: 600;
+      font-size: 38px;
+      line-height: 1.2;
+      color: #002654;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    #an-quote b {
+      position: relative;
+      display: inline-block;
+      color: #0057b8;
+    }
+    #an-ring {
+      position: absolute;
+      left: 40px;
+      top: 689px;
+      width: 313px;
+      height: 119px;
+      border-radius: 10px;
+      border: 4px solid #f7d618;
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="anon" data-width="1920" data-height="1080">
+    <div class="bg-light"></div>
+    <div class="bg-stripe" id="an-stripe"></div>
+
+    <div class="pf" id="an-ph">
+      <div class="pf-body"></div>
+      <div class="pf-screen">
+        <div class="pf-view">
+          <div class="pf-page" id="an-page" style="transform: translateY(-330px)">
+            <img class="pf-st" src="assets/ui/phone/s7.jpg" alt="Étape 7 : choix du mode, signalement anonyme" style="opacity: 1" />
+            <div id="an-ring"></div>
+            <div class="pf-touch" id="an-touch"></div>
+          </div>
+          <img class="pf-sticky" src="assets/ui/phone/header.jpg" alt="" style="opacity: 1" />
+        </div>
+          <div class="pf-status">
+            <span class="pf-time">9:41</span>
+            <svg class="pf-icons" viewBox="0 0 70 13" aria-hidden="true">
+              <g fill="#fff">
+                <rect x="0" y="8" width="3" height="5" rx="1" /><rect x="5" y="5.5" width="3" height="7.5" rx="1" />
+                <rect x="10" y="3" width="3" height="10" rx="1" /><rect x="15" y="0.5" width="3" height="12.5" rx="1" />
+                <path d="M30 4.2a9 9 0 0 1 11.6 0l-1.3 1.4a7 7 0 0 0-9 0zM32.4 6.8a5.4 5.4 0 0 1 6.8 0l-1.4 1.4a3.4 3.4 0 0 0-4 0zM34.8 9.3a2 2 0 0 1 2 0L35.8 11z" />
+                <rect x="47" y="1" width="20" height="11" rx="3" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.2" />
+                <rect x="49" y="3" width="14" height="7" rx="1.5" /><rect x="68" y="4.5" width="1.6" height="4" rx=".8" fill-opacity=".55" />
+              </g>
+            </svg>
+            <div class="pf-island"></div>
+          </div>
+          <div class="pf-bar">
+            <div class="pf-url">
+              <svg viewBox="0 0 11 13" aria-hidden="true"><path fill="#4b5563" d="M2 6V4a3.5 3.5 0 0 1 7 0v2h.5A1.5 1.5 0 0 1 11 7.5v4A1.5 1.5 0 0 1 9.5 13h-8A1.5 1.5 0 0 1 0 11.5v-4A1.5 1.5 0 0 1 1.5 6zm1.5 0h4V4a2 2 0 0 0-4 0z" /></svg>
+              <span>signal.minesursi.gouv.cd</span>
+            </div>
+            <div class="pf-home"></div>
+          </div>
+      </div>
+    </div>
+
+    <div id="an-row">
+      <div id="an-row-c"><svg id="an-row-i" class="ico" viewBox="0 0 48 48" width="44" height="44" style="left:8px;top:8px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M3.05 23.063c.11 1.089 1.063 1.674 2.157 1.713C7.7 24.865 13.259 25 24 25s16.3-.135 18.793-.224c1.094-.04 2.047-.624 2.157-1.713q.048-.451.05-1.063q-.002-.612-.05-1.063c-.11-1.089-1.063-1.674-2.157-1.713C40.3 19.135 34.741 19 24 19s-16.3.135-18.793.224c-1.094.04-2.047.624-2.157 1.713Q3.002 21.388 3 22q.002.612.05 1.063"/><path fill="#A8D0FF" d="M8.215 19.14c.32-2.5 1.02-7.168 2.28-11.85c.584-2.173 2.46-3.71 4.702-3.906C17.413 3.19 20.49 3 24 3s6.587.19 8.803.384c2.242.195 4.118 1.733 4.702 3.906c1.26 4.683 1.961 9.35 2.28 11.85c-3.16-.072-8.17-.14-15.785-.14s-12.625.068-15.785.14"/><path fill="#FFFFFF" d="M7 38a7 7 0 1 0 14 0a7 7 0 1 0-14 0m34 0a7 7 0 1 1-14 0a7 7 0 1 1 14 0"/><path stroke="#0057B8" stroke-linejoin="round" d="M7 38a7 7 0 1 0 14 0a7 7 0 1 0-14 0m34 0a7 7 0 1 1-14 0a7 7 0 1 1 14 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M21 38c1.657-1.333 4.343-1.333 6 0"/><path stroke="#0057B8" stroke-linejoin="round" d="M3.05 23.063c.11 1.089 1.063 1.674 2.157 1.713C7.7 24.865 13.259 25 24 25s16.3-.135 18.793-.224c1.094-.04 2.047-.624 2.157-1.713q.048-.451.05-1.063q-.002-.612-.05-1.063c-.11-1.089-1.063-1.674-2.157-1.713C40.3 19.135 34.741 19 24 19s-16.3.135-18.793.224c-1.094.04-2.047.624-2.157 1.713Q3.002 21.388 3 22q.002.612.05 1.063Z"/><path stroke="#0057B8" stroke-linejoin="round" d="M8.215 19.14c.32-2.5 1.02-7.168 2.28-11.85c.584-2.173 2.46-3.71 4.702-3.906C17.413 3.19 20.49 3 24 3s6.587.19 8.803.384c2.242.195 4.118 1.733 4.702 3.906c1.26 4.683 1.961 9.35 2.28 11.85"/></g></svg></div>
+      <p id="an-row-l"><b>7</b> Mode</p>
+    </div>
+
+    <div id="an-tg">
+      <div id="an-track"></div>
+      <div id="an-knob"></div>
+      <div class="an-half" id="an-h1" style="left: 0px">
+        <svg id="an-i1" class="ico" viewBox="0 0 48 48" width="104" height="104" style="left:52px;top:48px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M3.05 23.063c.11 1.089 1.063 1.674 2.157 1.713C7.7 24.865 13.259 25 24 25s16.3-.135 18.793-.224c1.094-.04 2.047-.624 2.157-1.713q.048-.451.05-1.063q-.002-.612-.05-1.063c-.11-1.089-1.063-1.674-2.157-1.713C40.3 19.135 34.741 19 24 19s-16.3.135-18.793.224c-1.094.04-2.047.624-2.157 1.713Q3.002 21.388 3 22q.002.612.05 1.063"/><path fill="#A8D0FF" d="M8.215 19.14c.32-2.5 1.02-7.168 2.28-11.85c.584-2.173 2.46-3.71 4.702-3.906C17.413 3.19 20.49 3 24 3s6.587.19 8.803.384c2.242.195 4.118 1.733 4.702 3.906c1.26 4.683 1.961 9.35 2.28 11.85c-3.16-.072-8.17-.14-15.785-.14s-12.625.068-15.785.14"/><path fill="#FFFFFF" d="M7 38a7 7 0 1 0 14 0a7 7 0 1 0-14 0m34 0a7 7 0 1 1-14 0a7 7 0 1 1 14 0"/><path stroke="#002654" stroke-linejoin="round" d="M7 38a7 7 0 1 0 14 0a7 7 0 1 0-14 0m34 0a7 7 0 1 1-14 0a7 7 0 1 1 14 0"/><path stroke="#002654" stroke-linecap="round" stroke-linejoin="round" d="M21 38c1.657-1.333 4.343-1.333 6 0"/><path stroke="#002654" stroke-linejoin="round" d="M3.05 23.063c.11 1.089 1.063 1.674 2.157 1.713C7.7 24.865 13.259 25 24 25s16.3-.135 18.793-.224c1.094-.04 2.047-.624 2.157-1.713q.048-.451.05-1.063q-.002-.612-.05-1.063c-.11-1.089-1.063-1.674-2.157-1.713C40.3 19.135 34.741 19 24 19s-16.3.135-18.793.224c-1.094.04-2.047.624-2.157 1.713Q3.002 21.388 3 22q.002.612.05 1.063Z"/><path stroke="#002654" stroke-linejoin="round" d="M8.215 19.14c.32-2.5 1.02-7.168 2.28-11.85c.584-2.173 2.46-3.71 4.702-3.906C17.413 3.19 20.49 3 24 3s6.587.19 8.803.384c2.242.195 4.118 1.733 4.702 3.906c1.26 4.683 1.961 9.35 2.28 11.85"/></g></svg>
+        <svg id="an-i1w" class="ico" viewBox="0 0 48 48" width="104" height="104" style="left:52px;top:48px;opacity:0" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#4D9FFF" d="M3.05 23.063c.11 1.089 1.063 1.674 2.157 1.713C7.7 24.865 13.259 25 24 25s16.3-.135 18.793-.224c1.094-.04 2.047-.624 2.157-1.713q.048-.451.05-1.063q-.002-.612-.05-1.063c-.11-1.089-1.063-1.674-2.157-1.713C40.3 19.135 34.741 19 24 19s-16.3.135-18.793.224c-1.094.04-2.047.624-2.157 1.713Q3.002 21.388 3 22q.002.612.05 1.063"/><path fill="#4D9FFF" d="M8.215 19.14c.32-2.5 1.02-7.168 2.28-11.85c.584-2.173 2.46-3.71 4.702-3.906C17.413 3.19 20.49 3 24 3s6.587.19 8.803.384c2.242.195 4.118 1.733 4.702 3.906c1.26 4.683 1.961 9.35 2.28 11.85c-3.16-.072-8.17-.14-15.785-.14s-12.625.068-15.785.14"/><path fill="#0057B8" d="M7 38a7 7 0 1 0 14 0a7 7 0 1 0-14 0m34 0a7 7 0 1 1-14 0a7 7 0 1 1 14 0"/><path stroke="#FFFFFF" stroke-linejoin="round" d="M7 38a7 7 0 1 0 14 0a7 7 0 1 0-14 0m34 0a7 7 0 1 1-14 0a7 7 0 1 1 14 0"/><path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" d="M21 38c1.657-1.333 4.343-1.333 6 0"/><path stroke="#FFFFFF" stroke-linejoin="round" d="M3.05 23.063c.11 1.089 1.063 1.674 2.157 1.713C7.7 24.865 13.259 25 24 25s16.3-.135 18.793-.224c1.094-.04 2.047-.624 2.157-1.713q.048-.451.05-1.063q-.002-.612-.05-1.063c-.11-1.089-1.063-1.674-2.157-1.713C40.3 19.135 34.741 19 24 19s-16.3.135-18.793.224c-1.094.04-2.047.624-2.157 1.713Q3.002 21.388 3 22q.002.612.05 1.063Z"/><path stroke="#FFFFFF" stroke-linejoin="round" d="M8.215 19.14c.32-2.5 1.02-7.168 2.28-11.85c.584-2.173 2.46-3.71 4.702-3.906C17.413 3.19 20.49 3 24 3s6.587.19 8.803.384c2.242.195 4.118 1.733 4.702 3.906c1.26 4.683 1.961 9.35 2.28 11.85"/></g></svg>
+        <p class="an-lab" id="an-l1">Anonyme</p>
+        <p class="an-sub" id="an-s1">Aucune donnée personnelle conservée</p>
+      </div>
+      <div class="an-half" id="an-h2" style="left: 580px">
+        <svg id="an-i2" class="ico" viewBox="0 0 48 48" width="104" height="104" style="left:52px;top:48px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M39.924 44.684c2.511-.134 4.518-1.941 4.745-4.446c.18-1.973.331-4.69.331-8.238s-.151-6.265-.33-8.238c-.228-2.505-2.235-4.312-4.746-4.446C36.987 19.16 32.424 19 26 19c-6.425 0-10.987.16-13.924.316c-2.511.135-4.518 1.941-4.745 4.446a71 71 0 0 0-.188 2.613A11 11 0 0 1 10 26a10.98 10.98 0 0 1 8.485 4H31a7 7 0 0 1 7 7v5a7 7 0 0 1-.582 2.8q1.407-.057 2.506-.116"/><path fill="#FFFFFF" d="m31.294 14.991l.238 4.052l7.826.244l-.44-5.283A12 12 0 0 0 26.957 3h-1.916a12 12 0 0 0-11.959 11.004l-.44 5.283l7.825-.244l.239-4.052a5.303 5.303 0 0 1 10.587 0Z"/><path stroke="#002654" stroke-linecap="round" stroke-linejoin="round" d="M7.23 25q.049-.662.1-1.238c.228-2.505 2.235-4.311 4.746-4.446C15.013 19.16 19.576 19 26 19c6.425 0 10.987.16 13.924.316c2.511.135 4.518 1.941 4.745 4.446c.18 1.973.331 4.69.331 8.238s-.152 6.265-.33 8.238c-.228 2.505-2.235 4.312-4.746 4.446q-.657.035-1.424.07"/><path stroke="#002654" stroke-linecap="round" stroke-linejoin="round" d="m31.532 19.043l-.238-4.052a5.303 5.303 0 0 0-10.587 0l-.239 4.052m18.89.244l-.44-5.283A12 12 0 0 0 26.957 3h-1.916a12 12 0 0 0-11.959 11.004l-.44 5.283"/><path fill="#FFFFFF" d="M10 44a7 7 0 1 1 6.326-10H31a3 3 0 0 1 3 3v5a3 3 0 1 1-6 0v-2h-1v2a3 3 0 1 1-6 0v-2h-4.674A7 7 0 0 1 10 44"/><path stroke="#002654" stroke-linecap="round" stroke-linejoin="round" d="M10 44a7 7 0 1 1 6.326-10H31a3 3 0 0 1 3 3v5a3 3 0 1 1-6 0v-2h-1v2a3 3 0 1 1-6 0v-2h-4.674A7 7 0 0 1 10 44m-1-7h2"/></g></svg>
+        <svg id="an-i2w" class="ico" viewBox="0 0 48 48" width="104" height="104" style="left:52px;top:48px;opacity:0" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#4D9FFF" d="M39.924 44.684c2.511-.134 4.518-1.941 4.745-4.446c.18-1.973.331-4.69.331-8.238s-.151-6.265-.33-8.238c-.228-2.505-2.235-4.312-4.746-4.446C36.987 19.16 32.424 19 26 19c-6.425 0-10.987.16-13.924.316c-2.511.135-4.518 1.941-4.745 4.446a71 71 0 0 0-.188 2.613A11 11 0 0 1 10 26a10.98 10.98 0 0 1 8.485 4H31a7 7 0 0 1 7 7v5a7 7 0 0 1-.582 2.8q1.407-.057 2.506-.116"/><path fill="#0057B8" d="m31.294 14.991l.238 4.052l7.826.244l-.44-5.283A12 12 0 0 0 26.957 3h-1.916a12 12 0 0 0-11.959 11.004l-.44 5.283l7.825-.244l.239-4.052a5.303 5.303 0 0 1 10.587 0Z"/><path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" d="M7.23 25q.049-.662.1-1.238c.228-2.505 2.235-4.311 4.746-4.446C15.013 19.16 19.576 19 26 19c6.425 0 10.987.16 13.924.316c2.511.135 4.518 1.941 4.745 4.446c.18 1.973.331 4.69.331 8.238s-.152 6.265-.33 8.238c-.228 2.505-2.235 4.312-4.746 4.446q-.657.035-1.424.07"/><path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" d="m31.532 19.043l-.238-4.052a5.303 5.303 0 0 0-10.587 0l-.239 4.052m18.89.244l-.44-5.283A12 12 0 0 0 26.957 3h-1.916a12 12 0 0 0-11.959 11.004l-.44 5.283"/><path fill="#0057B8" d="M10 44a7 7 0 1 1 6.326-10H31a3 3 0 0 1 3 3v5a3 3 0 1 1-6 0v-2h-1v2a3 3 0 1 1-6 0v-2h-4.674A7 7 0 0 1 10 44"/><path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" d="M10 44a7 7 0 1 1 6.326-10H31a3 3 0 0 1 3 3v5a3 3 0 1 1-6 0v-2h-1v2a3 3 0 1 1-6 0v-2h-4.674A7 7 0 0 1 10 44m-1-7h2"/></g></svg>
+        <p class="an-lab" id="an-l2">Identifié</p>
+        <p class="an-sub" id="an-s2">Identité chiffrée, visible des seuls agents habilités</p>
+      </div>
+    </div>
+    <p id="an-cap">
+      <span class="w" id="an-c1">C'est</span> <span class="w" id="an-c2">vous</span> <span class="w" id="an-c3">qui</span>
+      <span class="w" id="an-c4">choisissez.<span class="an-ul" id="an-ul"></span></span>
+    </p>
+
+    <div class="an-chip" id="an-k1"><svg id="an-ki1" class="ico" viewBox="0 0 48 48" width="56" height="56" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#FFFFFF" d="M10 17c0 7.732 6.268 14 14 14s14-6.268 14-14S31.732 3 24 3S10 9.268 10 17"/><path fill="#A8D0FF" d="M10 17c7.32-.035 13.324-6.168 14-14c-7.32.035-13.324 6.168-14 14m28 0c-7.32-.035-13.324-6.168-14-14c7.32.035 13.324 6.168 14 14M18.352 29.814c-5.094 1.52-9.077 5.037-10.637 9.441c-.846 2.39.907 4.637 3.417 4.993c2.697.384 6.855.753 12.868.753s10.17-.37 12.868-.753c2.51-.356 4.264-2.603 3.417-4.993c-1.56-4.404-5.543-7.921-10.637-9.44A13.95 13.95 0 0 1 24 31c-2.01 0-3.92-.424-5.648-1.187Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M38 17c0 7.732-6.268 14-14 14s-14-6.268-14-14S16.268 3 24 3s14 6.268 14 14"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M18.352 29.814c-5.094 1.519-9.077 5.036-10.637 9.44c-.846 2.39.907 4.637 3.417 4.994C13.829 44.63 17.986 45 24 45s10.17-.37 12.868-.752c2.51-.357 4.264-2.604 3.417-4.994c-1.56-4.404-5.543-7.921-10.637-9.44M38 17c-7.732 0-14-6.268-14-14c0 7.732-6.268 14-14 14m18 6.5c-1.75 2.667-6.25 2.667-8 0M19 18v.5m10.001-.5v.5"/></g></svg><p>Nom</p><div class="an-strike" id="an-x1"></div></div>
+    <div class="an-chip" id="an-k2"><svg id="an-ki2" class="ico" viewBox="0 0 48 48" width="56" height="56" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M3.99 7.33c-.908-2.236 1.144-4.368 3.424-3.578c7.73 2.679 22.423 8.422 35.323 17.184a3.683 3.683 0 0 1 0 6.127c-12.9 8.761-27.594 14.505-35.323 17.184c-2.28.79-4.332-1.343-3.425-3.579c1.95-4.803 4.178-9.412 5.287-11.643a3.9 3.9 0 0 1 2.178-1.93L20 23.999l-8.546-3.095a3.9 3.9 0 0 1-2.178-1.93c-1.109-2.231-3.337-6.84-5.287-11.644Z"/><path stroke="#0057B8" stroke-linejoin="round" d="M3.988 7.331c-.907-2.236 1.145-4.368 3.425-3.578c7.73 2.679 22.423 8.422 35.323 17.184a3.683 3.683 0 0 1 0 6.127c-12.9 8.761-27.593 14.505-35.323 17.184c-2.28.79-4.332-1.343-3.425-3.579c1.95-4.803 4.178-9.412 5.287-11.643a3.9 3.9 0 0 1 2.178-1.93L20 24l-8.547-3.095a3.9 3.9 0 0 1-2.178-1.93c-1.109-2.231-3.337-6.84-5.287-11.644Z"/></g></svg><p>E-mail</p><div class="an-strike" id="an-x2"></div></div>
+    <div class="an-chip" id="an-k3"><svg id="an-ki3" class="ico" viewBox="0 0 48 48" width="56" height="56" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M45 13c0-5.523-4.477-10-10-10h-.569a3 3 0 0 0-2.785 1.886L29.18 11.05a4 4 0 0 0 .885 4.314l3.077 3.077c.493.493.7 1.21.498 1.878a20.05 20.05 0 0 1-13.32 13.32c-.668.203-1.385-.005-1.878-.498l-3.077-3.077a4 4 0 0 0-4.314-.885l-6.165 2.466A3 3 0 0 0 3 34.43V35c0 5.523 4.477 10 10 10h.5c17.11 0 31.034-13.642 31.489-30.642q0-.008.005-.013a.02.02 0 0 0 .006-.013z"/><path stroke="#0057B8" stroke-linejoin="round" d="M45 13c0-5.523-4.477-10-10-10h-.569a3 3 0 0 0-2.785 1.886L29.18 11.05a4 4 0 0 0 .885 4.314l3.077 3.077c.493.493.7 1.21.498 1.878a20.05 20.05 0 0 1-13.32 13.32c-.668.203-1.385-.005-1.878-.498l-3.077-3.077a4 4 0 0 0-4.314-.885l-6.165 2.466A3 3 0 0 0 3 34.43V35c0 5.523 4.477 10 10 10h.5c17.11 0 31.034-13.642 31.489-30.642q0-.008.005-.013a.02.02 0 0 0 .006-.013z"/></g></svg><p>Téléphone</p><div class="an-strike" id="an-x3"></div></div>
+    <div class="an-chip" id="an-k4"><svg id="an-ki4" class="ico" viewBox="0 0 48 48" width="56" height="56" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M3 24a21 21 0 1 0 42 0a21 21 0 1 0-42 0"/><path stroke="#0057B8" stroke-linejoin="round" d="M3 24a21 21 0 1 0 42 0a21 21 0 1 0-42 0"/><path stroke="#0057B8" stroke-linejoin="round" d="M15 24a9 21 0 1 1 18 0a9 21 0 1 1-18 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M4.5 31h39m-39-14h39"/></g></svg><p>Adresse IP</p><div class="an-strike" id="an-x4"></div></div>
+    <div class="an-puff" id="an-p1" style="top: 360px"></div>
+    <div class="an-puff" id="an-p2" style="top: 410px"></div>
+    <div class="an-puff" id="an-p3" style="top: 460px"></div>
+    <div class="an-puff" id="an-p4" style="top: 510px"></div>
+    <div id="an-db-wrap">
+      <svg id="an-db" class="ico" viewBox="0 0 48 48" width="300" height="300" style="left:0px;top:0px" aria-hidden="true"><defs><path id="SVGJ5kDdewH" fill="#FFFFFF" d="M24 19c10.217 0 18.5-3.582 18.5-8S34.217 3 24 3S5.5 6.582 5.5 11s8.283 8 18.5 8"/></defs><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M5.5 11c0-4.418 8.283-8 18.5-8s18.5 3.582 18.5 8c0 0 .5 5 .5 13s-.5 13-.5 13c0 4.418-8.283 8-18.5 8S5.5 41.418 5.5 37c0 0-.5-5-.5-13s.5-13 .5-13"/><use href="#SVGJ5kDdewH"/><use href="#SVGJ5kDdewH"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M42.5 11c0 4.418-8.283 8-18.5 8S5.5 15.418 5.5 11M43 24.205C43 28.51 34.493 32 24 32S5 28.51 5 24.205M11.5 24a.5.5 0 0 0 0-1m0 1a.5.5 0 0 1 0-1"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M5.5 11c0-4.418 8.283-8 18.5-8s18.5 3.582 18.5 8c0 0 .5 5 .5 13s-.5 13-.5 13c0 4.418-8.283 8-18.5 8S5.5 41.418 5.5 37c0 0-.5-5-.5-13s.5-13 .5-13"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M11.5 37a.5.5 0 0 0 0-1m0 1a.5.5 0 0 1 0-1M18 25.75a.5.5 0 0 0 0-1m0 1a.5.5 0 0 1 0-1m0 14a.5.5 0 0 0 0-1m0 1a.5.5 0 0 1 0-1"/></g></svg>
+      <div id="an-zero">0</div>
+    </div>
+    <p id="an-quote">« Aucune donnée personnelle ni adresse IP <b id="an-qb">n'est conservée<span class="an-ul" id="an-ulq"></span></b>. »</p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // local time = film time - 37.4; the phone holds the pose the phone scene left it in
+      const L = (film) => +(film - 37.4).toFixed(3);
+      tl.set("#an-ph", { x: 140, y: 76, scale: 1.08, transformOrigin: "0px 0px" }, 0);
+      tl.fromTo("#an-stripe", { x: 59.1, rotation: -25 }, { x: 116.3, rotation: -25, duration: 6.25, ease: "none" }, 0);
+
+      // --- "Anonyme": the step pill becomes the switch's knob
+      tl.to(["#an-row-c", "#an-row-l"], { opacity: 0, duration: 0.12 }, 0.02);
+      tl.fromTo("#an-knob", { x: -64, y: 494, width: 880, height: 76, borderRadius: 38 },
+        { x: 0, y: 0, width: 556, height: 176, borderRadius: 88, duration: 0.5, ease: "expo.inOut" }, 0.0);
+      tl.fromTo("#an-track", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, 0.2);
+      tl.fromTo("#an-h1", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out" }, 0.4);
+      tl.fromTo("#an-h2", { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.35, ease: "expo.out" }, 0.3);
+      tl.set(["#an-l1"], { color: "#ffffff" }, 0.4);
+      tl.set(["#an-s1"], { color: "#d6e8ff" }, 0.4);
+      tl.set("#an-i1", { opacity: 0 }, 0.4);
+      tl.set("#an-i1w", { opacity: 1 }, 0.4);
+      tl.fromTo("#an-i1w", { scale: 0.6, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.4, ease: "back.out(2.2)" }, 0.4);
+
+      // the knob goes where the voice goes
+      const toSide = (side, t) => {
+        const on = side === 1 ? 1 : 2, off = side === 1 ? 2 : 1;
+        tl.to("#an-knob", { x: side === 1 ? 0 : 580, duration: 0.34, ease: "power3.inOut" }, t);
+        tl.to("#an-l" + on, { color: "#ffffff", duration: 0.15 }, t + 0.17);
+        tl.to("#an-s" + on, { color: "#d6e8ff", duration: 0.15 }, t + 0.17);
+        tl.to("#an-l" + off, { color: "#002654", duration: 0.15 }, t + 0.05);
+        tl.to("#an-s" + off, { color: "#4f6378", duration: 0.15 }, t + 0.05);
+        tl.to("#an-i" + on + "w", { opacity: 1, duration: 0.12 }, t + 0.17);
+        tl.to("#an-i" + on, { opacity: 0, duration: 0.12 }, t + 0.17);
+        tl.to("#an-i" + off + "w", { opacity: 0, duration: 0.12 }, t + 0.05);
+        tl.to("#an-i" + off, { opacity: 1, duration: 0.12 }, t + 0.05);
+        tl.fromTo("#an-i" + on + "w", { scale: 0.7, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.4, ease: "back.out(2.4)" }, t + 0.17);
+      };
+      toSide(2, L(37.95));
+      // "c'est vous qui choisissez": a real tap on the phone's anonymous card
+      [[1, 38.47], [2, 38.6], [3, 38.83], [4, 39.47]].forEach(([i, f]) =>
+        tl.fromTo("#an-c" + i, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, L(f)));
+      tl.to("#an-ul", { scaleX: 1, duration: 0.4, ease: "expo.out" }, L(39.6));
+      tl.set("#an-touch", { x: 196, y: 748 }, L(39.34));
+      tl.fromTo("#an-touch", { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: 0.1, ease: "power2.out" }, L(39.34));
+      tl.to("#an-touch", { scale: 0.82, duration: 0.06, ease: "power2.in" }, L(39.44));
+      tl.to("#an-touch", { scale: 1.1, opacity: 0, duration: 0.18, ease: "power2.out" }, L(39.52));
+      tl.fromTo("#an-ring", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, L(39.46));
+      toSide(1, L(39.42));
+
+      // --- "En mode anonyme": the switch steps back, the data comes out of the phone
+      const T2 = L(40.39);
+      tl.to("#an-cap", { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, T2 - 0.2);
+      tl.to("#an-tg", { scale: 0.62, y: -204, transformOrigin: "0% 0%", duration: 0.5, ease: "power3.inOut" }, T2 - 0.1);
+      tl.to("#an-h2", { opacity: 0.45, duration: 0.3 }, T2 + 0.2);
+      tl.to(["#an-s1", "#an-s2"], { opacity: 0, duration: 0.2 }, T2 - 0.1);
+      const SLOTS = [[700, 300], [700, 404], [700, 508], [700, 612]];
+      SLOTS.forEach(([x, y], i) => {
+        tl.fromTo("#an-k" + (i + 1), { opacity: 0, x: 420, y: 520, scale: 0.3 },
+          { opacity: 1, x: x, y: y, scale: 1, duration: 0.55, ease: "expo.out" }, T2 + 0.1 + i * 0.12);
+      });
+      tl.fromTo("#an-db-wrap", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, T2 + 0.35);
+
+      // "aucune donnée personnelle": each one is struck out and evaporates before storage
+      const T3 = L(41.43);
+      SLOTS.forEach(([x, y], i) => {
+        const t = T3 + i * 0.16;
+        tl.to("#an-x" + (i + 1), { scaleX: 1, duration: 0.18, ease: "power2.out" }, t);
+        tl.to("#an-k" + (i + 1), { x: 1050, y: 360 + i * 50 - 42, duration: 0.5, ease: "power2.in" }, t + 0.12);
+        tl.to("#an-k" + (i + 1), { opacity: 0, scale: 0.55, filter: "blur(8px)", duration: 0.22, ease: "power1.in" }, t + 0.44);
+        tl.set("#an-p" + (i + 1), { opacity: 0.8, scale: 0.4 }, t + 0.58);
+        tl.to("#an-p" + (i + 1), { opacity: 0, scale: 1.6, duration: 0.4, ease: "power2.out" }, t + 0.58);
+      });
+      tl.fromTo("#an-quote", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, T3 + 0.1);
+      // "n'est conservée": the store stays empty
+      const T4 = L(42.67);
+      tl.fromTo("#an-zero", { opacity: 0, scale: 0.3, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.6)" }, T4);
+      tl.to("#an-db", { keyframes: [{ x: -6 }, { x: 6 }, { x: -3 }, { x: 0 }], duration: 0.3 }, T4);
+      tl.to("#an-ulq", { scaleX: 1, duration: 0.45, ease: "expo.out" }, T4 + 0.05);
+      window.__timelines["anon"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,112 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Source Serif 4";
+      src: url("assets/fonts/SourceSerif4-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    @font-face {
+      font-family: "Source Sans 3";
+      src: url("assets/fonts/SourceSans3-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #f5f9fc;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    #si-cold {
+      position: absolute;
+      inset: 0;
+      background: #e4e9ef;
+      opacity: 0;
+    }
+    #si-svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: visible;
+    }
+    .ico {
+      position: absolute;
+    }
+    .si-q {
+      position: absolute;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 210px;
+      line-height: 1;
+      color: #6f84a0;
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="silence" data-width="1920" data-height="1080">
+    <div id="si-cold"></div>
+    <svg id="si-svg" viewBox="0 0 1920 1080" aria-label="Une bulle de parole qui se ferme">
+      <path id="si-wander" d="M760 760 C 620 860, 380 820, 360 640 C 340 460, 560 420, 520 300 C 480 180, 260 200, 250 330 M1180 760 C 1330 880, 1560 860, 1590 690 C 1620 520, 1420 470, 1470 330 C 1510 210, 1690 200, 1700 320"
+        fill="none" stroke="#8a9bb0" stroke-width="7" stroke-linecap="round" />
+      <g id="si-bubble">
+        <path id="si-bub" d="M720 260 h480 a90 90 0 0 1 90 90 v220 a90 90 0 0 1 -90 90 h-300 l-110 96 l14 -96 h-84 a90 90 0 0 1 -90 -90 v-220 a90 90 0 0 1 90 -90 z"
+          fill="#ffffff" stroke="#002654" stroke-width="14" stroke-linejoin="round" />
+        <circle id="si-d1" cx="850" cy="460" r="30" fill="#0057b8" />
+        <circle id="si-d2" cx="960" cy="460" r="30" fill="#0057b8" />
+        <circle id="si-d3" cx="1070" cy="460" r="30" fill="#0057b8" />
+        <g id="si-zipper">
+          <path id="si-teeth-a" d="M690 452 H1236" stroke="#002654" stroke-width="22" stroke-dasharray="10 9" fill="none" />
+          <path id="si-teeth-b" d="M690 470 H1236" stroke="#002654" stroke-width="22" stroke-dasharray="10 9" stroke-dashoffset="9.5" fill="none" />
+          <g id="si-pull">
+            <rect x="-26" y="-34" width="52" height="68" rx="14" fill="#ce1021" stroke="#002654" stroke-width="8" />
+            <rect x="-10" y="18" width="20" height="58" rx="10" fill="#ce1021" stroke="#002654" stroke-width="7" />
+          </g>
+        </g>
+      </g>
+    </svg>
+    <svg id="si-who" class="ico" viewBox="0 0 48 48" width="250" height="250" style="left:740px;top:770px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#FFFFFF" d="M10 17c0 7.732 6.268 14 14 14s14-6.268 14-14S31.732 3 24 3S10 9.268 10 17"/><path fill="#A8D0FF" d="M10 17c7.32-.035 13.324-6.168 14-14c-7.32.035-13.324 6.168-14 14m28 0c-7.32-.035-13.324-6.168-14-14c7.32.035 13.324 6.168 14 14M18.352 29.814c-5.094 1.52-9.077 5.037-10.637 9.441c-.846 2.39.907 4.637 3.417 4.993c2.697.384 6.855.753 12.868.753s10.17-.37 12.868-.753c2.51-.356 4.264-2.603 3.417-4.993c-1.56-4.404-5.543-7.921-10.637-9.44A13.95 13.95 0 0 1 24 31c-2.01 0-3.92-.424-5.648-1.187Z"/><path stroke="#002654" stroke-linecap="round" stroke-linejoin="round" d="M38 17c0 7.732-6.268 14-14 14s-14-6.268-14-14S16.268 3 24 3s14 6.268 14 14"/><path stroke="#002654" stroke-linecap="round" stroke-linejoin="round" d="M18.352 29.814c-5.094 1.519-9.077 5.036-10.637 9.44c-.846 2.39.907 4.637 3.417 4.994C13.829 44.63 17.986 45 24 45s10.17-.37 12.868-.752c2.51-.357 4.264-2.604 3.417-4.994c-1.56-4.404-5.543-7.921-10.637-9.44M38 17c-7.732 0-14-6.268-14-14c0 7.732-6.268 14-14 14m18 6.5c-1.75 2.667-6.25 2.667-8 0M19 18v.5m10.001-.5v.5"/></g></svg>
+    <p class="si-q" id="si-q1" style="left: 180px; top: 110px">?</p>
+    <p class="si-q" id="si-q2" style="left: 1640px; top: 110px">?</p>
+    <p class="si-q" id="si-q3" style="left: 290px; top: 540px; font-size: 150px">?</p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // local time = film time - 9.38 ; music break at 0.85 ("on se tait"), drop at 4.71
+      const BREAK = 0.85;
+      tl.fromTo("#si-bubble", { scale: 0.6, opacity: 0, svgOrigin: "960 480" }, { scale: 1, opacity: 1, svgOrigin: "960 480", duration: 0.4, ease: "back.out(1.6)" }, 0);
+      tl.fromTo("#si-who", { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "expo.out" }, 0);
+      tl.to("#si-who", { y: 30, scale: 0.9, transformOrigin: "50% 100%", duration: 0.6, ease: "power2.out" }, 1.93);
+      tl.to("#si-who", { opacity: 0, y: 200, duration: 0.25, ease: "power2.in" }, 4.35);
+      // the bubble talks: three dots bounce
+      ["#si-d1", "#si-d2", "#si-d3"].forEach((d, i) => {
+        tl.fromTo(d, { y: 0 }, { y: -26, duration: 0.17, ease: "sine.inOut", yoyo: true, repeat: 3 }, 0.12 + i * 0.09);
+      });
+      // "on se tait": the dots stop, a zipper closes the bubble
+      tl.to(["#si-d1", "#si-d2", "#si-d3"], { opacity: 0, scale: 0.4, svgOrigin: "960 460", duration: 0.16 }, BREAK - 0.02);
+      tl.fromTo("#si-zipper", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.6, ease: "power2.inOut" }, BREAK);
+      tl.fromTo("#si-pull", { x: 690, y: 461 }, { x: 1236, y: 461, duration: 0.6, ease: "power2.inOut" }, BREAK);
+      tl.to("#si-cold", { opacity: 1, duration: 0.7, ease: "power1.inOut" }, BREAK + 0.1);
+      tl.to("#si-bub", { attr: { stroke: "#8a9bb0" }, duration: 0.6 }, BREAK + 0.2);
+      // "Par peur…": the bubble shrinks and trembles
+      const FEAR = 1.93;
+      tl.to("#si-bubble", { scale: 0.8, svgOrigin: "960 480", duration: 0.6, ease: "power2.out" }, FEAR);
+      tl.fromTo("#si-bubble", { x: 0 }, { keyframes: [6, -6, 5, -5, 4, -4, 3, -3, 0].map((x) => ({ x: x, duration: 0.05 })) }, FEAR);
+      // "…ou faute de savoir à qui parler": a path wanders and finds only question marks
+      tl.fromTo("#si-wander", { attr: { "stroke-dasharray": "1400 1400", "stroke-dashoffset": 1400 } },
+        { attr: { "stroke-dashoffset": 0 }, duration: 1.4, ease: "power1.inOut" }, 2.8);
+      tl.fromTo("#si-wander", { opacity: 0 }, { opacity: 1, duration: 0.1 }, 2.8);
+      [["#si-q3", 3.15], ["#si-q1", 3.55], ["#si-q2", 3.9]].forEach(([q, t]) =>
+        tl.fromTo(q, { opacity: 0, scale: 0.4, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.2)" }, t));
+      // the drop: the zipper bursts and we fly through the bubble
+      tl.to("#si-teeth-a", { y: -40, opacity: 0, duration: 0.18, ease: "power2.in" }, 4.5);
+      tl.to("#si-teeth-b", { y: 40, opacity: 0, duration: 0.18, ease: "power2.in" }, 4.5);
+      tl.to("#si-pull", { opacity: 0, duration: 0.1 }, 4.5);
+      tl.to(".si-q", { opacity: 0, duration: 0.15 }, 4.45);
+      tl.to("#si-wander", { opacity: 0, duration: 0.15 }, 4.45);
+      tl.to("#si-bubble", { scale: 9, svgOrigin: "960 480", duration: 0.32, ease: "power3.in" }, 4.4);
+      window.__timelines["silence"] = tl;
+    })();
+  </script>
+</template>

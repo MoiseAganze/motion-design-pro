@@ -1,0 +1,151 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Source Serif 4";
+      src: url("assets/fonts/SourceSerif4-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    @font-face {
+      font-family: "Source Sans 3";
+      src: url("assets/fonts/SourceSans3-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    .va-p {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      clip-path: polygon(2200px 0px, 2200px 0px, 1950px 1080px, 1950px 1080px);
+    }
+    .ico {
+      position: absolute;
+    }
+    .va-w {
+      position: absolute;
+      left: 840px;
+      top: 380px;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 190px;
+      line-height: 1;
+      letter-spacing: -0.015em;
+      white-space: nowrap;
+    }
+    .va-k {
+      position: absolute;
+      left: 848px;
+      top: 320px;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    #va-tag {
+      position: absolute;
+      left: 560px;
+      top: 900px;
+      width: 800px;
+      height: 76px;
+      border-radius: 38px;
+      background: #ffffff;
+      box-shadow: 0 14px 30px rgba(0, 38, 84, 0.18);
+      text-align: center;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 76px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b5c3d3;
+      opacity: 0;
+    }
+    #va-tag span {
+      display: inline-block;
+    }
+    .va-wave {
+      fill: none;
+      stroke: #f7d618;
+      stroke-width: 18;
+      stroke-linecap: round;
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="valeurs" data-width="1920" data-height="1080">
+    <div class="va-p" id="va-p1" style="background: #0057b8">
+      <svg id="va-i1" class="ico" viewBox="0 0 48 48" width="440" height="440" style="left:280px;top:290px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#4D9FFF" d="M35.501 40c-4.665 0-8.544-3.331-9.347-7.724c-.176-.962.557-1.798 1.53-1.9c1.603-.169 4.291-.376 7.817-.376s6.215.207 7.817.376c.973.102 1.707.938 1.53 1.9C44.047 36.67 40.167 40 35.502 40ZM41.52 5.527c-.28-.73-1.049-.97-1.818-.828c-1.97.364-6.642 1.28-15.986 3.36c-9.344 2.082-13.963 3.236-15.901 3.743c-.757.198-1.352.74-1.294 1.521c.022.298.073.658.17 1.09c.095.433.202.781.309 1.06c.278.731 1.047.97 1.817.828c1.97-.363 6.642-1.28 15.986-3.36c9.344-2.082 13.963-3.236 15.901-3.743c.757-.198 1.352-.74 1.294-1.521a8 8 0 0 0-.17-1.09a8 8 0 0 0-.309-1.06ZM12.501 45c-4.665 0-8.544-3.331-9.347-7.724c-.176-.962.557-1.798 1.53-1.9C6.288 35.208 8.976 35 12.502 35s6.215.208 7.817.376c.973.102 1.707.938 1.53 1.9C21.047 41.67 17.167 45 12.502 45Z"/><path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" d="M35.501 40c-4.665 0-8.544-3.331-9.347-7.724c-.176-.962.557-1.798 1.53-1.9c1.603-.169 4.291-.376 7.817-.376s6.215.207 7.817.376c.973.102 1.707.938 1.53 1.9C44.047 36.67 40.167 40 35.502 40ZM41.52 5.527c-.28-.73-1.049-.97-1.818-.828c-1.97.364-6.642 1.28-15.986 3.36c-9.344 2.082-13.963 3.236-15.901 3.743c-.757.198-1.352.74-1.294 1.521c.022.298.073.658.17 1.09c.095.433.202.781.309 1.06c.278.731 1.047.97 1.817.828c1.97-.363 6.642-1.28 15.986-3.36c9.344-2.082 13.963-3.236 15.901-3.743c.757-.198 1.352-.74 1.294-1.521a8 8 0 0 0-.17-1.09a8 8 0 0 0-.309-1.06ZM24.002 3v5M12.501 45c-4.665 0-8.544-3.331-9.347-7.724c-.176-.962.557-1.798 1.53-1.9C6.288 35.208 8.976 35 12.502 35s6.215.208 7.817.376c.973.102 1.707.938 1.53 1.9C21.047 41.67 17.167 45 12.502 45Z"/><path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" d="M36.304 10.293c1.567 4.514 4.996 14.584 6.325 20.015m-29.285-14.9c1.585 4.569 4.967 14.514 6.285 19.899M34.555 10.71c-1.625 4.693-4.891 14.329-6.18 19.598M11.531 15.775C9.9 20.491 6.657 30.062 5.374 35.307"/></g></svg>
+      <p class="va-k" style="color: #f7d618">Pour tous</p>
+      <p class="va-w" style="color: #ffffff">Justice</p>
+    </div>
+    <div class="va-p" id="va-p2" style="background: #ffffff">
+      <svg id="va-i2" class="ico" viewBox="0 0 48 48" width="440" height="440" style="left:280px;top:290px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#FFFFFF" d="M2.8 26.901a3.37 3.37 0 0 1 0-1.802C5.38 15.815 13.894 9 24 9s18.62 6.814 21.2 16.099c.163.59.163 1.212 0 1.802C42.62 36.184 34.106 43 24 43S5.38 36.186 2.8 26.901"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M2.8 26.901a3.37 3.37 0 0 1 0-1.802C5.38 15.815 13.894 9 24 9s18.62 6.814 21.2 16.099c.163.59.163 1.212 0 1.802C42.62 36.184 34.106 43 24 43S5.38 36.186 2.8 26.901"/><path fill="#A8D0FF" d="M34 26c0 5.523-4.477 10-10 10s-10-4.477-10-10s4.477-10 10-10s10 4.477 10 10"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M34 26c0 5.523-4.477 10-10 10s-10-4.477-10-10s4.477-10 10-10s10 4.477 10 10M24 9V2m-9.5 9.082L11 5.02m22.5 6.062L37 5.02M6.979 16.983l-4.95-4.95m38.992 4.948l4.95-4.95"/></g></svg>
+      <p class="va-k" style="color: #ce1021">Chaque étape tracée</p>
+      <p class="va-w" style="color: #002654; font-size: 140px; top: 405px">Transparence</p>
+    </div>
+    <div class="va-p" id="va-p3" style="background: #f7d618">
+      <svg id="va-i3" class="ico" viewBox="0 0 48 48" width="440" height="440" style="left:280px;top:260px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#F7D618" d="M24 3c-7 0-10 1-10 1v.491c.014.033 1.707 4.066 4.599 9.668C19.964 14.064 21.727 14 24 14s4.036.064 5.401.16C32.304 8.533 34 4.49 34 4.49V4s-3-1-10-1"/><path fill="#FFFFFF" d="M35.462 29.438c4.05-4.593 7.256-9.086 8.702-11.194c.536-.782.655-1.774.255-2.634C41.15 8.588 34 4 34 4s-3.337 7.957-8.663 17.074c4.793.53 8.735 3.886 10.125 8.364M3.836 18.244c-.536-.782-.655-1.774-.255-2.634C6.85 8.588 14 4 14 4s3.337 7.957 8.663 17.074c-4.794.531-8.735 3.886-10.126 8.364c-4.05-4.593-7.255-9.086-8.7-11.194Z"/><path fill="#F7D618" d="M12 33a12 12 0 1 0 24 0a12 12 0 1 0-24 0"/><path fill="#FFFFFF" d="M22.89 26.64a1.25 1.25 0 0 1 2.22 0l1.51 2.912l3.22.634a1.25 1.25 0 0 1 .688 2.062l-2.288 2.545l.42 3.395a1.25 1.25 0 0 1-1.8 1.272L24 38.032l-2.86 1.428a1.25 1.25 0 0 1-1.799-1.272l.42-3.395l-2.289-2.545a1.25 1.25 0 0 1 .688-2.062l3.22-.634l1.51-2.913Z"/><path stroke="#002654" stroke-linecap="round" stroke-linejoin="round" d="M14 4s3-1 10-1s10 1 10 1M18.845 14.143A81 81 0 0 1 24 14c2.139 0 3.826.056 5.155.143M12 33a12 12 0 1 0 24 0a12 12 0 1 0-24 0"/><path stroke="#002654" stroke-linecap="round" stroke-linejoin="round" d="M35.462 29.438c4.05-4.593 7.256-9.086 8.702-11.194c.536-.782.655-1.774.255-2.634C41.15 8.588 34 4 34 4s-3.337 7.957-8.663 17.074m-2.674 0C17.337 11.957 14 4 14 4S6.85 8.588 3.58 15.61c-.4.86-.281 1.852.255 2.634c1.446 2.108 4.651 6.6 8.701 11.194M22.89 26.64a1.25 1.25 0 0 1 2.22 0l1.51 2.912l3.22.634a1.25 1.25 0 0 1 .688 2.062l-2.288 2.545l.419 3.395a1.25 1.25 0 0 1-1.799 1.272L24 38.032l-2.86 1.428a1.25 1.25 0 0 1-1.8-1.272l.42-3.395l-2.288-2.545a1.25 1.25 0 0 1 .688-2.062l3.22-.634l1.51-2.913Z"/></g></svg>
+      <p class="va-k" style="color: #002654">Des diplômes qui valent</p>
+      <p class="va-w" style="color: #002654">Mérite</p>
+    </div>
+    <div class="va-p" id="va-p4" style="background: #002654">
+      <svg id="va-i4" class="ico" viewBox="0 0 48 48" width="420" height="420" style="left:240px;top:300px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#2F6DB5" d="M5.382 38.052c.303.525.691 1.088 1.057 1.585c.672.914 1.83 1.29 2.932 1.016c4.709-1.177 18.047-4.672 29.123-8.46c0 0-1.342-3.606-5.281-10.211c-3.94-6.605-6.196-9.67-6.196-9.67C18.2 20.011 8.498 29.808 5.125 33.299c-.79.816-1.042 2.008-.587 3.047c.248.565.541 1.183.844 1.707Z"/><path fill="#002654" d="M31.555 34.448a258 258 0 0 0 6.938-2.255s-1.342-3.606-5.28-10.211c-3.94-6.605-6.197-9.67-6.197-9.67a261 261 0 0 0-5.497 4.95c.302.218.578.47.816.762c.896 1.1 2.593 3.384 4.913 7.401c2.892 5.01 3.934 7.833 4.22 8.704q.052.158.087.32Z"/><path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" d="M42.5 19h-3m-31 0h3m14-17v3M13.479 6.98l2.12 2.122M37.52 6.98l-2.122 2.122m-8.587 3.325c-8.819 7.698-18.314 17.38-21.687 20.87c-.79.817-1.042 2.008-.587 3.048c.248.565.541 1.182.844 1.707s.691 1.087 1.057 1.584c.672.915 1.83 1.291 2.932 1.016c4.709-1.177 17.842-4.558 28.918-8.346M26.046 11.099s2.397 2.621 7.166 10.882s5.841 11.647 5.841 11.647"/><path stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" d="M21.612 17.193s2.091 2.092 5.636 8.232s4.311 8.997 4.311 8.997m-8.863 2.935l.594 2.218a4.59 4.59 0 1 1-8.87 2.376l-.494-1.848"/></g></svg>
+      <svg id="va-waves" viewBox="0 0 1920 1080" style="position: absolute; left: 0; top: 0; width: 1920px; height: 1080px" aria-hidden="true">
+        <path class="va-wave" id="va-w1" d="M700 440 A 110 110 0 0 1 700 630" />
+        <path class="va-wave" id="va-w2" d="M745 395 A 170 170 0 0 1 745 675" />
+        <path class="va-wave" id="va-w3" d="M790 350 A 230 230 0 0 1 790 720" />
+      </svg>
+      <p class="va-w" id="va-v4" style="color: #ffffff; left: 900px; top: 300px; font-size: 150px; line-height: 1.08">
+        <span id="va-v4a">Votre voix</span><br /><span id="va-v4b" style="color: #f7d618">compte.</span>
+      </p>
+    </div>
+    <p id="va-tag"><span id="va-t1">Justice</span> · <span id="va-t2">Transparence</span> · <span id="va-t3">Mérite</span></p>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // local time = film time - 60.0; one value per word, each panel cuts in on the flag diagonal
+      const L = (film) => +(film - 60.0).toFixed(3);
+      const OPEN = "polygon(-260px 0px, 2200px 0px, 1950px 1080px, -510px 1080px)";
+      const cut = (id, t) => tl.to(id, { clipPath: OPEN, duration: 0.32, ease: "power3.out" }, t);
+      const word = (sel, t) => {
+        tl.fromTo(sel + " .va-w", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.5, ease: "expo.out" }, t + 0.05);
+        tl.fromTo(sel + " .va-k", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, t + 0.18);
+      };
+      // Justice: the scales find their balance
+      cut("#va-p1", L(59.98));
+      word("#va-p1", L(60.0));
+      tl.fromTo("#va-i1", { opacity: 0, y: 60, rotation: -16, transformOrigin: "50% 20%" },
+        { opacity: 1, y: 0, rotation: 0, duration: 0.8, ease: "elastic.out(1, 0.45)" }, L(60.05));
+      tl.fromTo("#va-tag", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, L(60.15));
+      tl.to("#va-t1", { color: "#0057b8", duration: 0.2 }, L(60.11));
+      // Transparence: the eye opens
+      cut("#va-p2", L(60.86));
+      word("#va-p2", L(60.88));
+      tl.fromTo("#va-i2", { opacity: 0, scaleY: 0.08, transformOrigin: "50% 50%" }, { opacity: 1, scaleY: 1, duration: 0.45, ease: "back.out(2)" }, L(60.95));
+      tl.to("#va-i2", { keyframes: [{ scaleY: 0.12, duration: 0.08 }, { scaleY: 1, duration: 0.14 }], ease: "power1.inOut" }, L(61.7));
+      tl.to("#va-t2", { color: "#0057b8", duration: 0.2 }, L(60.99));
+      // Mérite: the medal drops and swings
+      cut("#va-p3", L(62.06));
+      word("#va-p3", L(62.08));
+      tl.fromTo("#va-i3", { opacity: 0, y: -360, rotation: 18, transformOrigin: "50% 0%" },
+        { keyframes: [{ opacity: 1, y: 0, rotation: -10, duration: 0.4, ease: "power2.in" }, { rotation: 6, duration: 0.25, ease: "sine.inOut" }, { rotation: 0, duration: 0.25, ease: "sine.out" }] }, L(62.1));
+      tl.to("#va-t3", { color: "#0057b8", duration: 0.2 }, L(62.19));
+      tl.to("#va-tag", { opacity: 0, y: 30, duration: 0.25, ease: "power2.in" }, L(62.95));
+      // "Votre voix compte": the megaphone speaks
+      cut("#va-p4", L(63.02));
+      tl.fromTo("#va-i4", { opacity: 0, x: -80, rotation: -12, transformOrigin: "30% 60%" }, { opacity: 1, x: 0, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, L(63.05));
+      tl.fromTo("#va-v4a", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, L(63.15));
+      tl.fromTo("#va-v4b", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, L(63.85));
+      [1, 2, 3].forEach((n) => {
+        [0, 1, 2].forEach((k) => {
+          const t = L(63.3) + k * 0.36 + (n - 1) * 0.1;
+          tl.fromTo("#va-w" + n, { opacity: 0 }, { keyframes: [{ opacity: 1, duration: 0.1 }, { opacity: 0.15, duration: 0.24 }], immediateRender: false }, t);
+        });
+      });
+      window.__timelines["valeurs"] = tl;
+    })();
+  </script>
+</template>

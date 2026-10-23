@@ -14,22 +14,13 @@
       position: absolute;
       inset: 0;
       overflow: hidden;
-      background: #f5f9fc;
-    }
-    #rv-card-shadow {
-      position: absolute;
-      left: 1040px;
-      top: 43px;
-      width: 550px;
-      height: 994px;
-      border-radius: 18px;
-      box-shadow: 0 40px 80px rgba(0, 38, 84, 0.22);
+      background: #ffffff;
+      font-family: "Source Sans 3", sans-serif;
     }
     #rv-poster-wrap {
       position: absolute;
       inset: 0;
       overflow: hidden;
-      clip-path: inset(1037px 330px 43px 1040px round 18px);
     }
     #rv-poster {
       position: absolute;
@@ -38,26 +29,10 @@
       width: 1920px;
       height: 1280px;
     }
-    #rv-star {
+    #rv-white {
       position: absolute;
-      left: 150px;
-      top: 300px;
-      width: 64px;
-      height: 64px;
-    }
-    #rv-voice {
-      position: absolute;
-      left: 150px;
-      top: 392px;
-      font-family: "Source Serif 4", serif;
-      font-weight: 700;
-      font-size: 128px;
-      line-height: 1.02;
-      letter-spacing: -0.015em;
-      color: #0057b8;
-    }
-    #rv-voice span {
-      display: inline-block;
+      inset: 0;
+      background: #ffffff;
     }
     #rv-panel {
       position: absolute;
@@ -77,16 +52,16 @@
     }
     #rv-copy {
       position: absolute;
-      left: 150px;
+      left: 140px;
       top: 0;
-      width: 1060px;
+      width: 1100px;
       height: 1080px;
       color: #fff;
     }
     #rv-kicker {
       position: absolute;
       left: 0;
-      top: 196px;
+      top: 170px;
       font-weight: 700;
       font-size: 28px;
       letter-spacing: 0.18em;
@@ -96,7 +71,7 @@
     #rv-seal {
       position: absolute;
       left: 0;
-      top: 262px;
+      top: 236px;
       width: 164px;
       height: 164px;
       border-radius: 50%;
@@ -113,7 +88,7 @@
     #rv-name {
       position: absolute;
       left: 196px;
-      top: 254px;
+      top: 228px;
       font-family: "Source Serif 4", serif;
       font-weight: 700;
       font-size: 132px;
@@ -123,15 +98,15 @@
     #rv-app {
       position: absolute;
       left: 200px;
-      top: 392px;
+      top: 366px;
       font-weight: 600;
-      font-size: 36px;
+      font-size: 38px;
       color: #d6e8ff;
     }
     #rv-rule {
       position: absolute;
       left: 0;
-      top: 486px;
+      top: 470px;
       width: 150px;
       height: 7px;
       background: linear-gradient(115deg, #007fff 0 38%, #f7d618 38% 41%, #ce1021 41% 59%, #f7d618 59% 62%, #007fff 62% 100%);
@@ -139,85 +114,61 @@
     #rv-ministry {
       position: absolute;
       left: 0;
-      top: 528px;
+      top: 512px;
       font-family: "Source Serif 4", serif;
       font-weight: 600;
-      font-size: 52px;
-      line-height: 68px;
+      font-size: 54px;
+      line-height: 72px;
       letter-spacing: -0.005em;
     }
     #rv-ministry .w {
       opacity: 0.24;
     }
   </style>
-  <div data-hf-id="hf-yqoq" id="root" data-composition-id="reveal" data-width="1920" data-height="1080">
-    <div data-hf-id="hf-rrcl" id="rv-card-shadow"></div>
-    <div data-hf-id="hf-2zey" id="rv-poster-wrap">
-      <img data-hf-id="hf-6vuv" id="rv-poster" src="assets/img/poster.png" alt="Affiche officielle « Signalez les abus » — ESURSI" />
+  <div id="root" data-composition-id="reveal" data-width="1920" data-height="1080">
+    <div id="rv-poster-wrap">
+      <img id="rv-poster" src="assets/img/poster.png" alt="Affiche officielle « Signalez les abus » — ESURSI" />
     </div>
-
-    <svg data-hf-id="hf-qzel" id="rv-star" viewBox="0 0 24 24" aria-hidden="true">
-      <path data-hf-id="hf-y126" fill="#F7D618" d="M12 1.8l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9l7.1-.6z" />
-    </svg>
-    <p data-hf-id="hf-a129" id="rv-voice"><span data-hf-id="hf-vmss" id="rv-v1">Chaque</span> <span data-hf-id="hf-zi4x" id="rv-v2">voix</span><br data-hf-id="hf-x5px" /><span data-hf-id="hf-rcmu" id="rv-v3">compte</span></p>
-
-    <div data-hf-id="hf-ccpk" id="rv-panel">
-      <div data-hf-id="hf-kuh1" id="rv-copy">
-        <p data-hf-id="hf-aed2" id="rv-kicker">République Démocratique du Congo</p>
-        <div data-hf-id="hf-hsbh" id="rv-seal"><img data-hf-id="hf-1001" src="assets/img/seal.png" alt="Sceau de la République" /></div>
-        <p data-hf-id="hf-vahj" id="rv-name">ESURSI</p>
-        <p data-hf-id="hf-4bvc" id="rv-app">Application de signalement</p>
-        <div data-hf-id="hf-rjjo" id="rv-rule"></div>
-        <p data-hf-id="hf-0nw6" id="rv-ministry">
-          <span data-hf-id="hf-enii" class="w" id="rv-m1">Ministère</span> <span data-hf-id="hf-6oth" class="w" id="rv-m2">de</span>
-          <span data-hf-id="hf-nbu4" class="w" id="rv-m3">l'Enseignement</span> <span data-hf-id="hf-28ve" class="w" id="rv-m4">Supérieur</span><br data-hf-id="hf-rsrt" />
-          <span data-hf-id="hf-nfzw" class="w" id="rv-m5">et</span> <span data-hf-id="hf-jppg" class="w" id="rv-m6">Universitaire,</span>
-          <span data-hf-id="hf-0mub" class="w" id="rv-m7">de la</span> <span data-hf-id="hf-nm8x" class="w" id="rv-m8">Recherche</span><br data-hf-id="hf-szow" />
-          <span data-hf-id="hf-b1hs" class="w" id="rv-m9">Scientifique</span> <span data-hf-id="hf-kf7l" class="w" id="rv-m10">et de</span>
-          <span data-hf-id="hf-kw2c" class="w" id="rv-m11">l'Innovation</span>
+    <div id="rv-white"></div>
+    <div id="rv-panel">
+      <div id="rv-copy">
+        <p id="rv-kicker">République Démocratique du Congo</p>
+        <div id="rv-seal"><img src="assets/img/seal.png" alt="Sceau de la République" /></div>
+        <p id="rv-name">ESURSI</p>
+        <p id="rv-app">Plateforme nationale de signalement</p>
+        <div id="rv-rule"></div>
+        <p id="rv-ministry">
+          <span class="w" id="rv-m1">Ministère</span> <span class="w" id="rv-m2">de</span>
+          <span class="w" id="rv-m3">l'Enseignement</span> <span class="w" id="rv-m4">Supérieur,</span><br />
+          <span class="w" id="rv-m5">Universitaire,</span> <span class="w" id="rv-m6">Recherche</span>
+          <span class="w" id="rv-m7">Scientifique</span><br />
+          <span class="w" id="rv-m8">et</span> <span class="w" id="rv-m9">Innovations</span>
         </p>
       </div>
     </div>
-    <div data-hf-id="hf-pwih" id="rv-edge"></div>
+    <div id="rv-edge"></div>
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
-      // local time = film time - 9.69 (music break at 0, drop at 3.85)
-      const DROP = 3.85;
-      // portrait card rises in silence
-      tl.fromTo("#rv-poster-wrap", { clipPath: "inset(1037px 330px 43px 1040px round 18px)" },
-        { clipPath: "inset(43px 330px 43px 1040px round 18px)", duration: 0.6, ease: "expo.out" }, 0);
-      tl.fromTo("#rv-card-shadow", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, 0);
-      tl.fromTo("#rv-poster", { scale: 1, transformOrigin: "1290px 420px" },
-        { scale: 1.05, duration: 2.86, ease: "none" }, 0);
-      tl.fromTo("#rv-star", { opacity: 0, scale: 0.4, rotation: -40 },
-        { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.6)" }, 0.12);
-      [["#rv-v1", 1.02], ["#rv-v2", 1.28], ["#rv-v3", 1.56]].forEach(([s, t]) => {
-        tl.fromTo(s, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, t);
-      });
-      tl.to(["#rv-voice", "#rv-star"], { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 2.62);
-      // the card opens into the full campaign poster, landing on the drop
-      tl.to("#rv-poster-wrap", { clipPath: "inset(0px 0px 0px 0px round 0px)", duration: 0.99, ease: "power3.inOut" }, DROP - 0.99);
-      tl.to("#rv-card-shadow", { opacity: 0, duration: 0.5 }, DROP - 0.99);
-      tl.to("#rv-poster", { scale: 1, duration: 0.99, ease: "power3.inOut" }, DROP - 0.99);
-      tl.fromTo("#rv-poster-wrap", { scale: 1.08, filter: "blur(6px)" },
-        { scale: 1, filter: "blur(0px)", duration: 0.55, ease: "expo.out", immediateRender: false }, DROP);
+      // local time = film time - 14.09 (the music's drop)
+      tl.fromTo("#rv-white", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power1.out" }, 0);
+      tl.fromTo("#rv-poster-wrap", { scale: 1.14, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 0);
+      tl.fromTo("#rv-poster", { scale: 1, transformOrigin: "30% 40%" }, { scale: 1.04, duration: 1.75, ease: "none" }, 0.1);
       // the blue panel cuts in on the flag diagonal, carrying the official identity
-      const P = 4.78;
-      tl.to("#rv-panel", { clipPath: "polygon(0px 0px, 1330px 0px, 1080px 1080px, 0px 1080px)", duration: 0.55, ease: "expo.out" }, P);
+      const P = 1.72;
+      tl.to("#rv-panel", { clipPath: "polygon(0px 0px, 1380px 0px, 1130px 1080px, 0px 1080px)", duration: 0.55, ease: "expo.out" }, P);
       tl.set("#rv-edge", { opacity: 1 }, P);
-      tl.fromTo("#rv-edge", { x: 14, rotation: 13 }, { x: 1344, rotation: 13, duration: 0.55, ease: "expo.out" }, P);
-      tl.fromTo("#rv-kicker", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, P + 0.18);
-      tl.fromTo("#rv-seal", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" }, P + 0.22);
-      tl.fromTo("#rv-name", { opacity: 0, clipPath: "inset(0% 100% 0% 0%)" },
-        { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.5, ease: "power3.out" }, P + 0.3);
-      tl.fromTo("#rv-app", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, P + 0.45);
+      tl.fromTo("#rv-edge", { x: 14, rotation: 13 }, { x: 1394, rotation: 13, duration: 0.55, ease: "expo.out" }, P);
+      tl.fromTo("#rv-kicker", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, P + 0.15);
+      tl.fromTo("#rv-seal", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" }, P + 0.2);
+      tl.fromTo("#rv-name", { opacity: 0, clipPath: "inset(0% 100% 0% 0%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.5, ease: "power3.out" }, P + 0.28);
+      tl.fromTo("#rv-app", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, P + 0.42);
       tl.fromTo("#rv-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "expo.out" }, P + 0.5);
-      tl.fromTo("#rv-ministry", { opacity: 0 }, { opacity: 1, duration: 0.25 }, P + 0.1);
-      // each word of the ministry's name lights as the voice says it
-      const words = [[1, 4.88], [2, 5.36], [3, 5.47], [4, 6.08], [5, 6.64], [6, 6.72], [7, 7.72], [8, 7.92], [9, 8.32], [10, 9.0], [11, 9.23]];
-      words.forEach(([i, t]) => tl.to("#rv-m" + i, { opacity: 1, duration: 0.12, ease: "power1.out" }, t));
+      tl.fromTo("#rv-ministry", { opacity: 0 }, { opacity: 1, duration: 0.25 }, P + 0.3);
+      // every word of the Ministry's name lights as the voice says it
+      [[1, 2.6], [2, 3.16], [3, 3.24], [4, 3.88], [5, 4.68], [6, 5.72], [7, 6.12], [8, 6.8], [9, 6.92]].forEach(([i, t]) =>
+        tl.to("#rv-m" + i, { opacity: 1, duration: 0.12, ease: "power1.out" }, t));
       window.__timelines["reveal"] = tl;
     })();
   </script>

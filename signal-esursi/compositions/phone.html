@@ -10,46 +10,15 @@
       src: url("assets/fonts/SourceSans3-Variable.woff2") format("woff2");
       font-weight: 200 900;
     }
-    #root {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      font-family: "Source Sans 3", sans-serif;
-    }
-    #ph-scene {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      background: #e8f4ff;
-      clip-path: polygon(0px 0px, 0px 0px, -250px 1080px, 0px 1080px);
-    }
-    #ph-stripe {
-      position: absolute;
-      left: 980px;
-      top: -260px;
-      width: 300px;
-      height: 1700px;
-      opacity: 0.11;
-      background: linear-gradient(90deg, #f7d618 0 14%, #ce1021 14% 86%, #f7d618 86% 100%);
-    }
-    #ph-edge {
-      position: absolute;
-      top: -60px;
-      left: -29px;
-      width: 58px;
-      height: 1200px;
-      background: linear-gradient(90deg, #f7d618 0 16%, #ce1021 16% 84%, #f7d618 84% 100%);
-      transform-origin: 0 0;
-    }
-    /* phone: local units are the screen's CSS pixels (393 x 852) */
-    #ph {
+    /* phone frame: local units are the screen's CSS pixels (393 x 852) */
+    .pf {
       position: absolute;
       left: 0;
       top: 0;
       width: 393px;
       height: 852px;
     }
-    #ph-body {
+    .pf-body {
       position: absolute;
       left: -14px;
       top: -14px;
@@ -59,7 +28,7 @@
       background: linear-gradient(135deg, #3a4452 0%, #1c2430 45%, #2c3542 100%);
       box-shadow: 0 50px 90px rgba(0, 38, 84, 0.28), 0 0 0 1.5px #59636f inset;
     }
-    #ph-screen {
+    .pf-screen {
       position: absolute;
       left: 0;
       top: 0;
@@ -69,7 +38,7 @@
       overflow: hidden;
       background: #fff;
     }
-    #ph-view {
+    .pf-view {
       position: absolute;
       left: 0;
       top: 47px;
@@ -78,26 +47,21 @@
       overflow: hidden;
       background: #fff;
     }
-    #ph-page {
+    .pf-page {
       position: absolute;
       left: 0;
       top: 0;
       width: 393px;
       height: 2300px;
     }
-    .ph-st {
+    .pf-st {
       position: absolute;
       left: 0;
       top: 0;
       width: 393px;
       opacity: 0;
     }
-    .ph-blank {
-      position: absolute;
-      background: #fff;
-      opacity: 0;
-    }
-    #ph-sticky {
+    .pf-sticky {
       position: absolute;
       left: 0;
       top: 0;
@@ -106,7 +70,7 @@
       opacity: 0;
       box-shadow: 0 2px 10px rgba(0, 38, 84, 0.12);
     }
-    #ph-status {
+    .pf-status {
       position: absolute;
       left: 0;
       top: 0;
@@ -115,7 +79,7 @@
       background: #002654;
       color: #fff;
     }
-    #ph-time {
+    .pf-time {
       position: absolute;
       left: 44px;
       top: 15px;
@@ -123,14 +87,14 @@
       font-size: 16px;
       letter-spacing: 0.01em;
     }
-    #ph-icons {
+    .pf-icons {
       position: absolute;
       right: 30px;
       top: 17px;
       width: 70px;
       height: 13px;
     }
-    #ph-island {
+    .pf-island {
       position: absolute;
       left: 136px;
       top: 11px;
@@ -139,7 +103,7 @@
       border-radius: 20px;
       background: #000;
     }
-    #ph-bar {
+    .pf-bar {
       position: absolute;
       left: 0;
       top: 772px;
@@ -148,7 +112,7 @@
       background: #f2f3f7;
       border-top: 1px solid #dfe2e8;
     }
-    #ph-url {
+    .pf-url {
       position: absolute;
       left: 14px;
       top: 10px;
@@ -164,11 +128,11 @@
       font-size: 16px;
       color: #1f2937;
     }
-    #ph-url svg {
+    .pf-url svg {
       width: 11px;
       height: 13px;
     }
-    #ph-home-ind {
+    .pf-home {
       position: absolute;
       left: 130px;
       top: 64px;
@@ -177,7 +141,7 @@
       border-radius: 3px;
       background: #111;
     }
-    #ph-touch {
+    .pf-touch {
       position: absolute;
       left: 0;
       top: 0;
@@ -190,292 +154,445 @@
       box-shadow: 0 4px 14px rgba(0, 38, 84, 0.35);
       opacity: 0;
     }
-    /* right rail: the form's own 8 steps, at a readable size */
-    #ph-rail {
+    .bg-light {
       position: absolute;
-      left: 1060px;
-      top: 300px;
-      width: 780px;
-      height: 460px;
-      opacity: 0;
+      inset: 0;
+      background: #e8f4ff;
     }
-    #ph-rail-count {
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 40px;
-      width: 780px;
-      overflow: hidden;
-    }
-    .ph-count {
-      position: absolute;
-      left: 0;
-      top: 0;
-      font-weight: 700;
-      font-size: 30px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #ce1021;
-      opacity: 0;
-    }
-    #ph-rail-name {
-      position: absolute;
-      left: 0;
-      top: 52px;
-      width: 780px;
-      height: 112px;
-      overflow: hidden;
-    }
-    .ph-name {
-      position: absolute;
-      left: 0;
-      top: 0;
-      font-family: "Source Serif 4", serif;
-      font-weight: 700;
-      font-size: 78px;
-      line-height: 104px;
-      letter-spacing: -0.01em;
-      color: #0057b8;
-      white-space: nowrap;
-      opacity: 0;
-    }
-    #ph-prog {
-      position: absolute;
-      left: 0;
-      top: 196px;
-      width: 760px;
-      height: 10px;
-      border-radius: 6px;
-      background: #d6e2ee;
-      overflow: hidden;
-    }
-    #ph-prog-fill {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 760px;
-      height: 10px;
-      background: linear-gradient(90deg, #007fff, #f7d618);
-      transform-origin: 0 50%;
-      transform: scaleX(0);
-    }
-    #ph-dots {
-      position: absolute;
-      left: 0;
-      top: 236px;
-      width: 780px;
-      height: 70px;
-    }
-    .ph-dot {
-      position: absolute;
-      top: 0;
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-      border: 3px solid #cbd5e1;
-      background: #fff;
-      color: #4f6378;
-      font-weight: 700;
-      font-size: 28px;
-      line-height: 56px;
-      text-align: center;
-    }
-    /* receipt: reference + tracking code */
-    #ph-receipt {
+    .bg-stripe {
       position: absolute;
       left: 980px;
-      top: 300px;
-      width: 760px;
-      height: 470px;
-      background: #fff;
-      border: 1px solid #94a3b8;
-      border-radius: 8px;
-      box-shadow: 0 40px 80px rgba(0, 38, 84, 0.18);
-      opacity: 0;
-      overflow: visible;
+      top: -260px;
+      width: 300px;
+      height: 1700px;
+      opacity: 0.11;
+      background: linear-gradient(90deg, #f7d618 0 14%, #ce1021 14% 86%, #f7d618 86% 100%);
     }
-    #ph-receipt-band {
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    #ph-scene {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      clip-path: polygon(0px 0px, 0px 0px, -250px 1080px, 0px 1080px);
+    }
+    #ph-edge {
+      position: absolute;
+      top: -60px;
+      left: -29px;
+      width: 58px;
+      height: 1200px;
+      background: linear-gradient(90deg, #f7d618 0 16%, #ce1021 16% 84%, #f7d618 84% 100%);
+      transform-origin: 0 0;
+    }
+    .ph-ring {
+      position: absolute;
+      left: 660px;
+      top: 236px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      border: 3px solid #0057b8;
+      opacity: 0;
+    }
+    .ph-blank {
+      position: absolute;
+      background: #fff;
+      opacity: 0;
+    }
+    .ico {
+      position: absolute;
+    }
+    /* stopwatch: "en quelques minutes" */
+    #ph-sw {
+      position: absolute;
+      left: 1290px;
+      top: 250px;
+      width: 320px;
+      height: 340px;
+      opacity: 0;
+    }
+    #ph-sw-l {
+      position: absolute;
+      left: 1250px;
+      top: 620px;
+      width: 400px;
+      text-align: center;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 52px;
+      line-height: 1.1;
+      color: #002654;
+      opacity: 0;
+    }
+    /* section headers */
+    .ph-num {
+      position: absolute;
+      left: 640px;
+      top: 92px;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 150px;
+      line-height: 1;
+      color: #0057b8;
+      opacity: 0;
+    }
+    .ph-hd {
+      position: absolute;
+      top: 140px;
+      font-family: "Source Serif 4", serif;
+      font-weight: 600;
+      font-size: 64px;
+      line-height: 1.1;
+      color: #002654;
+      white-space: nowrap;
+    }
+    .ph-hd .w {
+      position: relative;
+      display: inline-block;
+      opacity: 0;
+    }
+    .ph-ul {
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(115deg, #007fff 0 38%, #f7d618 38% 41%, #ce1021 41% 59%, #f7d618 59% 62%, #007fff 62% 100%);
+      transform-origin: 0% 50%;
+      transform: scaleX(0);
+    }
+    /* the 13 official categories */
+    .ct {
+      position: absolute;
+      width: 232px;
+      height: 210px;
+      border-radius: 22px;
+      background: #ffffff;
+      border: 2px solid #d3e1f0;
+      box-shadow: 0 14px 34px rgba(0, 38, 84, 0.12);
+      opacity: 0;
+    }
+    .ct p {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: 112px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 23px;
+      line-height: 26px;
+      color: #0f2744;
+    }
+    .ct-hl {
+      position: absolute;
+      inset: -4px;
+      border-radius: 24px;
+      border: 5px solid #0057b8;
+      opacity: 0;
+    }
+    #ct-hl-8 {
+      border-color: #f7d618;
+    }
+    /* the 8 guided steps */
+    #sr-line {
+      position: absolute;
+      left: 664px;
+      top: 330px;
+      width: 4px;
+      height: 602px;
+      background: #c9d8e8;
+      opacity: 0;
+    }
+    #sr-fill {
       position: absolute;
       left: 0;
       top: 0;
-      width: 100%;
-      height: 7px;
-      border-radius: 8px 8px 0 0;
-      background: linear-gradient(115deg, #007fff 0 38%, #f7d618 38% 41%, #ce1021 41% 59%, #f7d618 59% 62%, #007fff 62% 100%);
+      width: 4px;
+      height: 602px;
+      background: #0057b8;
+      transform-origin: 50% 0%;
+      transform: scaleY(0);
     }
-    #ph-receipt h3 {
+    #sr-pill {
       position: absolute;
-      left: 46px;
-      top: 40px;
-      font-family: "Source Serif 4", serif;
-      font-weight: 700;
-      font-size: 40px;
-      line-height: 1.1;
-      color: #0057b8;
+      left: 628px;
+      top: 376px;
+      width: 880px;
+      height: 76px;
+      border-radius: 38px;
+      background: #0057b8;
+      box-shadow: 0 14px 30px rgba(0, 87, 184, 0.3);
+      opacity: 0;
     }
-    .ph-lab {
+    .sr {
       position: absolute;
-      left: 46px;
-      font-weight: 700;
-      font-size: 24px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #0057b8;
+      left: 628px;
+      width: 880px;
+      height: 76px;
+      opacity: 0;
     }
-    .ph-field {
+    .sr-c {
       position: absolute;
-      left: 46px;
-      width: 668px;
-      height: 74px;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 6px;
-      background: #f8fafc;
-      font-family: "Source Code Pro", monospace;
+      left: 6px;
+      top: 6px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid #b5c9de;
+      box-shadow: 0 4px 10px rgba(0, 38, 84, 0.08);
+      overflow: visible;
+    }
+    .sr-c .ico {
+      left: 8px;
+      top: 8px;
+    }
+    .sr-l {
+      position: absolute;
+      left: 92px;
+      top: 0;
       font-weight: 600;
       font-size: 38px;
-      line-height: 71px;
-      padding-left: 22px;
-      color: #0f2744;
-    }
-    #ph-chip {
-      position: absolute;
-      left: 46px;
-      top: 182px;
-      height: 74px;
-      padding: 0 24px;
-      border-radius: 6px;
-      background: #f8fafc;
-      border: 1.5px solid #cbd5e1;
-      font-family: "Source Code Pro", monospace;
-      font-weight: 600;
-      font-size: 38px;
-      line-height: 71px;
+      line-height: 76px;
       color: #0f2744;
       white-space: nowrap;
     }
-    #ph-help {
-      position: absolute;
-      left: 46px;
-      top: 404px;
-      font-size: 26px;
-      color: #4f6378;
+    .sr-l b {
+      font-weight: 700;
+      color: #0057b8;
+      margin-right: 8px;
     }
   </style>
-  <div data-hf-id="hf-ypkp" id="root" data-composition-id="phone" data-width="1920" data-height="1080">
-    <div data-hf-id="hf-hs6a" id="ph-scene">
-      <div data-hf-id="hf-vv8t" id="ph-stripe"></div>
+  <div id="root" data-composition-id="phone" data-width="1920" data-height="1080">
+    <div id="ph-scene">
+      <div class="bg-light"></div>
+      <div class="bg-stripe" id="ph-stripe"></div>
+      <div class="ph-ring" id="ph-ring-1"></div>
+      <div class="ph-ring" id="ph-ring-2"></div>
+      <div class="ph-ring" id="ph-ring-3"></div>
 
-      <div data-hf-id="hf-je8t" id="ph">
-        <div data-hf-id="hf-rccm" id="ph-body"></div>
-        <div data-hf-id="hf-8nbi" id="ph-screen">
-          <div data-hf-id="hf-hvbx" id="ph-view">
-            <div data-hf-id="hf-2eav" id="ph-page">
-              <img data-hf-id="hf-0luh" class="ph-st" id="st-home" src="assets/ui/phone/home.jpg" alt="Accueil mobile ESURSI" />
-              <img data-hf-id="hf-docy" class="ph-st" id="st-s1a" src="assets/ui/phone/s1_pre.jpg" alt="Étape 1 : catégorie" />
-              <img data-hf-id="hf-1xzv" class="ph-st" id="st-s1b" src="assets/ui/phone/s1_post.jpg" alt="Catégorie Corruption choisie" />
-              <img data-hf-id="hf-9hqk" class="ph-st" id="st-s2a" src="assets/ui/phone/s2_pre.jpg" alt="Étape 2 : province" />
-              <img data-hf-id="hf-qk03" class="ph-st" id="st-s2b" src="assets/ui/phone/s2_post.jpg" alt="Province Kinshasa" />
-              <img data-hf-id="hf-8yqx" class="ph-st" id="st-s3" src="assets/ui/phone/s3_list.jpg" alt="Étape 3 : établissement" />
-              <img data-hf-id="hf-mf6c" class="ph-st" id="st-s4" src="assets/ui/phone/s4_post.jpg" alt="Étape 4 : personne concernée" />
-              <img data-hf-id="hf-ibxb" class="ph-st" id="st-s5a" src="assets/ui/phone/s5_pre.jpg" alt="Étape 5 : description" />
-              <div data-hf-id="hf-lobr" class="ph-blank" id="bl-t" style="left: 47px; top: 721px; width: 300px; height: 34px"></div>
-              <div data-hf-id="hf-3jra" class="ph-blank" id="bl-d" style="left: 47px; top: 810px; width: 300px; height: 72px"></div>
-              <img data-hf-id="hf-u3o6" class="ph-st ph-ty" id="ty-t" src="assets/ui/phone/ty_t.jpg" alt="" style="left: 50px; top: 724px; width: 295px; height: 26px" />
-              <img data-hf-id="hf-otn2" class="ph-st ph-ty" id="ty-d1" src="assets/ui/phone/ty_d1.jpg" alt="" style="left: 50px; top: 815px; width: 295px; height: 23px" />
-              <img data-hf-id="hf-pc9a" class="ph-st ph-ty" id="ty-d2" src="assets/ui/phone/ty_d2.jpg" alt="" style="left: 50px; top: 839px; width: 295px; height: 21px" />
-              <img data-hf-id="hf-33gp" class="ph-st ph-ty" id="ty-d3" src="assets/ui/phone/ty_d3.jpg" alt="" style="left: 50px; top: 861px; width: 295px; height: 21px" />
-              <img data-hf-id="hf-2url" class="ph-st" id="st-s5b" src="assets/ui/phone/s5_post.jpg" alt="Description saisie" />
-              <img data-hf-id="hf-ngca" class="ph-st" id="st-s6a" src="assets/ui/phone/s6_pre.jpg" alt="Étape 6 : preuves" />
-              <img data-hf-id="hf-rwzf" class="ph-st" id="st-s6b" src="assets/ui/phone/s6_post.jpg" alt="Preuve jointe" />
-              <img data-hf-id="hf-2s90" class="ph-st" id="st-s7" src="assets/ui/phone/s7.jpg" alt="Étape 7 : mode anonyme" />
-              <img data-hf-id="hf-ziwo" class="ph-st" id="st-s8a" src="assets/ui/phone/s8_pre.jpg" alt="Étape 8 : prévisualisation" />
-              <img data-hf-id="hf-kw8u" class="ph-st" id="st-s8b" src="assets/ui/phone/s8_post.jpg" alt="Certification cochée" />
-              <div data-hf-id="hf-oub7" id="ph-touch"></div>
+      <div class="ph-num" id="ph-n13">13</div>
+      <p class="ph-hd" id="ph-hd13" style="left: 860px">
+        <span class="w" id="ph-w-cat">catégories</span> <span class="w" id="ph-w-off">officielles<span class="ph-ul" id="ph-ul13"></span></span>
+      </p>
+      <div class="ph-num" id="ph-n8">8</div>
+      <p class="ph-hd" id="ph-hd8" style="left: 760px">
+        <span class="w" id="ph-w-eta">étapes</span> <span class="w" id="ph-w-gui">guidées<span class="ph-ul" id="ph-ul8"></span></span>
+      </p>
+
+      <div class="ct" id="ct-1" style="left: 766px; top: 300px">
+        <div class="ct-hl" id="ct-hl-1"></div>
+        <svg id="ct-i-1" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M3.398 28.21c.246 2.495 2.258 4.288 4.763 4.425C11.382 32.812 16.562 33 24 33s12.618-.188 15.84-.365c2.504-.137 4.516-1.93 4.762-4.425c.212-2.149.398-5.183.398-9.21s-.186-7.061-.398-9.21c-.246-2.496-2.258-4.288-4.763-4.425C36.618 5.188 31.438 5 24 5s-12.618.188-15.84.365c-2.504.137-4.516 1.93-4.762 4.425C3.186 11.94 3 14.973 3 19s.186 7.061.398 9.21"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M35 42.34a5.2 5.2 0 0 1-1.896.457C30.962 42.905 27.962 43 24 43s-6.962-.095-9.104-.203A5.2 5.2 0 0 1 13 42.34m26.5-5.46a5.2 5.2 0 0 1-2.554.818C34.158 37.85 29.911 38 24 38s-10.158-.15-12.946-.302A5.2 5.2 0 0 1 8.5 36.88m-5.102-8.67c.246 2.495 2.258 4.288 4.763 4.425C11.382 32.812 16.562 33 24 33s12.618-.188 15.84-.365c2.504-.137 4.516-1.93 4.762-4.425c.212-2.149.398-5.183.398-9.21s-.186-7.061-.398-9.21c-.246-2.496-2.258-4.288-4.763-4.425C36.618 5.188 31.438 5 24 5s-12.618.188-15.84.365c-2.504.137-4.516 1.93-4.762 4.425C3.186 11.94 3 14.973 3 19s.186 7.061.398 9.21"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M28 14.51s-1.6-1.224-4-1.224c-2 0-4 1.225-4 2.857c0 4.082 8 1.633 8 5.715c0 1.632-2 2.857-4 2.857c-2.4 0-4-1.225-4-1.225m4-10.204V11m0 16v-2.286M37 19h-1m-24 0h-1"/></g></svg>
+        <p>Corruption</p>
+      </div>
+      <div class="ct" id="ct-2" style="left: 1018px; top: 300px">
+        <div class="ct-hl" id="ct-hl-2"></div>
+        <svg id="ct-i-2" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M6 9.5a6.5 6.5 0 1 0 13 0a6.5 6.5 0 0 0-13 0"/><path fill="#A8D0FF" d="M28.539 16.338c.625.036 1.192.379 1.326.99c.144.656.226 1.675-.035 3.103c-.143.781-.809 1.342-1.596 1.45L20 23l-1.8 19.32c-.12 1.284-1.05 2.343-2.33 2.49a29 29 0 0 1-3.303.19c-1.263 0-2.403-.084-3.318-.185c-1.338-.149-2.3-1.275-2.373-2.62l-.618-11.317a67 67 0 0 1-2.578-.183a1.82 1.82 0 0 1-1.654-1.889c.117-3.77.593-7.216.989-9.515c.298-1.728 1.762-2.977 3.514-3.062c6.958-.338 14.84-.302 22.01.11Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M25 29.999c7.99-.017 13.372-.233 16.512-.414c2.076-.12 3.752-1.591 3.992-3.656C45.757 23.76 46 20.5 46 16s-.243-7.76-.496-9.93c-.24-2.064-1.916-3.535-3.991-3.655C38.243 2.226 32.543 2 24 2q-1.028 0-2 .004M12.5 34v11M6 9.5a6.5 6.5 0 1 0 13 0a6.5 6.5 0 0 0-13 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M28.539 16.338c.625.036 1.192.379 1.326.99c.144.656.226 1.675-.035 3.103c-.143.781-.809 1.342-1.596 1.45L20 23l-1.8 19.32c-.12 1.284-1.05 2.343-2.33 2.49a29 29 0 0 1-3.303.19c-1.263 0-2.403-.084-3.318-.185c-1.338-.149-2.3-1.275-2.373-2.62l-.618-11.317a67 67 0 0 1-2.578-.183a1.82 1.82 0 0 1-1.654-1.889c.117-3.77.593-7.216.989-9.515c.298-1.728 1.762-2.977 3.514-3.062c6.958-.338 14.84-.302 22.01.11Z"/></g></svg>
+        <p>Abus des enseignants</p>
+      </div>
+      <div class="ct" id="ct-3" style="left: 1270px; top: 300px">
+        <div class="ct-hl" id="ct-hl-3"></div>
+        <svg id="ct-i-3" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M39.752 3.463c2.55.177 4.539 2.081 4.762 4.627C44.76 10.88 45 15.115 45 21s-.486 12.91-.486 12.91s0-4.41-.514-5.91a7.97 7.97 0 0 0-1.556-4.74a7.98 7.98 0 0 0-2.252-4.452a7.98 7.98 0 0 0-4.452-2.252A7.98 7.98 0 0 0 31 15a7.97 7.97 0 0 0-4.74 1.556a7.98 7.98 0 0 0-4.452 2.252a7.98 7.98 0 0 0-2.252 4.452A7.98 7.98 0 0 0 18 28c0 1.774.58 3.416 1.556 4.74a7.98 7.98 0 0 0 2.252 4.452q.56.559 1.197.986q.003.403.01.82c-6.848-.02-11.686-.246-14.767-.46c-2.55-.178-4.539-2.082-4.762-4.628C3.24 31.12 3 26.885 3 21s.24-10.121.486-12.91c.223-2.546 2.212-4.45 4.762-4.627C11.475 3.238 16.628 3 24 3s12.525.238 15.752.463"/><path fill="#FFFFFF" d="M22 28c0 1.257.58 2.379 1.487 3.112a4 4 0 0 0 1.15 3.252a3.98 3.98 0 0 0 2.374 1.146c-.03 2.262-.005 5.2.19 8.395c.05.84 1.057 1.224 1.665.642l1.615-1.55a.75.75 0 0 1 1.038 0l1.615 1.55c.608.582 1.615.198 1.666-.642c.194-3.196.22-6.133.19-8.395a3.98 3.98 0 0 0 2.374-1.146a4 4 0 0 0 1.15-3.252A4 4 0 0 0 40 28c0-1.257-.58-2.379-1.487-3.112a4 4 0 0 0-1.149-3.252a4 4 0 0 0-3.252-1.15A4 4 0 0 0 31 19c-1.257 0-2.379.58-3.112 1.487a4 4 0 0 0-3.252 1.149a4 4 0 0 0-1.15 3.252A4 4 0 0 0 22 28"/><path fill="#A8D0FF" d="M28 28.047a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M22 38.994c-6.313-.038-10.825-.252-13.752-.457c-2.55-.177-4.539-2.081-4.762-4.627C3.24 31.12 3 26.885 3 21s.24-10.121.486-12.91c.223-2.546 2.212-4.45 4.762-4.627C11.475 3.238 16.628 3 24 3s12.525.238 15.752.463c2.55.177 4.539 2.081 4.762 4.627C44.76 10.88 45 15.115 45 21s-.24 10.121-.486 12.91c-.216 2.463-2.084 4.325-4.514 4.605"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M22 28c0 1.257.58 2.379 1.487 3.112a4 4 0 0 0 1.15 3.252a3.98 3.98 0 0 0 2.374 1.146c-.03 2.262-.005 5.2.19 8.395c.05.84 1.057 1.224 1.665.642l1.615-1.55a.75.75 0 0 1 1.038 0l1.615 1.55c.608.582 1.615.198 1.666-.642c.194-3.196.22-6.133.19-8.395a3.98 3.98 0 0 0 2.374-1.146a4 4 0 0 0 1.15-3.252A4 4 0 0 0 40 28c0-1.257-.58-2.379-1.487-3.112a4 4 0 0 0-1.149-3.252a4 4 0 0 0-3.252-1.15A4 4 0 0 0 31 19c-1.257 0-2.379.58-3.112 1.487a4 4 0 0 0-3.252 1.149a4 4 0 0 0-1.15 3.252A4 4 0 0 0 22 28"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M28 28.045a3 3 0 1 0 6 0a3 3 0 1 0-6 0M12 12h21m-21 7h6"/></g></svg>
+        <p>Faux diplôme</p>
+      </div>
+      <div class="ct" id="ct-4" style="left: 1522px; top: 300px">
+        <div class="ct-hl" id="ct-hl-4"></div>
+        <svg id="ct-i-4" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M34.644 3.228c.293.02 2.433.296 6.156 4.019c3.793 3.793 4.004 5.858 4.016 6.076v.019c.11 2.735.184 6.237.184 10.705c0 9.914-.366 16.172-.666 19.636c-.133 1.539-1.877 2.22-3.064 1.23l-3.62-3.016l-2.934 2.934a2 2 0 0 1-2.664.147L28.2 41.897l-2.786 2.785a2 2 0 0 1-2.828 0L19.8 41.897l-3.852 3.081a2 2 0 0 1-2.664-.147l-2.934-2.934l-3.62 3.017c-1.187.989-2.931.308-3.065-1.231C3.365 40.219 3 33.96 3 24.047c0-9.144.311-14.244.595-16.993c.193-1.879 1.533-3.219 3.412-3.413c2.75-.283 7.85-.594 16.993-.594c4.435 0 7.919.073 10.644.18Z"/><path fill="#FFFFFF" d="M40.717 14c1.918 0 3.303-.097 4.283-.218c0 0-1-3.214-4.283-6.497C37.435 4.002 34.117 3 34.117 3C34.054 3.929 34 5.301 34 7.285c0 1.399.027 2.494.065 3.343c.076 1.725 1.195 3.045 2.913 3.214c.93.091 2.152.158 3.74.158ZM16.541 32.65c-.868-.989-.63-2.343.271-3.303c.695-.74 1.694-1.783 3.098-3.21a193 193 0 0 1-3.098-3.21c-.9-.96-1.139-2.315-.27-3.303a12 12 0 0 1 1.082-1.083c.988-.868 2.343-.63 3.302.271c.74.695 1.784 1.694 3.21 3.098a193 193 0 0 1 3.211-3.098c.96-.9 2.314-1.139 3.303-.27a12 12 0 0 1 1.082 1.082c.868.988.63 2.343-.271 3.302a191 191 0 0 1-3.098 3.21a193 193 0 0 1 3.098 3.211c.9.96 1.14 2.314.271 3.303a12 12 0 0 1-1.082 1.082c-.989.868-2.343.63-3.303-.27c-.74-.696-1.783-1.695-3.21-3.099a193 193 0 0 1-3.21 3.098c-.96.9-2.315 1.14-3.303.271a12 12 0 0 1-1.083-1.082"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M16.541 32.65c-.868-.989-.63-2.343.271-3.303c.695-.74 1.694-1.783 3.098-3.21a193 193 0 0 1-3.098-3.21c-.9-.96-1.139-2.315-.27-3.303a12 12 0 0 1 1.082-1.083c.988-.868 2.343-.63 3.302.271c.74.695 1.784 1.694 3.21 3.098a193 193 0 0 1 3.211-3.098c.96-.9 2.314-1.139 3.303-.27a12 12 0 0 1 1.082 1.082c.868.988.63 2.343-.271 3.302a191 191 0 0 1-3.098 3.21a193 193 0 0 1 3.098 3.211c.9.96 1.14 2.314.271 3.303a12 12 0 0 1-1.082 1.082c-.989.868-2.343.63-3.303-.27c-.74-.696-1.783-1.695-3.21-3.099a193 193 0 0 1-3.21 3.098c-.96.9-2.315 1.14-3.303.271a12 12 0 0 1-1.083-1.082"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M34.644 3.226c.293.02 2.433.296 6.156 4.019c3.793 3.793 4.004 5.858 4.016 6.076v.019c.11 2.735.184 6.237.184 10.705c0 9.914-.366 16.172-.666 19.636c-.133 1.539-1.877 2.22-3.064 1.23l-3.62-3.016l-2.934 2.934a2 2 0 0 1-2.664.147L28.2 41.895l-2.786 2.785a2 2 0 0 1-2.828 0L19.8 41.895l-3.852 3.081a2 2 0 0 1-2.664-.147l-2.934-2.934l-3.62 3.017c-1.187.989-2.931.308-3.065-1.231C3.365 40.217 3 33.959 3 24.045C3 14.9 3.311 9.8 3.595 7.052c.193-1.879 1.533-3.219 3.412-3.413c2.75-.283 7.85-.594 16.993-.594c4.435 0 7.919.073 10.644.18Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M34.1 3.25c-.055.92-.1 2.222-.1 4.036c0 1.398.027 2.493.065 3.343c.076 1.724 1.195 3.045 2.913 3.213c.93.092 2.152.158 3.74.158c1.757 0 3.067-.082 4.028-.188"/></g></svg>
+        <p>Fraude</p>
+      </div>
+      <div class="ct" id="ct-5" style="left: 640px; top: 530px">
+        <div class="ct-hl" id="ct-hl-5"></div>
+        <svg id="ct-i-5" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M8.248 38.537c-2.55-.177-4.539-2.081-4.762-4.627C3.24 31.12 3 26.885 3 21s.24-10.121.486-12.91c.223-2.546 2.212-4.45 4.762-4.627C11.475 3.238 16.628 3 24 3s12.525.238 15.752.463c2.55.177 4.539 2.081 4.762 4.627C44.76 10.88 45 15.115 45 21s-.24 10.121-.486 12.91c-.223 2.546-2.212 4.45-4.762 4.627c-3.003.21-7.674.43-14.248.46l-7.202 6.173C17.004 46.282 15 45.36 15 43.652v-4.785a179 179 0 0 1-6.752-.33"/><path fill="#FFFFFF" d="M20.205 12.237c-.135-1.466.606-2.874 2.06-3.105C22.76 9.052 23.34 9 24 9s1.24.053 1.737.132c1.453.231 2.193 1.64 2.059 3.105c-.19 2.062-.49 5.006-.819 6.914c-.159.926-.778 1.672-1.712 1.782c-.344.04-.762.067-1.265.067s-.92-.027-1.265-.067c-.933-.11-1.553-.856-1.712-1.782c-.327-1.908-.628-4.852-.818-6.914M27.5 28.5a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0"/><path stroke="#0057B8" stroke-linejoin="round" d="M8.248 38.537c-2.55-.177-4.539-2.081-4.762-4.627C3.24 31.12 3 26.885 3 21s.24-10.121.486-12.91c.223-2.546 2.212-4.45 4.762-4.627C11.475 3.238 16.628 3 24 3s12.525.238 15.752.463c2.55.177 4.539 2.081 4.762 4.627C44.76 10.88 45 15.115 45 21s-.24 10.121-.486 12.91c-.223 2.546-2.212 4.45-4.762 4.627c-3.003.21-7.674.43-14.248.46l-7.202 6.173C17.004 46.282 15 45.36 15 43.652v-4.785a179 179 0 0 1-6.752-.33Z"/><path stroke="#0057B8" stroke-linejoin="round" d="M20.205 12.237c-.135-1.466.606-2.874 2.06-3.105C22.76 9.052 23.34 9 24 9s1.24.053 1.737.132c1.453.231 2.193 1.64 2.059 3.105c-.19 2.062-.49 5.006-.819 6.914c-.159.926-.778 1.672-1.712 1.782c-.344.04-.762.067-1.265.067s-.92-.027-1.265-.067c-.933-.11-1.553-.856-1.712-1.782c-.327-1.908-.628-4.852-.818-6.914ZM27.5 28.5a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0Z"/></g></svg>
+        <p>Harcèlement et discrimination</p>
+      </div>
+      <div class="ct" id="ct-6" style="left: 892px; top: 530px">
+        <div class="ct-hl" id="ct-hl-6"></div>
+        <svg id="ct-i-6" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M12.119 45s-.438-23.96.368-32.956a3.43 3.43 0 0 1 .758-1.88C16.927 5.668 22.132 3 23.872 3s7.173 2.668 10.882 7.165c.442.536.697 1.188.76 1.88c.805 8.994.367 32.955.367 32.955z"/><path fill="#FFFFFF" d="M12.195 17.18c-.388 10.721-.077 27.787-.076 27.82H5V31.6c0-4.833.12-8.42.236-10.764a3.68 3.68 0 0 1 3.524-3.515c.94-.047 2.082-.096 3.435-.141m23.61 0c.388 10.732.076 27.82.076 27.82h7.118V31.6c0-4.833-.12-8.42-.236-10.764a3.68 3.68 0 0 0-3.524-3.515a214 214 0 0 0-3.434-.141M21 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0m3 21c-2.21 0-4 1.79-4 3.999V45h8v-8.001C28 34.789 26.21 33 24 33"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M12.119 45s-.438-23.96.368-32.956a3.43 3.43 0 0 1 .758-1.88C16.927 5.668 22.132 3 23.872 3s7.173 2.668 10.882 7.165c.442.536.697 1.188.76 1.88c.805 8.994.367 32.955.367 32.955"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M12.195 17.18q-2.028.07-3.435.14a3.68 3.68 0 0 0-3.524 3.516C5.12 23.18 5 26.767 5 31.6V45m30.805-27.82q2.027.07 3.434.14a3.68 3.68 0 0 1 3.524 3.516c.116 2.343.236 5.931.236 10.763V45M21 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0m7 33v-8.001C28 34.789 26.21 33 24 33s-4 1.79-4 3.999V45m0-26v2m0 5v2m8-9v2m0 5v2m17 17H3"/></g></svg>
+        <p>Abus administratifs et de pouvoir</p>
+      </div>
+      <div class="ct" id="ct-7" style="left: 1144px; top: 530px">
+        <div class="ct-hl" id="ct-hl-7"></div>
+        <svg id="ct-i-7" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M3.052 16.555c-1.382-.662-1.382-2.448 0-3.11c1.812-.868 4.519-2.1 8.348-3.695c5.32-2.216 8.954-3.53 10.905-4.196a5.23 5.23 0 0 1 3.39 0c1.95.666 5.586 1.98 10.905 4.196c3.83 1.595 6.536 2.827 8.349 3.695c1.38.662 1.38 2.448 0 3.11c-1.813.868-4.52 2.1-8.349 3.695c-5.32 2.216-8.954 3.53-10.905 4.196a5.23 5.23 0 0 1-3.39 0c-1.95-.666-5.586-1.98-10.905-4.196c-3.83-1.596-6.536-2.827-8.348-3.695"/><path fill="#A8D0FF" d="M11.102 20.126A75 75 0 0 0 11 24.167c0 3.094.159 5.037.315 6.2c.137 1.016.719 1.88 1.627 2.355C14.698 33.642 18.265 35 24 35s9.302-1.358 11.058-2.278c.908-.475 1.49-1.339 1.627-2.354c.156-1.164.315-3.107.315-6.2a75 75 0 0 0-.102-4.042l-.298.124c-5.32 2.217-8.954 3.53-10.905 4.197a5.23 5.23 0 0 1-3.39 0c-1.95-.666-5.586-1.98-10.905-4.197z"/><path fill="#FFFFFF" d="M8 40a3 3 0 1 1-6 0a3 3 0 1 1 6 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M5 18v19M3.052 16.555c-1.382-.662-1.382-2.448 0-3.11c1.812-.868 4.519-2.1 8.348-3.695c5.32-2.216 8.954-3.53 10.905-4.196a5.23 5.23 0 0 1 3.39 0c1.95.666 5.586 1.98 10.905 4.196c3.83 1.595 6.536 2.827 8.349 3.695c1.38.662 1.38 2.448 0 3.11c-1.813.868-4.52 2.1-8.349 3.695c-5.32 2.216-8.954 3.53-10.905 4.196a5.23 5.23 0 0 1-3.39 0c-1.95-.666-5.586-1.98-10.905-4.196c-3.83-1.596-6.536-2.827-8.348-3.695"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M11.102 20.125A75 75 0 0 0 11 24.166c0 3.094.159 5.037.315 6.2c.137 1.016.719 1.88 1.627 2.355C14.698 33.641 18.265 35 24 35s9.302-1.358 11.058-2.278c.908-.475 1.49-1.339 1.627-2.354c.156-1.164.315-3.107.315-6.2a75 75 0 0 0-.102-4.042M8 40a3 3 0 1 1-6 0a3 3 0 1 1 6 0"/></g></svg>
+        <p>Abus académique</p>
+      </div>
+      <div class="ct" id="ct-8" style="left: 1396px; top: 530px">
+        <div class="ct-hl" id="ct-hl-8"></div>
+        <svg id="ct-i-8" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#F7D618" d="M3.419 39.945c.208 2.551 2.189 4.47 4.742 4.647C11.1 44.796 15.637 45 22 45s10.9-.204 13.839-.408c2.553-.176 4.534-2.096 4.742-4.647C40.796 37.31 41 33.387 41 28s-.204-9.31-.419-11.945c-.208-2.551-2.189-4.47-4.742-4.647C32.899 11.204 28.363 11 22 11s-10.9.204-13.84.408c-2.552.176-4.533 2.096-4.741 4.647C3.204 18.689 3 22.613 3 28s.204 9.31.419 11.945"/><path fill="#FFFFFF" d="M7.16 11.572c5.985-3.122 13.63-6.005 20.758-7.76c2.073-.51 4.215.258 5.293 2.1c.773 1.32 1.717 3.132 2.714 5.502l-.086-.006c-2.94-.204-7.476-.408-13.84-.408c-6.362 0-10.899.204-13.838.408a5.4 5.4 0 0 0-1 .164Zm21.904 19.551c.095 2.13 1.737 3.717 3.866 3.802c1.085.044 2.434.075 4.07.075s2.985-.031 4.07-.075c2.13-.085 3.771-1.672 3.866-3.802c.038-.867.064-1.904.064-3.123s-.026-2.256-.064-3.123c-.095-2.13-1.737-3.717-3.866-3.802A102 102 0 0 0 37 21c-1.636 0-2.985.031-4.07.075c-2.13.085-3.771 1.672-3.866 3.802A71 71 0 0 0 29 28c0 1.22.026 2.256.064 3.123"/><path stroke="#5C4A00" stroke-linecap="round" stroke-linejoin="round" d="M7.269 11.515c5.969-3.1 13.564-5.96 20.65-7.703c2.073-.51 4.215.257 5.293 2.099c.77 1.316 1.71 3.12 2.704 5.478m-6.852 19.734c.095 2.13 1.737 3.717 3.866 3.802c1.085.044 2.434.075 4.07.075s2.985-.031 4.07-.075c2.13-.085 3.771-1.672 3.866-3.802c.038-.867.064-1.904.064-3.123s-.026-2.256-.064-3.123c-.095-2.13-1.737-3.717-3.866-3.802A102 102 0 0 0 37 21c-1.636 0-2.985.031-4.07.075c-2.13.085-3.771 1.672-3.866 3.802A71 71 0 0 0 29 28c0 1.22.026 2.256.064 3.123"/><path stroke="#5C4A00" stroke-linecap="round" stroke-linejoin="round" d="M40.874 21.067a119 119 0 0 0-.293-5.012c-.208-2.551-2.189-4.47-4.742-4.647C32.899 11.204 28.363 11 22 11s-10.9.204-13.84.408c-2.552.176-4.533 2.096-4.741 4.647C3.204 18.689 3 22.613 3 28s.204 9.31.419 11.945c.208 2.551 2.189 4.47 4.742 4.647C11.1 44.796 15.637 45 22 45s10.9-.204 13.839-.408c2.553-.176 4.534-2.096 4.742-4.647c.109-1.333.215-2.996.293-5.012M36 27v2"/></g></svg>
+        <p>Détournement</p>
+      </div>
+      <div class="ct" id="ct-9" style="left: 1648px; top: 530px">
+        <div class="ct-hl" id="ct-hl-9"></div>
+        <svg id="ct-i-9" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M44.487 36.822c-.216 2.553-2.19 4.485-4.744 4.677C36.515 41.744 31.364 42 24 42s-12.515-.257-15.743-.5c-2.555-.193-4.528-2.125-4.743-4.678C3.259 33.81 3 29.117 3 22.5s.26-11.31.514-14.322C3.729 5.625 5.702 3.693 8.257 3.5C11.485 3.257 16.636 3 24 3s12.515.257 15.743.5c2.555.193 4.528 2.125 4.743 4.678c.255 3.012.514 7.705.514 14.322s-.26 11.31-.513 14.322"/><path fill="#FFFFFF" d="M10.399 12.715c.125-1.273 1.117-2.235 2.393-2.34C14.862 10.207 18.507 10 24 10s9.138.206 11.208.376c1.276.104 2.268 1.066 2.394 2.34c.185 1.881.398 5.071.398 9.784s-.213 7.903-.398 9.785c-.126 1.273-1.118 2.235-2.394 2.34c-2.07.169-5.715.375-11.208.375s-9.138-.206-11.208-.376c-1.276-.104-2.268-1.066-2.393-2.34c-.186-1.88-.399-5.07-.399-9.784s.213-7.903.399-9.785"/><path fill="#A8D0FF" d="M24 29.5a7 7 0 1 0 0-14a7 7 0 1 0 0 14"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M44.487 36.822c-.216 2.553-2.19 4.485-4.744 4.677C36.515 41.744 31.364 42 24 42s-12.515-.257-15.743-.5c-2.555-.193-4.528-2.125-4.743-4.678C3.259 33.81 3 29.117 3 22.5s.26-11.31.514-14.322C3.729 5.625 5.702 3.693 8.257 3.5C11.485 3.257 16.636 3 24 3s12.515.257 15.743.5c2.555.193 4.528 2.125 4.743 4.678c.255 3.012.514 7.705.514 14.322s-.26 11.31-.513 14.322"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M10.399 12.715c.125-1.273 1.117-2.235 2.393-2.34C14.862 10.207 18.507 10 24 10s9.138.206 11.208.376c1.276.104 2.268 1.066 2.394 2.34c.185 1.881.398 5.071.398 9.784s-.213 7.903-.398 9.785c-.126 1.273-1.118 2.235-2.394 2.34c-2.07.169-5.715.375-11.208.375s-9.138-.206-11.208-.376c-1.276-.104-2.268-1.066-2.393-2.34c-.186-1.88-.399-5.07-.399-9.784s.213-7.903.399-9.785"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M24 29.5a7 7 0 1 0 0-14a7 7 0 1 0 0 14M40 17h-4m4 11h-4m-8-5.5h3M38 42v3m-28-3v3"/></g></svg>
+        <p>Abus financiers et de gestion</p>
+      </div>
+      <div class="ct" id="ct-10" style="left: 766px; top: 760px">
+        <div class="ct-hl" id="ct-hl-10"></div>
+        <svg id="ct-i-10" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#FFFFFF" d="M7.969 40.156c-.688.019-1.36.292-1.624.928C6.16 41.532 6 42.161 6 43s.16 1.468.345 1.916c.264.636.936.91 1.624.928C9.973 45.9 15.129 46 26 46s16.027-.1 18.031-.156c.688-.019 1.36-.292 1.624-.928c.185-.448.345-1.077.345-1.916s-.16-1.468-.345-1.916c-.264-.636-.936-.91-1.624-.928C42.027 40.1 36.871 40 26 40s-16.027.1-18.031.156m4.214-16.436c.082 1.15.915 2.028 2.063 2.132c.89.08 2.125.148 3.754.148s2.864-.068 3.754-.148c1.148-.104 1.981-.983 2.063-2.132c.092-1.315.183-3.44.183-6.72s-.09-5.405-.183-6.72c-.082-1.15-.915-2.028-2.063-2.132C20.864 8.068 19.63 8 18 8s-2.864.068-3.754.148c-1.148.104-1.981.983-2.063 2.132C12.091 11.595 12 13.72 12 17s.09 5.405.183 6.72"/><path fill="#A8D0FF" d="M21.984 8.18a114 114 0 0 0-.11-3.992c-.053-1.098-.784-1.991-1.878-2.099C19.466 2.037 18.806 2 18 2c-.805 0-1.466.037-1.995.09c-1.095.107-1.825 1-1.879 2.098c-.043.896-.086 2.187-.11 3.992q.113-.021.23-.032C15.136 8.068 16.371 8 18 8s2.863.068 3.754.148q.117.01.229.032ZM23.997 16c-.016-2.72-.097-4.544-.18-5.72c-.076-1.065-.798-1.898-1.817-2.097V8h4c9.941 0 18 8.059 18 18v14.155a434 434 0 0 0-8-.12V26c0-5.523-4.477-10-10-10z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M22 8h4c9.941 0 18 8.059 18 18v14M24 16h2c5.523 0 10 4.477 10 10v14m-28.031.156c-.688.019-1.36.292-1.624.928C6.16 41.532 6 42.161 6 43s.16 1.468.345 1.916c.264.636.936.91 1.624.928C9.973 45.9 15.129 46 26 46s16.027-.1 18.031-.156c.688-.019 1.36-.292 1.624-.928c.185-.448.345-1.077.345-1.916s-.16-1.468-.345-1.916c-.264-.636-.936-.91-1.624-.928C42.027 40.1 36.871 40 26 40s-16.027.1-18.031.156"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M12.183 23.72c.082 1.15.915 2.028 2.063 2.132c.89.08 2.125.148 3.754.148s2.864-.068 3.754-.148c1.148-.104 1.981-.983 2.063-2.132c.092-1.315.183-3.44.183-6.72s-.09-5.405-.183-6.72c-.082-1.15-.915-2.028-2.063-2.132C20.864 8.068 19.63 8 18 8s-2.864.068-3.754.148c-1.148.104-1.981.983-2.063 2.132C12.091 11.595 12 13.72 12 17s.09 5.405.183 6.72"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M21.982 8.18a113 113 0 0 0-.11-3.992c-.053-1.098-.784-1.991-1.878-2.099A21 21 0 0 0 17.999 2c-.805 0-1.465.037-1.995.09c-1.095.107-1.825 1-1.879 2.098c-.043.896-.086 2.187-.11 3.992M36 34H10"/></g></svg>
+        <p>Intégrité scientifique</p>
+      </div>
+      <div class="ct" id="ct-11" style="left: 1018px; top: 760px">
+        <div class="ct-hl" id="ct-hl-11"></div>
+        <svg id="ct-i-11" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M34.85 13.153C36.308 20.033 38.074 27.925 33 33c-3.911 3.911-9.495 3.759-15 2.816l-4.85-.97c.842 3.966 1.581 7.595.85 10.154l-1 1L2 35l1-1c2.526-.722 6.095-.01 10 .817l.15.03C11.692 27.967 9.926 20.075 15 15c3.911-3.911 9.495-3.76 15-2.816zC34.007 9.187 33.268 5.558 34 3l1-1l11 11l-1 1c-2.526.722-6.095.01-10-.817z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="m19 19l10 10m-3-12l5 5m-14 4l5 5M34 3c-2 7 7 22-1 30c-3.911 3.911-9.495 3.759-15 2.816M3 34c2.526-.722 6.095-.011 10 .816"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M14 45c2-7-7-22 1-30c3.911-3.911 9.496-3.759 15-2.815M45 14c-2.526.722-6.095.011-10-.816M39 8l1 1M8 39l1 1"/></g></svg>
+        <p>Violations éthiques en recherche</p>
+      </div>
+      <div class="ct" id="ct-12" style="left: 1270px; top: 760px">
+        <div class="ct-hl" id="ct-hl-12"></div>
+        <svg id="ct-i-12" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M3.687 7.802c.2-1.73 1.25-3.158 2.95-3.534C9.289 3.681 14.43 3 24 3s14.71.681 17.363 1.268c1.7.376 2.75 1.804 2.95 3.534c.304 2.616.687 6.924.687 11.998c0 9.48-5.003 18.35-13.432 22.688C28.752 43.938 26.004 45 24 45s-4.752-1.063-7.568-2.512C8.003 38.15 3 29.28 3 19.8c0-5.074.383-9.382.687-11.998"/><path fill="#FFFFFF" d="M11.34 13.887c.162-1.626 1.147-2.953 2.755-3.243C15.905 10.317 18.961 10 24 10s8.094.317 9.905.644c1.608.29 2.593 1.617 2.754 3.243A71 71 0 0 1 37 20.8c0 5.314-2.58 10.21-6.902 13.302C27.894 35.678 25.576 37 24 37s-3.894-1.322-6.098-2.898C13.58 31.01 11 26.114 11 20.8c0-2.788.173-5.216.34-6.913"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M3.687 7.802c.2-1.73 1.25-3.158 2.95-3.534C9.289 3.681 14.43 3 24 3s14.71.681 17.363 1.268c1.7.376 2.75 1.804 2.95 3.534c.304 2.616.687 6.924.687 11.998v0c0 9.48-5.003 18.35-13.432 22.688C28.752 43.938 26.004 45 24 45s-4.752-1.063-7.568-2.512C8.003 38.15 3 29.28 3 19.8v0c0-5.074.383-9.382.687-11.998"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M11.34 13.887c.162-1.626 1.147-2.953 2.755-3.243C15.905 10.317 18.961 10 24 10s8.094.317 9.905.644c1.608.29 2.593 1.617 2.754 3.243A71 71 0 0 1 37 20.8v0c0 5.314-2.58 10.21-6.902 13.302C27.894 35.678 25.576 37 24 37s-3.894-1.322-6.098-2.898C13.58 31.01 11 26.114 11 20.8v0c0-2.788.173-5.216.34-6.913"/></g></svg>
+        <p>Sécurité et conformité réglementaire</p>
+      </div>
+      <div class="ct" id="ct-13" style="left: 1522px; top: 760px">
+        <div class="ct-hl" id="ct-hl-13"></div>
+        <svg id="ct-i-13" class="ico" viewBox="0 0 48 48" width="84" height="84" style="left:74px;top:18px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M45 24c0 11.598-9.402 21-21 21S3 35.598 3 24S12.402 3 24 3s21 9.402 21 21"/><path fill="#FFFFFF" d="M32.5 24a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0m-24 0a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0m12 0a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M3 24a21 21 0 1 0 42 0a21 21 0 1 0-42 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M20.5 24a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0m-12 0a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0m24 0a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0"/></g></svg>
+        <p>Autres irrégularités</p>
+      </div>
+
+      <div id="sr-line"><div id="sr-fill"></div></div>
+      <div id="sr-pill"></div>
+      <div class="sr" id="sr-1" style="top: 290px">
+        <div class="sr-c"><svg id="sr-i-1" class="ico" viewBox="0 0 48 48" width="44" height="44" style="left:8px;top:8px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M25.596 3.327c2.807-.209 8.968-.545 15.68-.128A3.76 3.76 0 0 1 44.8 6.725c.42 6.758.076 12.96-.132 15.738a5.2 5.2 0 0 1-1.046 2.777c-2.336 3.064-9.08 11.314-19.481 19.183c-1.35 1.021-3.075 1.286-4.485.351C17.892 43.604 15.07 41.343 11 37c-3.52-3.754-5.696-6.362-7.025-8.092c-1.325-1.726-1.18-4 .17-5.705C11.987 13.3 19.754 6.778 22.73 4.433a5.23 5.23 0 0 1 2.867-1.106Z"/><path fill="#FFFFFF" d="M34 11a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M25.596 3.327c2.807-.209 8.968-.545 15.68-.128A3.76 3.76 0 0 1 44.8 6.725c.42 6.758.076 12.96-.132 15.738a5.2 5.2 0 0 1-1.046 2.777c-2.336 3.064-9.08 11.314-19.481 19.183c-1.35 1.021-3.075 1.286-4.485.351C17.892 43.604 15.07 41.343 11 37c-3.52-3.754-5.696-6.362-7.025-8.092c-1.325-1.726-1.18-4 .17-5.705C11.987 13.3 19.754 6.778 22.73 4.433a5.23 5.23 0 0 1 2.867-1.106Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M34 11a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/></g></svg></div>
+        <p class="sr-l" id="sr-l-1"><b>1</b> Catégorie</p>
+        <svg id="sr-ok-1" class="ico" viewBox="0 0 48 48" width="40" height="40" style="left:812px;top:18px;opacity:0" aria-hidden="true"><g fill="none" fill-rule="evenodd" stroke-width="3" clip-rule="evenodd"><path fill="#A8D0FF" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/></g></svg>
+      </div>
+      <div class="sr" id="sr-2" style="top: 376px">
+        <div class="sr-c"><svg id="sr-i-2" class="ico" viewBox="0 0 48 48" width="44" height="44" style="left:8px;top:8px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M42 21c0 12.919-13.35 22.128-17.056 24.436a1.77 1.77 0 0 1-1.888 0C19.351 43.128 6 33.919 6 21c0-9.941 8.059-18 18-18s18 8.059 18 18"/><path fill="#FFFFFF" d="M32 21a8 8 0 1 1-16 0a8 8 0 0 1 16 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M42 21c0 12.919-13.35 22.128-17.056 24.436a1.77 1.77 0 0 1-1.888 0C19.351 43.128 6 33.919 6 21c0-9.941 8.059-18 18-18s18 8.059 18 18"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M32 21a8 8 0 1 1-16 0a8 8 0 0 1 16 0"/></g></svg></div>
+        <p class="sr-l" id="sr-l-2"><b>2</b> Province</p>
+        <svg id="sr-ok-2" class="ico" viewBox="0 0 48 48" width="40" height="40" style="left:812px;top:18px;opacity:0" aria-hidden="true"><g fill="none" fill-rule="evenodd" stroke-width="3" clip-rule="evenodd"><path fill="#A8D0FF" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/></g></svg>
+      </div>
+      <div class="sr" id="sr-3" style="top: 462px">
+        <div class="sr-c"><svg id="sr-i-3" class="ico" viewBox="0 0 48 48" width="44" height="44" style="left:8px;top:8px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M12.119 45s-.438-23.96.368-32.956a3.43 3.43 0 0 1 .758-1.88C16.927 5.668 22.132 3 23.872 3s7.173 2.668 10.882 7.165c.442.536.697 1.188.76 1.88c.805 8.994.367 32.955.367 32.955z"/><path fill="#FFFFFF" d="M12.195 17.18c-.388 10.721-.077 27.787-.076 27.82H5V31.6c0-4.833.12-8.42.236-10.764a3.68 3.68 0 0 1 3.524-3.515c.94-.047 2.082-.096 3.435-.141m23.61 0c.388 10.732.076 27.82.076 27.82h7.118V31.6c0-4.833-.12-8.42-.236-10.764a3.68 3.68 0 0 0-3.524-3.515a214 214 0 0 0-3.434-.141M21 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0m3 21c-2.21 0-4 1.79-4 3.999V45h8v-8.001C28 34.789 26.21 33 24 33"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M12.119 45s-.438-23.96.368-32.956a3.43 3.43 0 0 1 .758-1.88C16.927 5.668 22.132 3 23.872 3s7.173 2.668 10.882 7.165c.442.536.697 1.188.76 1.88c.805 8.994.367 32.955.367 32.955"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M12.195 17.18q-2.028.07-3.435.14a3.68 3.68 0 0 0-3.524 3.516C5.12 23.18 5 26.767 5 31.6V45m30.805-27.82q2.027.07 3.434.14a3.68 3.68 0 0 1 3.524 3.516c.116 2.343.236 5.931.236 10.763V45M21 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0m7 33v-8.001C28 34.789 26.21 33 24 33s-4 1.79-4 3.999V45m0-26v2m0 5v2m8-9v2m0 5v2m17 17H3"/></g></svg></div>
+        <p class="sr-l" id="sr-l-3"><b>3</b> Établissement</p>
+        <svg id="sr-ok-3" class="ico" viewBox="0 0 48 48" width="40" height="40" style="left:812px;top:18px;opacity:0" aria-hidden="true"><g fill="none" fill-rule="evenodd" stroke-width="3" clip-rule="evenodd"><path fill="#A8D0FF" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/></g></svg>
+      </div>
+      <div class="sr" id="sr-4" style="top: 548px">
+        <div class="sr-c"><svg id="sr-i-4" class="ico" viewBox="0 0 48 48" width="44" height="44" style="left:8px;top:8px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#FFFFFF" d="M10 17c0 7.732 6.268 14 14 14s14-6.268 14-14S31.732 3 24 3S10 9.268 10 17"/><path fill="#A8D0FF" d="M10 17c7.32-.035 13.324-6.168 14-14c-7.32.035-13.324 6.168-14 14m28 0c-7.32-.035-13.324-6.168-14-14c7.32.035 13.324 6.168 14 14M18.352 29.814c-5.094 1.52-9.077 5.037-10.637 9.441c-.846 2.39.907 4.637 3.417 4.993c2.697.384 6.855.753 12.868.753s10.17-.37 12.868-.753c2.51-.356 4.264-2.603 3.417-4.993c-1.56-4.404-5.543-7.921-10.637-9.44A13.95 13.95 0 0 1 24 31c-2.01 0-3.92-.424-5.648-1.187Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M38 17c0 7.732-6.268 14-14 14s-14-6.268-14-14S16.268 3 24 3s14 6.268 14 14"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M18.352 29.814c-5.094 1.519-9.077 5.036-10.637 9.44c-.846 2.39.907 4.637 3.417 4.994C13.829 44.63 17.986 45 24 45s10.17-.37 12.868-.752c2.51-.357 4.264-2.604 3.417-4.994c-1.56-4.404-5.543-7.921-10.637-9.44M38 17c-7.732 0-14-6.268-14-14c0 7.732-6.268 14-14 14m18 6.5c-1.75 2.667-6.25 2.667-8 0M19 18v.5m10.001-.5v.5"/></g></svg></div>
+        <p class="sr-l" id="sr-l-4"><b>4</b> Personne concernée</p>
+        <svg id="sr-ok-4" class="ico" viewBox="0 0 48 48" width="40" height="40" style="left:812px;top:18px;opacity:0" aria-hidden="true"><g fill="none" fill-rule="evenodd" stroke-width="3" clip-rule="evenodd"><path fill="#A8D0FF" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/></g></svg>
+      </div>
+      <div class="sr" id="sr-5" style="top: 634px">
+        <div class="sr-c"><svg id="sr-i-5" class="ico" viewBox="0 0 48 48" width="44" height="44" style="left:8px;top:8px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#FFFFFF" d="M42.503 10.208c-.203-2.556-2.156-4.508-4.711-4.71C34.706 5.251 29.862 5 23 5s-11.706.252-14.792.497C5.652 5.7 3.7 7.652 3.498 10.208C3.251 13.294 3 18.138 3 25s.252 11.706.497 14.792c.203 2.555 2.155 4.508 4.711 4.71c3.086.246 7.93.498 14.792.498s11.706-.252 14.792-.497c2.555-.203 4.508-2.155 4.71-4.711c.246-3.086.498-7.93.498-14.792s-.252-11.706-.497-14.792"/><path fill="#A8D0FF" d="M41.887 16.435c1.938-1.938 2.676-4.772 1.022-6.96A23 23 0 0 0 40.86 7.14a23 23 0 0 0-2.336-2.049c-2.187-1.653-5.021-.916-6.96 1.023L16.127 21.55c-.544.544-.917 1.233-.99 1.999c-.126 1.299-.241 3.725.022 7.492a1.94 1.94 0 0 0 1.799 1.798c3.766.264 6.193.148 7.492.023c.765-.074 1.455-.446 1.999-.99z"/><path fill="#A8D0FF" d="m39.548 18.774l2.339-2.339c1.938-1.938 2.676-4.772 1.022-6.96A23 23 0 0 0 40.86 7.14a23 23 0 0 0-2.336-2.049c-2.187-1.653-5.021-.916-6.96 1.023l-2.338 2.339c1.265.571 3.41 1.808 5.962 4.36s3.788 4.697 4.36 5.962Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M41.887 16.435c1.938-1.938 2.676-4.772 1.022-6.96A23 23 0 0 0 40.86 7.14a23 23 0 0 0-2.336-2.049c-2.187-1.653-5.021-.916-6.96 1.023L16.127 21.55c-.544.544-.917 1.233-.99 1.999c-.126 1.299-.241 3.725.022 7.492a1.94 1.94 0 0 0 1.799 1.798c3.766.264 6.193.148 7.492.023c.765-.074 1.455-.446 1.999-.99z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M39.547 18.774c-.571-1.265-1.808-3.41-4.36-5.962c-2.551-2.552-4.697-3.788-5.962-4.36M42.993 23q.007.97.007 2c0 6.862-.252 11.706-.497 14.792c-.203 2.556-2.156 4.508-4.711 4.71c-3.086.246-7.93.498-14.792.498s-11.706-.252-14.792-.497c-2.556-.203-4.508-2.156-4.71-4.711C3.251 36.706 3 31.862 3 25s.252-11.706.497-14.792C3.7 7.652 5.652 5.7 8.208 5.498C11.294 5.251 16.138 5 23 5q1.03 0 2 .007"/></g></svg></div>
+        <p class="sr-l" id="sr-l-5"><b>5</b> Description</p>
+        <svg id="sr-ok-5" class="ico" viewBox="0 0 48 48" width="40" height="40" style="left:812px;top:18px;opacity:0" aria-hidden="true"><g fill="none" fill-rule="evenodd" stroke-width="3" clip-rule="evenodd"><path fill="#A8D0FF" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/></g></svg>
+      </div>
+      <div class="sr" id="sr-6" style="top: 720px">
+        <div class="sr-c"><svg id="sr-i-6" class="ico" viewBox="0 0 48 48" width="44" height="44" style="left:8px;top:8px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M39.603 8.294c-3.943-3.866-6.673-4.953-7.52-5.218A162 162 0 0 0 27 3c-6.264 0-10.566.32-13.248.627c-2.201.252-3.85 1.903-4.092 4.105c-.227 2.058-.465 5.111-.584 9.417A12.4 12.4 0 0 1 11 17c6.445 0 12 5.031 12 11.636v8.728c0 2.032-.526 3.915-1.441 5.548c1.618.055 3.428.088 5.441.088c6.264 0 10.566-.32 13.248-.627c2.201-.252 3.85-1.903 4.092-4.105c.319-2.89.66-7.741.66-15.268c0-2.874-.05-5.357-.129-7.49c-.35-.98-1.547-3.568-5.268-7.216"/><path fill="#FFFFFF" d="M32.089 3.079c.854.267 3.58 1.358 7.515 5.216c3.702 3.629 4.906 6.209 5.263 7.2l.017.464c-2.088.311-5.84.073-8.689-.191a4.664 4.664 0 0 1-4.227-4.21c-.269-2.803-.507-6.468-.181-8.489z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M22.5 42.94q2.056.058 4.5.06c6.264 0 10.566-.32 13.248-.627c2.202-.252 3.85-1.903 4.093-4.105c.318-2.89.66-7.741.66-15.268c0-2.874-.05-5.357-.13-7.49c-.35-.98-1.547-3.568-5.268-7.216c-3.943-3.866-6.672-4.953-7.52-5.218A162 162 0 0 0 27 3c-6.265 0-10.567.32-13.248.627c-2.201.252-3.85 1.903-4.093 4.106c-.215 1.953-.44 4.802-.564 8.767"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M32 3.5c0 2.447.083 4.894.182 6.934a5.645 5.645 0 0 0 5.384 5.384c2.04.099 4.487.182 6.934.182M11.296 37.273v-4.677c0-2.187-1.857-3.96-4.148-3.96S3 30.409 3 32.596v4.768C3 41.58 6.582 45 11 45s8-3.419 8-7.636v-8.728C19 24.42 15.418 21 11 21c-2.719 0-5.12 1.294-6.566 3.273"/></g></svg></div>
+        <p class="sr-l" id="sr-l-6"><b>6</b> Preuves</p>
+        <svg id="sr-ok-6" class="ico" viewBox="0 0 48 48" width="40" height="40" style="left:812px;top:18px;opacity:0" aria-hidden="true"><g fill="none" fill-rule="evenodd" stroke-width="3" clip-rule="evenodd"><path fill="#A8D0FF" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/></g></svg>
+      </div>
+      <div class="sr" id="sr-7" style="top: 806px">
+        <div class="sr-c"><svg id="sr-i-7" class="ico" viewBox="0 0 48 48" width="44" height="44" style="left:8px;top:8px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M3.05 23.063c.11 1.089 1.063 1.674 2.157 1.713C7.7 24.865 13.259 25 24 25s16.3-.135 18.793-.224c1.094-.04 2.047-.624 2.157-1.713q.048-.451.05-1.063q-.002-.612-.05-1.063c-.11-1.089-1.063-1.674-2.157-1.713C40.3 19.135 34.741 19 24 19s-16.3.135-18.793.224c-1.094.04-2.047.624-2.157 1.713Q3.002 21.388 3 22q.002.612.05 1.063"/><path fill="#A8D0FF" d="M8.215 19.14c.32-2.5 1.02-7.168 2.28-11.85c.584-2.173 2.46-3.71 4.702-3.906C17.413 3.19 20.49 3 24 3s6.587.19 8.803.384c2.242.195 4.118 1.733 4.702 3.906c1.26 4.683 1.961 9.35 2.28 11.85c-3.16-.072-8.17-.14-15.785-.14s-12.625.068-15.785.14"/><path fill="#FFFFFF" d="M7 38a7 7 0 1 0 14 0a7 7 0 1 0-14 0m34 0a7 7 0 1 1-14 0a7 7 0 1 1 14 0"/><path stroke="#0057B8" stroke-linejoin="round" d="M7 38a7 7 0 1 0 14 0a7 7 0 1 0-14 0m34 0a7 7 0 1 1-14 0a7 7 0 1 1 14 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M21 38c1.657-1.333 4.343-1.333 6 0"/><path stroke="#0057B8" stroke-linejoin="round" d="M3.05 23.063c.11 1.089 1.063 1.674 2.157 1.713C7.7 24.865 13.259 25 24 25s16.3-.135 18.793-.224c1.094-.04 2.047-.624 2.157-1.713q.048-.451.05-1.063q-.002-.612-.05-1.063c-.11-1.089-1.063-1.674-2.157-1.713C40.3 19.135 34.741 19 24 19s-16.3.135-18.793.224c-1.094.04-2.047.624-2.157 1.713Q3.002 21.388 3 22q.002.612.05 1.063Z"/><path stroke="#0057B8" stroke-linejoin="round" d="M8.215 19.14c.32-2.5 1.02-7.168 2.28-11.85c.584-2.173 2.46-3.71 4.702-3.906C17.413 3.19 20.49 3 24 3s6.587.19 8.803.384c2.242.195 4.118 1.733 4.702 3.906c1.26 4.683 1.961 9.35 2.28 11.85"/></g></svg></div>
+        <p class="sr-l" id="sr-l-7"><b>7</b> Mode</p>
+        <svg id="sr-ok-7" class="ico" viewBox="0 0 48 48" width="40" height="40" style="left:812px;top:18px;opacity:0" aria-hidden="true"><g fill="none" fill-rule="evenodd" stroke-width="3" clip-rule="evenodd"><path fill="#A8D0FF" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/></g></svg>
+      </div>
+      <div class="sr" id="sr-8" style="top: 892px">
+        <div class="sr-c"><svg id="sr-i-8" class="ico" viewBox="0 0 48 48" width="44" height="44" style="left:8px;top:8px" aria-hidden="true"><g fill="none" stroke-width="3"><path fill="#A8D0FF" d="M39.603 8.294c-3.944-3.866-6.673-4.953-7.52-5.218A162 162 0 0 0 27 3c-6.264 0-10.566.32-13.248.627c-2.201.252-3.85 1.903-4.092 4.105c-.231 2.096-.474 5.222-.59 9.653c-.01.358.352.61.69.493A16 16 0 0 1 15 17c8.837 0 16 7.163 16 16c0 3.408-1.066 6.568-2.882 9.163c-.24.344-.001.834.419.83c5.438-.047 9.254-.34 11.71-.62c2.202-.252 3.85-1.903 4.093-4.105c.319-2.89.66-7.741.66-15.268c0-2.874-.05-5.357-.13-7.49c-.35-.98-1.546-3.568-5.267-7.216"/><path fill="#FFFFFF" d="M32.09 3.079c.853.267 3.58 1.358 7.515 5.216c3.701 3.629 4.905 6.209 5.262 7.2l.017.464c-2.087.311-5.84.073-8.688-.191a4.664 4.664 0 0 1-4.228-4.21c-.268-2.803-.507-6.468-.181-8.489zM27 33c0 6.627-5.373 12-12 12S3 39.627 3 33s5.373-12 12-12s12 5.373 12 12"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M29.14 42.987c5.119-.063 8.743-.344 11.108-.614c2.2-.252 3.85-1.903 4.092-4.105c.319-2.89.66-7.741.66-15.268c0-2.876-.05-5.361-.13-7.496c-.351-.982-1.55-3.568-5.266-7.21c-3.941-3.864-6.67-4.952-7.519-5.217A162 162 0 0 0 27 3c-6.264 0-10.566.32-13.248.627c-2.201.252-3.85 1.903-4.092 4.105c-.225 2.034-.46 5.04-.58 9.268"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M44.884 15.96c-2.087.31-5.84.072-8.688-.192a4.664 4.664 0 0 1-4.228-4.21c-.269-2.803-.507-6.468-.181-8.489M3 33a12 12 0 1 0 24 0a12 12 0 1 0-24 0"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="m20 29l-5.882 8L10 32.333"/></g></svg></div>
+        <p class="sr-l" id="sr-l-8"><b>8</b> Prévisualisation</p>
+        <svg id="sr-ok-8" class="ico" viewBox="0 0 48 48" width="40" height="40" style="left:812px;top:18px;opacity:0" aria-hidden="true"><g fill="none" fill-rule="evenodd" stroke-width="3" clip-rule="evenodd"><path fill="#A8D0FF" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/><path stroke="#0057B8" stroke-linecap="round" stroke-linejoin="round" d="M43.696 9.135c.98 1.336.762 3.135-.15 4.518c-8.535 12.93-14.682 20.785-18.083 24.85c-1.687 2.015-4.617 2.163-6.525.354A165 165 0 0 1 4.955 23.794c-1.21-1.483-1.46-3.576-.282-5.085c1.024-1.312 2.193-2.438 3.25-3.33c1.753-1.48 4.284-1.144 5.86.524c4.863 5.152 7.794 8.75 7.794 8.75s4.818-7.04 12.548-17.87c1.197-1.677 3.33-2.458 5.132-1.459c1.447.803 3.129 2.025 4.439 3.81Z"/></g></svg>
+      </div>
+
+      <svg id="ph-sw" viewBox="0 0 320 340" aria-hidden="true">
+        <rect x="132" y="6" width="56" height="26" rx="9" fill="#002654" />
+        <rect x="149" y="28" width="22" height="26" fill="#002654" />
+        <rect x="252" y="56" width="40" height="20" rx="7" fill="#002654" transform="rotate(45 272 66)" />
+        <circle cx="160" cy="190" r="142" fill="#002654" />
+        <circle cx="160" cy="190" r="124" fill="#ffffff" />
+        <circle id="ph-sw-pie" cx="160" cy="190" r="54" fill="none" stroke="#a8d0ff" stroke-width="108" stroke-dasharray="339.3" stroke-dashoffset="339.3" transform="rotate(-90 160 190)" />
+        <g stroke="#002654" stroke-width="6" stroke-linecap="round">
+          <line x1="160" y1="78" x2="160" y2="96" /><line x1="272" y1="190" x2="254" y2="190" />
+          <line x1="160" y1="302" x2="160" y2="284" /><line x1="48" y1="190" x2="66" y2="190" />
+        </g>
+        <g stroke="#8a9bb0" stroke-width="4" stroke-linecap="round">
+          <line x1="216" y1="93" x2="211" y2="102" /><line x1="257" y1="134" x2="248" y2="139" />
+          <line x1="257" y1="246" x2="248" y2="241" /><line x1="216" y1="287" x2="211" y2="278" />
+          <line x1="104" y1="287" x2="109" y2="278" /><line x1="63" y1="246" x2="72" y2="241" />
+          <line x1="63" y1="134" x2="72" y2="139" /><line x1="104" y1="93" x2="109" y2="102" />
+        </g>
+        <line id="ph-sw-hand" x1="160" y1="190" x2="160" y2="88" stroke="#ce1021" stroke-width="9" stroke-linecap="round" />
+        <circle cx="160" cy="190" r="14" fill="#ce1021" />
+      </svg>
+      <p id="ph-sw-l">Quelques minutes</p>
+
+      <div class="pf" id="ph">
+        <div class="pf-body"></div>
+        <div class="pf-screen">
+          <div class="pf-view">
+            <div class="pf-page" id="ph-page">
+              <img class="pf-st" id="st-home" src="assets/ui/phone/home.jpg" alt="Accueil mobile ESURSI" />
+              <img class="pf-st" id="st-s1a" src="assets/ui/phone/s1_pre.jpg" alt="Étape 1 : catégorie" />
+              <img class="pf-st" id="st-s1b" src="assets/ui/phone/s1_post.jpg" alt="Catégorie Corruption choisie" />
+              <img class="pf-st" id="st-s2a" src="assets/ui/phone/s2_pre.jpg" alt="Étape 2 : province" />
+              <img class="pf-st" id="st-s2b" src="assets/ui/phone/s2_post.jpg" alt="Province Kinshasa" />
+              <img class="pf-st" id="st-s3" src="assets/ui/phone/s3_list.jpg" alt="Étape 3 : établissement" />
+              <img class="pf-st" id="st-s4" src="assets/ui/phone/s4_post.jpg" alt="Étape 4 : personne concernée" />
+              <img class="pf-st" id="st-s5a" src="assets/ui/phone/s5_pre.jpg" alt="Étape 5 : description" />
+              <div class="ph-blank" id="bl-t" style="left: 47px; top: 721px; width: 300px; height: 34px"></div>
+              <div class="ph-blank" id="bl-d" style="left: 47px; top: 810px; width: 300px; height: 72px"></div>
+              <img class="pf-st" id="ty-t" src="assets/ui/phone/ty_t.jpg" alt="" style="left: 50px; top: 724px; width: 295px; height: 26px" />
+              <img class="pf-st" id="ty-d1" src="assets/ui/phone/ty_d1.jpg" alt="" style="left: 50px; top: 815px; width: 295px; height: 23px" />
+              <img class="pf-st" id="ty-d2" src="assets/ui/phone/ty_d2.jpg" alt="" style="left: 50px; top: 839px; width: 295px; height: 21px" />
+              <img class="pf-st" id="ty-d3" src="assets/ui/phone/ty_d3.jpg" alt="" style="left: 50px; top: 861px; width: 295px; height: 21px" />
+              <img class="pf-st" id="st-s5b" src="assets/ui/phone/s5_post.jpg" alt="Description saisie" />
+              <img class="pf-st" id="st-s6a" src="assets/ui/phone/s6_pre.jpg" alt="Étape 6 : preuves" />
+              <img class="pf-st" id="st-s6b" src="assets/ui/phone/s6_post.jpg" alt="Preuve jointe" />
+              <img class="pf-st" id="st-s7" src="assets/ui/phone/s7.jpg" alt="Étape 7 : mode" />
+              <div class="pf-touch" id="ph-touch"></div>
             </div>
-            <img data-hf-id="hf-msl2" id="ph-sticky" src="assets/ui/phone/header.jpg" alt="" />
+            <img class="pf-sticky" id="ph-sticky" src="assets/ui/phone/header.jpg" alt="" />
           </div>
-          <div data-hf-id="hf-kh54" id="ph-status">
-            <span data-hf-id="hf-cif4" id="ph-time">9:41</span>
-            <svg data-hf-id="hf-bpe4" id="ph-icons" viewBox="0 0 70 13" aria-hidden="true">
-              <g data-hf-id="hf-6ioo" fill="#fff">
-                <rect data-hf-id="hf-zrgi" x="0" y="8" width="3" height="5" rx="1" /><rect data-hf-id="hf-sq7y" x="5" y="5.5" width="3" height="7.5" rx="1" />
-                <rect data-hf-id="hf-yfp8" x="10" y="3" width="3" height="10" rx="1" /><rect data-hf-id="hf-te0k" x="15" y="0.5" width="3" height="12.5" rx="1" />
-                <path data-hf-id="hf-fd9s" d="M30 4.2a9 9 0 0 1 11.6 0l-1.3 1.4a7 7 0 0 0-9 0zM32.4 6.8a5.4 5.4 0 0 1 6.8 0l-1.4 1.4a3.4 3.4 0 0 0-4 0zM34.8 9.3a2 2 0 0 1 2 0L35.8 11z" />
-                <rect data-hf-id="hf-x8u8" x="47" y="1" width="20" height="11" rx="3" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.2" />
-                <rect data-hf-id="hf-zmex" x="49" y="3" width="14" height="7" rx="1.5" /><rect data-hf-id="hf-ckkl" x="68" y="4.5" width="1.6" height="4" rx=".8" fill-opacity=".55" />
+          <div class="pf-status">
+            <span class="pf-time">9:41</span>
+            <svg class="pf-icons" viewBox="0 0 70 13" aria-hidden="true">
+              <g fill="#fff">
+                <rect x="0" y="8" width="3" height="5" rx="1" /><rect x="5" y="5.5" width="3" height="7.5" rx="1" />
+                <rect x="10" y="3" width="3" height="10" rx="1" /><rect x="15" y="0.5" width="3" height="12.5" rx="1" />
+                <path d="M30 4.2a9 9 0 0 1 11.6 0l-1.3 1.4a7 7 0 0 0-9 0zM32.4 6.8a5.4 5.4 0 0 1 6.8 0l-1.4 1.4a3.4 3.4 0 0 0-4 0zM34.8 9.3a2 2 0 0 1 2 0L35.8 11z" />
+                <rect x="47" y="1" width="20" height="11" rx="3" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.2" />
+                <rect x="49" y="3" width="14" height="7" rx="1.5" /><rect x="68" y="4.5" width="1.6" height="4" rx=".8" fill-opacity=".55" />
               </g>
             </svg>
-            <div data-hf-id="hf-wdmx" id="ph-island"></div>
+            <div class="pf-island"></div>
           </div>
-          <div data-hf-id="hf-wojp" id="ph-bar">
-            <div data-hf-id="hf-20fh" id="ph-url">
-              <svg data-hf-id="hf-98l2" viewBox="0 0 11 13" aria-hidden="true"><path data-hf-id="hf-1yqv" fill="#4b5563" d="M2 6V4a3.5 3.5 0 0 1 7 0v2h.5A1.5 1.5 0 0 1 11 7.5v4A1.5 1.5 0 0 1 9.5 13h-8A1.5 1.5 0 0 1 0 11.5v-4A1.5 1.5 0 0 1 1.5 6zm1.5 0h4V4a2 2 0 0 0-4 0z" /></svg>
-              <span data-hf-id="hf-qo14">signal.minesursi.gouv.cd</span>
+          <div class="pf-bar">
+            <div class="pf-url">
+              <svg viewBox="0 0 11 13" aria-hidden="true"><path fill="#4b5563" d="M2 6V4a3.5 3.5 0 0 1 7 0v2h.5A1.5 1.5 0 0 1 11 7.5v4A1.5 1.5 0 0 1 9.5 13h-8A1.5 1.5 0 0 1 0 11.5v-4A1.5 1.5 0 0 1 1.5 6zm1.5 0h4V4a2 2 0 0 0-4 0z" /></svg>
+              <span>signal.minesursi.gouv.cd</span>
             </div>
-            <div data-hf-id="hf-3cxb" id="ph-home-ind"></div>
+            <div class="pf-home"></div>
           </div>
         </div>
-      </div>
-
-      <div data-hf-id="hf-5shi" id="ph-rail">
-        <div data-hf-id="hf-agic" id="ph-rail-count">
-          <p data-hf-id="hf-3izq" class="ph-count" id="rc-1">Étape 1 sur 8</p><p data-hf-id="hf-9zpa" class="ph-count" id="rc-2">Étape 2 sur 8</p>
-          <p data-hf-id="hf-vmla" class="ph-count" id="rc-3">Étape 3 sur 8</p><p data-hf-id="hf-blly" class="ph-count" id="rc-4">Étape 4 sur 8</p>
-          <p data-hf-id="hf-hi52" class="ph-count" id="rc-5">Étape 5 sur 8</p><p data-hf-id="hf-4wzi" class="ph-count" id="rc-6">Étape 6 sur 8</p>
-          <p data-hf-id="hf-ynse" class="ph-count" id="rc-7">Étape 7 sur 8</p><p data-hf-id="hf-xiae" class="ph-count" id="rc-8">Étape 8 sur 8</p>
-        </div>
-        <div data-hf-id="hf-2eru" id="ph-rail-name">
-          <p data-hf-id="hf-anqc" class="ph-name" id="rn-1">Catégorie</p><p data-hf-id="hf-o64e" class="ph-name" id="rn-2">Province</p>
-          <p data-hf-id="hf-8qsf" class="ph-name" id="rn-3">Établissement</p><p data-hf-id="hf-cn4i" class="ph-name" id="rn-4">Personne concernée</p>
-          <p data-hf-id="hf-zak9" class="ph-name" id="rn-5">Description</p><p data-hf-id="hf-rsy4" class="ph-name" id="rn-6">Preuves</p>
-          <p data-hf-id="hf-pp37" class="ph-name" id="rn-7">Mode anonyme</p><p data-hf-id="hf-ib16" class="ph-name" id="rn-8">Prévisualisation</p>
-        </div>
-        <div data-hf-id="hf-dgey" id="ph-prog"><div data-hf-id="hf-jb38" id="ph-prog-fill"></div></div>
-        <div data-hf-id="hf-tzku" id="ph-dots">
-          <div data-hf-id="hf-v6xc" class="ph-dot" id="pd-1" style="left: 0px">1</div><div data-hf-id="hf-3cdd" class="ph-dot" id="pd-2" style="left: 98px">2</div>
-          <div data-hf-id="hf-fuz4" class="ph-dot" id="pd-3" style="left: 196px">3</div><div data-hf-id="hf-pmqb" class="ph-dot" id="pd-4" style="left: 294px">4</div>
-          <div data-hf-id="hf-ss3e" class="ph-dot" id="pd-5" style="left: 392px">5</div><div data-hf-id="hf-nkcx" class="ph-dot" id="pd-6" style="left: 490px">6</div>
-          <div data-hf-id="hf-qykn" class="ph-dot" id="pd-7" style="left: 588px">7</div><div data-hf-id="hf-lhxs" class="ph-dot" id="pd-8" style="left: 686px">8</div>
-        </div>
-      </div>
-
-      <div data-hf-id="hf-a5kq" id="ph-receipt">
-        <div data-hf-id="hf-eehi" id="ph-receipt-band"></div>
-        <h3 data-hf-id="hf-qox1">Conservez votre référence<br data-hf-id="hf-x5px" />et votre code de suivi</h3>
-        <p data-hf-id="hf-4eia" class="ph-lab" style="top: 146px">Référence</p>
-        <p data-hf-id="hf-coq9" class="ph-lab" style="top: 278px">Code de suivi</p>
-        <p data-hf-id="hf-cokd" class="ph-field" id="ph-code" style="top: 314px">••••••••••</p>
-        <p data-hf-id="hf-c3al" id="ph-help">Conservez ce code secret. Ne le communiquez à personne.</p>
-        <p data-hf-id="hf-o8eo" id="ph-chip">SIG-ESURSI-2026-4F7A2D</p>
       </div>
     </div>
-    <div data-hf-id="hf-1z4t" id="ph-edge"></div>
+    <div id="ph-edge"></div>
   </div>
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
-      // local time = film time - 19.15
-      const L = (film) => +(film - 19.15).toFixed(3);
+      // local time = film time - 22.2
+      const L = (film) => +(film - 22.2).toFixed(3);
       const PH = "#ph";
       // --- the phone world wipes in on the flag diagonal
       tl.to("#ph-scene", { clipPath: "polygon(0px 0px, 2200px 0px, 1950px 1080px, 0px 1080px)", duration: 0.55, ease: "power3.inOut" }, 0);
       tl.fromTo("#ph-edge", { x: 14, rotation: 13 }, { x: 2214, rotation: 13, duration: 0.55, ease: "power3.inOut" }, 0);
-      tl.fromTo("#ph-stripe", { x: -80, rotation: -25 }, { x: 40, rotation: -25, duration: 10.8, ease: "none" }, 0);
+      tl.fromTo("#ph-stripe", { x: -80, rotation: -25 }, { x: 60, rotation: -25, duration: 15.3, ease: "none" }, 0);
 
-      // --- camera states (phone local units = screen css px)
-      const REST = { x: 690, y: 76, scale: 1.08 };
-      const PUNCH = { x: 300, y: -250, scale: 1.62 };
-      tl.fromTo(PH, { x: REST.x, y: 1180, scale: REST.scale, transformOrigin: "0px 0px" },
-        { x: REST.x, y: REST.y, duration: 0.85, ease: "expo.out" }, 0.12);
-      tl.to(PH, { x: 470, duration: 0.7, ease: "power2.inOut" }, L(20.2));
-      tl.to(PH, { ...PUNCH, duration: 0.7, ease: "power2.inOut" }, L(20.85));
-      tl.to(PH, { x: 248, y: -412, scale: 2.0, duration: 0.55, ease: "power2.inOut" }, L(24.45));
-      tl.to(PH, { ...PUNCH, y: -250, duration: 0.5, ease: "power2.inOut" }, L(25.3));
-      tl.to(PH, { x: 240, y: 76, scale: 1.08, duration: 0.7, ease: "power2.inOut" }, L(26.2));
+      // --- "Depuis votre téléphone": the phone rises and sends its signal
+      const REST_A = { x: 748, y: 76, scale: 1.08 };
+      const PUSH = { x: 772.5, y: -252, scale: 1.5 };
+      const REST_B = { x: 140, y: 76, scale: 1.08 };
+      tl.fromTo(PH, { x: REST_A.x, y: 1180, scale: REST_A.scale, rotation: 6, transformOrigin: "0px 0px" },
+        { x: REST_A.x, y: REST_A.y, rotation: 0, duration: 0.9, ease: "expo.out" }, 0.1);
+      [0, 1, 2, 3].forEach((i) => {
+        const id = "#ph-ring-" + ((i % 3) + 1);
+        tl.fromTo(id, { opacity: 0.4, scale: 0.75 }, { opacity: 0, scale: 1.9, duration: 1.6, ease: "power1.out", immediateRender: false }, 0.55 + i * 0.5);
+      });
 
       // --- page states
       const show = (id, t, scroll, slide) => {
-        tl.set("#ph-page .ph-st", { opacity: 0 }, t);
+        tl.set("#ph-page .pf-st", { opacity: 0 }, t);
         tl.set("#ph-page", { y: -scroll }, t);
         if (slide) tl.fromTo(id, { opacity: 0, x: 36 }, { opacity: 1, x: 0, duration: 0.24, ease: "expo.out" }, t);
         else tl.set(id, { opacity: 1, x: 0 }, t);
@@ -488,70 +605,139 @@
         tl.to("#ph-touch", { scale: 1.1, opacity: 0, duration: 0.18, ease: "power2.out" }, t + 0.06);
       };
       show("#st-home", 0, 0, false);
-      tap(125, 481, L(20.55));
-      show("#st-s1a", L(20.72), 0, true);
-      tl.to("#ph-page", { y: -330, duration: 0.42, ease: "power2.inOut" }, L(21.0));
-      tl.set("#ph-sticky", { opacity: 1 }, L(21.18));
-      tap(196, 796, L(21.58));
-      tl.set("#st-s1b", { opacity: 1 }, L(21.6));
-      show("#st-s2a", L(21.98), 330, true);
-      tap(196, 797, L(22.32));
-      tl.set("#st-s2b", { opacity: 1 }, L(22.36));
-      show("#st-s3", L(22.55), 400, true);
-      show("#st-s4", L(22.9), 330, true);
-      show("#st-s5a", L(23.2), 330, true);
-      // typing: the placeholder clears, the text arrives line by line
-      tl.set(["#bl-t", "#bl-d"], { opacity: 1 }, L(23.3));
-      tl.set(["#ty-t", "#ty-d1", "#ty-d2", "#ty-d3"], { opacity: 1 }, L(23.3));
-      tl.fromTo("#ty-t", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.24, ease: "none" }, L(23.3));
-      tl.fromTo("#ty-d1", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.16, ease: "none" }, L(23.56));
-      tl.fromTo("#ty-d2", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.16, ease: "none" }, L(23.72));
-      tl.fromTo("#ty-d3", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.1, ease: "none" }, L(23.88));
-      tl.set("#st-s5b", { opacity: 1 }, L(23.9));
-      show("#st-s6a", L(23.98), 330, true);
-      tl.set(["#bl-t", "#bl-d"], { opacity: 0 }, L(23.98));
-      tl.set("#st-s6b", { opacity: 1 }, L(24.16));
-      tl.fromTo("#st-s6b", { clipPath: "inset(898px 40px 334px 40px)" }, { clipPath: "inset(0px 0px 0px 0px)", duration: 0.3, ease: "expo.out" }, L(24.16));
-      show("#st-s7", L(24.5), 330, true);
-      tap(196, 749, L(24.8));
-      show("#st-s8a", L(25.45), 1450, true);
-      tap(47, 1727, L(25.72));
-      tl.set("#st-s8b", { opacity: 1 }, L(25.74));
-      tap(122, 1983, L(26.07));
 
-      // --- the rail: the form's own steps, readable
-      const steps = [[1, 21.05], [2, 21.98], [3, 22.55], [4, 22.9], [5, 23.2], [6, 23.98], [7, 24.5], [8, 25.45]];
-      tl.fromTo("#ph-rail", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.5, ease: "expo.out" }, L(20.95));
-      steps.forEach(([n, f], i) => {
-        const t = L(f);
-        tl.fromTo("#rn-" + n, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.26, ease: "expo.out" }, t);
-        tl.fromTo("#rc-" + n, { opacity: 0 }, { opacity: 1, duration: 0.14 }, t);
-        if (i > 0) {
-          tl.to("#rn-" + steps[i - 1][0], { opacity: 0, y: -60, duration: 0.18, ease: "power2.in" }, t - 0.02);
-          tl.to("#rc-" + steps[i - 1][0], { opacity: 0, duration: 0.1 }, t - 0.02);
-          tl.to("#pd-" + steps[i - 1][0], { backgroundColor: "#ffffff", borderColor: "#0057b8", color: "#0057b8", duration: 0.15 }, t);
-        }
-        tl.to("#pd-" + n, { backgroundColor: "#0057b8", borderColor: "#0057b8", color: "#ffffff", duration: 0.15 }, t);
-        tl.fromTo("#pd-" + n, { scale: 1.25 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, t);
-        tl.to("#ph-prog-fill", { scaleX: n / 8, duration: 0.3, ease: "power2.out" }, t);
+      // --- "vous déposez un signalement": push in on the real button, tap
+      tl.to(PH, { ...PUSH, duration: 0.55, ease: "power2.inOut" }, L(23.42));
+      tap(125, 481, L(23.98));
+      show("#st-s1a", L(24.12), 0, true);
+      tl.to(PH, { ...REST_A, duration: 0.6, ease: "power2.inOut" }, L(24.5));
+      tl.to("#ph-page", { y: -330, duration: 0.5, ease: "power2.inOut" }, L(24.75));
+      tl.set("#ph-sticky", { opacity: 1 }, L(24.95));
+
+      // --- "en quelques minutes": a stopwatch that runs fast
+      tl.fromTo("#ph-sw", { opacity: 0, scale: 0.6, rotation: -14, transformOrigin: "50% 60%" },
+        { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.7)" }, L(24.9));
+      tl.fromTo("#ph-sw-hand", { rotation: 0, svgOrigin: "160 190" }, { rotation: 720, svgOrigin: "160 190", duration: 1.15, ease: "power1.inOut" }, L(25.0));
+      tl.fromTo("#ph-sw-pie", { strokeDashoffset: 339.3 }, { strokeDashoffset: 0, duration: 1.15, ease: "power1.inOut" }, L(25.0));
+      tl.fromTo("#ph-sw-l", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, L(25.05));
+      tl.to(["#ph-sw", "#ph-sw-l"], { opacity: 0, x: 120, duration: 0.3, ease: "power2.in" }, L(25.95));
+      tl.to(PH, { ...REST_B, duration: 0.55, ease: "power2.inOut" }, L(25.88));
+
+      // --- "13 catégories officielles": the categories burst out of the screen
+      const TILES = [[882.0, 405.0], [1134.0, 405.0], [1386.0, 405.0], [1638.0, 405.0], [756.0, 635.0], [1008.0, 635.0], [1260.0, 635.0], [1512.0, 635.0], [1764.0, 635.0], [882.0, 865.0], [1134.0, 865.0], [1386.0, 865.0], [1638.0, 865.0]];
+      const OX = REST_B.x + 196.5 * 1.08, OY = REST_B.y + 426 * 1.08;
+      const T13 = L(26.19);
+      tl.fromTo("#ph-n13", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, T13 - 0.06);
+      tl.fromTo("#ph-w-cat", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, L(26.43));
+      tl.fromTo("#ph-w-off", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, L(26.99));
+      tl.to("#ph-ul13", { scaleX: 1, duration: 0.45, ease: "expo.out" }, L(27.1));
+      TILES.forEach(([cx, cy], i) => {
+        const t = T13 + i * 0.045;
+        const rot = ((i * 37) % 21) - 10;
+        tl.fromTo("#ct-" + (i + 1), { opacity: 0, x: OX - cx, y: OY - cy, scale: 0.25, rotation: rot },
+          { opacity: 1, x: 0, y: 0, scale: 1, rotation: 0, duration: 0.6, ease: "expo.out" }, t);
       });
-      tl.to("#ph-rail", { opacity: 0, x: 60, duration: 0.3, ease: "power2.in" }, L(26.12));
 
-      // --- after sending: reference and tracking code
-      tl.fromTo("#ph-receipt", { opacity: 0, x: -140, scale: 0.92, transformOrigin: "0% 50%" },
-        { opacity: 1, x: 0, scale: 1, duration: 0.6, ease: "expo.out" }, L(26.35));
-      tl.fromTo("#ph-chip", { opacity: 0, clipPath: "inset(0% 100% 0% 0%)" },
-        { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "power2.out" }, L(26.6));
-      tl.fromTo("#ph-code", { opacity: 0, clipPath: "inset(0% 100% 0% 0%)" },
-        { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, L(27.6));
+      // the four the voice names light up; the rest step back
+      const others = [2, 4, 6, 7, 8, 9, 11, 12, 13].map((n) => "#ct-" + n);
+      tl.to(others, { opacity: 0.38, duration: 0.3, ease: "power1.out" }, L(27.82));
+      tl.to(["#ct-1", "#ct-3", "#ct-5", "#ct-10"], { opacity: 0.38, duration: 0.3, ease: "power1.out" }, L(27.82));
+      const lightUp = (n, film, bounce) => {
+        const t = L(film);
+        tl.to("#ct-" + n, { opacity: 1, scale: 1.1, duration: 0.35, ease: "back.out(2)" }, t);
+        tl.to("#ct-hl-" + n, { opacity: 1, duration: 0.15 }, t);
+        tl.to("#ct-i-" + n, { keyframes: bounce, duration: 0.5, ease: "power1.inOut" }, t);
+        tl.to("#ct-" + n, { scale: 1.04, duration: 0.3, ease: "power2.out" }, t + 0.55);
+      };
+      lightUp(1, 28.03, [{ y: -16, rotation: -8 }, { y: 0, rotation: 6 }, { y: 0, rotation: 0 }]);
+      tap(196, 796, L(28.03));
+      tl.set("#st-s1b", { opacity: 1 }, L(28.06));
+      lightUp(3, 28.83, [{ scale: 1.2 }, { scale: 0.92 }, { scale: 1 }]);
+      lightUp(5, 29.83, [{ x: -8 }, { x: 8 }, { x: -5 }, { x: 0 }]);
+      lightUp(10, 30.59, [{ rotation: -14 }, { rotation: 8 }, { rotation: 0 }]);
+      // "de ... à ...": the whole range, and the misappropriation of funds in gold
+      tl.to(others, { opacity: 1, duration: 0.3, stagger: 0.035, ease: "power1.out" }, L(31.1));
+      tl.to("#ct-hl-8", { opacity: 1, duration: 0.2 }, L(31.32));
+      tl.fromTo("#ct-8", { scale: 1 }, { scale: 1.1, duration: 0.25, ease: "back.out(2.5)" }, L(31.32));
+      tl.to("#ct-i-8", { keyframes: [{ rotation: -12, y: -8 }, { rotation: 10, y: 0 }, { rotation: 0 }], duration: 0.45 }, L(31.32));
 
-      // --- the reference lifts off and leaves for the Ministry
-      tl.to("#ph-chip", { backgroundColor: "#0057b8", color: "#ffffff", borderColor: "#0057b8", borderRadius: 40, scale: 1.08,
-        boxShadow: "0 24px 50px rgba(0,38,84,0.35)", duration: 0.3, ease: "power2.out" }, L(28.05));
-      tl.to("#ph-chip", { x: -140, y: -620, scale: 0.9, filter: "blur(3px)", duration: 0.5, ease: "power3.in" }, L(28.4));
-      tl.set("#ph-chip", { opacity: 0 }, L(28.9));
-      tl.to(PH, { y: 1200, duration: 0.55, ease: "power3.in" }, L(28.45));
-      tl.to("#ph-receipt", { y: 900, duration: 0.55, ease: "power3.in" }, L(28.55));
+      // --- the categories return into the phone
+      const TB = L(31.82);
+      TILES.forEach(([cx, cy], i) => {
+        tl.to("#ct-" + (i + 1), { x: OX - cx, y: OY - cy, scale: 0.2, opacity: 0, duration: 0.4, ease: "power3.in" }, TB + (12 - i) * 0.02);
+      });
+      tl.to(["#ph-n13", "#ph-hd13"], { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, TB);
+
+      // --- "8 étapes guidées": the form's real steps, with the real screen beside
+      const T8 = L(32.31);
+      tl.fromTo("#ph-n8", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, T8 - 0.06);
+      tl.fromTo("#ph-w-eta", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, L(32.51));
+      tl.fromTo("#ph-w-gui", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, L(32.85));
+      tl.to("#ph-ul8", { scaleX: 1, duration: 0.45, ease: "expo.out" }, L(33.0));
+      tl.fromTo("#sr-line", { opacity: 0 }, { opacity: 1, duration: 0.3 }, T8);
+      for (let n = 1; n <= 8; n++) {
+        tl.fromTo("#sr-" + n, { opacity: 0, x: 70 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, T8 + 0.05 + (n - 1) * 0.06);
+      }
+      tl.fromTo("#sr-ok-1", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, L(32.95));
+      const RY = (n) => 290 + (n - 1) * 86;
+      const motions = {
+        2: { from: { y: -26 }, to: { y: 0, duration: 0.55, ease: "bounce.out" } },
+        3: { from: { scaleY: 0.4, transformOrigin: "50% 100%" }, to: { scaleY: 1, duration: 0.45, ease: "back.out(2)" } },
+        4: { from: { scale: 0.5, transformOrigin: "50% 50%" }, to: { scale: 1, duration: 0.4, ease: "back.out(2)" } },
+        5: { from: { rotation: -24, transformOrigin: "20% 80%" }, to: { rotation: 0, duration: 0.6, ease: "elastic.out(1.2, 0.4)" } },
+        6: { from: { y: 18, rotation: 14 }, to: { y: 0, rotation: 0, duration: 0.45, ease: "back.out(2)" } },
+        7: { from: { scale: 0.5, transformOrigin: "50% 50%" }, to: { scale: 1, duration: 0.4, ease: "back.out(2)" } },
+      };
+      let prev = 0;
+      const activate = (n, film) => {
+        const t = L(film);
+        if (prev === 0) {
+          tl.set("#sr-pill", { y: RY(n) - 376 }, t - 0.12);
+          tl.fromTo("#sr-pill", { opacity: 0, scaleX: 0.2, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.35, ease: "expo.out" }, t - 0.12);
+        } else {
+          tl.to("#sr-pill", { y: RY(n) - 376, duration: 0.3, ease: "power3.inOut" }, t - 0.12);
+          tl.to("#sr-l-" + prev, { color: "#0f2744", duration: 0.15 }, t - 0.05);
+          tl.to("#sr-l-" + prev + " b", { color: "#0057b8", duration: 0.15 }, t - 0.05);
+          tl.fromTo("#sr-ok-" + prev, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, t);
+        }
+        tl.to("#sr-l-" + n, { color: "#ffffff", duration: 0.15 }, t + 0.05);
+        tl.to("#sr-l-" + n + " b", { color: "#f7d618", duration: 0.15 }, t + 0.05);
+        tl.to("#sr-fill", { scaleY: (n - 1) / 7, duration: 0.35, ease: "power2.out" }, t - 0.1);
+        const m = motions[n];
+        if (m) tl.fromTo("#sr-i-" + n, m.from, m.to, t);
+        prev = n;
+      };
+
+      show("#st-s2a", L(33.55), 330, true);
+      activate(2, 33.71);
+      tap(196, 797, L(34.02));
+      tl.set("#st-s2b", { opacity: 1 }, L(34.05));
+      show("#st-s3", L(34.38), 400, true);
+      activate(3, 34.48);
+      show("#st-s4", L(35.08), 330, true);
+      activate(4, 35.12);
+      show("#st-s5a", L(35.52), 330, true);
+      activate(5, 35.67);
+      // typing: the placeholder clears, the text arrives line by line
+      tl.set(["#bl-t", "#bl-d"], { opacity: 1 }, L(35.72));
+      tl.set(["#ty-t", "#ty-d1", "#ty-d2", "#ty-d3"], { opacity: 1 }, L(35.72));
+      tl.fromTo("#ty-t", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.26, ease: "none" }, L(35.72));
+      tl.fromTo("#ty-d1", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.2, ease: "none" }, L(36.0));
+      tl.fromTo("#ty-d2", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.2, ease: "none" }, L(36.2));
+      tl.fromTo("#ty-d3", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.12, ease: "none" }, L(36.4));
+      tl.set("#st-s5b", { opacity: 1 }, L(36.52));
+      show("#st-s6a", L(36.55), 330, true);
+      tl.set(["#bl-t", "#bl-d"], { opacity: 0 }, L(36.55));
+      activate(6, 36.62);
+      tl.set("#st-s6b", { opacity: 1 }, L(36.8));
+      tl.fromTo("#st-s6b", { clipPath: "inset(898px 40px 334px 40px)" }, { clipPath: "inset(0px 0px 0px 0px)", duration: 0.3, ease: "expo.out" }, L(36.8));
+
+      // --- hand-off: the "Mode" step stays, everything else steps aside
+      show("#st-s7", L(37.06), 330, true);
+      activate(7, 37.22);
+      const rest = [1, 2, 3, 4, 5, 6, 8].map((n) => "#sr-" + n);
+      tl.to(rest, { opacity: 0, x: -30, duration: 0.2, ease: "power2.in", stagger: 0.015 }, L(37.2));
+      tl.to(["#sr-line", "#ph-n8", "#ph-hd8"], { opacity: 0, duration: 0.2, ease: "power2.in" }, L(37.2));
       window.__timelines["phone"] = tl;
     })();
   </script>

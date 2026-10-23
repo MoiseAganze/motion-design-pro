@@ -1,0 +1,215 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Source Serif 4";
+      src: url("assets/fonts/SourceSerif4-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    @font-face {
+      font-family: "Source Sans 3";
+      src: url("assets/fonts/SourceSans3-Variable.woff2") format("woff2");
+      font-weight: 200 900;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Source Sans 3", sans-serif;
+    }
+    #sl-scene {
+      position: absolute;
+      inset: 0;
+      background: #f5f9fc;
+      clip-path: circle(0px at 428px 474px);
+    }
+    #sl-card {
+      position: absolute;
+      left: 166px;
+      top: 104px;
+      width: 1588px;
+      height: 262px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 30px 60px rgba(0, 38, 84, 0.16);
+      border: 1.5px solid #d3e1f0;
+    }
+    #sl-rows {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1588px;
+      height: 262px;
+    }
+    #sl-dim {
+      position: absolute;
+      left: 0;
+      top: 62px;
+      width: 1588px;
+      height: 92px;
+      background: #f5f9fc;
+      opacity: 0;
+    }
+    .sl-ring {
+      position: absolute;
+      border-radius: 12px;
+      border: 5px solid #ce1021;
+      opacity: 0;
+    }
+    #sl-dial {
+      position: absolute;
+      left: 270px;
+      top: 440px;
+      width: 500px;
+      height: 500px;
+      opacity: 0;
+    }
+    #sl-24 {
+      position: absolute;
+      left: 270px;
+      top: 610px;
+      width: 500px;
+      text-align: center;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 150px;
+      line-height: 1;
+      color: #ce1021;
+      opacity: 0;
+    }
+    #sl-24 small {
+      font-size: 80px;
+    }
+    #sl-crit {
+      position: absolute;
+      left: 404px;
+      top: 548px;
+      width: 232px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #ce1021;
+      opacity: 0;
+    }
+    #sl-tbl {
+      position: absolute;
+      left: 940px;
+      top: 470px;
+      width: 820px;
+    }
+    #sl-head {
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0057b8;
+      margin: 0 0 22px 4px;
+      opacity: 0;
+    }
+    .sl-row {
+      position: relative;
+      height: 88px;
+      margin-bottom: 14px;
+      border-radius: 44px;
+      background: #ffffff;
+      border: 2px solid #d3e1f0;
+      opacity: 0;
+    }
+    .sl-row i {
+      position: absolute;
+      left: 30px;
+      top: 30px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+    .sl-row b {
+      position: absolute;
+      left: 74px;
+      top: 0;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 84px;
+      color: #0f2744;
+    }
+    .sl-row span {
+      position: absolute;
+      right: 34px;
+      top: 0;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 84px;
+      color: #0f2744;
+    }
+    #sl-r1-bg {
+      position: absolute;
+      inset: -2px;
+      border-radius: 44px;
+      background: #ce1021;
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="sla" data-width="1920" data-height="1080">
+    <div id="sl-scene">
+      <div id="sl-card">
+        <img id="sl-rows" src="assets/ui/mac/sla_rows.jpg" alt="Liste des dossiers : un dossier Critique et son échéance SLA" />
+        <div id="sl-dim"></div>
+      </div>
+      <div class="sl-ring" id="sl-ring-crit" style="left: 1018px; top: 282px; width: 118px; height: 64px"></div>
+      <div class="sl-ring" id="sl-ring-sla" style="left: 1364px; top: 266px; width: 98px; height: 94px; border-color: #0057b8"></div>
+
+      <svg id="sl-dial" viewBox="0 0 500 500" aria-hidden="true">
+        <circle cx="250" cy="250" r="236" fill="#ffffff" />
+        <circle cx="250" cy="250" r="200" fill="none" stroke="#e3eaf2" stroke-width="40" />
+        <circle id="sl-arc" cx="250" cy="250" r="200" fill="none" stroke="#ce1021" stroke-width="40" stroke-dasharray="1256.6" stroke-dashoffset="1256.6" transform="rotate(-90 250 250)" />
+        <g stroke="#8a9bb0" stroke-width="5" stroke-linecap="round">
+          <line x1="250" y1="14" x2="250" y2="34" /><line x1="486" y1="250" x2="466" y2="250" />
+          <line x1="250" y1="486" x2="250" y2="466" /><line x1="14" y1="250" x2="34" y2="250" />
+        </g>
+        <circle id="sl-dot" cx="250" cy="50" r="26" fill="#ffffff" stroke="#ce1021" stroke-width="10" />
+      </svg>
+      <p id="sl-crit">Critique</p>
+      <p id="sl-24">24<small> h</small></p>
+
+      <div id="sl-tbl">
+        <p id="sl-head">Délais de prise en charge</p>
+        <div class="sl-row" id="sl-r1"><div id="sl-r1-bg"></div><i style="background: #ce1021"></i><b id="sl-r1-l">Critique</b><span id="sl-r1-v">24 heures</span></div>
+        <div class="sl-row" id="sl-r2"><i style="background: #f59e0b"></i><b>Élevée</b><span>72 heures</span></div>
+        <div class="sl-row" id="sl-r3"><i style="background: #007fff"></i><b>Normale</b><span>7 jours</span></div>
+        <div class="sl-row" id="sl-r4"><i style="background: #8a9bb0"></i><b>Faible</b><span>15 jours</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // local time = film time - 56.62; the reveal opens from the Kinshasa bubble
+      const L = (film) => +(film - 56.62).toFixed(3);
+      tl.to("#sl-scene", { clipPath: "circle(2300px at 428px 474px)", duration: 0.55, ease: "power2.in" }, 0);
+      tl.fromTo("#sl-card", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 0.08);
+      // "Un dossier critique": the real Critique file in the agents' list
+      tl.to("#sl-dim", { opacity: 0.72, duration: 0.25 }, L(57.0));
+      tl.fromTo("#sl-ring-crit", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, L(57.07));
+      // "doit être pris en charge sous...": the clock runs, the real delays line up
+      tl.fromTo("#sl-dial", { opacity: 0, scale: 0.7, rotation: -30, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.6)" }, L(57.3));
+      tl.fromTo("#sl-crit", { opacity: 0 }, { opacity: 1, duration: 0.3 }, L(57.5));
+      tl.to("#sl-arc", { strokeDashoffset: 0, duration: 1.4, ease: "power1.inOut" }, L(57.5));
+      tl.fromTo("#sl-dot", { rotation: 0, svgOrigin: "250 250" }, { rotation: 360, svgOrigin: "250 250", duration: 1.4, ease: "power1.inOut" }, L(57.5));
+      tl.fromTo("#sl-ring-sla", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, L(57.9));
+      tl.fromTo("#sl-head", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out" }, L(57.6));
+      ["#sl-r1", "#sl-r2", "#sl-r3", "#sl-r4"].forEach((r, i) =>
+        tl.fromTo(r, { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, L(57.7) + i * 0.08));
+      // "24 heures"
+      tl.fromTo("#sl-24", { opacity: 0, scale: 0.5, transformOrigin: "50% 60%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.2)" }, L(58.91));
+      tl.to("#sl-crit", { y: -10, duration: 0.3 }, L(58.91));
+      tl.to("#sl-r1-bg", { opacity: 1, duration: 0.2 }, L(58.91));
+      tl.to(["#sl-r1-l", "#sl-r1-v"], { color: "#ffffff", duration: 0.2 }, L(58.91));
+      tl.fromTo("#sl-r1", { scale: 1 }, { scale: 1.06, duration: 0.35, ease: "back.out(2.5)" }, L(58.91));
+      tl.to(["#sl-r2", "#sl-r3", "#sl-r4"], { opacity: 0.5, duration: 0.3 }, L(59.0));
+      window.__timelines["sla"] = tl;
+    })();
+  </script>
+</template>
