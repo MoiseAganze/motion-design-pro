@@ -1,0 +1,451 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--navy, #0b2b5e);
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* grounds: one full-bleed field per world, revealed by a colour flood */
+    .st-ground { position: absolute; inset: 0; }
+    .st-light { background: radial-gradient(ellipse 75% 55% at 50% 60%, #f8fbff 0%, var(--light, #eaf0f8) 72%); }
+    .st-yellow { background: radial-gradient(ellipse 75% 55% at 50% 60%, #fbe04f 0%, var(--yellow, #f5d522) 72%); }
+    .st-blue { background: radial-gradient(ellipse 75% 55% at 50% 60%, #2a84ec 0%, var(--blue, #0a6cdc) 72%); }
+    .st-red { background: radial-gradient(ellipse 75% 55% at 50% 60%, #dc2c37 0%, var(--red, #c8131f) 72%); }
+    .st-navy { background: radial-gradient(ellipse 75% 55% at 50% 62%, #143a78 0%, var(--navy, #0b2b5e) 72%); }
+
+    /* the phone: graphite body, 15 px bezel, screen 600 x 1268.75 (the screenshots' own 1152 x 2436 ratio) */
+    #st-phone {
+      position: absolute;
+      left: 1103px;
+      top: -109.375px;
+      width: 630px;
+      height: 1298.75px;
+      box-sizing: border-box;
+      padding: 15px;
+      border-radius: 70px;
+      background: linear-gradient(145deg, #3a3d46, #1b1d22 42%, #111318);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        0 46px 90px rgba(0, 0, 0, 0.34),
+        0 14px 30px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+    }
+    .st-btn {
+      position: absolute;
+      right: -6px;
+      width: 6px;
+      border-radius: 0 3px 3px 0;
+      background: linear-gradient(90deg, #15171b, #3a3d45);
+    }
+    #st-btn-power { top: 330px; height: 110px; }
+    #st-btn-vol { top: 190px; height: 90px; }
+    #st-screen {
+      position: relative;
+      width: 600px;
+      height: 1268.75px;
+      border-radius: 55px;
+      overflow: hidden;
+      background: #111520;
+      isolation: isolate;
+    }
+    .st-scr {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 600px;
+      height: 1268.75px;
+      display: block;
+    }
+    #st-s-home { z-index: 1; }
+    #st-dim { z-index: 2; background: #000; opacity: 0; }
+    #st-s-comm { z-index: 3; box-shadow: -18px 0 40px rgba(0, 0, 0, 0.45); }
+    #st-s-art { z-index: 4; opacity: 0; }
+    #st-s-plus { z-index: 5; opacity: 0; }
+
+    /* the Plus tab as three parts so its list can scroll under a fixed app bar and nav bar */
+    .st-pl-part {
+      position: absolute;
+      left: 0;
+      width: 600px;
+      background-size: 600px auto;
+      background-repeat: no-repeat;
+    }
+    #st-pl-view { position: absolute; left: 0; top: 159.375px; width: 600px; height: 973.96px; overflow: hidden; }
+    #st-pl-strip { position: absolute; left: 0; top: 0; width: 600px; height: 973.96px; }
+    #st-pl-esp { top: -973.96px; height: 973.96px; background-image: url("assets/screens/plus-espace.jpg"); background-position: 0 -159.375px; }
+    #st-pl-pub { top: 0; height: 973.96px; background-image: url("assets/screens/plus-publications.jpg"); background-position: 0 -159.375px; }
+    #st-pl-bar-pub { top: 0; height: 159.375px; background-image: url("assets/screens/plus-publications.jpg"); background-position: 0 0; }
+    #st-pl-bar-esp { top: 0; height: 159.375px; background-image: url("assets/screens/plus-espace.jpg"); background-position: 0 0; opacity: 0; }
+    #st-pl-nav { top: 1133.33px; height: 135.42px; background-image: url("assets/screens/plus-publications.jpg"); background-position: 0 -1133.33px; }
+
+    /* device chrome drawn over every screen: clean status bar and punch-hole camera */
+    #st-status { position: absolute; left: 0; top: 0; width: 600px; height: 62px; z-index: 20; }
+    #st-clock {
+      position: absolute;
+      left: 40px;
+      top: 19px;
+      font-family: "Roboto", sans-serif;
+      font-size: 21px;
+      font-weight: 500;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+    }
+    #st-icons { position: absolute; right: 36px; top: 20px; height: 22px; }
+    #st-punch {
+      position: absolute;
+      left: 289px;
+      top: 20px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 38%, #2a2f3a 0%, #050608 55%);
+      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.55);
+      z-index: 21;
+    }
+
+    /* touches: Android "show taps" disc + Material ripple on the touched control */
+    .st-touch {
+      position: absolute;
+      width: 76px;
+      height: 76px;
+      margin: -38px 0 0 -38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.38);
+      border: 2px solid rgba(255, 255, 255, 0.72);
+      box-sizing: border-box;
+      opacity: 0;
+      z-index: 30;
+    }
+    .st-ripple { position: absolute; overflow: hidden; z-index: 25; }
+    .st-ripple i {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      opacity: 0;
+    }
+
+    /* title shelf: the app's own header language at frame scale (navy bar closed by the tricolour stripe) */
+    #st-shelf { position: absolute; left: 0; top: 0; width: 1940px; height: 1080px; background: var(--navy, #0b2b5e); }
+    #st-stripe { position: absolute; left: 1924px; top: 0; width: 16px; height: 1080px; }
+    .st-seg { position: absolute; left: 0; width: 16px; }
+    #st-seg-b { top: 0; height: 497px; background: #007dfe; }
+    #st-seg-y { top: 497px; height: 82px; background: #f5d522; }
+    #st-seg-r { top: 579px; height: 501px; background: #c8131f; }
+
+    .st-ttl { position: absolute; left: 140px; top: 464px; color: #ffffff; }
+    .st-ttl .st-l { font-size: 76px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
+    .st-ttl .w { display: inline-block; opacity: 0; }
+    #st-t2 .st-l { font-size: 62px; }
+    #st-t2 { top: 478px; }
+    #st-t2 .st-bar { height: 112px; }
+    .st-bar { position: absolute; left: -40px; top: 6px; width: 12px; height: 140px; background: #ce0f1e; transform-origin: 50% 0; }
+  </style>
+
+  <div data-hf-id="hf-7rqf" id="root" data-composition-id="stage" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-a7nu" id="st-grounds" data-layout-ignore>
+      <div data-hf-id="hf-4jzo" id="st-g-light1" class="st-ground st-light"></div>
+      <div data-hf-id="hf-mcn0" id="st-g-yellow1" class="st-ground st-yellow"></div>
+      <div data-hf-id="hf-r4vc" id="st-g-blue1" class="st-ground st-blue"></div>
+      <div data-hf-id="hf-048k" id="st-g-red1" class="st-ground st-red"></div>
+      <div data-hf-id="hf-d7vj" id="st-g-light2" class="st-ground st-light"></div>
+      <div data-hf-id="hf-zsr7" id="st-g-blue2" class="st-ground st-blue"></div>
+      <div data-hf-id="hf-x84n" id="st-g-yellow2" class="st-ground st-yellow"></div>
+      <div data-hf-id="hf-sibr" id="st-g-navy" class="st-ground st-navy"></div>
+    </div>
+
+    <div data-hf-id="hf-4zve" id="st-phone" data-layout-allow-overflow>
+      <div data-hf-id="hf-xiwy" id="st-btn-vol" class="st-btn"></div>
+      <div data-hf-id="hf-ocam" id="st-btn-power" class="st-btn"></div>
+      <div data-hf-id="hf-nfex" id="st-screen">
+        <img data-hf-id="hf-t54g" id="st-s-home" class="st-scr" src="assets/screens/home.jpg" alt="" />
+        <div data-hf-id="hf-iid8" id="st-dim" class="st-scr"></div>
+        <img data-hf-id="hf-hz3e" id="st-s-comm" class="st-scr" src="assets/screens/communiques.jpg" alt="" />
+        <img data-hf-id="hf-mvw5" id="st-s-art" class="st-scr" src="assets/screens/article.jpg" alt="" />
+        <div data-hf-id="hf-71qy" id="st-s-plus" class="st-scr">
+          <div data-hf-id="hf-rltd" id="st-pl-view">
+            <div data-hf-id="hf-ml1g" id="st-pl-strip">
+              <div data-hf-id="hf-m853" id="st-pl-esp" class="st-pl-part"></div>
+              <div data-hf-id="hf-7jci" id="st-pl-pub" class="st-pl-part"></div>
+            </div>
+          </div>
+          <div data-hf-id="hf-s1pu" id="st-pl-bar-pub" class="st-pl-part"></div>
+          <div data-hf-id="hf-ashj" id="st-pl-bar-esp" class="st-pl-part"></div>
+          <div data-hf-id="hf-3buw" id="st-pl-nav" class="st-pl-part"></div>
+        </div>
+
+        <div data-hf-id="hf-2020" id="st-status" data-layout-ignore>
+          <div data-hf-id="hf-50ea" id="st-clock">08:30</div>
+          <svg data-hf-id="hf-xlns" id="st-icons" viewBox="0 0 96 22" width="96" height="22">
+            <g data-hf-id="hf-7tay" fill="#ffffff">
+              <rect data-hf-id="hf-fiim" x="0" y="15" width="4" height="6" rx="1" />
+              <rect data-hf-id="hf-ejk9" x="6" y="11" width="4" height="10" rx="1" />
+              <rect data-hf-id="hf-u70r" x="12" y="7" width="4" height="14" rx="1" />
+              <rect data-hf-id="hf-h8yd" x="18" y="3" width="4" height="18" rx="1" />
+              <path data-hf-id="hf-bi5y" d="M38 8.5a13 13 0 0 1 18 0l-2.2 2.3a9.8 9.8 0 0 0-13.6 0z" />
+              <path data-hf-id="hf-llhn" d="M41.6 12.3a8 8 0 0 1 10.8 0L50.2 14.6a4.8 4.8 0 0 0-6.4 0z" />
+              <circle data-hf-id="hf-axri" cx="47" cy="18" r="2.4" />
+              <rect data-hf-id="hf-a4vi" x="64" y="5" width="27" height="14" rx="3.5" fill="none" stroke="#ffffff" stroke-width="2" />
+              <rect data-hf-id="hf-3mov" x="67" y="8" width="21" height="8" rx="1.5" />
+              <rect data-hf-id="hf-vjrc" x="92.5" y="9.5" width="2.5" height="5" rx="1" />
+            </g>
+          </svg>
+        </div>
+        <div data-hf-id="hf-x98z" id="st-punch"></div>
+
+        <!-- ripples on the touched controls (screen px) -->
+        <div data-hf-id="hf-j0o4" id="st-rp1" class="st-ripple" style="left: 37.5px; top: 189.6px; width: 104.2px; height: 56.25px; border-radius: 14px"><i data-hf-id="hf-9jqi" style="left: -57.9px; top: -82.9px"></i></div>
+        <div data-hf-id="hf-x6vx" id="st-rp2" class="st-ripple" style="left: 128.1px; top: 1158.3px; width: 104.2px; height: 52.1px; border-radius: 26px"><i data-hf-id="hf-ndlt" style="left: -57.9px; top: -80.8px"></i></div>
+        <div data-hf-id="hf-zx9t" id="st-rp3" class="st-ripple" style="left: 8.3px; top: 1158.3px; width: 104.2px; height: 52.1px; border-radius: 26px"><i data-hf-id="hf-e08l" style="left: -57.9px; top: -80.8px"></i></div>
+        <div data-hf-id="hf-rolv" id="st-rp4" class="st-ripple" style="left: 487.5px; top: 1158.3px; width: 104.2px; height: 52.1px; border-radius: 26px"><i data-hf-id="hf-f75o" style="left: -57.9px; top: -80.8px"></i></div>
+        <div data-hf-id="hf-cehb" id="st-rp5" class="st-ripple" style="left: 8.3px; top: 1158.3px; width: 104.2px; height: 52.1px; border-radius: 26px"><i data-hf-id="hf-esun" style="left: -57.9px; top: -80.8px"></i></div>
+
+        <!-- touch discs (screen px) -->
+        <div data-hf-id="hf-rbb7" id="st-tc1" class="st-touch" style="left: 89.6px; top: 216.7px"></div>
+        <div data-hf-id="hf-1gl4" id="st-tc2" class="st-touch" style="left: 180.2px; top: 1187.5px"></div>
+        <div data-hf-id="hf-m1j4" id="st-tc3" class="st-touch" style="left: 60.4px; top: 1187.5px"></div>
+        <div data-hf-id="hf-jp56" id="st-tc4" class="st-touch" style="left: 539.6px; top: 1187.5px"></div>
+        <div data-hf-id="hf-gxbc" id="st-swipe" class="st-touch" style="left: 300px; top: 437.5px"></div>
+        <div data-hf-id="hf-9vja" id="st-tc5" class="st-touch" style="left: 60.4px; top: 1187.5px"></div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-zr7m" id="st-shelf" data-layout-ignore data-layout-allow-overflow>
+      <div data-hf-id="hf-dnvm" id="st-stripe">
+        <div data-hf-id="hf-31fr" id="st-seg-b" class="st-seg"></div>
+        <div data-hf-id="hf-hv5g" id="st-seg-y" class="st-seg"></div>
+        <div data-hf-id="hf-k68n" id="st-seg-r" class="st-seg"></div>
+      </div>
+    </div>
+
+    <div data-hf-id="hf-87c4" id="st-titles">
+      <div data-hf-id="hf-lps4" id="st-t2" class="st-ttl"><i data-hf-id="hf-n71d" class="st-bar"></i>
+        <div data-hf-id="hf-wgyq" class="st-l"><span data-hf-id="hf-bd6j" class="w">Sa</span> <span data-hf-id="hf-elbt" class="w">toute</span> <span class="w">nouvelle</span></div>
+        <div data-hf-id="hf-pkue" class="st-l"><span data-hf-id="hf-z6w0" class="w">application</span> <span data-hf-id="hf-ekms" class="w">mobile</span></div>
+      </div>
+      <div data-hf-id="hf-mhfx" id="st-t3" class="st-ttl"><i data-hf-id="hf-abud" class="st-bar"></i>
+        <div data-hf-id="hf-pz5f" class="st-l"><span data-hf-id="hf-t320" class="w">Communiqués</span></div>
+        <div data-hf-id="hf-qdgg" class="st-l"><span data-hf-id="hf-3so2" class="w">officiels</span></div>
+      </div>
+      <div data-hf-id="hf-595m" id="st-t4" class="st-ttl"><i data-hf-id="hf-birg" class="st-bar"></i>
+        <div data-hf-id="hf-nlb9" class="st-l"><span data-hf-id="hf-jyrb" class="w">Toute</span></div>
+        <div data-hf-id="hf-nzma" class="st-l"><span data-hf-id="hf-f2x9" class="w">l'actualité</span></div>
+      </div>
+      <div data-hf-id="hf-979n" id="st-t5" class="st-ttl"><i data-hf-id="hf-b4gf" class="st-bar"></i>
+        <div data-hf-id="hf-odxb" class="st-l"><span data-hf-id="hf-2gmc" class="w">Vidéos</span></div>
+        <div data-hf-id="hf-os8c" class="st-l"><span data-hf-id="hf-e0jn" class="w">ESURSI</span> <span data-hf-id="hf-d0uu" class="w">TV</span></div>
+      </div>
+      <div data-hf-id="hf-0jds" id="st-t6" class="st-ttl"><i data-hf-id="hf-cbdi" class="st-bar"></i>
+        <div data-hf-id="hf-m035" class="st-l"><span data-hf-id="hf-e075" class="w">Offres</span> <span data-hf-id="hf-wcmr" class="w">d'emploi</span></div>
+        <div data-hf-id="hf-mee6" class="st-l"><span data-hf-id="hf-yncq" class="w">&amp;</span> <span data-hf-id="hf-i2lx" class="w">bourses</span></div>
+      </div>
+      <div data-hf-id="hf-1b1l" id="st-t7" class="st-ttl"><i data-hf-id="hf-bx2h" class="st-bar"></i>
+        <div data-hf-id="hf-26gy" class="st-l"><span data-hf-id="hf-fp2g" class="w">Centres</span> <span data-hf-id="hf-99nn" class="w">de</span></div>
+        <div data-hf-id="hf-1s5x" class="st-l"><span data-hf-id="hf-5ebt" class="w">recherche</span></div>
+      </div>
+      <div data-hf-id="hf-k2ra" id="st-t8" class="st-ttl"><i data-hf-id="hf-d3zk" class="st-bar"></i>
+        <div data-hf-id="hf-2z30" class="st-l"><span data-hf-id="hf-wb76" class="w">Vérifier</span> <span data-hf-id="hf-p6l7" class="w">un</span></div>
+        <div data-hf-id="hf-2krz" class="st-l"><span data-hf-id="hf-iq1q" class="w">établissement</span></div>
+      </div>
+      <div data-hf-id="hf-o0vb" id="st-t9" class="st-ttl"><i data-hf-id="hf-cpoj" class="st-bar"></i>
+        <div data-hf-id="hf-3rp2" class="st-l"><span data-hf-id="hf-r7qv" class="w">Mes</span> <span data-hf-id="hf-1rku" class="w">documents,</span></div>
+        <div data-hf-id="hf-3de1" class="st-l"><span data-hf-id="hf-n916" class="w">hors</span> <span data-hf-id="hf-i3lz" class="w">connexion</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const ft = (sel, from, to, at) => tl.fromTo(sel, from, Object.assign({ immediateRender: false }, to), at);
+
+      // ---- camera: a framing puts screenshot point (sx, sy), in 576 px screenshot units, at canvas point (cx, cy) at scale s
+      const K = 600 / 576;
+      const F = (sx, sy, s, cx, cy) => {
+        const lx = 15 + sx * K - 315;
+        const ly = 15 + sy * K - 649.375;
+        return { x: cx - 1418 - s * lx, y: cy - 540 - s * ly, scale: s };
+      };
+      const FA = { x: 0, y: 0, scale: 0.78 }; // whole phone, right of the title panel
+      const FLOW = { x: 0, y: 1250, scale: 0.78 };
+      const FB = F(86, 208, 1.4, 1180, 430); // shortcut "Communiqués"
+      const FC1 = F(288, 400, 1.6, 1418, 540); // first communiqués
+      const FC2 = F(288, 560, 1.6, 1418, 540);
+      const FD = F(173, 1140, 1.3, 1280, 860); // nav "Actualités"
+      const FE1 = F(288, 330, 1.4, 1418, 540); // article photo
+      const FE2 = F(288, 620, 1.4, 1418, 540); // article headline
+      const FF1 = F(234, 560, 1.7, 1418, 560); // ESURSI TV video card
+      const FG = F(518, 1140, 1.3, 1530, 860); // nav "Plus"
+      const FH1 = F(288, 404, 1.6, 1418, 540); // Offres & bourses
+      const FH2 = F(288, 864, 1.6, 1418, 540); // Centres de recherche
+      const FI1 = F(300, 310, 1.65, 1418, 500); // Vérifier un établissement
+      const FI2 = F(300, 432, 1.65, 1418, 540); // Mes documents
+      const FEND = { x: 172, y: 0, scale: 0.62 };
+      const cam = (a, b, at, d, ease) => ft("#st-phone", a, { x: b.x, y: b.y, scale: b.scale, duration: d, ease: ease }, at);
+      const camBlur = (at, d, px) => {
+        ft("#st-phone", { filter: "blur(0px)" }, { filter: "blur(" + px + "px)", duration: d / 2, ease: "power2.in" }, at);
+        ft("#st-phone", { filter: "blur(" + px + "px)" }, { filter: "blur(0px)", duration: d / 2, ease: "power2.out" }, at + d / 2);
+      };
+
+      gsap.set("#st-phone", FLOW);
+      cam(FLOW, FA, 3.45, 0.9, "expo.out");
+      cam(FA, FB, 5.45, 0.5, "power2.inOut");
+      cam(FB, FC1, 6.12, 0.58, "expo.out");
+      cam(FC1, FC2, 6.95, 0.6, "power2.inOut");
+      cam(FC2, FD, 7.55, 0.42, "power3.inOut");
+      camBlur(7.55, 0.42, 6);
+      cam(FD, FE1, 8.12, 0.6, "expo.out");
+      cam(FE1, FE2, 9.0, 0.6, "power2.inOut");
+      cam(FE2, FA, 9.95, 0.42, "power2.inOut");
+      cam(FA, FF1, 10.62, 0.58, "expo.out");
+      cam(FF1, FG, 12.0, 0.34, "power3.inOut");
+      camBlur(12.0, 0.34, 8);
+      cam(FG, FH1, 12.55, 0.58, "expo.out");
+      cam(FH1, FH2, 14.05, 0.5, "power2.inOut");
+      cam(FH2, FA, 15.45, 0.55, "power2.inOut");
+      cam(FA, FI1, 16.5, 0.58, "expo.out");
+      cam(FI1, FI2, 19.15, 0.45, "power2.inOut");
+      cam(FI2, FA, 20.9, 0.6, "power2.inOut");
+      cam(FA, FEND, 22.5, 0.75, "power3.inOut");
+
+      // ---- screens inside the phone
+      gsap.set("#st-s-home", { x: 0, opacity: 1, scale: 1 });
+      gsap.set("#st-s-comm", { x: 600, opacity: 1 });
+      gsap.set(["#st-s-art", "#st-s-plus"], { opacity: 0, scale: 1 });
+      gsap.set("#st-dim", { opacity: 0 });
+      // Android push on release: Accueil -> Communiqués; the covered screen is then parked hidden
+      ft("#st-s-comm", { x: 600 }, { x: 0, duration: 0.42, ease: "expo.out" }, 6.12);
+      ft("#st-s-home", { x: 0 }, { x: -150, duration: 0.42, ease: "expo.out" }, 6.12);
+      ft("#st-dim", { opacity: 0 }, { opacity: 0.5, duration: 0.42, ease: "power2.out" }, 6.12);
+      tl.set("#st-s-home", { x: 0, opacity: 0 }, 6.6);
+      tl.set("#st-dim", { opacity: 0 }, 6.6);
+      // bottom-nav fade-through: outgoing 0.09 s, incoming 0.21 s from 94 %
+      const fadeThrough = (outSel, inSel, at) => {
+        ft(outSel, { opacity: 1 }, { opacity: 0, duration: 0.09, ease: "power1.in" }, at);
+        ft(inSel, { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.21, ease: "power2.out" }, at + 0.09);
+      };
+      fadeThrough("#st-s-comm", "#st-s-art", 8.08); // tab Actualités
+      fadeThrough("#st-s-art", "#st-s-home", 10.45); // tab Accueil
+      fadeThrough("#st-s-home", "#st-s-plus", 12.46); // tab Plus
+      // fling up the Plus list: from "Publications" back to "Mon espace"
+      ft("#st-pl-strip", { y: 0 }, { y: 973.96, duration: 0.38, ease: "power3.inOut" }, 16.2);
+      ft("#st-pl-strip", { filter: "blur(0px)" }, { filter: "blur(10px)", duration: 0.19, ease: "power2.in" }, 16.2);
+      ft("#st-pl-strip", { filter: "blur(10px)" }, { filter: "blur(0px)", duration: 0.19, ease: "power2.out" }, 16.39);
+      ft("#st-pl-bar-esp", { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "power1.inOut" }, 16.28);
+      tl.set("#st-s-home", { x: 0, scale: 1 }, 22.0);
+      fadeThrough("#st-s-plus", "#st-s-home", 22.33); // tab Accueil
+
+      // ---- touches: disc lands, presses, lifts; the ripple answers on the same frame
+      const touch = (disc, ripple, down) => {
+        ft(disc, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.067, ease: "power2.out" }, down - 0.067);
+        ft(disc, { scale: 1 }, { scale: 0.9, duration: 0.12, ease: "power1.out" }, down);
+        ft(disc, { opacity: 1 }, { opacity: 0, duration: 0.2, ease: "power1.in" }, down + 0.12);
+        const r = ripple + " i";
+        tl.set(r, { opacity: 1 }, down);
+        ft(r, { scale: 0 }, { scale: 1, duration: 0.32, ease: "power2.out" }, down);
+        ft(r, { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "power1.out" }, down + 0.2);
+      };
+      touch("#st-tc1", "#st-rp1", 6.017);
+      touch("#st-tc2", "#st-rp2", 8.057);
+      touch("#st-tc3", "#st-rp3", 10.427);
+      touch("#st-tc4", "#st-rp4", 12.437);
+      touch("#st-tc5", "#st-rp5", 22.307);
+      // the fling: finger lands, drags down, lifts where it ended
+      ft("#st-swipe", { opacity: 0, scale: 1.25, y: 0 }, { opacity: 1, scale: 1, duration: 0.067, ease: "power2.out" }, 16.1);
+      ft("#st-swipe", { y: 0 }, { y: 352, duration: 0.3, ease: "power2.inOut" }, 16.167);
+      ft("#st-swipe", { opacity: 1 }, { opacity: 0, duration: 0.14, ease: "power1.in" }, 16.43);
+
+      // ---- shelf and stripe: the stripe draws under the hook, rises to close the title shelf, then underlines the name
+      gsap.set("#st-shelf", { x: 0 });
+      ft("#st-shelf", { x: 0 }, { x: -1024, duration: 0.6, ease: "power3.inOut" }, 3.387);
+      ft("#st-shelf", { x: -1024 }, { x: -1960, duration: 0.5, ease: "power3.inOut" }, 22.6);
+
+      // ---- colour floods (beats: 7 = 3.387, 13 = 6.290, 17 = 8.226, 22 = 10.645, 26 = 12.581, 34 = 16.452, 40 = 19.355)
+      // the first ground waits under the panel; the panel's sweep reveals it
+      const iris = (sel, cx, cy, at) => {
+        const c0 = "circle(0px at " + cx + "px " + cy + "px)";
+        const c1 = "circle(2300px at " + cx + "px " + cy + "px)";
+        gsap.set(sel, { clipPath: c0 });
+        ft(sel, { clipPath: c0 }, { clipPath: c1, duration: 0.5, ease: "power2.inOut" }, at);
+      };
+      iris("#st-g-yellow1", 1180, 430, 6.29); // from the tapped shortcut
+      iris("#st-g-blue1", 1280, 860, 8.226); // from the tapped tab
+      iris("#st-g-red1", 1231, 971, 10.645);
+      iris("#st-g-light2", 1530, 860, 12.581);
+      gsap.set("#st-g-blue2", { clipPath: "inset(0% 0% 100% 0%)" });
+      ft("#st-g-blue2", { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "power2.inOut" }, 16.452);
+      gsap.set("#st-g-yellow2", { clipPath: "inset(0% 100% 0% 0%)" });
+      ft("#st-g-yellow2", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "power2.inOut" }, 19.355);
+      iris("#st-g-navy", 1231, 971, 22.4);
+
+      // ---- section titles in the shelf
+      const words = (id) => "#" + id + " .w";
+      const bar = (id) => "#" + id + " .st-bar";
+      const blurWords = (sel, at) => {
+        gsap.set(sel, { opacity: 0 });
+        ft(sel, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power2.out", stagger: 0.067 }, at);
+      };
+      const inkWords = (sel, at) => {
+        gsap.set(sel, { opacity: 0 });
+        ft(sel, { opacity: 0, color: "#5f7fb8" }, { opacity: 1, duration: 0.08, ease: "none", stagger: 0.09 }, at);
+        ft(sel, { color: "#5f7fb8" }, { color: "#ffffff", duration: 0.18, ease: "power1.out", stagger: 0.09 }, at + 0.08);
+      };
+      const barIn = (id, at) => {
+        gsap.set(bar(id), { scaleY: 0 });
+        ft(bar(id), { scaleY: 0 }, { scaleY: 1, duration: 0.3, ease: "expo.out" }, at);
+      };
+      const titleOut = (id, at) => {
+        ft(words(id), { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.15, ease: "power2.in", stagger: 0.03 }, at);
+        ft(bar(id), { scaleY: 1 }, { scaleY: 0, duration: 0.15, ease: "power2.in" }, at);
+      };
+
+      barIn("st-t2", 3.757);
+      blurWords("#st-t2 .st-l:nth-child(2) .w", 3.757);
+      blurWords("#st-t2 .st-l:nth-child(3) .w", 4.647);
+      titleOut("st-t2", 6.05);
+
+      barIn("st-t3", 6.3);
+      inkWords(words("st-t3"), 6.3);
+      titleOut("st-t3", 7.85);
+
+      barIn("st-t4", 8.3);
+      blurWords(words("st-t4"), 8.3);
+      titleOut("st-t4", 10.25);
+
+      barIn("st-t5", 10.7);
+      gsap.set(words("st-t5"), { opacity: 0 });
+      ft(words("st-t5"), { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power3.out" }, 10.7);
+      titleOut("st-t5", 12.15);
+
+      barIn("st-t6", 12.85);
+      inkWords(words("st-t6"), 12.85);
+      titleOut("st-t6", 14.15);
+
+      barIn("st-t7", 14.3);
+      blurWords(words("st-t7"), 14.3);
+      titleOut("st-t7", 15.8);
+
+      barIn("st-t8", 16.5);
+      gsap.set(words("st-t8"), { opacity: 0 });
+      ft(words("st-t8"), { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power3.out" }, 16.5);
+      titleOut("st-t8", 19.2);
+
+      barIn("st-t9", 19.45);
+      blurWords("#st-t9 .st-l:nth-child(2) .w", 19.45);
+      blurWords("#st-t9 .st-l:nth-child(3) .w", 21.1);
+      titleOut("st-t9", 22.2);
+
+      // the tour was timed against the short opening line; the full ministry name adds 6 beats (6 x 60/124 s)
+      const SHIFT = 2.903;
+      tl.getChildren(false, true, true).forEach((c) => {
+        if (c.startTime() >= 3.2) c.startTime(c.startTime() + SHIFT);
+      });
+      window.__timelines["stage"] = tl;
+    })();
+  </script>
+</template>

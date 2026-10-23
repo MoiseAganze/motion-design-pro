@@ -26,11 +26,11 @@
   <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
     <div id="hk-l1" class="hk-line">Le Ministère de</div>
     <div id="hk-l2" class="hk-line">l'Enseignement</div>
-    <div id="hk-l3" class="hk-line">Supérieur et</div>
+    <div id="hk-l3" class="hk-line">Supérieur,</div>
     <div id="hk-l4" class="hk-line">Universitaire,</div>
-    <div id="hk-l5" class="hk-line">de la Recherche</div>
+    <div id="hk-l5" class="hk-line">Recherche</div>
     <div id="hk-l6" class="hk-line">Scientifique</div>
-    <div id="hk-l7" class="hk-line">et de l'Innovation</div>
+    <div id="hk-l7" class="hk-line">et Innovations</div>
   </div>
   <script>
     (function () {
@@ -38,7 +38,7 @@
       const lit = "#ffffff";
       const dim = "#5e76a2";
       // each line lights up as the voice reaches it (voice placed at 0.30 s; times from the ElevenLabs alignment)
-      const lights = { "#hk-l2": 1.18, "#hk-l3": 1.82, "#hk-l4": 2.54, "#hk-l5": 3.54, "#hk-l6": 4.3, "#hk-l7": 4.94 };
+      const lights = { "#hk-l2": 1.14, "#hk-l3": 1.82, "#hk-l4": 2.62, "#hk-l5": 3.66, "#hk-l6": 4.14, "#hk-l7": 4.82 };
       Object.keys(lights).forEach(function (sel) {
         tl.fromTo(sel, { color: dim }, { color: lit, duration: 0.15, ease: "power2.out", immediateRender: false }, lights[sel]);
       });

@@ -1,0 +1,65 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Montserrat", sans-serif;
+    }
+    .hk-line {
+      position: absolute;
+      left: 192px;
+      font-size: 96px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #5e76a2;
+      white-space: nowrap;
+    }
+    #hk-l1 { top: 220px; color: #ffffff; }
+    #hk-l2 { top: 326px; }
+    #hk-l3 { top: 432px; }
+    #hk-l4 { top: 538px; }
+    #hk-l5 { top: 644px; }
+    #hk-stripe { position: absolute; left: 0; top: 820px; width: 1920px; height: 16px; transform-origin: 100% 50%; }
+    .hk-seg { position: absolute; top: 0; height: 16px; transform-origin: 0 50%; }
+    #hk-seg-b { left: 0; width: 883px; background: #007dfe; }
+    #hk-seg-y { left: 883px; width: 146px; background: #f5d522; }
+    #hk-seg-r { left: 1029px; width: 891px; background: #c8131f; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1920" data-height="1080">
+    <div id="hk-l1" class="hk-line">Le Ministère de</div>
+    <div id="hk-l2" class="hk-line">l'Enseignement Supérieur,</div>
+    <div id="hk-l3" class="hk-line">Universitaire,</div>
+    <div id="hk-l4" class="hk-line">Recherche Scientifique</div>
+    <div id="hk-l5" class="hk-line">et Innovations</div>
+    <div id="hk-stripe">
+      <div id="hk-seg-b" class="hk-seg"></div>
+      <div id="hk-seg-y" class="hk-seg"></div>
+      <div id="hk-seg-r" class="hk-seg"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const ft = (sel, from, to, at) => tl.fromTo(sel, from, Object.assign({ immediateRender: false }, to), at);
+      const lit = "#ffffff";
+      const dim = "#5e76a2";
+      // each line lights up as the voice reaches it (voice placed at 0.30 s; times from the ElevenLabs alignment)
+      const lights = { "#hk-l2": 1.14, "#hk-l3": 2.62, "#hk-l4": 3.66, "#hk-l5": 4.82 };
+      Object.keys(lights).forEach(function (sel) {
+        ft(sel, { color: dim }, { color: lit, duration: 0.15, ease: "power2.out" }, lights[sel]);
+      });
+      // the app's tricolour stripe draws under the name, one colour per pillar
+      gsap.set(["#hk-seg-b", "#hk-seg-y", "#hk-seg-r"], { scaleX: 0 });
+      ft("#hk-seg-b", { scaleX: 0 }, { scaleX: 1, duration: 2.7, ease: "power1.inOut" }, 0.3);
+      ft("#hk-seg-y", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "expo.out" }, 3.66);
+      ft("#hk-seg-r", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 4.82);
+      // exit just before the title panel sweeps in from the right (beat 13 = 6.290 s)
+      ["#hk-l1", "#hk-l2", "#hk-l3", "#hk-l4", "#hk-l5"].forEach(function (sel, i) {
+        ft(sel, { opacity: 1, filter: "blur(0px)", y: 0 }, { opacity: 0, filter: "blur(10px)", y: -40, duration: 0.16, ease: "power2.in" }, 6.19 + i * 0.03);
+      });
+      ft("#hk-stripe", { scaleX: 1 }, { scaleX: 0, duration: 0.3, ease: "power3.in" }, 6.2);
+      window.__timelines["hook"] = tl;
+    })();
+  </script>
+</template>
