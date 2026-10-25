@@ -25,7 +25,7 @@ Film 1920 x 1080, 30 fps, 127 s (3 810 images). Rendu : `renders/kwikama-present
   - `hyperframes check` : 0 erreur (lint, runtime, layout, motion, contraste).
   - Mix de référence : −16,2 LUFS intégré, crête vraie −1,6 dBTP.
   - Voix à −19 LUFS en mono, avec un ducking de la musique de 11 dB.
-  - Durée et pistes audio du MP4 contrôlées avec ffprobe et `hyperframes audio`.
+  - MP4 livré (ffprobe et `hyperframes audio`) : 127,000 s, H.264 1920 x 1080 30 fps, AAC 48 kHz stéréo, 54 Mo. Audio : −16,3 LUFS intégré, crête vraie −1,6 dBTP, aucun écrêtage, silence seulement sur les 0,2 dernières secondes.
 - **Regardé** : planches de revue (17 temps forts, 8 raccords à ±0,2 s, version « téléphone ») et instantanés ciblés après chaque correction.
 - **Jamais écouté** : la musique, le mix et la synchronisation des effets ont été mesurés et calés sur des timecodes, mais **personne ne les a entendus**. À écouter en priorité :
   - la respiration de 26,5 à 28,6 s ;
