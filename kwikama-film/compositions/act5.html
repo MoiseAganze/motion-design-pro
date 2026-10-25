@@ -1,0 +1,292 @@
+<template>
+  <style>
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/Fraunces-Variable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: block; }
+#root {
+  position: absolute; inset: 0; overflow: hidden;
+  --navy: #031829; --navy2: #052033; --navy3: #0a2c47; --navy4: #13385a;
+  --gold: #d8a828; --gold2: #ecc657; --cream: #f4f1ea; --paper: #fbf9f5;
+  --ink: #13181e; --muted: #5b6470; --line: #e8e3d8;
+  --blue: #13487f; --bluebg: #e6edf5; --green: #1e6b4f; --greenbg: #e3efe9;
+  --red: #9b2c24; --redbg: #f7e6e4; --amber: #8a6512; --amberbg: #f6ecd2;
+  font-family: "Inter", sans-serif; color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+#root * { box-sizing: border-box; }
+.abs { position: absolute; }
+.serif { font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -0.01em; }
+.gold { color: var(--gold); }
+.w { display: inline-block; }
+/* ---------- stage, camera, MacBook ---------- */
+.stage { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 960px 540px; }
+.cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 540px; transform-style: preserve-3d; }
+.mac { position: absolute; left: 242px; top: 70px; width: 1436px; height: 947px; }
+.mac-shadow { position: absolute; left: 60px; right: 60px; top: 880px; height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+.mac-lid { position: absolute; left: 0; top: 0; width: 1436px; height: 921px; border-radius: 30px 30px 12px 12px;
+  background: linear-gradient(180deg, #e4e6e9 0%, #b9bdc3 55%, #9ea2a8 100%); padding: 3px;
+  box-shadow: 0 50px 110px rgba(0,0,0,.50), 0 0 0 1px rgba(255,255,255,.08) inset; }
+.mac-bezel { position: absolute; inset: 3px; border-radius: 27px 27px 9px 9px; background: #0b0b0c; }
+.mac-screen { position: absolute; left: 15px; top: 21px; width: 1400px; height: 875px; overflow: hidden; background: var(--paper); border-radius: 7px; }
+.mac-screen > img.ui { position: absolute; left: 0; top: 0; width: 1400px; height: auto; display: block; }
+.mac-glare { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 38%); }
+.mac-notch { position: absolute; top: 0; left: 50%; width: 184px; height: 30px; margin-left: -92px; background: #0b0b0c; border-radius: 0 0 13px 13px; }
+.mac-notch i { position: absolute; left: 50%; top: 10px; width: 9px; height: 9px; margin-left: -4px; border-radius: 50%; background: #1d2633; box-shadow: 0 0 0 2px #121519; }
+.mac-base { position: absolute; left: -62px; top: 919px; width: 1560px; height: 28px; border-radius: 3px 3px 22px 22px;
+  background: linear-gradient(180deg, #f1f2f3 0%, #d3d5d8 30%, #a8abb0 75%, #7e8187 100%); }
+.mac-groove { position: absolute; left: 50%; top: 0; width: 250px; height: 10px; margin-left: -125px; border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, #8f9297, #c9cbcf); }
+.cursor { position: absolute; left: 0; top: 0; width: 40px; height: 57px; transform-origin: 3px 3px; z-index: 50; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
+/* ---------- recurring UI pieces rebuilt from the app ---------- */
+.chip { display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-weight: 600; font-size: 24px; line-height: 1; padding: 9px 16px 9px 14px; border-radius: 6px; white-space: nowrap; }
+.chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.chip.green { color: var(--green); background: var(--greenbg); }
+.chip.red { color: var(--red); background: var(--redbg); }
+.chip.blue { color: var(--blue); background: var(--bluebg); }
+.chip.amber { color: var(--amber); background: var(--amberbg); }
+.chip.beige { color: #6b5d45; background: #efe9dc; }
+.card { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 14px; color: var(--ink);
+  box-shadow: 0 30px 70px rgba(3,24,41,.38), 0 4px 14px rgba(3,24,41,.18); }
+.label { font-family: "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: .09em; text-transform: uppercase; color: #6b7480; }
+.persona { position: absolute; display: flex; align-items: center; gap: 18px; padding: 16px 26px 16px 16px; border-radius: 14px;
+  background: rgba(3,24,41,.92); border: 1px solid rgba(244,241,234,.14); color: var(--cream); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.persona .av { width: 62px; height: 62px; border-radius: 50%; background: var(--navy3); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; color: var(--cream); }
+.persona .nm { font-weight: 600; font-size: 28px; line-height: 1.15; }
+.persona .rl { font-weight: 500; font-size: 22px; color: rgba(244,241,234,.66); margin-top: 3px; }
+.digits { display: inline-flex; overflow: hidden; vertical-align: top; }
+.digit { display: inline-block; overflow: hidden; position: relative; }
+.digit .strip { display: flex; flex-direction: column; }
+.digit .strip span { display: block; text-align: center; }
+
+    #a5-world { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 55%, #062743 0%, #031829 62%, #020f1c 100%); }
+    #a5-stage { position: absolute; inset: 0; perspective: 2000px; perspective-origin: 960px 420px; }
+    #a5-plane { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 560px; }
+    #a5-grid { position: absolute; left: -400px; top: -300px; width: 2720px; height: 1680px; opacity: .22;
+      background-image: linear-gradient(rgba(244,241,234,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(244,241,234,.10) 1px, transparent 1px);
+      background-size: 80px 80px; }
+    #a5-edges { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    .nd { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+    .nd .c { position: absolute; left: -26px; top: -26px; width: 52px; height: 52px; border-radius: 50%; border: 4px solid var(--cream); }
+    .nd .g { position: absolute; left: -46px; top: -46px; width: 92px; height: 92px; border-radius: 50%; border: 3px solid var(--gold2); box-shadow: 0 0 40px 10px rgba(236,198,87,.35); opacity: 0; }
+    .nd .t { position: absolute; left: 44px; top: -34px; white-space: nowrap; }
+    .nd .t.l { left: auto; right: 44px; text-align: right; }
+    .nd .t.b { left: -200px; width: 400px; top: 44px; text-align: center; }
+    .nd .n { font-size: 32px; font-weight: 700; color: var(--cream); }
+    .nd .s { font-size: 23px; font-weight: 500; color: rgba(244,241,234,.66); margin-top: 4px; }
+    .soc .c { background: #1e5aa8; } .bien .c { background: #1e6b4f; } .inst .c { background: #6b7480; border-color: rgba(244,241,234,.6); }
+    .amt { position: absolute; left: 0; top: 0; white-space: nowrap; background: rgba(3,24,41,.92); border: 1.5px solid var(--gold); border-radius: 10px; padding: 9px 16px;
+      font-size: 25px; font-weight: 600; color: var(--cream); box-shadow: 0 12px 30px rgba(0,0,0,.4); }
+    .amt b { font-family: "Fraunces", serif; font-weight: 600; color: var(--gold2); font-size: 28px; margin-right: 8px; }
+    .pulse { position: absolute; left: 0; top: 0; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #fff3c9; box-shadow: 0 0 22px 8px rgba(236,198,87,.8); opacity: 0; }
+    #a5-alert { position: absolute; left: 90px; top: 64px; width: 640px; background: #fff; border-radius: 16px; color: var(--ink); padding: 22px 26px; border-left: 6px solid var(--red); box-shadow: 0 26px 60px rgba(0,0,0,.45); }
+    #a5-alert .h { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 600; color: var(--muted); }
+    #a5-alert .t { font-size: 30px; font-weight: 700; margin-top: 10px; color: #0a2c47; line-height: 1.2; }
+    #a5-alert .d { font-size: 23px; font-weight: 500; color: var(--muted); margin-top: 8px; line-height: 1.3; }
+    #a5-count { position: absolute; left: 100px; top: 850px; text-align: left; }
+    #a5-count .v { font-family: "Fraunces", serif; font-weight: 600; font-size: 96px; line-height: 1; color: var(--gold2); }
+    #a5-count .l { font-size: 26px; font-weight: 500; color: rgba(244,241,234,.75); margin-top: 6px; }
+    #a5-morph { position: absolute; left: 0; top: 0; width: 1180px; height: 430px; margin: -215px 0 0 -590px; background: #fff; border-radius: 22px; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="act5" data-width="1920" data-height="1080">
+    <div class="stage">
+      <div class="cam" id="a5-cam">
+<div class="mac" id="a5-mac">
+  <div class="mac-shadow"></div>
+  <div class="mac-base"><div class="mac-groove"></div></div>
+  <div class="mac-lid">
+    <div class="mac-bezel">
+      <div class="mac-screen" id="a5-screen">
+
+        <img class="ui" id="a5-s-enq" src="assets/ui/enquete_014.webp" alt="" />
+
+        <svg class="cursor" id="a5-cur" viewBox="0 0 28 40"><path d="M2 2 L2 31.5 L9.6 24.4 L14.6 36.2 L19.4 34.1 L14.4 22.6 L24.6 22.6 Z" fill="#101215" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round"/></svg>
+        <div class="mac-glare"></div>
+      </div>
+      <div class="mac-notch"><i></i></div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+    <div id="a5-world">
+      <div id="a5-stage"><div id="a5-plane">
+        <div id="a5-grid"></div>
+        <svg id="a5-edges" viewBox="0 0 1920 1080"></svg>
+        <div id="a5-nodes"></div>
+        <div id="a5-amts"></div>
+      </div></div>
+      <div id="a5-alert"><div class="h"><span class="chip red">Critique</span>CENAREF · 5 signaux concordants</div>
+        <div class="t">Transferts vers une juridiction à fiscalité privilégiée</div>
+        <div class="d">Quatre transferts cumulant 9,4 M USD vers une société à actionnariat au porteur.</div></div>
+      <div id="a5-count"><div class="v">5 / 6</div><div class="l">transactions signalées</div></div>
+      <div id="a5-morph"></div>
+    </div>
+  </div>
+  <script>
+    /* ---- shared helpers (inlined into every act by tools/build.mjs) ---- */
+const K = 1400 / 1440;            // page px -> screen px
+const SCR = { x: 260, y: 94 };    // screen top-left inside .cam at scale 1
+function sp(sx, sy) { return { X: SCR.x + sx * K, Y: SCR.y + sy * K }; }
+// camera vars that put page point (sx, sy) of the Mac screen at frame point (fx, fy) with scale S
+function camAt(sx, sy, S, fx, fy, extra) {
+  const p = sp(sx, sy); fx = fx === undefined ? 960 : fx; fy = fy === undefined ? 540 : fy;
+  return Object.assign({ x: fx - 960 - S * (p.X - 960), y: fy - 540 - S * (p.Y - 540), scale: S, rotationX: 0, rotationY: 0 }, extra || {});
+}
+// cursor tip at page point (sx, sy) inside the screen
+function curPos(sx, sy) { return { x: sx * K - 3, y: sy * K - 3 }; }
+function click(tl, cur, t) {
+  tl.to(cur, { scale: 0.8, duration: 0.07, ease: "power2.out" }, t);
+  tl.to(cur, { scale: 1, duration: 0.16, ease: "power2.out" }, t + 0.07);
+}
+// show one screen layer at time t (instant swap, like the real UI)
+function swap(tl, from, to, t, fade) {
+  if (fade) { tl.to(to, { opacity: 1, duration: fade, ease: "none" }, t); if (from) tl.set(from, { opacity: 0 }, t + fade); }
+  else { tl.set(to, { opacity: 1 }, t); if (from) tl.set(from, { opacity: 0 }, t); }
+}
+// words: blur-in one by one
+function wordsIn(tl, els, t, gap, dur) {
+  gap = gap === undefined ? 0.07 : gap; dur = dur || 0.32;
+  tl.fromTo(els, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: dur, ease: "power2.out", stagger: gap }, t);
+}
+function wordsOut(tl, els, t, dur) {
+  tl.to(els, { opacity: 0, filter: "blur(10px)", duration: dur || 0.22, ease: "power2.in", stagger: 0.03 }, t);
+}
+// odometer number: build digit strips inside el for the string `str`; returns strips
+function odo(el, str, h) {
+  el.innerHTML = "";
+  const strips = [];
+  for (const ch of str) {
+    if (/\d/.test(ch)) {
+      const d = document.createElement("span"); d.className = "digit"; d.style.height = h + "px";
+      const s = document.createElement("span"); s.className = "strip";
+      for (let k = 0; k <= 19; k++) { const n = document.createElement("span"); n.textContent = k % 10; n.style.height = h + "px"; n.style.lineHeight = h + "px"; s.appendChild(n); }
+      d.appendChild(s); el.appendChild(d); strips.push({ s, v: +ch });
+    } else { const n = document.createElement("span"); n.textContent = ch; n.style.display = "inline-block"; n.style.lineHeight = h + "px"; el.appendChild(n); }
+  }
+  return strips;
+}
+// roll strips from 0 to their digit (plus one full turn) between t and t+dur
+function odoRoll(tl, strips, h, t, dur) {
+  strips.forEach((o, i) => {
+    tl.fromTo(o.s, { y: 0 }, { y: -(10 + o.v) * h, duration: dur - i * 0.04, ease: "power3.out" }, t + i * 0.04);
+  });
+}
+// mulberry32 PRNG
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const tl = gsap.timeline({ paused: true });
+      gsap.set("#a5-cam", camAt(640, 545, 1.0));
+      gsap.set("#a5-cur", { opacity: 0 });
+      gsap.set(["#a5-world", "#a5-alert", "#a5-count"], { opacity: 0 });
+
+      /* graph of the case, entities and amounts as recorded in DPJ-2026-014 */
+      const N = {
+        KMP: [380, 650, "soc", "Katanga Mineral Processing", "Société de services · Kolwezi", ""],
+        ASH: [930, 360, "soc", "Atlantic Shore Holdings Ltd", "Îles Vierges britanniques · au porteur", ""],
+        SIN: [1440, 250, "soc", "Société Immobilière Ngaliema", "Acquisition au comptant", ""],
+        IMM: [1560, 640, "bien", "Immeuble R+4 — Lubumbashi", "18 appartements · saisi le 30 sept. 2026", "l"],
+        CRY: [1180, 880, "bien", "Portefeuille d'actifs numériques", "Plateforme d'échange étrangère", ""],
+        CEN: [800, 112, "inst", "CENAREF", "Traçage des flux", ""],
+        DGI: [150, 330, "inst", "DGI", "Déclarations fiscales", ""]
+      };
+      const nodes = $("#a5-nodes");
+      Object.entries(N).forEach(([k, n]) => {
+        const d = document.createElement("div"); d.className = "nd " + n[2]; d.id = "a5-" + k;
+        d.innerHTML = `<div class="g"></div><div class="c"></div><div class="t ${n[5]}"><div class="n">${n[3]}</div><div class="s">${n[4]}</div></div>`;
+        nodes.appendChild(d);
+        gsap.set(d, { x: n[0], y: n[1], opacity: 0 });
+      });
+      // edges: quadratic curves, money in gold, structure dashed
+      const E = [
+        ["KMP", "ASH", 0.18, "gold"], ["ASH", "SIN", -0.16, "gold"], ["SIN", "IMM", 0.12, "dash"], ["ASH", "CRY", 0.14, "gold"],
+        ["CEN", "ASH", 0.0, "grey"], ["DGI", "KMP", 0.0, "grey"]
+      ];
+      const ctrl = (a, b, bend) => { const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1]; return [mx - dy * bend, my + dx * bend]; };
+      const qpt = (a, c, b, t) => [(1 - t) * (1 - t) * a[0] + 2 * (1 - t) * t * c[0] + t * t * b[0], (1 - t) * (1 - t) * a[1] + 2 * (1 - t) * t * c[1] + t * t * b[1]];
+      let es = "";
+      E.forEach(([a, b, bend, kind], i) => {
+        const A = N[a], B = N[b], C = ctrl(A, B, bend);
+        const d = `M ${A[0]} ${A[1]} Q ${C[0].toFixed(1)} ${C[1].toFixed(1)} ${B[0]} ${B[1]}`;
+        if (kind === "gold") {
+          es += `<path id="a5-e${i}b" d="${d}" fill="none" stroke="rgba(244,241,234,.18)" stroke-width="2" stroke-dasharray="8 10"/>`;
+          es += `<path id="a5-e${i}" d="${d}" fill="none" stroke="#D8A828" stroke-width="5" stroke-linecap="round"/>`;
+        } else if (kind === "dash") es += `<path id="a5-e${i}" d="${d}" fill="none" stroke="rgba(244,241,234,.7)" stroke-width="3" stroke-dasharray="10 10"/>`;
+        else es += `<path id="a5-e${i}" d="${d}" fill="none" stroke="rgba(160,170,182,.6)" stroke-width="2.5" stroke-dasharray="6 9"/>`;
+      });
+      $("#a5-edges").innerHTML = es;
+      const glen = (id) => { const p = $(id); return p && p.getTotalLength ? (p.getTotalLength() || 600) : 600; };
+      // a pulse travelling along edge i (piecewise, 12 steps)
+      const amts = $("#a5-amts");
+      let pc = 0;
+      function pulse(i, t, dur) {
+        const [a, b, bend] = E[i]; const A = N[a], B = N[b], C = ctrl(A, B, bend);
+        const el = document.createElement("div"); el.className = "pulse"; el.id = "a5-pu" + (pc++); amts.appendChild(el);
+        const P0 = qpt(A, C, B, 0);
+        gsap.set(el, { x: P0[0], y: P0[1] });
+        tl.set(el, { opacity: 1 }, t);
+        for (let s = 1; s <= 12; s++) { const p = qpt(A, C, B, s / 12); tl.to(el, { x: p[0], y: p[1], duration: dur / 12, ease: "none" }, t + (s - 1) * dur / 12); }
+        tl.set(el, { opacity: 0 }, t + dur);
+      }
+      function amount(html, x, y, t) {
+        const el = document.createElement("div"); el.className = "amt"; el.innerHTML = html; amts.appendChild(el);
+        gsap.set(el, { x, y, opacity: 0 });
+        tl.fromTo(el, { opacity: 0, scale: 0.6, y: y + 14 }, { opacity: 1, scale: 1, y, duration: 0.35, ease: "back.out(1.7)" }, t);
+        return el;
+      }
+      function light(k, t) {
+        tl.to("#a5-" + k, { opacity: 1, duration: 0.3 }, t);
+        tl.fromTo("#a5-" + k + " .g", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, t);
+      }
+      function draw(i, t, dur) { const L = glen("#a5-e" + i); tl.fromTo("#a5-e" + i, { attr: { "stroke-dasharray": `${L} ${L}`, "stroke-dashoffset": L } }, { attr: { "stroke-dashoffset": 0 }, duration: dur, ease: "power2.inOut" }, t); }
+      // hide money edges until drawn
+      E.forEach((e, i) => { const L = glen("#a5-e" + i); if (e[3] !== "grey") gsap.set("#a5-e" + i, { attr: { "stroke-dasharray": `${L} ${L}`, "stroke-dashoffset": L } }); else gsap.set("#a5-e" + i, { opacity: 0 }); });
+      E.forEach((e, i) => { if (e[3] === "gold") gsap.set("#a5-e" + i + "b", { opacity: 0 }); });
+
+      /* 0. zoom through the real graph into the case world */
+      tl.to("#a5-cam", Object.assign({ duration: 1.1, ease: "power3.in" }, camAt(640, 545, 3.4)), 0.0);
+      tl.to("#a5-cam", { opacity: 0, filter: "blur(6px)", duration: 0.3, ease: "power1.in" }, 0.85);
+      tl.fromTo("#a5-world", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power1.out" }, 0.8);
+      tl.fromTo("#a5-plane", { scale: 1.45, rotationX: 0, rotationY: 0, filter: "blur(14px)" }, { scale: 1, rotationX: 16, rotationY: -4, filter: "blur(0px)", duration: 1.3, ease: "power3.out" }, 0.85);
+      tl.to("#a5-plane", { rotationY: 4, rotationX: 12, duration: 9.6, ease: "none" }, 2.15);
+
+      /* 1. the money becomes visible */
+      ["KMP", "ASH", "SIN", "IMM", "CRY"].forEach((k, i) => tl.fromTo("#a5-" + k, { opacity: 0, scale: 0.4 }, { opacity: 0.38, scale: 1, duration: 0.5, ease: "expo.out" }, 1.0 + i * 0.12));
+      E.forEach((e, i) => { if (e[3] === "gold") tl.to("#a5-e" + i + "b", { opacity: 1, duration: 0.4 }, 1.4); });
+      // De Katanga Mineral Processing...
+      light("KMP", 2.72);
+      // ... vers une société des Îles Vierges britanniques
+      draw(0, 4.45, 0.7);
+      pulse(0, 4.5, 0.75); pulse(0, 4.95, 0.75); pulse(0, 5.4, 0.75);
+      light("ASH", 5.1);
+      amount("<b>1 850 000 $US</b> 14 févr. 2026", 470, 384, 5.25);
+      amount("<b>2 100 000 $US</b> 28 mars 2026", 470, 450, 5.7);
+      amount("<b>2 650 000 $US</b> fractionné en 3 opérations", 470, 516, 6.15);
+      // ... puis vers un immeuble à Lubumbashi
+      draw(1, 6.95, 0.6); pulse(1, 7.0, 0.65);
+      light("SIN", 7.55);
+      amount("<b>3 200 000 $US</b> acquisition au comptant", 1200, 140, 7.7);
+      draw(2, 7.85, 0.5);
+      light("IMM", 8.25);
+      /* 2. payoff: the whole case at a glance */
+      draw(3, 9.15, 0.6); pulse(3, 9.2, 0.65);
+      light("CRY", 9.75);
+      amount("<b>2 264 000 $US</b> conversion rapide", 1300, 770, 9.85);
+      tl.to(["#a5-CEN", "#a5-DGI"], { opacity: 0.85, duration: 0.4 }, 9.7);
+      tl.to(["#a5-e4", "#a5-e5"], { opacity: 1, duration: 0.4 }, 9.8);
+      tl.fromTo("#a5-alert", { opacity: 0, x: -40, filter: "blur(8px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 10.0);
+      tl.fromTo("#a5-count", { opacity: 0, x: 40, filter: "blur(8px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 10.2);
+      /* 3. hand-off: the graph folds into Katanga Mineral Processing, which opens as an exhibit */
+      tl.to(["#a5-alert", "#a5-count"], { opacity: 0, filter: "blur(8px)", duration: 0.3 }, 11.7);
+      tl.to(["#a5-ASH", "#a5-SIN", "#a5-IMM", "#a5-CRY", "#a5-CEN", "#a5-DGI", "#a5-edges", "#a5-amts", "#a5-grid"], { opacity: 0, filter: "blur(10px)", duration: 0.45, ease: "power2.in" }, 11.75);
+      tl.to("#a5-plane", { rotationX: 0, rotationY: 0, duration: 0.6, ease: "power2.inOut" }, 11.8);
+      tl.fromTo("#a5-morph", { x: N.KMP[0], y: N.KMP[1], scaleX: 52 / 1180, scaleY: 52 / 430, borderRadius: "300px", opacity: 0 },
+        { x: 960, y: 540, scaleX: 1, scaleY: 1, borderRadius: "22px", opacity: 1, duration: 0.75, ease: "power3.inOut" }, 12.0);
+      tl.to("#a5-KMP", { opacity: 0, duration: 0.2 }, 12.05);
+      window.__timelines["act5"] = tl;
+    })();
+  </script>
+</template>

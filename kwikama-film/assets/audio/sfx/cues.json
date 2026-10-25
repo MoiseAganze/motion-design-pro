@@ -1,0 +1,590 @@
+[
+ {
+  "id": "sfx01",
+  "src": "assets/audio/sfx/envelope.wav",
+  "start": 1.48,
+  "duration": 2.35,
+  "volume": 1.6
+ },
+ {
+  "id": "sfx02",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 7.58,
+  "duration": 0.72,
+  "volume": 0.35
+ },
+ {
+  "id": "sfx03",
+  "src": "assets/audio/sfx/whoosh.wav",
+  "start": 9.18,
+  "duration": 0.575,
+  "volume": 0.45
+ },
+ {
+  "id": "sfx04",
+  "src": "assets/audio/sfx/whoosh-cine.wav",
+  "start": 17.2,
+  "duration": 2.4,
+  "volume": 0.35
+ },
+ {
+  "id": "sfx05",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 19.92,
+  "duration": 0.72,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx06",
+  "src": "assets/audio/sfx/pop.wav",
+  "start": 21.35,
+  "duration": 0.72,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx07",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 21.75,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx08",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 22.2,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx09",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 22.95,
+  "duration": 0.4,
+  "volume": 0.4
+ },
+ {
+  "id": "sfx10",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 23.15,
+  "duration": 0.4,
+  "volume": 0.4
+ },
+ {
+  "id": "sfx11",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 23.35,
+  "duration": 0.4,
+  "volume": 0.45
+ },
+ {
+  "id": "sfx12",
+  "src": "assets/audio/sfx/pop.wav",
+  "start": 23.45,
+  "duration": 0.72,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx13",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 23.78,
+  "duration": 0.575,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx14",
+  "src": "assets/audio/sfx/stamp.wav",
+  "start": 25.9,
+  "duration": 0.695,
+  "volume": 1.0
+ },
+ {
+  "id": "sfx15",
+  "src": "assets/audio/sfx/whoosh-cine.wav",
+  "start": 32.95,
+  "duration": 2.4,
+  "volume": 0.28
+ },
+ {
+  "id": "sfx16",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 36.05,
+  "duration": 0.575,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx17",
+  "src": "assets/audio/sfx/whoosh.wav",
+  "start": 37.2,
+  "duration": 0.575,
+  "volume": 0.35
+ },
+ {
+  "id": "sfx18",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 40.05,
+  "duration": 0.575,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx19",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 43.6,
+  "duration": 0.366,
+  "volume": 0.7
+ },
+ {
+  "id": "sfx20",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 44.55,
+  "duration": 0.366,
+  "volume": 0.7
+ },
+ {
+  "id": "sfx21",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 45.6,
+  "duration": 0.366,
+  "volume": 0.7
+ },
+ {
+  "id": "sfx22",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 45.66,
+  "duration": 0.575,
+  "volume": 0.2
+ },
+ {
+  "id": "sfx23",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 47.55,
+  "duration": 0.366,
+  "volume": 0.7
+ },
+ {
+  "id": "sfx24",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 48.95,
+  "duration": 0.366,
+  "volume": 0.7
+ },
+ {
+  "id": "sfx25",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 50.35,
+  "duration": 0.366,
+  "volume": 0.7
+ },
+ {
+  "id": "sfx26",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 50.98,
+  "duration": 0.366,
+  "volume": 0.65
+ },
+ {
+  "id": "sfx27",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 51.65,
+  "duration": 0.366,
+  "volume": 0.75
+ },
+ {
+  "id": "sfx28",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 52.55,
+  "duration": 0.575,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx29",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 53.45,
+  "duration": 0.575,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx30",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 54.0,
+  "duration": 0.4,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx31",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 54.2,
+  "duration": 0.4,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx32",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 54.38,
+  "duration": 0.4,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx33",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 54.56,
+  "duration": 0.4,
+  "volume": 0.32
+ },
+ {
+  "id": "sfx34",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 56.45,
+  "duration": 0.366,
+  "volume": 0.7
+ },
+ {
+  "id": "sfx35",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 58.6,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx36",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 59.45,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx37",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 60.78,
+  "duration": 0.366,
+  "volume": 0.7
+ },
+ {
+  "id": "sfx38",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 61.7,
+  "duration": 0.575,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx39",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 62.5,
+  "duration": 0.575,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx40",
+  "src": "assets/audio/sfx/pop.wav",
+  "start": 64.4,
+  "duration": 0.72,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx41",
+  "src": "assets/audio/sfx/pop.wav",
+  "start": 64.6,
+  "duration": 0.72,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx42",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 65.15,
+  "duration": 0.72,
+  "volume": 0.28
+ },
+ {
+  "id": "sfx43",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 65.35,
+  "duration": 0.72,
+  "volume": 0.28
+ },
+ {
+  "id": "sfx44",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 66.15,
+  "duration": 0.575,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx45",
+  "src": "assets/audio/sfx/click.wav",
+  "start": 67.25,
+  "duration": 0.366,
+  "volume": 0.7
+ },
+ {
+  "id": "sfx46",
+  "src": "assets/audio/sfx/whoosh-cine.wav",
+  "start": 67.8,
+  "duration": 2.4,
+  "volume": 0.4
+ },
+ {
+  "id": "sfx47",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 73.05,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx48",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 73.5,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx49",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 73.95,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx50",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 75.5,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx51",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 77.65,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx52",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 79.8,
+  "duration": 0.575,
+  "volume": 0.3
+ },
+ {
+  "id": "sfx53",
+  "src": "assets/audio/sfx/stamp.wav",
+  "start": 81.94,
+  "duration": 0.695,
+  "volume": 0.9
+ },
+ {
+  "id": "sfx54",
+  "src": "assets/audio/sfx/typing.wav",
+  "start": 82.6,
+  "duration": 1.5,
+  "volume": 0.45
+ },
+ {
+  "id": "sfx55",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 84.5,
+  "duration": 0.575,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx56",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 85.05,
+  "duration": 0.72,
+  "volume": 0.2
+ },
+ {
+  "id": "sfx57",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 85.6,
+  "duration": 0.72,
+  "volume": 0.2
+ },
+ {
+  "id": "sfx58",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 86.15,
+  "duration": 0.72,
+  "volume": 0.2
+ },
+ {
+  "id": "sfx59",
+  "src": "assets/audio/sfx/whoosh.wav",
+  "start": 86.45,
+  "duration": 0.575,
+  "volume": 0.35
+ },
+ {
+  "id": "sfx60",
+  "src": "assets/audio/sfx/pop.wav",
+  "start": 88.35,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx61",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 89.2,
+  "duration": 0.575,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx62",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 89.9,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx63",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 90.9,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx64",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 92.0,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx65",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 92.8,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx66",
+  "src": "assets/audio/sfx/pop-lo.wav",
+  "start": 93.35,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx67",
+  "src": "assets/audio/sfx/whoosh.wav",
+  "start": 93.6,
+  "duration": 0.575,
+  "volume": 0.35
+ },
+ {
+  "id": "sfx68",
+  "src": "assets/audio/sfx/pop.wav",
+  "start": 96.55,
+  "duration": 0.72,
+  "volume": 0.28
+ },
+ {
+  "id": "sfx69",
+  "src": "assets/audio/sfx/whoosh-cine.wav",
+  "start": 98.3,
+  "duration": 2.4,
+  "volume": 0.38
+ },
+ {
+  "id": "sfx70",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 99.4,
+  "duration": 0.72,
+  "volume": 0.2
+ },
+ {
+  "id": "sfx71",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 100.0,
+  "duration": 0.72,
+  "volume": 0.2
+ },
+ {
+  "id": "sfx72",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 100.9,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx73",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 101.9,
+  "duration": 0.72,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx74",
+  "src": "assets/audio/sfx/pop-hi.wav",
+  "start": 103.2,
+  "duration": 0.72,
+  "volume": 0.24
+ },
+ {
+  "id": "sfx75",
+  "src": "assets/audio/sfx/pop.wav",
+  "start": 103.9,
+  "duration": 0.72,
+  "volume": 0.26
+ },
+ {
+  "id": "sfx76",
+  "src": "assets/audio/sfx/whoosh.wav",
+  "start": 105.35,
+  "duration": 0.575,
+  "volume": 0.32
+ },
+ {
+  "id": "sfx77",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 107.75,
+  "duration": 0.575,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx78",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 108.25,
+  "duration": 0.4,
+  "volume": 0.28
+ },
+ {
+  "id": "sfx79",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 108.8,
+  "duration": 0.4,
+  "volume": 0.28
+ },
+ {
+  "id": "sfx80",
+  "src": "assets/audio/sfx/key.wav",
+  "start": 109.3,
+  "duration": 0.4,
+  "volume": 0.28
+ },
+ {
+  "id": "sfx81",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 111.0,
+  "duration": 0.575,
+  "volume": 0.22
+ },
+ {
+  "id": "sfx82",
+  "src": "assets/audio/sfx/whoosh-short.wav",
+  "start": 113.95,
+  "duration": 0.575,
+  "volume": 0.25
+ },
+ {
+  "id": "sfx83",
+  "src": "assets/audio/sfx/whoosh-cine.wav",
+  "start": 114.72,
+  "duration": 2.4,
+  "volume": 0.4
+ },
+ {
+  "id": "sfx84",
+  "src": "assets/audio/sfx/pop.wav",
+  "start": 121.4,
+  "duration": 0.72,
+  "volume": 0.25
+ }
+]

@@ -1,0 +1,329 @@
+<template>
+  <style>
+    /*@BASE*/
+    /* ---------- part A : Kolwezi ---------- */
+    #a1-A { position: absolute; inset: 0; }
+    #a1-mapg { position: absolute; left: 150px; top: 190px; width: 710px; height: 700px; transform-origin: 493px 598px; }
+    #a1-map { position: absolute; left: 0; top: 0; width: 710px; height: 700px; overflow: visible; }
+    #a1-pin { position: absolute; left: 484px; top: 589px; width: 18px; height: 18px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(216,168,40,.25); }
+    .a1-ripple { position: absolute; left: 463px; top: 568px; width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); }
+    #a1-kin { position: absolute; left: 107px; top: 352px; width: 16px; height: 16px; border-radius: 50%; background: var(--cream); opacity: .9; }
+    #a1-kinlab { position: absolute; left: -5px; top: 378px; width: 240px; text-align: center; font-size: 28px; font-weight: 600; color: rgba(244,241,234,.75); }
+    #a1-tresor { position: absolute; left: -15px; top: 222px; width: 260px; text-align: center; white-space: nowrap; }
+    #a1-tresor svg { width: 84px; height: 76px; }
+    #a1-tresor .t { font-size: 28px; font-weight: 600; color: var(--cream); margin-top: 4px; }
+    #a1-zero { position: absolute; left: 30px; top: 424px; }
+    #a1-x { position: absolute; width: 44px; height: 44px; }
+    #a1-title { position: absolute; left: 960px; top: 230px; transform-origin: 0 50%; }
+    #a1-kol { font-family: "Fraunces", serif; font-weight: 600; font-size: 200px; line-height: 1; letter-spacing: -0.015em; color: var(--cream); white-space: nowrap; }
+    #a1-kol span { display: inline-block; }
+    #a1-sub { font-size: 32px; font-weight: 500; color: rgba(244,241,234,.72); margin-top: 18px; white-space: nowrap; }
+    #a1-leader { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    /* envelope */
+    #a1-env { position: absolute; left: 1120px; top: 600px; width: 540px; height: 330px; perspective: 1400px; }
+    #a1-env .back { position: absolute; inset: 0; background: #e6dcc8; border-radius: 12px; }
+    #a1-env .front { position: absolute; inset: 0; background: #f2ebdc; border-radius: 12px; z-index: 4;
+      clip-path: polygon(0 34%, 50% 66%, 100% 34%, 100% 100%, 0 100%); box-shadow: 0 -2px 0 rgba(0,0,0,.04) inset; }
+    #a1-env .flap { position: absolute; left: 0; top: 0; width: 540px; height: 210px; background: #dcd1ba; z-index: 5; transform-origin: 50% 0;
+      clip-path: polygon(0 0, 100% 0, 50% 100%); border-radius: 12px 12px 0 0; }
+    #a1-env .stamp { position: absolute; right: 34px; bottom: 30px; z-index: 6; font-weight: 800; font-size: 22px; letter-spacing: .14em; color: #a63a2e; border: 3px solid #a63a2e; padding: 6px 12px; border-radius: 6px; transform: rotate(-6deg); opacity: .85; }
+    #a1-letter { position: absolute; left: 26px; top: 18px; width: 488px; height: 300px; z-index: 3; background: var(--paper); border-radius: 8px; padding: 26px 30px; color: var(--ink);
+      box-shadow: 0 10px 30px rgba(0,0,0,.18); transform-origin: 50% 100%; }
+    #a1-letter .lb { font-size: 17px; font-weight: 700; letter-spacing: .12em; color: #8a6512; }
+    #a1-letter .tt { font-size: 29px; font-weight: 700; line-height: 1.2; margin-top: 12px; }
+    #a1-letter .rw { font-size: 20px; font-weight: 500; color: var(--muted); margin-top: 14px; }
+    #a1-letter .am { font-size: 22px; font-weight: 700; color: var(--ink); margin-top: 10px; position: relative; display: inline-block; }
+    #a1-letter .am i { position: absolute; left: 0; bottom: -4px; height: 4px; width: 100%; background: var(--gold); transform-origin: 0 50%; }
+    /* hero number */
+    #a1-num { position: absolute; left: 860px; top: 360px; width: 1000px; text-align: center; white-space: nowrap; transform-origin: 50% 0; }
+    #a1-numv { font-family: "Fraunces", serif; font-weight: 600; font-size: 116px; color: var(--gold); display: inline-flex; letter-spacing: -0.01em; vertical-align: top; }
+    #a1-numv .sep { display: inline-block; width: 0.26em; }
+    #a1-numu { font-family: "Fraunces", serif; font-weight: 600; font-size: 116px; color: rgba(244,241,234,.78); display: inline-block; vertical-align: top; line-height: 140px; margin-left: 22px; }
+    #a1-numl { font-size: 34px; font-weight: 500; color: rgba(244,241,234,.8); margin-top: 6px; }
+    /* ---------- part B / C : institutions ---------- */
+    #a1-B { position: absolute; inset: 0; }
+    #a1-trail { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    .tile { position: absolute; left: 0; top: 0; width: 300px; height: 300px; margin-left: -150px; margin-top: -150px; border-radius: 34px;
+      background: rgba(10,44,71,.78); border: 1.5px solid rgba(244,241,234,.18); box-shadow: 0 24px 60px rgba(0,0,0,.35); padding: 34px 30px; }
+    .tile svg { width: 64px; height: 64px; fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .tile .ac { position: absolute; left: 30px; bottom: 84px; font-size: 52px; font-weight: 700; letter-spacing: -.01em; color: var(--cream); }
+    .tile .fn { position: absolute; left: 30px; right: 24px; bottom: 30px; font-size: 26px; line-height: 1.2; font-weight: 500; color: rgba(244,241,234,.66); }
+    .mini { position: absolute; left: 0; top: 0; width: 250px; height: 130px; margin-left: -125px; margin-top: -65px; border-radius: 22px;
+      background: rgba(10,44,71,.82); border: 1.5px solid rgba(244,241,234,.18); display: flex; align-items: center; justify-content: center;
+      font-size: 30px; font-weight: 700; color: var(--cream); text-align: center; line-height: 1.1; padding: 0 14px; box-shadow: 0 18px 40px rgba(0,0,0,.3); }
+    .mini .wall { position: absolute; left: -18px; top: -18px; width: 286px; height: 166px; overflow: visible; }
+    #a1-unicep { position: absolute; left: 0; width: 1920px; top: 812px; text-align: center; font-size: 32px; font-weight: 500; color: var(--gold); }
+    #a1-world { position: absolute; inset: 0; transform-origin: 960px 560px; }
+    #a1-path { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    #a1-mail { position: absolute; left: 0; top: 0; width: 96px; height: 66px; margin-left: -48px; margin-top: -33px; }
+    .bubble { position: absolute; display: flex; align-items: center; gap: 16px; background: #fff; color: var(--ink); border-radius: 18px; padding: 16px 26px 16px 16px;
+      font-size: 30px; font-weight: 500; white-space: nowrap; box-shadow: 0 18px 44px rgba(0,0,0,.35); }
+    .bubble .av { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: var(--cream); background: var(--navy3); }
+    #a1-days { position: absolute; display: flex; gap: 12px; align-items: center; }
+    #a1-dval { height: 52px; overflow: hidden; background: rgba(155,44,36,.92); color: #fff; border-radius: 10px; padding: 0 16px; font-size: 34px; font-weight: 700; }
+    #a1-dval .strip { display: flex; flex-direction: column; }
+    #a1-dval .strip span { height: 52px; line-height: 52px; display: block; }
+    #a1-doc { position: absolute; width: 170px; height: 214px; margin-left: -85px; margin-top: -107px; background: var(--paper); border-radius: 10px; color: var(--ink); padding: 18px; box-shadow: 0 16px 34px rgba(0,0,0,.35); }
+    #a1-doc .l { height: 9px; border-radius: 5px; background: #d9d2c3; margin-top: 12px; }
+    #a1-doc .h { font-size: 19px; font-weight: 700; line-height: 1.2; }
+    #a1-ghost { position: absolute; width: 170px; height: 214px; margin-left: -85px; margin-top: -107px; border: 3px dashed rgba(220,90,78,.9); border-radius: 10px; }
+    #a1-lost { position: absolute; font-size: 30px; font-weight: 700; color: #f08a7f; white-space: nowrap; }
+    #a1-stamp { position: absolute; left: 960px; top: 560px; width: 860px; margin-left: -430px; margin-top: -110px; text-align: center; color: #d0473a;
+      border: 10px solid #d0473a; border-radius: 22px; padding: 26px 20px; font-size: 104px; font-weight: 800; letter-spacing: .06em; line-height: 1; background: rgba(3,24,41,.35); }
+    #a1-stamp small { display: block; font-size: 34px; font-weight: 700; letter-spacing: .32em; margin-bottom: 14px; }
+    #a1-dot { position: absolute; left: 948px; top: 528px; width: 24px; height: 24px; border-radius: 50%; background: var(--gold2); box-shadow: 0 0 30px 8px rgba(236,198,87,.55); }
+  </style>
+  <div id="root" data-composition-id="act1" data-width="1920" data-height="1080">
+    <!-- ===== A : Kolwezi, the whistleblower letter, the missing money ===== -->
+    <div id="a1-A">
+      <div id="a1-mapg">
+        <svg id="a1-map" viewBox="0 0 710 700">
+          <path id="a1-out" d="{{DRC}}" fill="rgba(216,168,40,0.06)" stroke="#D8A828" stroke-width="2.4" stroke-linejoin="round" opacity="0.6"/>
+          <path id="a1-scan" d="{{DRC}}" fill="none" stroke="#ECC657" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path id="a1-flow" d="M493 598 C 430 470, 260 470, 115 360" fill="none" stroke="#ECC657" stroke-width="5" stroke-linecap="round"/>
+          <path id="a1-flowdots" d="M493 598 C 430 470, 260 470, 115 360" fill="none" stroke="#fff3c9" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 26"/>
+        </svg>
+        <div class="a1-ripple" id="a1-rip1"></div>
+        <div class="a1-ripple" id="a1-rip2"></div>
+        <div id="a1-pin"></div>
+        <div id="a1-kin"></div>
+        <div id="a1-kinlab">Kinshasa</div>
+        <div id="a1-tresor">
+          <svg viewBox="0 0 92 82" fill="none" stroke="#F4F1EA" stroke-width="3" stroke-linejoin="round"><path d="M6 26 L46 6 L86 26 Z"/><line x1="10" y1="32" x2="82" y2="32"/><line x1="18" y1="36" x2="18" y2="66"/><line x1="34" y1="36" x2="34" y2="66"/><line x1="58" y1="36" x2="58" y2="66"/><line x1="74" y1="36" x2="74" y2="66"/><line x1="6" y1="72" x2="86" y2="72"/><line x1="2" y1="78" x2="90" y2="78"/></svg>
+          <div class="t">Trésor public</div>
+        </div>
+        <div id="a1-zero"><span class="chip red">0 $US reçu</span></div>
+        <svg id="a1-x" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#9B2C24"/><path d="M14 14 L30 30 M30 14 L14 30" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+      </div>
+      <svg id="a1-leader" viewBox="0 0 1920 1080"><path id="a1-lead" d="M643 788 L790 470 L950 470" fill="none" stroke="#D8A828" stroke-width="2.5"/></svg>
+      <div id="a1-title">
+        <div id="a1-kol"><span>K</span><span>o</span><span>l</span><span>w</span><span>e</span><span>z</span><span>i</span></div>
+        <div id="a1-sub"><span class="w">Lualaba</span> <span class="w">·</span> <span class="w">République</span> <span class="w">démocratique</span> <span class="w">du</span> <span class="w">Congo</span></div>
+      </div>
+      <div id="a1-env">
+        <div class="back"></div>
+        <div id="a1-letter">
+          <div class="lb">SIGNALEMENT · SONNEUR D'ALERTE</div>
+          <div class="tt">Redevances minières non reversées au Trésor</div>
+          <div class="rw">Lualaba · courrier reçu le 19 août 2026</div>
+          <div class="am">Montant allégué : 12 600 000 $US<i id="a1-amline"></i></div>
+        </div>
+        <div class="front"></div>
+        <div class="flap" id="a1-flap"></div>
+        <div class="stamp">CONFIDENTIEL</div>
+      </div>
+    </div>
+    <div id="a1-num">
+      <div><span id="a1-numv" data-layout-ignore></span><span id="a1-numu">$US</span></div>
+      <div id="a1-numl"><span class="w">Redevances</span> <span class="w">minières</span> <span class="w">·</span> <span class="w">3</span> <span class="w">permis</span> <span class="w">·</span> <span class="w">8</span> <span class="w">trimestres</span></div>
+    </div>
+    <!-- ===== B / C : eighteen institutions, then silos ===== -->
+    <div id="a1-B">
+      <svg id="a1-trail" viewBox="0 0 1920 1080"><line id="a1-trl" x1="960" y1="196" x2="960" y2="372" stroke="#D8A828" stroke-width="3" stroke-dasharray="12 10"/><circle id="a1-trd" cx="960" cy="380" r="10" fill="#ECC657"/></svg>
+      <div id="a1-world">
+        <svg id="a1-path" viewBox="0 0 1920 1080"><path id="a1-route" d="M690 560 C 820 470, 1100 470, 1230 560" fill="none" stroke="rgba(244,241,234,.45)" stroke-width="3" stroke-dasharray="12 12"/></svg>
+        <div id="a1-tiles"></div>
+        <svg id="a1-mail" viewBox="0 0 96 66"><rect x="2" y="2" width="92" height="62" rx="8" fill="#F2EBDC"/><path d="M4 6 L48 38 L92 6" fill="none" stroke="#B9AD93" stroke-width="3"/></svg>
+        <div id="a1-relance" class="abs"><span class="chip red">Relance n° 3</span></div>
+        <div class="bubble" id="a1-b1"><div class="av">PG</div>Vous avez reçu notre courrier ?</div>
+        <div class="bubble" id="a1-b2"><div class="av" style="background:#4d3b12">CE</div>Le dossier est chez qui ?</div>
+        <div id="a1-days"><div id="a1-dval"><div class="strip"><span>J+12</span><span>J+31</span><span>J+47</span><span>J+90</span></div></div><span class="chip red" id="a1-late">En retard</span></div>
+        <div id="a1-doc"><div class="h">Relevés bancaires</div><div class="l"></div><div class="l" style="width:80%"></div><div class="l"></div><div class="l" style="width:64%"></div><div class="l"></div><div class="l" style="width:72%"></div></div>
+        <div id="a1-ghost"></div>
+        <div id="a1-lost">Pièce introuvable</div>
+      </div>
+      <div id="a1-unicep">Unité interservices de collaboration · créée le 7 février 2024</div>
+      <div id="a1-stamp" data-layout-allow-overlap data-layout-allow-occlusion><small>CLASSÉ</small>SANS SUITE</div>
+      <div id="a1-dot"></div>
+    </div>
+  </div>
+  <script>
+    /*@HELPERS*/
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const tl = gsap.timeline({ paused: true });
+
+      /* ---------- build tiles ---------- */
+      const ICON = {
+        CENAREF: '<circle cx="26" cy="26" r="15"/><line x1="37" y1="37" x2="52" y2="52"/><polyline points="17,30 22,23 27,27 34,18"/>',
+        PARQUET: '<line x1="32" y1="8" x2="32" y2="52"/><line x1="12" y1="16" x2="52" y2="16"/><path d="M12 16 L4 34 H20 Z"/><path d="M52 16 L44 34 H60 Z"/><line x1="20" y1="54" x2="44" y2="54"/>',
+        DGI: '<rect x="14" y="6" width="36" height="50" rx="5"/><line x1="23" y1="42" x2="41" y2="22"/><circle cx="24" cy="24" r="3.5"/><circle cx="40" cy="40" r="3.5"/>',
+        DGDA: '<rect x="6" y="22" width="52" height="30" rx="3"/><line x1="16" y1="22" x2="16" y2="52"/><line x1="26" y1="22" x2="26" y2="52"/><line x1="36" y1="22" x2="36" y2="52"/><line x1="46" y1="22" x2="46" y2="52"/><path d="M6 22 L13 12 H51 L58 22"/>'
+      };
+      const BIG = [
+        ["CENAREF", "CENAREF", "Renseignement financier"],
+        ["PARQUET", "Parquet", "Ministère public"],
+        ["DGI", "DGI", "Impôts"],
+        ["DGDA", "DGDA", "Douanes et accises"]
+      ];
+      const tiles = $("#a1-tiles");
+      BIG.forEach(([k, ac, fn], i) => {
+        const d = document.createElement("div"); d.className = "tile"; d.id = "a1-big" + i;
+        d.innerHTML = `<svg viewBox="0 0 64 64">${ICON[k]}</svg><div class="ac">${ac}</div><div class="fn">${fn}</div>`;
+        tiles.appendChild(d);
+      });
+      // the eighteen members, in the site's order
+      const ALL = ["CENAREF", "Parquet Général", "PJ / PNC", "APLC", "IGF", "DGDA", "GUCE", "COGEBISCO", "OSCEP", "DGM", "ICCN", "DIAF", "OAD", "Min. Défense", "DGI", "ANR", "Auditorat Général", "Cour des comptes"];
+      // grid cell (6 x 3) and scattered silo position for each
+      const SILO = {
+        "CENAREF": [560, 560], "Parquet Général": [1360, 560], "PJ / PNC": [220, 190], "APLC": [560, 160], "IGF": [905, 200], "DGDA": [1245, 165], "GUCE": [1590, 195],
+        "COGEBISCO": [260, 925], "OSCEP": [600, 950], "DGM": [945, 915], "ICCN": [1290, 945], "DIAF": [1640, 920], "OAD": [185, 430], "Min. Défense": [170, 690],
+        "DGI": [1745, 420], "ANR": [1760, 690], "Auditorat Général": [1430, 330], "Cour des comptes": [470, 780]
+      };
+      const minis = [];
+      ALL.forEach((name, i) => {
+        const d = document.createElement("div"); d.className = "mini"; d.id = "a1-m" + i;
+        d.innerHTML = `${name}<svg class="wall" viewBox="0 0 286 166"><rect x="2" y="2" width="282" height="162" rx="30" fill="none" stroke="rgba(244,241,234,.55)" stroke-width="3"/></svg>`;
+        tiles.appendChild(d);
+        const col = i % 6, row = Math.floor(i / 6);
+        minis.push({ el: d, name, g: [155 + 125 + col * 272, 323 + 65 + row * 152], s: SILO[name] });
+      });
+
+      /* ---------- A : Kolwezi ---------- */
+      const out = $("#a1-out"), scan = $("#a1-scan");
+      const L = scan.getTotalLength ? (scan.getTotalLength() || 4200) : 4200;
+      gsap.set(scan, { attr: { "stroke-dasharray": `150 ${L}` } });
+      tl.fromTo(scan, { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -L }, duration: 2.6, ease: "power1.inOut" }, 0);
+      tl.to(scan, { opacity: 0, duration: 0.4 }, 2.3);
+      tl.fromTo(out, { opacity: 0.6 }, { opacity: 1, duration: 1.2, ease: "power1.out" }, 0);
+      tl.fromTo("#a1-rip1", { scale: 0.3, opacity: 0.9 }, { scale: 2.6, opacity: 0, duration: 1.3, ease: "power2.out" }, 0.05);
+      tl.fromTo("#a1-rip2", { scale: 0.3, opacity: 0.9 }, { scale: 2.6, opacity: 0, duration: 1.3, ease: "power2.out" }, 0.68);
+      const lead = $("#a1-lead"); const LL = 540;
+      tl.fromTo(lead, { attr: { "stroke-dasharray": `${LL} ${LL}`, "stroke-dashoffset": LL } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.55, ease: "power2.out" }, 0.35);
+      tl.fromTo("#a1-kol span", { opacity: 0.22, filter: "blur(5px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out", stagger: 0.06 }, 0.6);
+      wordsIn(tl, $$("#a1-sub .w"), 1.2, 0.06);
+      // title and leader make room for the letter
+      tl.to("#a1-title", { y: -128, scale: 0.72, duration: 0.75, ease: "power3.inOut" }, 1.75);
+      tl.to(lead, { opacity: 0, duration: 0.3 }, 1.75);
+      // envelope arrives, opens, letter rises
+      tl.fromTo("#a1-env", { x: 820, rotation: 8 }, { x: 0, rotation: -2, duration: 0.85, ease: "expo.out" }, 1.8);
+      tl.fromTo("#a1-flap", { rotationX: 0 }, { rotationX: 178, duration: 0.42, ease: "power2.inOut" }, 2.45);
+      tl.set("#a1-flap", { zIndex: 1 }, 2.64);
+      tl.fromTo("#a1-letter", { y: 0 }, { y: -230, duration: 0.34, ease: "power3.out" }, 2.66);
+      tl.set("#a1-letter", { zIndex: 8 }, 3.0);
+      tl.to("#a1-letter", { y: -330, x: -40, scale: 1.32, rotation: 2, duration: 0.5, ease: "expo.out" }, 3.0);
+      tl.fromTo("#a1-amline", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out" }, 3.18);
+      // letter and envelope leave, the amount becomes the hero
+      tl.to("#a1-env", { y: 1150, rotation: 6, duration: 0.6, ease: "power3.in" }, 3.5);
+      tl.set("#a1-env", { opacity: 0 }, 4.12);
+      tl.to("#a1-title", { opacity: 0, filter: "blur(10px)", duration: 0.28, ease: "power2.in" }, 2.95);
+      const strips = odo($("#a1-numv"), "12 600 000", 140);
+      $$("#a1-numv > span:not(.digit)").forEach((n) => { n.className = "sep"; n.textContent = ""; });
+      tl.fromTo("#a1-num", { opacity: 0, y: 30, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, 3.4);
+      odoRoll(tl, strips, 140, 3.36, 1.45);
+      wordsIn(tl, $$("#a1-numl .w"), 5.12, 0.07);
+      // the money leaves Kolwezi and never reaches the Treasury
+      tl.fromTo("#a1-tresor", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.25);
+      tl.fromTo(["#a1-kin", "#a1-kinlab"], { opacity: 0 }, { opacity: 1, duration: 0.4 }, 6.25);
+      const flow = $("#a1-flow"), dots = $("#a1-flowdots");
+      const FL = flow.getTotalLength ? (flow.getTotalLength() || 470) : 470;
+      tl.fromTo(flow, { attr: { "stroke-dasharray": `${FL} ${FL}`, "stroke-dashoffset": FL } }, { attr: { "stroke-dashoffset": FL * 0.42 }, duration: 1.0, ease: "power1.out" }, 6.55);
+      tl.fromTo(dots, { opacity: 0, attr: { "stroke-dashoffset": 0 } }, { opacity: 1, attr: { "stroke-dashoffset": -84 }, duration: 1.0, ease: "none" }, 6.55);
+      tl.set(dots, { opacity: 0 }, 7.56);
+      const brk = flow.getPointAtLength ? flow.getPointAtLength(FL * 0.58) : { x: 270, y: 460 };
+      gsap.set("#a1-x", { left: brk.x - 22, top: brk.y - 22 });
+      tl.to(flow, { attr: { stroke: "#B3463A" }, opacity: 0.75, duration: 0.25 }, 7.56);
+      tl.fromTo("#a1-x", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 7.6);
+      tl.fromTo("#a1-zero", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 7.95);
+      // A exits left, a money trail leads to the first institution
+      tl.to("#a1-A", { x: -1600, filter: "blur(14px)", duration: 0.6, ease: "power3.in" }, 9.2);
+      tl.set("#a1-A", { opacity: 0 }, 9.85);
+      // the amount travels to the top: it is what everyone has to follow
+      tl.to("#a1-numl", { opacity: 0, filter: "blur(8px)", duration: 0.25 }, 9.2);
+      tl.to("#a1-num", { x: -400, y: -270, scale: 0.46, duration: 0.85, ease: "power3.inOut" }, 9.3);
+      tl.fromTo("#a1-trl", { attr: { y2: 196 } }, { attr: { y2: 372 }, duration: 0.9, ease: "power2.out" }, 10.05);
+      tl.fromTo("#a1-trd", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 10.85);
+      tl.to("#a1-num", { opacity: 0, filter: "blur(10px)", duration: 0.35 }, 17.05);
+
+      /* ---------- B : four institutions named, then eighteen ---------- */
+      const big = [0, 1, 2, 3].map((i) => $("#a1-big" + i));
+      const NAMED = [11.43, 12.47, 13.23, 14.03];
+      const ROWS = [[960], [790, 1130], [620, 960, 1300], [450, 790, 1130, 1470]];
+      big.forEach((b, i) => tl.set(b, { x: 960, y: 540, opacity: 0 }, 0));
+      NAMED.forEach((t, step) => {
+        const xs = ROWS[step];
+        for (let i = 0; i <= step; i++) {
+          if (i === step) tl.fromTo(big[i], { x: xs[i] + 220, y: 540, opacity: 0, scale: 0.8, filter: "blur(14px)" }, { x: xs[i], opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, t - 0.08);
+          else tl.to(big[i], { x: xs[i], duration: 0.55, ease: "power3.inOut" }, t - 0.12);
+        }
+      });
+      tl.to("#a1-trd", { opacity: 0, duration: 0.2 }, 11.4);
+      tl.to("#a1-trl", { opacity: 0, duration: 0.3 }, 14.9);
+      // eighteen: the four big tiles fold into the grid while fourteen others arrive
+      const BIGIDX = [0, 1, 14, 5]; // CENAREF, Parquet, DGI, DGDA in the 18 list
+      minis.forEach((m) => tl.set(m.el, { x: m.g[0], y: m.g[1], opacity: 0 }, 0));
+      big.forEach((b, i) => {
+        const m = minis[BIGIDX[i]];
+        tl.to(b, { x: m.g[0], y: m.g[1], scaleX: 250 / 300, scaleY: 130 / 300, opacity: 0, duration: 0.5, ease: "power3.inOut" }, 14.95);
+        tl.fromTo(m.el, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 15.25);
+      });
+      let k = 0;
+      minis.forEach((m, i) => {
+        if (BIGIDX.includes(i)) return;
+        tl.fromTo(m.el, { opacity: 0, scale: 0.6, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 15.0 + k * 0.04);
+        k++;
+      });
+      tl.fromTo("#a1-unicep", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power2.out" }, 15.7);
+
+      /* ---------- C : silos ---------- */
+      tl.to("#a1-unicep", { opacity: 0, duration: 0.3 }, 17.1);
+      const r = rng(11);
+      minis.forEach((m, i) => {
+        tl.to(m.el, { x: m.s[0], y: m.s[1], rotation: (r() - 0.5) * 7, duration: 1.1, ease: "power3.inOut" }, 17.2 + i * 0.015);
+        const rect = m.el.querySelector(".wall rect");
+        tl.fromTo(rect, { attr: { "stroke-dasharray": "860 860", "stroke-dashoffset": 860 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.7, ease: "power2.inOut" }, 18.0 + i * 0.03);
+      });
+      // push in on two silos: CENAREF and the Parquet
+      const others = minis.filter((m, i) => i !== 0 && i !== 1).map((m) => m.el);
+      tl.to("#a1-world", { scale: 1.22, duration: 1.0, ease: "power2.inOut" }, 19.15);
+      tl.to(others, { opacity: 0.28, duration: 0.6 }, 19.2);
+      const route = $("#a1-route");
+      tl.fromTo(route, { opacity: 0, attr: { "stroke-dashoffset": 120 } }, { opacity: 1, attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 19.4);
+      const RL = route.getTotalLength ? (route.getTotalLength() || 560) : 560;
+      const P = (f) => (route.getPointAtLength ? route.getPointAtLength(RL * f) : { x: 690 + 540 * f, y: 560 - 60 * Math.sin(Math.PI * f) });
+      // the letter crawls, then stops halfway
+      const steps = 12;
+      gsap.set("#a1-mail", { opacity: 0 });
+      for (let s = 0; s <= steps; s++) {
+        const f = 0.02 + 0.40 * (1 - Math.pow(1 - s / steps, 2));
+        const p = P(f);
+        if (s === 0) tl.fromTo("#a1-mail", { x: p.x, y: p.y, opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 19.9);
+        else tl.to("#a1-mail", { x: p.x, y: p.y, duration: 1.35 / steps, ease: "none" }, 19.95 + (s - 1) * 1.35 / steps);
+      }
+      const stop = P(0.42);
+      gsap.set("#a1-relance", { left: stop.x - 90, top: stop.y - 110 });
+      tl.fromTo("#a1-relance", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 21.35);
+      gsap.set("#a1-b1", { left: 1090, top: 330 });
+      tl.fromTo("#a1-b1", { opacity: 0, y: 16, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.5)" }, 21.75);
+      gsap.set("#a1-b2", { left: 250, top: 700 });
+      tl.fromTo("#a1-b2", { opacity: 0, y: 16, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.5)" }, 22.2);
+      // delays roll, a piece is lost
+      gsap.set("#a1-days", { left: stop.x + 70, top: stop.y - 26 });
+      tl.fromTo("#a1-days", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 22.62);
+      tl.fromTo("#a1-dval .strip", { y: 0 }, { y: -52, duration: 0.19, ease: "power2.inOut" }, 22.95);
+      tl.to("#a1-dval .strip", { y: -104, duration: 0.19, ease: "power2.inOut" }, 23.15);
+      tl.to("#a1-dval .strip", { y: -156, duration: 0.25, ease: "power2.inOut" }, 23.35);
+      tl.fromTo("#a1-late", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 23.45);
+      gsap.set(["#a1-doc", "#a1-ghost"], { left: stop.x + 60, top: stop.y + 175 });
+      gsap.set("#a1-lost", { left: stop.x - 60, top: stop.y + 300 });
+      tl.fromTo("#a1-doc", { opacity: 0, y: -150, rotation: -4, scale: 0.6 }, { opacity: 1, y: 0, rotation: 9, scale: 1, duration: 0.45, ease: "power2.out" }, 23.78);
+      tl.to("#a1-doc", { opacity: 0, filter: "blur(6px)", duration: 0.35, ease: "power2.in" }, 24.35);
+      tl.fromTo("#a1-ghost", { opacity: 0, rotation: 9 }, { opacity: 1, duration: 0.3 }, 24.4);
+      tl.fromTo("#a1-lost", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3 }, 24.5);
+      // pull back: nothing reaches the end
+      tl.to("#a1-world", { scale: 1.0, duration: 0.9, ease: "power2.inOut" }, 24.95);
+      tl.to("#a1-world", { opacity: 0.42, duration: 0.6 }, 25.3);
+      tl.fromTo("#a1-stamp", { opacity: 0, scale: 2.3, rotation: -14 }, { opacity: 0.96, scale: 1, rotation: -7, duration: 0.17, ease: "power4.in" }, 25.75);
+      tl.to("#a1-B", { x: 7, duration: 0.04, ease: "none" }, 25.92);
+      tl.to("#a1-B", { x: -6, duration: 0.05, ease: "none" }, 25.96);
+      tl.to("#a1-B", { x: 3, duration: 0.05, ease: "none" }, 26.01);
+      tl.to("#a1-B", { x: 0, duration: 0.06, ease: "none" }, 26.06);
+      // implosion into one point of gold
+      tl.to("#a1-world", { scale: 0, opacity: 0, filter: "blur(16px)", duration: 0.65, ease: "power3.in" }, 27.7);
+      tl.to("#a1-stamp", { scale: 0, opacity: 0, filter: "blur(16px)", duration: 0.55, ease: "power3.in" }, 27.75);
+      tl.fromTo("#a1-dot", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 28.15);
+      window.__timelines["act1"] = tl;
+    })();
+  </script>
+</template>

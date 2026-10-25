@@ -1,0 +1,57 @@
+@font-face { font-family: "Fraunces"; src: url("assets/fonts/Fraunces-Variable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: block; }
+#root {
+  position: absolute; inset: 0; overflow: hidden;
+  --navy: #031829; --navy2: #052033; --navy3: #0a2c47; --navy4: #13385a;
+  --gold: #d8a828; --gold2: #ecc657; --cream: #f4f1ea; --paper: #fbf9f5;
+  --ink: #13181e; --muted: #5b6470; --line: #e8e3d8;
+  --blue: #13487f; --bluebg: #e6edf5; --green: #1e6b4f; --greenbg: #e3efe9;
+  --red: #9b2c24; --redbg: #f7e6e4; --amber: #8a6512; --amberbg: #f6ecd2;
+  font-family: "Inter", sans-serif; color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+#root * { box-sizing: border-box; }
+.abs { position: absolute; }
+.serif { font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -0.01em; }
+.gold { color: var(--gold); }
+.w { display: inline-block; }
+/* ---------- stage, camera, MacBook ---------- */
+.stage { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 960px 540px; }
+.cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 540px; transform-style: preserve-3d; }
+.mac { position: absolute; left: 242px; top: 70px; width: 1436px; height: 947px; }
+.mac-shadow { position: absolute; left: 60px; right: 60px; top: 880px; height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+.mac-lid { position: absolute; left: 0; top: 0; width: 1436px; height: 921px; border-radius: 30px 30px 12px 12px;
+  background: linear-gradient(180deg, #e4e6e9 0%, #b9bdc3 55%, #9ea2a8 100%); padding: 3px;
+  box-shadow: 0 50px 110px rgba(0,0,0,.50), 0 0 0 1px rgba(255,255,255,.08) inset; }
+.mac-bezel { position: absolute; inset: 3px; border-radius: 27px 27px 9px 9px; background: #0b0b0c; }
+.mac-screen { position: absolute; left: 15px; top: 21px; width: 1400px; height: 875px; overflow: hidden; background: var(--paper); border-radius: 7px; }
+.mac-screen > img.ui { position: absolute; left: 0; top: 0; width: 1400px; height: auto; display: block; }
+.mac-glare { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 38%); }
+.mac-notch { position: absolute; top: 0; left: 50%; width: 184px; height: 30px; margin-left: -92px; background: #0b0b0c; border-radius: 0 0 13px 13px; }
+.mac-notch i { position: absolute; left: 50%; top: 10px; width: 9px; height: 9px; margin-left: -4px; border-radius: 50%; background: #1d2633; box-shadow: 0 0 0 2px #121519; }
+.mac-base { position: absolute; left: -62px; top: 919px; width: 1560px; height: 28px; border-radius: 3px 3px 22px 22px;
+  background: linear-gradient(180deg, #f1f2f3 0%, #d3d5d8 30%, #a8abb0 75%, #7e8187 100%); }
+.mac-groove { position: absolute; left: 50%; top: 0; width: 250px; height: 10px; margin-left: -125px; border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, #8f9297, #c9cbcf); }
+.cursor { position: absolute; left: 0; top: 0; width: 40px; height: 57px; transform-origin: 3px 3px; z-index: 50; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
+/* ---------- recurring UI pieces rebuilt from the app ---------- */
+.chip { display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-weight: 600; font-size: 24px; line-height: 1; padding: 9px 16px 9px 14px; border-radius: 6px; white-space: nowrap; }
+.chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.chip.green { color: var(--green); background: var(--greenbg); }
+.chip.red { color: var(--red); background: var(--redbg); }
+.chip.blue { color: var(--blue); background: var(--bluebg); }
+.chip.amber { color: var(--amber); background: var(--amberbg); }
+.chip.beige { color: #6b5d45; background: #efe9dc; }
+.card { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 14px; color: var(--ink);
+  box-shadow: 0 30px 70px rgba(3,24,41,.38), 0 4px 14px rgba(3,24,41,.18); }
+.label { font-family: "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: .09em; text-transform: uppercase; color: #6b7480; }
+.persona { position: absolute; display: flex; align-items: center; gap: 18px; padding: 16px 26px 16px 16px; border-radius: 14px;
+  background: rgba(3,24,41,.92); border: 1px solid rgba(244,241,234,.14); color: var(--cream); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.persona .av { width: 62px; height: 62px; border-radius: 50%; background: var(--navy3); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; color: var(--cream); }
+.persona .nm { font-weight: 600; font-size: 28px; line-height: 1.15; }
+.persona .rl { font-weight: 500; font-size: 22px; color: rgba(244,241,234,.66); margin-top: 3px; }
+.digits { display: inline-flex; overflow: hidden; vertical-align: top; }
+.digit { display: inline-block; overflow: hidden; position: relative; }
+.digit .strip { display: flex; flex-direction: column; }
+.digit .strip span { display: block; text-align: center; }

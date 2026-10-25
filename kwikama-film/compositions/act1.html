@@ -1,0 +1,436 @@
+<template>
+  <style>
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/Fraunces-Variable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: block; }
+#root {
+  position: absolute; inset: 0; overflow: hidden;
+  --navy: #031829; --navy2: #052033; --navy3: #0a2c47; --navy4: #13385a;
+  --gold: #d8a828; --gold2: #ecc657; --cream: #f4f1ea; --paper: #fbf9f5;
+  --ink: #13181e; --muted: #5b6470; --line: #e8e3d8;
+  --blue: #13487f; --bluebg: #e6edf5; --green: #1e6b4f; --greenbg: #e3efe9;
+  --red: #9b2c24; --redbg: #f7e6e4; --amber: #8a6512; --amberbg: #f6ecd2;
+  font-family: "Inter", sans-serif; color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+#root * { box-sizing: border-box; }
+.abs { position: absolute; }
+.serif { font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -0.01em; }
+.gold { color: var(--gold); }
+.w { display: inline-block; }
+/* ---------- stage, camera, MacBook ---------- */
+.stage { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 960px 540px; }
+.cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 540px; transform-style: preserve-3d; }
+.mac { position: absolute; left: 242px; top: 70px; width: 1436px; height: 947px; }
+.mac-shadow { position: absolute; left: 60px; right: 60px; top: 880px; height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+.mac-lid { position: absolute; left: 0; top: 0; width: 1436px; height: 921px; border-radius: 30px 30px 12px 12px;
+  background: linear-gradient(180deg, #e4e6e9 0%, #b9bdc3 55%, #9ea2a8 100%); padding: 3px;
+  box-shadow: 0 50px 110px rgba(0,0,0,.50), 0 0 0 1px rgba(255,255,255,.08) inset; }
+.mac-bezel { position: absolute; inset: 3px; border-radius: 27px 27px 9px 9px; background: #0b0b0c; }
+.mac-screen { position: absolute; left: 15px; top: 21px; width: 1400px; height: 875px; overflow: hidden; background: var(--paper); border-radius: 7px; }
+.mac-screen > img.ui { position: absolute; left: 0; top: 0; width: 1400px; height: auto; display: block; }
+.mac-glare { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 38%); }
+.mac-notch { position: absolute; top: 0; left: 50%; width: 184px; height: 30px; margin-left: -92px; background: #0b0b0c; border-radius: 0 0 13px 13px; }
+.mac-notch i { position: absolute; left: 50%; top: 10px; width: 9px; height: 9px; margin-left: -4px; border-radius: 50%; background: #1d2633; box-shadow: 0 0 0 2px #121519; }
+.mac-base { position: absolute; left: -62px; top: 919px; width: 1560px; height: 28px; border-radius: 3px 3px 22px 22px;
+  background: linear-gradient(180deg, #f1f2f3 0%, #d3d5d8 30%, #a8abb0 75%, #7e8187 100%); }
+.mac-groove { position: absolute; left: 50%; top: 0; width: 250px; height: 10px; margin-left: -125px; border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, #8f9297, #c9cbcf); }
+.cursor { position: absolute; left: 0; top: 0; width: 40px; height: 57px; transform-origin: 3px 3px; z-index: 50; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
+/* ---------- recurring UI pieces rebuilt from the app ---------- */
+.chip { display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-weight: 600; font-size: 24px; line-height: 1; padding: 9px 16px 9px 14px; border-radius: 6px; white-space: nowrap; }
+.chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.chip.green { color: var(--green); background: var(--greenbg); }
+.chip.red { color: var(--red); background: var(--redbg); }
+.chip.blue { color: var(--blue); background: var(--bluebg); }
+.chip.amber { color: var(--amber); background: var(--amberbg); }
+.chip.beige { color: #6b5d45; background: #efe9dc; }
+.card { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 14px; color: var(--ink);
+  box-shadow: 0 30px 70px rgba(3,24,41,.38), 0 4px 14px rgba(3,24,41,.18); }
+.label { font-family: "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: .09em; text-transform: uppercase; color: #6b7480; }
+.persona { position: absolute; display: flex; align-items: center; gap: 18px; padding: 16px 26px 16px 16px; border-radius: 14px;
+  background: rgba(3,24,41,.92); border: 1px solid rgba(244,241,234,.14); color: var(--cream); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.persona .av { width: 62px; height: 62px; border-radius: 50%; background: var(--navy3); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; color: var(--cream); }
+.persona .nm { font-weight: 600; font-size: 28px; line-height: 1.15; }
+.persona .rl { font-weight: 500; font-size: 22px; color: rgba(244,241,234,.66); margin-top: 3px; }
+.digits { display: inline-flex; overflow: hidden; vertical-align: top; }
+.digit { display: inline-block; overflow: hidden; position: relative; }
+.digit .strip { display: flex; flex-direction: column; }
+.digit .strip span { display: block; text-align: center; }
+
+    /* ---------- part A : Kolwezi ---------- */
+    #a1-A { position: absolute; inset: 0; }
+    #a1-mapg { position: absolute; left: 150px; top: 190px; width: 710px; height: 700px; transform-origin: 493px 598px; }
+    #a1-map { position: absolute; left: 0; top: 0; width: 710px; height: 700px; overflow: visible; }
+    #a1-pin { position: absolute; left: 484px; top: 589px; width: 18px; height: 18px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(216,168,40,.25); }
+    .a1-ripple { position: absolute; left: 463px; top: 568px; width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); }
+    #a1-kin { position: absolute; left: 107px; top: 352px; width: 16px; height: 16px; border-radius: 50%; background: var(--cream); opacity: .9; }
+    #a1-kinlab { position: absolute; left: -5px; top: 378px; width: 240px; text-align: center; font-size: 28px; font-weight: 600; color: rgba(244,241,234,.75); }
+    #a1-tresor { position: absolute; left: -15px; top: 222px; width: 260px; text-align: center; white-space: nowrap; }
+    #a1-tresor svg { width: 84px; height: 76px; }
+    #a1-tresor .t { font-size: 28px; font-weight: 600; color: var(--cream); margin-top: 4px; }
+    #a1-zero { position: absolute; left: 30px; top: 424px; }
+    #a1-x { position: absolute; width: 44px; height: 44px; }
+    #a1-title { position: absolute; left: 960px; top: 230px; transform-origin: 0 50%; }
+    #a1-kol { font-family: "Fraunces", serif; font-weight: 600; font-size: 200px; line-height: 1; letter-spacing: -0.015em; color: var(--cream); white-space: nowrap; }
+    #a1-kol span { display: inline-block; }
+    #a1-sub { font-size: 32px; font-weight: 500; color: rgba(244,241,234,.72); margin-top: 18px; white-space: nowrap; }
+    #a1-leader { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    /* envelope */
+    #a1-env { position: absolute; left: 1120px; top: 600px; width: 540px; height: 330px; perspective: 1400px; }
+    #a1-env .back { position: absolute; inset: 0; background: #e6dcc8; border-radius: 12px; }
+    #a1-env .front { position: absolute; inset: 0; background: #f2ebdc; border-radius: 12px; z-index: 4;
+      clip-path: polygon(0 34%, 50% 66%, 100% 34%, 100% 100%, 0 100%); box-shadow: 0 -2px 0 rgba(0,0,0,.04) inset; }
+    #a1-env .flap { position: absolute; left: 0; top: 0; width: 540px; height: 210px; background: #dcd1ba; z-index: 5; transform-origin: 50% 0;
+      clip-path: polygon(0 0, 100% 0, 50% 100%); border-radius: 12px 12px 0 0; }
+    #a1-env .stamp { position: absolute; right: 34px; bottom: 30px; z-index: 6; font-weight: 800; font-size: 22px; letter-spacing: .14em; color: #a63a2e; border: 3px solid #a63a2e; padding: 6px 12px; border-radius: 6px; transform: rotate(-6deg); opacity: .85; }
+    #a1-letter { position: absolute; left: 26px; top: 18px; width: 488px; height: 300px; z-index: 3; background: var(--paper); border-radius: 8px; padding: 26px 30px; color: var(--ink);
+      box-shadow: 0 10px 30px rgba(0,0,0,.18); transform-origin: 50% 100%; }
+    #a1-letter .lb { font-size: 17px; font-weight: 700; letter-spacing: .12em; color: #8a6512; }
+    #a1-letter .tt { font-size: 29px; font-weight: 700; line-height: 1.2; margin-top: 12px; }
+    #a1-letter .rw { font-size: 20px; font-weight: 500; color: var(--muted); margin-top: 14px; }
+    #a1-letter .am { font-size: 22px; font-weight: 700; color: var(--ink); margin-top: 10px; position: relative; display: inline-block; }
+    #a1-letter .am i { position: absolute; left: 0; bottom: -4px; height: 4px; width: 100%; background: var(--gold); transform-origin: 0 50%; }
+    /* hero number */
+    #a1-num { position: absolute; left: 860px; top: 360px; width: 1000px; text-align: center; white-space: nowrap; transform-origin: 50% 0; }
+    #a1-numv { font-family: "Fraunces", serif; font-weight: 600; font-size: 116px; color: var(--gold); display: inline-flex; letter-spacing: -0.01em; vertical-align: top; }
+    #a1-numv .sep { display: inline-block; width: 0.26em; }
+    #a1-numu { font-family: "Fraunces", serif; font-weight: 600; font-size: 116px; color: rgba(244,241,234,.78); display: inline-block; vertical-align: top; line-height: 140px; margin-left: 22px; }
+    #a1-numl { font-size: 34px; font-weight: 500; color: rgba(244,241,234,.8); margin-top: 6px; }
+    /* ---------- part B / C : institutions ---------- */
+    #a1-B { position: absolute; inset: 0; }
+    #a1-trail { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    .tile { position: absolute; left: 0; top: 0; width: 300px; height: 300px; margin-left: -150px; margin-top: -150px; border-radius: 34px;
+      background: rgba(10,44,71,.78); border: 1.5px solid rgba(244,241,234,.18); box-shadow: 0 24px 60px rgba(0,0,0,.35); padding: 34px 30px; }
+    .tile svg { width: 64px; height: 64px; fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .tile .ac { position: absolute; left: 30px; bottom: 84px; font-size: 52px; font-weight: 700; letter-spacing: -.01em; color: var(--cream); }
+    .tile .fn { position: absolute; left: 30px; right: 24px; bottom: 30px; font-size: 26px; line-height: 1.2; font-weight: 500; color: rgba(244,241,234,.66); }
+    .mini { position: absolute; left: 0; top: 0; width: 250px; height: 130px; margin-left: -125px; margin-top: -65px; border-radius: 22px;
+      background: rgba(10,44,71,.82); border: 1.5px solid rgba(244,241,234,.18); display: flex; align-items: center; justify-content: center;
+      font-size: 30px; font-weight: 700; color: var(--cream); text-align: center; line-height: 1.1; padding: 0 14px; box-shadow: 0 18px 40px rgba(0,0,0,.3); }
+    .mini .wall { position: absolute; left: -18px; top: -18px; width: 286px; height: 166px; overflow: visible; }
+    #a1-unicep { position: absolute; left: 0; width: 1920px; top: 812px; text-align: center; font-size: 32px; font-weight: 500; color: var(--gold); }
+    #a1-world { position: absolute; inset: 0; transform-origin: 960px 560px; }
+    #a1-path { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    #a1-mail { position: absolute; left: 0; top: 0; width: 96px; height: 66px; margin-left: -48px; margin-top: -33px; }
+    .bubble { position: absolute; display: flex; align-items: center; gap: 16px; background: #fff; color: var(--ink); border-radius: 18px; padding: 16px 26px 16px 16px;
+      font-size: 30px; font-weight: 500; white-space: nowrap; box-shadow: 0 18px 44px rgba(0,0,0,.35); }
+    .bubble .av { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: var(--cream); background: var(--navy3); }
+    #a1-days { position: absolute; display: flex; gap: 12px; align-items: center; }
+    #a1-dval { height: 52px; overflow: hidden; background: rgba(155,44,36,.92); color: #fff; border-radius: 10px; padding: 0 16px; font-size: 34px; font-weight: 700; }
+    #a1-dval .strip { display: flex; flex-direction: column; }
+    #a1-dval .strip span { height: 52px; line-height: 52px; display: block; }
+    #a1-doc { position: absolute; width: 170px; height: 214px; margin-left: -85px; margin-top: -107px; background: var(--paper); border-radius: 10px; color: var(--ink); padding: 18px; box-shadow: 0 16px 34px rgba(0,0,0,.35); }
+    #a1-doc .l { height: 9px; border-radius: 5px; background: #d9d2c3; margin-top: 12px; }
+    #a1-doc .h { font-size: 19px; font-weight: 700; line-height: 1.2; }
+    #a1-ghost { position: absolute; width: 170px; height: 214px; margin-left: -85px; margin-top: -107px; border: 3px dashed rgba(220,90,78,.9); border-radius: 10px; }
+    #a1-lost { position: absolute; font-size: 30px; font-weight: 700; color: #f08a7f; white-space: nowrap; }
+    #a1-stamp { position: absolute; left: 960px; top: 560px; width: 860px; margin-left: -430px; margin-top: -110px; text-align: center; color: #d0473a;
+      border: 10px solid #d0473a; border-radius: 22px; padding: 26px 20px; font-size: 104px; font-weight: 800; letter-spacing: .06em; line-height: 1; background: rgba(3,24,41,.35); }
+    #a1-stamp small { display: block; font-size: 34px; font-weight: 700; letter-spacing: .32em; margin-bottom: 14px; }
+    #a1-dot { position: absolute; left: 948px; top: 528px; width: 24px; height: 24px; border-radius: 50%; background: var(--gold2); box-shadow: 0 0 30px 8px rgba(236,198,87,.55); }
+  </style>
+  <div id="root" data-composition-id="act1" data-width="1920" data-height="1080">
+    <!-- ===== A : Kolwezi, the whistleblower letter, the missing money ===== -->
+    <div id="a1-A">
+      <div id="a1-mapg">
+        <svg id="a1-map" viewBox="0 0 710 700">
+          <path id="a1-out" d="M689.8,503.8 L683.3,504.8 L674.0,506.2 L663.8,507.8 L653.1,509.4 L642.6,511.0 L632.7,512.5 L623.6,513.9 L620.8,514.7 L622.2,518.6 L621.6,522.7 L619.8,525.9 L617.0,529.8 L615.7,531.4 L612.8,534.4 L610.4,536.6 L605.4,540.2 L602.3,542.3 L602.3,544.1 L607.5,552.9 L609.9,559.2 L610.9,564.9 L610.8,568.1 L610.6,574.9 L610.4,582.8 L610.0,586.0 L611.4,591.7 L611.2,596.1 L607.7,601.1 L606.7,606.0 L604.9,612.6 L602.5,621.7 L600.7,626.5 L601.7,629.6 L602.6,631.7 L603.5,634.5 L605.4,638.8 L607.6,641.3 L608.8,642.3 L616.1,647.7 L619.1,650.3 L623.6,655.4 L627.0,658.8 L631.7,659.6 L637.4,660.9 L640.5,661.9 L642.7,661.4 L643.4,660.2 L643.3,657.6 L642.9,655.7 L643.5,654.3 L645.5,653.3 L650.4,653.2 L652.5,651.9 L654.2,651.6 L654.2,657.2 L654.2,662.6 L654.2,669.1 L654.2,676.6 L654.3,682.8 L654.3,689.3 L654.3,696.9 L654.2,697.7 L653.5,699.4 L651.5,700.0 L648.9,698.5 L648.7,697.0 L648.1,694.2 L646.9,692.8 L645.3,692.4 L642.5,693.1 L638.8,695.1 L634.1,696.9 L632.1,697.9 L628.8,697.8 L625.2,696.8 L622.5,694.5 L621.7,691.1 L619.4,687.5 L616.2,682.4 L614.6,680.3 L612.5,677.9 L610.3,677.6 L607.9,677.0 L606.4,673.5 L605.1,669.0 L604.2,667.3 L602.8,665.1 L600.7,663.8 L596.3,662.0 L590.0,659.5 L582.1,656.4 L578.4,656.2 L574.2,655.7 L571.6,654.2 L570.1,653.1 L568.3,648.7 L566.0,643.7 L559.1,637.7 L557.5,631.0 L556.1,630.1 L553.8,630.6 L551.9,631.4 L551.2,633.2 L549.3,639.2 L548.3,642.0 L547.6,642.8 L546.1,643.7 L543.7,644.5 L540.2,644.9 L535.2,644.7 L529.0,643.8 L525.6,643.2 L516.6,642.2 L514.0,641.7 L510.3,640.4 L507.6,639.1 L498.8,636.2 L494.8,636.6 L492.9,634.6 L491.2,633.6 L488.8,631.7 L487.7,629.1 L486.3,623.6 L486.6,620.6 L487.7,617.3 L486.5,616.4 L484.9,616.4 L482.7,617.5 L478.6,618.2 L471.2,619.6 L468.6,620.4 L465.7,621.1 L463.4,621.6 L457.9,624.8 L455.9,625.2 L452.6,624.0 L451.1,622.3 L452.6,620.4 L453.3,618.0 L452.2,613.3 L450.5,611.1 L445.5,609.6 L443.7,609.4 L442.9,606.8 L441.5,604.4 L438.7,604.0 L437.3,603.7 L435.9,604.4 L435.1,606.4 L434.9,607.8 L432.4,609.0 L427.3,608.8 L422.2,607.7 L418.6,607.3 L416.3,607.6 L407.2,611.3 L404.2,611.7 L394.5,611.5 L389.0,610.7 L385.0,610.6 L382.2,611.7 L378.8,614.4 L375.9,615.9 L374.5,615.7 L373.7,614.6 L372.6,613.0 L372.2,608.9 L370.8,604.5 L371.7,602.1 L374.6,600.4 L375.6,597.0 L374.7,591.7 L374.6,588.1 L375.4,586.0 L374.4,580.8 L371.5,572.7 L367.5,566.0 L362.2,560.9 L358.8,556.0 L357.2,551.4 L357.8,540.1 L359.4,530.3 L360.6,522.4 L360.3,509.3 L356.7,500.7 L356.0,491.5 L358.0,481.7 L358.3,475.0 L356.9,471.5 L356.0,471.0 L354.9,470.7 L346.0,470.3 L334.0,469.9 L323.6,469.8 L312.4,469.6 L310.5,468.4 L309.7,466.1 L309.7,463.8 L312.0,456.8 L311.7,456.3 L307.7,456.1 L296.8,457.3 L289.6,458.4 L285.1,458.8 L277.1,460.6 L272.2,464.6 L270.5,469.7 L270.7,473.8 L270.4,476.9 L268.1,480.1 L266.4,483.7 L266.3,485.6 L265.2,495.3 L257.8,496.6 L250.5,496.6 L248.7,496.5 L239.6,494.2 L236.3,494.2 L233.3,495.4 L227.8,496.6 L222.4,497.5 L217.1,500.3 L215.6,500.6 L212.1,499.1 L207.1,499.2 L202.0,499.9 L199.7,500.3 L198.0,499.4 L193.4,492.2 L187.2,482.5 L183.9,476.5 L182.6,474.9 L180.5,472.8 L177.5,468.9 L176.3,465.1 L176.8,461.6 L175.1,456.8 L171.1,450.8 L168.5,445.0 L167.3,439.6 L167.0,434.9 L167.6,431.0 L166.8,428.1 L164.7,426.2 L163.5,423.9 L162.7,422.9 L160.9,420.7 L156.9,418.2 L152.6,416.9 L143.1,416.9 L130.7,416.9 L119.5,417.1 L107.0,417.3 L94.4,417.5 L91.0,417.8 L81.3,418.0 L73.6,417.3 L70.7,416.9 L65.7,416.6 L57.7,416.6 L53.4,416.8 L43.1,416.8 L42.2,416.9 L40.5,417.6 L36.1,416.6 L31.8,416.9 L29.4,415.8 L24.1,416.5 L21.5,417.4 L17.4,420.5 L11.2,422.1 L8.9,422.0 L7.4,421.5 L3.8,418.1 L1.0,414.8 L0.0,413.0 L1.5,412.5 L6.4,411.8 L10.1,411.5 L10.8,410.6 L11.4,400.5 L11.5,390.2 L10.2,388.9 L8.9,388.0 L8.8,387.3 L10.8,386.0 L13.4,384.5 L14.2,383.9 L17.2,381.1 L22.9,374.8 L27.3,373.3 L31.4,371.6 L32.0,371.0 L32.5,369.8 L34.3,369.9 L34.9,370.5 L35.8,371.8 L37.4,373.7 L40.3,375.9 L43.2,378.3 L44.7,378.6 L47.1,377.4 L49.8,375.6 L53.8,374.3 L54.8,373.0 L55.3,370.4 L55.6,367.6 L55.9,364.3 L56.8,363.9 L58.2,363.5 L60.9,364.5 L62.1,365.4 L64.3,365.4 L65.7,364.6 L68.2,362.9 L71.5,362.3 L74.9,360.7 L78.2,358.7 L79.8,358.5 L81.5,361.1 L82.9,363.0 L83.2,364.1 L81.7,366.3 L80.1,369.2 L81.5,372.8 L81.8,376.3 L81.8,378.4 L82.9,379.2 L83.6,379.6 L84.9,379.1 L87.2,379.3 L90.1,380.4 L92.8,380.2 L95.5,378.9 L100.4,373.7 L107.6,364.6 L113.6,358.8 L118.4,356.5 L121.6,353.8 L123.3,350.6 L126.0,348.5 L131.8,346.8 L136.1,344.9 L140.5,338.6 L146.4,327.4 L148.0,317.3 L149.0,311.2 L148.4,290.1 L148.0,283.2 L148.9,279.4 L151.1,276.8 L157.0,271.3 L161.0,266.8 L164.1,261.5 L169.9,249.5 L172.5,245.6 L173.6,243.9 L177.2,240.7 L182.1,237.9 L188.5,235.4 L198.3,227.1 L206.1,218.6 L205.0,208.5 L206.9,200.1 L211.1,189.4 L212.5,178.1 L211.1,166.2 L211.7,156.4 L215.7,145.1 L217.5,140.9 L218.0,134.0 L218.0,123.1 L223.2,108.1 L228.1,99.1 L233.6,89.1 L235.7,83.0 L238.5,74.9 L238.0,68.4 L237.5,60.9 L238.9,50.6 L238.4,44.6 L236.4,39.3 L237.4,36.0 L241.4,34.7 L246.3,29.4 L255.1,15.7 L264.6,9.0 L271.2,6.9 L278.1,7.1 L282.5,8.3 L284.6,10.5 L289.8,13.7 L298.2,18.0 L304.4,23.3 L307.8,28.7 L310.5,31.7 L313.8,32.7 L319.2,32.3 L325.3,33.5 L331.6,36.6 L335.5,37.7 L336.9,36.9 L340.0,37.3 L347.0,39.8 L352.5,38.4 L360.7,39.5 L379.9,43.9 L380.9,43.2 L381.3,43.0 L383.0,41.2 L387.1,32.3 L390.6,26.9 L392.3,24.8 L396.3,21.9 L401.1,21.2 L405.7,21.5 L409.5,22.7 L413.0,24.2 L416.9,24.2 L420.9,22.8 L426.7,20.2 L432.9,18.5 L438.3,16.6 L447.1,13.4 L450.5,11.9 L454.8,11.3 L467.1,14.3 L475.0,12.3 L478.2,12.9 L485.1,10.7 L486.3,9.3 L490.7,2.1 L495.3,0.0 L502.4,1.1 L506.3,2.2 L519.5,5.3 L536.5,8.5 L541.6,9.0 L543.6,9.3 L545.4,8.8 L551.0,4.8 L552.9,4.2 L554.5,4.3 L565.2,7.6 L566.6,10.2 L568.5,12.9 L574.9,17.4 L577.0,19.9 L578.5,22.7 L579.5,24.9 L581.5,26.6 L584.3,27.8 L586.7,29.1 L588.2,31.1 L590.3,33.1 L594.6,35.9 L596.6,35.9 L599.0,36.3 L601.1,37.1 L603.3,36.9 L607.0,35.0 L611.2,32.0 L614.5,30.1 L622.4,30.8 L626.8,32.3 L630.3,34.5 L633.0,34.3 L639.0,30.4 L642.1,26.1 L645.2,25.2 L649.8,27.1 L653.7,31.0 L657.0,36.7 L659.4,38.9 L662.6,42.3 L669.1,49.6 L677.5,53.3 L680.8,55.1 L681.8,56.9 L682.4,59.3 L682.7,61.9 L683.7,63.0 L685.9,62.6 L687.9,62.2 L690.0,63.0 L691.5,64.9 L692.2,66.4 L693.0,67.9 L695.2,68.9 L695.6,71.0 L694.1,73.5 L692.6,75.7 L690.8,80.2 L689.9,84.7 L691.1,86.2 L692.4,87.5 L693.1,88.7 L693.5,90.2 L693.3,92.0 L690.5,98.3 L689.0,103.8 L689.0,106.6 L692.7,108.6 L697.6,108.5 L699.2,109.8 L700.7,111.8 L702.1,112.8 L704.2,112.8 L705.6,113.5 L706.2,114.9 L707.8,116.4 L709.3,118.1 L708.6,120.2 L708.5,121.9 L705.0,126.5 L696.9,135.4 L679.6,151.9 L679.6,151.9 L673.8,153.9 L670.8,157.0 L668.6,161.8 L663.6,165.9 L659.7,167.6 L659.3,168.6 L659.0,173.0 L659.4,179.5 L657.6,182.5 L654.9,188.3 L653.6,191.9 L652.5,192.7 L651.3,194.5 L650.6,200.4 L650.1,202.4 L648.2,214.6 L648.7,218.1 L647.3,223.9 L647.2,227.4 L646.6,231.2 L645.5,234.6 L645.6,240.0 L646.2,248.8 L646.1,249.9 L644.6,250.7 L642.0,252.9 L639.6,254.4 L637.7,254.8 L634.6,258.6 L631.9,262.3 L630.0,265.9 L629.4,267.5 L629.9,272.2 L630.1,277.7 L629.5,280.0 L628.6,281.5 L624.2,284.4 L621.4,286.6 L620.0,287.7 L619.3,289.4 L620.6,293.5 L620.7,296.4 L621.7,298.2 L625.2,299.6 L625.2,301.0 L625.3,302.6 L627.0,304.5 L630.3,308.4 L633.0,312.1 L633.0,315.2 L632.5,320.5 L632.4,323.6 L632.7,327.8 L632.7,335.6 L632.5,341.2 L632.9,344.0 L637.0,350.9 L638.7,358.5 L639.6,364.1 L639.7,365.9 L638.3,372.3 L636.8,378.5 L636.7,380.9 L637.4,384.0 L640.3,391.2 L642.4,396.5 L643.4,399.6 L644.8,403.3 L646.7,408.9 L647.2,411.6 L646.8,413.6 L642.9,420.7 L642.5,422.9 L643.5,428.4 L644.8,433.7 L646.6,436.7 L651.0,445.0 L654.3,447.8 L660.4,451.9 L665.8,456.1 L667.9,458.3 L669.8,460.7 L673.5,466.9 L675.8,471.9 L677.0,476.4 L679.9,482.7 L682.6,488.4 L686.2,495.5 L688.7,500.5 L689.8,503.8 Z" fill="rgba(216,168,40,0.06)" stroke="#D8A828" stroke-width="2.4" stroke-linejoin="round" opacity="0.6"/>
+          <path id="a1-scan" d="M689.8,503.8 L683.3,504.8 L674.0,506.2 L663.8,507.8 L653.1,509.4 L642.6,511.0 L632.7,512.5 L623.6,513.9 L620.8,514.7 L622.2,518.6 L621.6,522.7 L619.8,525.9 L617.0,529.8 L615.7,531.4 L612.8,534.4 L610.4,536.6 L605.4,540.2 L602.3,542.3 L602.3,544.1 L607.5,552.9 L609.9,559.2 L610.9,564.9 L610.8,568.1 L610.6,574.9 L610.4,582.8 L610.0,586.0 L611.4,591.7 L611.2,596.1 L607.7,601.1 L606.7,606.0 L604.9,612.6 L602.5,621.7 L600.7,626.5 L601.7,629.6 L602.6,631.7 L603.5,634.5 L605.4,638.8 L607.6,641.3 L608.8,642.3 L616.1,647.7 L619.1,650.3 L623.6,655.4 L627.0,658.8 L631.7,659.6 L637.4,660.9 L640.5,661.9 L642.7,661.4 L643.4,660.2 L643.3,657.6 L642.9,655.7 L643.5,654.3 L645.5,653.3 L650.4,653.2 L652.5,651.9 L654.2,651.6 L654.2,657.2 L654.2,662.6 L654.2,669.1 L654.2,676.6 L654.3,682.8 L654.3,689.3 L654.3,696.9 L654.2,697.7 L653.5,699.4 L651.5,700.0 L648.9,698.5 L648.7,697.0 L648.1,694.2 L646.9,692.8 L645.3,692.4 L642.5,693.1 L638.8,695.1 L634.1,696.9 L632.1,697.9 L628.8,697.8 L625.2,696.8 L622.5,694.5 L621.7,691.1 L619.4,687.5 L616.2,682.4 L614.6,680.3 L612.5,677.9 L610.3,677.6 L607.9,677.0 L606.4,673.5 L605.1,669.0 L604.2,667.3 L602.8,665.1 L600.7,663.8 L596.3,662.0 L590.0,659.5 L582.1,656.4 L578.4,656.2 L574.2,655.7 L571.6,654.2 L570.1,653.1 L568.3,648.7 L566.0,643.7 L559.1,637.7 L557.5,631.0 L556.1,630.1 L553.8,630.6 L551.9,631.4 L551.2,633.2 L549.3,639.2 L548.3,642.0 L547.6,642.8 L546.1,643.7 L543.7,644.5 L540.2,644.9 L535.2,644.7 L529.0,643.8 L525.6,643.2 L516.6,642.2 L514.0,641.7 L510.3,640.4 L507.6,639.1 L498.8,636.2 L494.8,636.6 L492.9,634.6 L491.2,633.6 L488.8,631.7 L487.7,629.1 L486.3,623.6 L486.6,620.6 L487.7,617.3 L486.5,616.4 L484.9,616.4 L482.7,617.5 L478.6,618.2 L471.2,619.6 L468.6,620.4 L465.7,621.1 L463.4,621.6 L457.9,624.8 L455.9,625.2 L452.6,624.0 L451.1,622.3 L452.6,620.4 L453.3,618.0 L452.2,613.3 L450.5,611.1 L445.5,609.6 L443.7,609.4 L442.9,606.8 L441.5,604.4 L438.7,604.0 L437.3,603.7 L435.9,604.4 L435.1,606.4 L434.9,607.8 L432.4,609.0 L427.3,608.8 L422.2,607.7 L418.6,607.3 L416.3,607.6 L407.2,611.3 L404.2,611.7 L394.5,611.5 L389.0,610.7 L385.0,610.6 L382.2,611.7 L378.8,614.4 L375.9,615.9 L374.5,615.7 L373.7,614.6 L372.6,613.0 L372.2,608.9 L370.8,604.5 L371.7,602.1 L374.6,600.4 L375.6,597.0 L374.7,591.7 L374.6,588.1 L375.4,586.0 L374.4,580.8 L371.5,572.7 L367.5,566.0 L362.2,560.9 L358.8,556.0 L357.2,551.4 L357.8,540.1 L359.4,530.3 L360.6,522.4 L360.3,509.3 L356.7,500.7 L356.0,491.5 L358.0,481.7 L358.3,475.0 L356.9,471.5 L356.0,471.0 L354.9,470.7 L346.0,470.3 L334.0,469.9 L323.6,469.8 L312.4,469.6 L310.5,468.4 L309.7,466.1 L309.7,463.8 L312.0,456.8 L311.7,456.3 L307.7,456.1 L296.8,457.3 L289.6,458.4 L285.1,458.8 L277.1,460.6 L272.2,464.6 L270.5,469.7 L270.7,473.8 L270.4,476.9 L268.1,480.1 L266.4,483.7 L266.3,485.6 L265.2,495.3 L257.8,496.6 L250.5,496.6 L248.7,496.5 L239.6,494.2 L236.3,494.2 L233.3,495.4 L227.8,496.6 L222.4,497.5 L217.1,500.3 L215.6,500.6 L212.1,499.1 L207.1,499.2 L202.0,499.9 L199.7,500.3 L198.0,499.4 L193.4,492.2 L187.2,482.5 L183.9,476.5 L182.6,474.9 L180.5,472.8 L177.5,468.9 L176.3,465.1 L176.8,461.6 L175.1,456.8 L171.1,450.8 L168.5,445.0 L167.3,439.6 L167.0,434.9 L167.6,431.0 L166.8,428.1 L164.7,426.2 L163.5,423.9 L162.7,422.9 L160.9,420.7 L156.9,418.2 L152.6,416.9 L143.1,416.9 L130.7,416.9 L119.5,417.1 L107.0,417.3 L94.4,417.5 L91.0,417.8 L81.3,418.0 L73.6,417.3 L70.7,416.9 L65.7,416.6 L57.7,416.6 L53.4,416.8 L43.1,416.8 L42.2,416.9 L40.5,417.6 L36.1,416.6 L31.8,416.9 L29.4,415.8 L24.1,416.5 L21.5,417.4 L17.4,420.5 L11.2,422.1 L8.9,422.0 L7.4,421.5 L3.8,418.1 L1.0,414.8 L0.0,413.0 L1.5,412.5 L6.4,411.8 L10.1,411.5 L10.8,410.6 L11.4,400.5 L11.5,390.2 L10.2,388.9 L8.9,388.0 L8.8,387.3 L10.8,386.0 L13.4,384.5 L14.2,383.9 L17.2,381.1 L22.9,374.8 L27.3,373.3 L31.4,371.6 L32.0,371.0 L32.5,369.8 L34.3,369.9 L34.9,370.5 L35.8,371.8 L37.4,373.7 L40.3,375.9 L43.2,378.3 L44.7,378.6 L47.1,377.4 L49.8,375.6 L53.8,374.3 L54.8,373.0 L55.3,370.4 L55.6,367.6 L55.9,364.3 L56.8,363.9 L58.2,363.5 L60.9,364.5 L62.1,365.4 L64.3,365.4 L65.7,364.6 L68.2,362.9 L71.5,362.3 L74.9,360.7 L78.2,358.7 L79.8,358.5 L81.5,361.1 L82.9,363.0 L83.2,364.1 L81.7,366.3 L80.1,369.2 L81.5,372.8 L81.8,376.3 L81.8,378.4 L82.9,379.2 L83.6,379.6 L84.9,379.1 L87.2,379.3 L90.1,380.4 L92.8,380.2 L95.5,378.9 L100.4,373.7 L107.6,364.6 L113.6,358.8 L118.4,356.5 L121.6,353.8 L123.3,350.6 L126.0,348.5 L131.8,346.8 L136.1,344.9 L140.5,338.6 L146.4,327.4 L148.0,317.3 L149.0,311.2 L148.4,290.1 L148.0,283.2 L148.9,279.4 L151.1,276.8 L157.0,271.3 L161.0,266.8 L164.1,261.5 L169.9,249.5 L172.5,245.6 L173.6,243.9 L177.2,240.7 L182.1,237.9 L188.5,235.4 L198.3,227.1 L206.1,218.6 L205.0,208.5 L206.9,200.1 L211.1,189.4 L212.5,178.1 L211.1,166.2 L211.7,156.4 L215.7,145.1 L217.5,140.9 L218.0,134.0 L218.0,123.1 L223.2,108.1 L228.1,99.1 L233.6,89.1 L235.7,83.0 L238.5,74.9 L238.0,68.4 L237.5,60.9 L238.9,50.6 L238.4,44.6 L236.4,39.3 L237.4,36.0 L241.4,34.7 L246.3,29.4 L255.1,15.7 L264.6,9.0 L271.2,6.9 L278.1,7.1 L282.5,8.3 L284.6,10.5 L289.8,13.7 L298.2,18.0 L304.4,23.3 L307.8,28.7 L310.5,31.7 L313.8,32.7 L319.2,32.3 L325.3,33.5 L331.6,36.6 L335.5,37.7 L336.9,36.9 L340.0,37.3 L347.0,39.8 L352.5,38.4 L360.7,39.5 L379.9,43.9 L380.9,43.2 L381.3,43.0 L383.0,41.2 L387.1,32.3 L390.6,26.9 L392.3,24.8 L396.3,21.9 L401.1,21.2 L405.7,21.5 L409.5,22.7 L413.0,24.2 L416.9,24.2 L420.9,22.8 L426.7,20.2 L432.9,18.5 L438.3,16.6 L447.1,13.4 L450.5,11.9 L454.8,11.3 L467.1,14.3 L475.0,12.3 L478.2,12.9 L485.1,10.7 L486.3,9.3 L490.7,2.1 L495.3,0.0 L502.4,1.1 L506.3,2.2 L519.5,5.3 L536.5,8.5 L541.6,9.0 L543.6,9.3 L545.4,8.8 L551.0,4.8 L552.9,4.2 L554.5,4.3 L565.2,7.6 L566.6,10.2 L568.5,12.9 L574.9,17.4 L577.0,19.9 L578.5,22.7 L579.5,24.9 L581.5,26.6 L584.3,27.8 L586.7,29.1 L588.2,31.1 L590.3,33.1 L594.6,35.9 L596.6,35.9 L599.0,36.3 L601.1,37.1 L603.3,36.9 L607.0,35.0 L611.2,32.0 L614.5,30.1 L622.4,30.8 L626.8,32.3 L630.3,34.5 L633.0,34.3 L639.0,30.4 L642.1,26.1 L645.2,25.2 L649.8,27.1 L653.7,31.0 L657.0,36.7 L659.4,38.9 L662.6,42.3 L669.1,49.6 L677.5,53.3 L680.8,55.1 L681.8,56.9 L682.4,59.3 L682.7,61.9 L683.7,63.0 L685.9,62.6 L687.9,62.2 L690.0,63.0 L691.5,64.9 L692.2,66.4 L693.0,67.9 L695.2,68.9 L695.6,71.0 L694.1,73.5 L692.6,75.7 L690.8,80.2 L689.9,84.7 L691.1,86.2 L692.4,87.5 L693.1,88.7 L693.5,90.2 L693.3,92.0 L690.5,98.3 L689.0,103.8 L689.0,106.6 L692.7,108.6 L697.6,108.5 L699.2,109.8 L700.7,111.8 L702.1,112.8 L704.2,112.8 L705.6,113.5 L706.2,114.9 L707.8,116.4 L709.3,118.1 L708.6,120.2 L708.5,121.9 L705.0,126.5 L696.9,135.4 L679.6,151.9 L679.6,151.9 L673.8,153.9 L670.8,157.0 L668.6,161.8 L663.6,165.9 L659.7,167.6 L659.3,168.6 L659.0,173.0 L659.4,179.5 L657.6,182.5 L654.9,188.3 L653.6,191.9 L652.5,192.7 L651.3,194.5 L650.6,200.4 L650.1,202.4 L648.2,214.6 L648.7,218.1 L647.3,223.9 L647.2,227.4 L646.6,231.2 L645.5,234.6 L645.6,240.0 L646.2,248.8 L646.1,249.9 L644.6,250.7 L642.0,252.9 L639.6,254.4 L637.7,254.8 L634.6,258.6 L631.9,262.3 L630.0,265.9 L629.4,267.5 L629.9,272.2 L630.1,277.7 L629.5,280.0 L628.6,281.5 L624.2,284.4 L621.4,286.6 L620.0,287.7 L619.3,289.4 L620.6,293.5 L620.7,296.4 L621.7,298.2 L625.2,299.6 L625.2,301.0 L625.3,302.6 L627.0,304.5 L630.3,308.4 L633.0,312.1 L633.0,315.2 L632.5,320.5 L632.4,323.6 L632.7,327.8 L632.7,335.6 L632.5,341.2 L632.9,344.0 L637.0,350.9 L638.7,358.5 L639.6,364.1 L639.7,365.9 L638.3,372.3 L636.8,378.5 L636.7,380.9 L637.4,384.0 L640.3,391.2 L642.4,396.5 L643.4,399.6 L644.8,403.3 L646.7,408.9 L647.2,411.6 L646.8,413.6 L642.9,420.7 L642.5,422.9 L643.5,428.4 L644.8,433.7 L646.6,436.7 L651.0,445.0 L654.3,447.8 L660.4,451.9 L665.8,456.1 L667.9,458.3 L669.8,460.7 L673.5,466.9 L675.8,471.9 L677.0,476.4 L679.9,482.7 L682.6,488.4 L686.2,495.5 L688.7,500.5 L689.8,503.8 Z" fill="none" stroke="#ECC657" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path id="a1-flow" d="M493 598 C 430 470, 260 470, 115 360" fill="none" stroke="#ECC657" stroke-width="5" stroke-linecap="round"/>
+          <path id="a1-flowdots" d="M493 598 C 430 470, 260 470, 115 360" fill="none" stroke="#fff3c9" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 26"/>
+        </svg>
+        <div class="a1-ripple" id="a1-rip1"></div>
+        <div class="a1-ripple" id="a1-rip2"></div>
+        <div id="a1-pin"></div>
+        <div id="a1-kin"></div>
+        <div id="a1-kinlab">Kinshasa</div>
+        <div id="a1-tresor">
+          <svg viewBox="0 0 92 82" fill="none" stroke="#F4F1EA" stroke-width="3" stroke-linejoin="round"><path d="M6 26 L46 6 L86 26 Z"/><line x1="10" y1="32" x2="82" y2="32"/><line x1="18" y1="36" x2="18" y2="66"/><line x1="34" y1="36" x2="34" y2="66"/><line x1="58" y1="36" x2="58" y2="66"/><line x1="74" y1="36" x2="74" y2="66"/><line x1="6" y1="72" x2="86" y2="72"/><line x1="2" y1="78" x2="90" y2="78"/></svg>
+          <div class="t">Trésor public</div>
+        </div>
+        <div id="a1-zero"><span class="chip red">0 $US reçu</span></div>
+        <svg id="a1-x" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#9B2C24"/><path d="M14 14 L30 30 M30 14 L14 30" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+      </div>
+      <svg id="a1-leader" viewBox="0 0 1920 1080"><path id="a1-lead" d="M643 788 L790 470 L950 470" fill="none" stroke="#D8A828" stroke-width="2.5"/></svg>
+      <div id="a1-title">
+        <div id="a1-kol"><span>K</span><span>o</span><span>l</span><span>w</span><span>e</span><span>z</span><span>i</span></div>
+        <div id="a1-sub"><span class="w">Lualaba</span> <span class="w">·</span> <span class="w">République</span> <span class="w">démocratique</span> <span class="w">du</span> <span class="w">Congo</span></div>
+      </div>
+      <div id="a1-env">
+        <div class="back"></div>
+        <div id="a1-letter">
+          <div class="lb">SIGNALEMENT · SONNEUR D'ALERTE</div>
+          <div class="tt">Redevances minières non reversées au Trésor</div>
+          <div class="rw">Lualaba · courrier reçu le 19 août 2026</div>
+          <div class="am">Montant allégué : 12 600 000 $US<i id="a1-amline"></i></div>
+        </div>
+        <div class="front"></div>
+        <div class="flap" id="a1-flap"></div>
+        <div class="stamp">CONFIDENTIEL</div>
+      </div>
+    </div>
+    <div id="a1-num">
+      <div><span id="a1-numv" data-layout-ignore></span><span id="a1-numu">$US</span></div>
+      <div id="a1-numl"><span class="w">Redevances</span> <span class="w">minières</span> <span class="w">·</span> <span class="w">3</span> <span class="w">permis</span> <span class="w">·</span> <span class="w">8</span> <span class="w">trimestres</span></div>
+    </div>
+    <!-- ===== B / C : eighteen institutions, then silos ===== -->
+    <div id="a1-B">
+      <svg id="a1-trail" viewBox="0 0 1920 1080"><line id="a1-trl" x1="960" y1="196" x2="960" y2="372" stroke="#D8A828" stroke-width="3" stroke-dasharray="12 10"/><circle id="a1-trd" cx="960" cy="380" r="10" fill="#ECC657"/></svg>
+      <div id="a1-world">
+        <svg id="a1-path" viewBox="0 0 1920 1080"><path id="a1-route" d="M690 560 C 820 470, 1100 470, 1230 560" fill="none" stroke="rgba(244,241,234,.45)" stroke-width="3" stroke-dasharray="12 12"/></svg>
+        <div id="a1-tiles"></div>
+        <svg id="a1-mail" viewBox="0 0 96 66"><rect x="2" y="2" width="92" height="62" rx="8" fill="#F2EBDC"/><path d="M4 6 L48 38 L92 6" fill="none" stroke="#B9AD93" stroke-width="3"/></svg>
+        <div id="a1-relance" class="abs"><span class="chip red">Relance n° 3</span></div>
+        <div class="bubble" id="a1-b1"><div class="av">PG</div>Vous avez reçu notre courrier ?</div>
+        <div class="bubble" id="a1-b2"><div class="av" style="background:#4d3b12">CE</div>Le dossier est chez qui ?</div>
+        <div id="a1-days"><div id="a1-dval"><div class="strip"><span>J+12</span><span>J+31</span><span>J+47</span><span>J+90</span></div></div><span class="chip red" id="a1-late">En retard</span></div>
+        <div id="a1-doc"><div class="h">Relevés bancaires</div><div class="l"></div><div class="l" style="width:80%"></div><div class="l"></div><div class="l" style="width:64%"></div><div class="l"></div><div class="l" style="width:72%"></div></div>
+        <div id="a1-ghost"></div>
+        <div id="a1-lost">Pièce introuvable</div>
+      </div>
+      <div id="a1-unicep">Unité interservices de collaboration · créée le 7 février 2024</div>
+      <div id="a1-stamp" data-layout-allow-overlap data-layout-allow-occlusion><small>CLASSÉ</small>SANS SUITE</div>
+      <div id="a1-dot"></div>
+    </div>
+  </div>
+  <script>
+    /* ---- shared helpers (inlined into every act by tools/build.mjs) ---- */
+const K = 1400 / 1440;            // page px -> screen px
+const SCR = { x: 260, y: 94 };    // screen top-left inside .cam at scale 1
+function sp(sx, sy) { return { X: SCR.x + sx * K, Y: SCR.y + sy * K }; }
+// camera vars that put page point (sx, sy) of the Mac screen at frame point (fx, fy) with scale S
+function camAt(sx, sy, S, fx, fy, extra) {
+  const p = sp(sx, sy); fx = fx === undefined ? 960 : fx; fy = fy === undefined ? 540 : fy;
+  return Object.assign({ x: fx - 960 - S * (p.X - 960), y: fy - 540 - S * (p.Y - 540), scale: S, rotationX: 0, rotationY: 0 }, extra || {});
+}
+// cursor tip at page point (sx, sy) inside the screen
+function curPos(sx, sy) { return { x: sx * K - 3, y: sy * K - 3 }; }
+function click(tl, cur, t) {
+  tl.to(cur, { scale: 0.8, duration: 0.07, ease: "power2.out" }, t);
+  tl.to(cur, { scale: 1, duration: 0.16, ease: "power2.out" }, t + 0.07);
+}
+// show one screen layer at time t (instant swap, like the real UI)
+function swap(tl, from, to, t, fade) {
+  if (fade) { tl.to(to, { opacity: 1, duration: fade, ease: "none" }, t); if (from) tl.set(from, { opacity: 0 }, t + fade); }
+  else { tl.set(to, { opacity: 1 }, t); if (from) tl.set(from, { opacity: 0 }, t); }
+}
+// words: blur-in one by one
+function wordsIn(tl, els, t, gap, dur) {
+  gap = gap === undefined ? 0.07 : gap; dur = dur || 0.32;
+  tl.fromTo(els, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: dur, ease: "power2.out", stagger: gap }, t);
+}
+function wordsOut(tl, els, t, dur) {
+  tl.to(els, { opacity: 0, filter: "blur(10px)", duration: dur || 0.22, ease: "power2.in", stagger: 0.03 }, t);
+}
+// odometer number: build digit strips inside el for the string `str`; returns strips
+function odo(el, str, h) {
+  el.innerHTML = "";
+  const strips = [];
+  for (const ch of str) {
+    if (/\d/.test(ch)) {
+      const d = document.createElement("span"); d.className = "digit"; d.style.height = h + "px";
+      const s = document.createElement("span"); s.className = "strip";
+      for (let k = 0; k <= 19; k++) { const n = document.createElement("span"); n.textContent = k % 10; n.style.height = h + "px"; n.style.lineHeight = h + "px"; s.appendChild(n); }
+      d.appendChild(s); el.appendChild(d); strips.push({ s, v: +ch });
+    } else { const n = document.createElement("span"); n.textContent = ch; n.style.display = "inline-block"; n.style.lineHeight = h + "px"; el.appendChild(n); }
+  }
+  return strips;
+}
+// roll strips from 0 to their digit (plus one full turn) between t and t+dur
+function odoRoll(tl, strips, h, t, dur) {
+  strips.forEach((o, i) => {
+    tl.fromTo(o.s, { y: 0 }, { y: -(10 + o.v) * h, duration: dur - i * 0.04, ease: "power3.out" }, t + i * 0.04);
+  });
+}
+// mulberry32 PRNG
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const tl = gsap.timeline({ paused: true });
+
+      /* ---------- build tiles ---------- */
+      const ICON = {
+        CENAREF: '<circle cx="26" cy="26" r="15"/><line x1="37" y1="37" x2="52" y2="52"/><polyline points="17,30 22,23 27,27 34,18"/>',
+        PARQUET: '<line x1="32" y1="8" x2="32" y2="52"/><line x1="12" y1="16" x2="52" y2="16"/><path d="M12 16 L4 34 H20 Z"/><path d="M52 16 L44 34 H60 Z"/><line x1="20" y1="54" x2="44" y2="54"/>',
+        DGI: '<rect x="14" y="6" width="36" height="50" rx="5"/><line x1="23" y1="42" x2="41" y2="22"/><circle cx="24" cy="24" r="3.5"/><circle cx="40" cy="40" r="3.5"/>',
+        DGDA: '<rect x="6" y="22" width="52" height="30" rx="3"/><line x1="16" y1="22" x2="16" y2="52"/><line x1="26" y1="22" x2="26" y2="52"/><line x1="36" y1="22" x2="36" y2="52"/><line x1="46" y1="22" x2="46" y2="52"/><path d="M6 22 L13 12 H51 L58 22"/>'
+      };
+      const BIG = [
+        ["CENAREF", "CENAREF", "Renseignement financier"],
+        ["PARQUET", "Parquet", "Ministère public"],
+        ["DGI", "DGI", "Impôts"],
+        ["DGDA", "DGDA", "Douanes et accises"]
+      ];
+      const tiles = $("#a1-tiles");
+      BIG.forEach(([k, ac, fn], i) => {
+        const d = document.createElement("div"); d.className = "tile"; d.id = "a1-big" + i;
+        d.innerHTML = `<svg viewBox="0 0 64 64">${ICON[k]}</svg><div class="ac">${ac}</div><div class="fn">${fn}</div>`;
+        tiles.appendChild(d);
+      });
+      // the eighteen members, in the site's order
+      const ALL = ["CENAREF", "Parquet Général", "PJ / PNC", "APLC", "IGF", "DGDA", "GUCE", "COGEBISCO", "OSCEP", "DGM", "ICCN", "DIAF", "OAD", "Min. Défense", "DGI", "ANR", "Auditorat Général", "Cour des comptes"];
+      // grid cell (6 x 3) and scattered silo position for each
+      const SILO = {
+        "CENAREF": [560, 560], "Parquet Général": [1360, 560], "PJ / PNC": [220, 190], "APLC": [560, 160], "IGF": [905, 200], "DGDA": [1245, 165], "GUCE": [1590, 195],
+        "COGEBISCO": [260, 925], "OSCEP": [600, 950], "DGM": [945, 915], "ICCN": [1290, 945], "DIAF": [1640, 920], "OAD": [185, 430], "Min. Défense": [170, 690],
+        "DGI": [1745, 420], "ANR": [1760, 690], "Auditorat Général": [1430, 330], "Cour des comptes": [470, 780]
+      };
+      const minis = [];
+      ALL.forEach((name, i) => {
+        const d = document.createElement("div"); d.className = "mini"; d.id = "a1-m" + i;
+        d.innerHTML = `${name}<svg class="wall" viewBox="0 0 286 166"><rect x="2" y="2" width="282" height="162" rx="30" fill="none" stroke="rgba(244,241,234,.55)" stroke-width="3"/></svg>`;
+        tiles.appendChild(d);
+        const col = i % 6, row = Math.floor(i / 6);
+        minis.push({ el: d, name, g: [155 + 125 + col * 272, 323 + 65 + row * 152], s: SILO[name] });
+      });
+
+      /* ---------- A : Kolwezi ---------- */
+      const out = $("#a1-out"), scan = $("#a1-scan");
+      const L = scan.getTotalLength ? (scan.getTotalLength() || 4200) : 4200;
+      gsap.set(scan, { attr: { "stroke-dasharray": `150 ${L}` } });
+      tl.fromTo(scan, { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -L }, duration: 2.6, ease: "power1.inOut" }, 0);
+      tl.to(scan, { opacity: 0, duration: 0.4 }, 2.3);
+      tl.fromTo(out, { opacity: 0.6 }, { opacity: 1, duration: 1.2, ease: "power1.out" }, 0);
+      tl.fromTo("#a1-rip1", { scale: 0.3, opacity: 0.9 }, { scale: 2.6, opacity: 0, duration: 1.3, ease: "power2.out" }, 0.05);
+      tl.fromTo("#a1-rip2", { scale: 0.3, opacity: 0.9 }, { scale: 2.6, opacity: 0, duration: 1.3, ease: "power2.out" }, 0.68);
+      const lead = $("#a1-lead"); const LL = 540;
+      tl.fromTo(lead, { attr: { "stroke-dasharray": `${LL} ${LL}`, "stroke-dashoffset": LL } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.55, ease: "power2.out" }, 0.35);
+      tl.fromTo("#a1-kol span", { opacity: 0.22, filter: "blur(5px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out", stagger: 0.06 }, 0.6);
+      wordsIn(tl, $$("#a1-sub .w"), 1.2, 0.06);
+      // title and leader make room for the letter
+      tl.to("#a1-title", { y: -128, scale: 0.72, duration: 0.75, ease: "power3.inOut" }, 1.75);
+      tl.to(lead, { opacity: 0, duration: 0.3 }, 1.75);
+      // envelope arrives, opens, letter rises
+      tl.fromTo("#a1-env", { x: 820, rotation: 8 }, { x: 0, rotation: -2, duration: 0.85, ease: "expo.out" }, 1.8);
+      tl.fromTo("#a1-flap", { rotationX: 0 }, { rotationX: 178, duration: 0.42, ease: "power2.inOut" }, 2.45);
+      tl.set("#a1-flap", { zIndex: 1 }, 2.64);
+      tl.fromTo("#a1-letter", { y: 0 }, { y: -230, duration: 0.34, ease: "power3.out" }, 2.66);
+      tl.set("#a1-letter", { zIndex: 8 }, 3.0);
+      tl.to("#a1-letter", { y: -330, x: -40, scale: 1.32, rotation: 2, duration: 0.5, ease: "expo.out" }, 3.0);
+      tl.fromTo("#a1-amline", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out" }, 3.18);
+      // letter and envelope leave, the amount becomes the hero
+      tl.to("#a1-env", { y: 1150, rotation: 6, duration: 0.6, ease: "power3.in" }, 3.5);
+      tl.set("#a1-env", { opacity: 0 }, 4.12);
+      tl.to("#a1-title", { opacity: 0, filter: "blur(10px)", duration: 0.28, ease: "power2.in" }, 2.95);
+      const strips = odo($("#a1-numv"), "12 600 000", 140);
+      $$("#a1-numv > span:not(.digit)").forEach((n) => { n.className = "sep"; n.textContent = ""; });
+      tl.fromTo("#a1-num", { opacity: 0, y: 30, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, 3.4);
+      odoRoll(tl, strips, 140, 3.36, 1.45);
+      wordsIn(tl, $$("#a1-numl .w"), 5.12, 0.07);
+      // the money leaves Kolwezi and never reaches the Treasury
+      tl.fromTo("#a1-tresor", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.25);
+      tl.fromTo(["#a1-kin", "#a1-kinlab"], { opacity: 0 }, { opacity: 1, duration: 0.4 }, 6.25);
+      const flow = $("#a1-flow"), dots = $("#a1-flowdots");
+      const FL = flow.getTotalLength ? (flow.getTotalLength() || 470) : 470;
+      tl.fromTo(flow, { attr: { "stroke-dasharray": `${FL} ${FL}`, "stroke-dashoffset": FL } }, { attr: { "stroke-dashoffset": FL * 0.42 }, duration: 1.0, ease: "power1.out" }, 6.55);
+      tl.fromTo(dots, { opacity: 0, attr: { "stroke-dashoffset": 0 } }, { opacity: 1, attr: { "stroke-dashoffset": -84 }, duration: 1.0, ease: "none" }, 6.55);
+      tl.set(dots, { opacity: 0 }, 7.56);
+      const brk = flow.getPointAtLength ? flow.getPointAtLength(FL * 0.58) : { x: 270, y: 460 };
+      gsap.set("#a1-x", { left: brk.x - 22, top: brk.y - 22 });
+      tl.to(flow, { attr: { stroke: "#B3463A" }, opacity: 0.75, duration: 0.25 }, 7.56);
+      tl.fromTo("#a1-x", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 7.6);
+      tl.fromTo("#a1-zero", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 7.95);
+      // A exits left, a money trail leads to the first institution
+      tl.to("#a1-A", { x: -1600, filter: "blur(14px)", duration: 0.6, ease: "power3.in" }, 9.2);
+      tl.set("#a1-A", { opacity: 0 }, 9.85);
+      // the amount travels to the top: it is what everyone has to follow
+      tl.to("#a1-numl", { opacity: 0, filter: "blur(8px)", duration: 0.25 }, 9.2);
+      tl.to("#a1-num", { x: -400, y: -270, scale: 0.46, duration: 0.85, ease: "power3.inOut" }, 9.3);
+      tl.fromTo("#a1-trl", { attr: { y2: 196 } }, { attr: { y2: 372 }, duration: 0.9, ease: "power2.out" }, 10.05);
+      tl.fromTo("#a1-trd", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 10.85);
+      tl.to("#a1-num", { opacity: 0, filter: "blur(10px)", duration: 0.35 }, 17.05);
+
+      /* ---------- B : four institutions named, then eighteen ---------- */
+      const big = [0, 1, 2, 3].map((i) => $("#a1-big" + i));
+      const NAMED = [11.43, 12.47, 13.23, 14.03];
+      const ROWS = [[960], [790, 1130], [620, 960, 1300], [450, 790, 1130, 1470]];
+      big.forEach((b, i) => tl.set(b, { x: 960, y: 540, opacity: 0 }, 0));
+      NAMED.forEach((t, step) => {
+        const xs = ROWS[step];
+        for (let i = 0; i <= step; i++) {
+          if (i === step) tl.fromTo(big[i], { x: xs[i] + 220, y: 540, opacity: 0, scale: 0.8, filter: "blur(14px)" }, { x: xs[i], opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, t - 0.08);
+          else tl.to(big[i], { x: xs[i], duration: 0.55, ease: "power3.inOut" }, t - 0.12);
+        }
+      });
+      tl.to("#a1-trd", { opacity: 0, duration: 0.2 }, 11.4);
+      tl.to("#a1-trl", { opacity: 0, duration: 0.3 }, 14.9);
+      // eighteen: the four big tiles fold into the grid while fourteen others arrive
+      const BIGIDX = [0, 1, 14, 5]; // CENAREF, Parquet, DGI, DGDA in the 18 list
+      minis.forEach((m) => tl.set(m.el, { x: m.g[0], y: m.g[1], opacity: 0 }, 0));
+      big.forEach((b, i) => {
+        const m = minis[BIGIDX[i]];
+        tl.to(b, { x: m.g[0], y: m.g[1], scaleX: 250 / 300, scaleY: 130 / 300, opacity: 0, duration: 0.5, ease: "power3.inOut" }, 14.95);
+        tl.fromTo(m.el, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 15.25);
+      });
+      let k = 0;
+      minis.forEach((m, i) => {
+        if (BIGIDX.includes(i)) return;
+        tl.fromTo(m.el, { opacity: 0, scale: 0.6, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 15.0 + k * 0.04);
+        k++;
+      });
+      tl.fromTo("#a1-unicep", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power2.out" }, 15.7);
+
+      /* ---------- C : silos ---------- */
+      tl.to("#a1-unicep", { opacity: 0, duration: 0.3 }, 17.1);
+      const r = rng(11);
+      minis.forEach((m, i) => {
+        tl.to(m.el, { x: m.s[0], y: m.s[1], rotation: (r() - 0.5) * 7, duration: 1.1, ease: "power3.inOut" }, 17.2 + i * 0.015);
+        const rect = m.el.querySelector(".wall rect");
+        tl.fromTo(rect, { attr: { "stroke-dasharray": "860 860", "stroke-dashoffset": 860 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.7, ease: "power2.inOut" }, 18.0 + i * 0.03);
+      });
+      // push in on two silos: CENAREF and the Parquet
+      const others = minis.filter((m, i) => i !== 0 && i !== 1).map((m) => m.el);
+      tl.to("#a1-world", { scale: 1.22, duration: 1.0, ease: "power2.inOut" }, 19.15);
+      tl.to(others, { opacity: 0.28, duration: 0.6 }, 19.2);
+      const route = $("#a1-route");
+      tl.fromTo(route, { opacity: 0, attr: { "stroke-dashoffset": 120 } }, { opacity: 1, attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 19.4);
+      const RL = route.getTotalLength ? (route.getTotalLength() || 560) : 560;
+      const P = (f) => (route.getPointAtLength ? route.getPointAtLength(RL * f) : { x: 690 + 540 * f, y: 560 - 60 * Math.sin(Math.PI * f) });
+      // the letter crawls, then stops halfway
+      const steps = 12;
+      gsap.set("#a1-mail", { opacity: 0 });
+      for (let s = 0; s <= steps; s++) {
+        const f = 0.02 + 0.40 * (1 - Math.pow(1 - s / steps, 2));
+        const p = P(f);
+        if (s === 0) tl.fromTo("#a1-mail", { x: p.x, y: p.y, opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 19.9);
+        else tl.to("#a1-mail", { x: p.x, y: p.y, duration: 1.35 / steps, ease: "none" }, 19.95 + (s - 1) * 1.35 / steps);
+      }
+      const stop = P(0.42);
+      gsap.set("#a1-relance", { left: stop.x - 90, top: stop.y - 110 });
+      tl.fromTo("#a1-relance", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 21.35);
+      gsap.set("#a1-b1", { left: 1090, top: 330 });
+      tl.fromTo("#a1-b1", { opacity: 0, y: 16, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.5)" }, 21.75);
+      gsap.set("#a1-b2", { left: 250, top: 700 });
+      tl.fromTo("#a1-b2", { opacity: 0, y: 16, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.5)" }, 22.2);
+      // delays roll, a piece is lost
+      gsap.set("#a1-days", { left: stop.x + 70, top: stop.y - 26 });
+      tl.fromTo("#a1-days", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 22.62);
+      tl.fromTo("#a1-dval .strip", { y: 0 }, { y: -52, duration: 0.19, ease: "power2.inOut" }, 22.95);
+      tl.to("#a1-dval .strip", { y: -104, duration: 0.19, ease: "power2.inOut" }, 23.15);
+      tl.to("#a1-dval .strip", { y: -156, duration: 0.25, ease: "power2.inOut" }, 23.35);
+      tl.fromTo("#a1-late", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 23.45);
+      gsap.set(["#a1-doc", "#a1-ghost"], { left: stop.x + 60, top: stop.y + 175 });
+      gsap.set("#a1-lost", { left: stop.x - 60, top: stop.y + 300 });
+      tl.fromTo("#a1-doc", { opacity: 0, y: -150, rotation: -4, scale: 0.6 }, { opacity: 1, y: 0, rotation: 9, scale: 1, duration: 0.45, ease: "power2.out" }, 23.78);
+      tl.to("#a1-doc", { opacity: 0, filter: "blur(6px)", duration: 0.35, ease: "power2.in" }, 24.35);
+      tl.fromTo("#a1-ghost", { opacity: 0, rotation: 9 }, { opacity: 1, duration: 0.3 }, 24.4);
+      tl.fromTo("#a1-lost", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3 }, 24.5);
+      // pull back: nothing reaches the end
+      tl.to("#a1-world", { scale: 1.0, duration: 0.9, ease: "power2.inOut" }, 24.95);
+      tl.to("#a1-world", { opacity: 0.42, duration: 0.6 }, 25.3);
+      tl.fromTo("#a1-stamp", { opacity: 0, scale: 2.3, rotation: -14 }, { opacity: 0.96, scale: 1, rotation: -7, duration: 0.17, ease: "power4.in" }, 25.75);
+      tl.to("#a1-B", { x: 7, duration: 0.04, ease: "none" }, 25.92);
+      tl.to("#a1-B", { x: -6, duration: 0.05, ease: "none" }, 25.96);
+      tl.to("#a1-B", { x: 3, duration: 0.05, ease: "none" }, 26.01);
+      tl.to("#a1-B", { x: 0, duration: 0.06, ease: "none" }, 26.06);
+      // implosion into one point of gold
+      tl.to("#a1-world", { scale: 0, opacity: 0, filter: "blur(16px)", duration: 0.65, ease: "power3.in" }, 27.7);
+      tl.to("#a1-stamp", { scale: 0, opacity: 0, filter: "blur(16px)", duration: 0.55, ease: "power3.in" }, 27.75);
+      tl.fromTo("#a1-dot", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 28.15);
+      window.__timelines["act1"] = tl;
+    })();
+  </script>
+</template>

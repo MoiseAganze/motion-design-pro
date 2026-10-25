@@ -1,0 +1,156 @@
+[
+ {
+  "id": "vo01",
+  "file": "assets/audio/vo/vo01.wav",
+  "src": [
+   0.0,
+   8.288
+  ],
+  "start": 0.6,
+  "dur": 8.288,
+  "end": 8.888
+ },
+ {
+  "id": "vo02",
+  "file": "assets/audio/vo/vo02.wav",
+  "src": [
+   8.288,
+   15.14
+  ],
+  "start": 9.6,
+  "dur": 6.852,
+  "end": 16.452
+ },
+ {
+  "id": "vo03",
+  "file": "assets/audio/vo/vo03.wav",
+  "src": [
+   15.14,
+   25.034
+  ],
+  "start": 17.1,
+  "dur": 9.894,
+  "end": 26.994
+ },
+ {
+  "id": "vo04",
+  "file": "assets/audio/vo/vo04.wav",
+  "src": [
+   25.034,
+   33.0
+  ],
+  "start": 29.6,
+  "dur": 7.966,
+  "end": 37.566
+ },
+ {
+  "id": "vo05",
+  "file": "assets/audio/vo/vo05.wav",
+  "src": [
+   33.0,
+   37.286
+  ],
+  "start": 39.0,
+  "dur": 4.286,
+  "end": 43.286
+ },
+ {
+  "id": "vo06",
+  "file": "assets/audio/vo/vo06.wav",
+  "src": [
+   37.286,
+   43.76
+  ],
+  "start": 44.9,
+  "dur": 6.474,
+  "end": 51.374
+ },
+ {
+  "id": "vo07",
+  "file": "assets/audio/vo/vo07.wav",
+  "src": [
+   43.76,
+   51.348
+  ],
+  "start": 52.6,
+  "dur": 7.588,
+  "end": 60.188
+ },
+ {
+  "id": "vo08",
+  "file": "assets/audio/vo/vo08.wav",
+  "src": [
+   51.348,
+   57.928
+  ],
+  "start": 60.9,
+  "dur": 6.58,
+  "end": 67.48
+ },
+ {
+  "id": "vo09",
+  "file": "assets/audio/vo/vo09.wav",
+  "src": [
+   57.928,
+   66.11
+  ],
+  "start": 68.6,
+  "dur": 8.182,
+  "end": 76.782
+ },
+ {
+  "id": "vo10",
+  "file": "assets/audio/vo/vo10.wav",
+  "src": [
+   66.11,
+   74.456
+  ],
+  "start": 80.9,
+  "dur": 8.346,
+  "end": 89.246
+ },
+ {
+  "id": "vo11",
+  "file": "assets/audio/vo/vo11.wav",
+  "src": [
+   74.456,
+   82.534
+  ],
+  "start": 89.8,
+  "dur": 8.078,
+  "end": 97.878
+ },
+ {
+  "id": "vo12",
+  "file": "assets/audio/vo/vo12.wav",
+  "src": [
+   82.534,
+   90.97
+  ],
+  "start": 98.6,
+  "dur": 8.436,
+  "end": 107.036
+ },
+ {
+  "id": "vo13",
+  "file": "assets/audio/vo/vo13.wav",
+  "src": [
+   90.97,
+   96.94
+  ],
+  "start": 107.6,
+  "dur": 5.97,
+  "end": 113.57
+ },
+ {
+  "id": "vo14",
+  "file": "assets/audio/vo/vo14.wav",
+  "src": [
+   96.94,
+   103.12
+  ],
+  "start": 115.0,
+  "dur": 6.18,
+  "end": 121.18
+ }
+]

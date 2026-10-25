@@ -1,0 +1,119 @@
+<template>
+  <style>
+    /*@BASE*/
+    #a8-logo-wrap { position: absolute; left: 0; top: 0; width: 240px; height: 300px; transform-origin: 50% 50%; }
+    #a8-logo { width: 240px; height: 300px; overflow: visible; }
+    #a8-word { position: absolute; left: 720px; top: 300px; font-family: "Fraunces", serif; font-weight: 700; font-size: 132px; letter-spacing: .14em; color: var(--cream); line-height: 1; white-space: nowrap; }
+    #a8-tag { position: absolute; left: 726px; top: 462px; font-family: "Fraunces", serif; font-weight: 600; font-size: 44px; color: var(--gold); white-space: nowrap; }
+    #a8-rule { position: absolute; left: 726px; top: 446px; width: 120px; height: 3px; background: var(--gold); transform-origin: 0 50%; }
+    #a8-pillars { position: absolute; left: 0; top: 618px; width: 1920px; display: flex; justify-content: center; gap: 120px; }
+    .pl { text-align: center; width: 300px; }
+    .pl i { display: block; width: 46px; height: 3px; margin: 0 auto 16px; background: var(--gold); }
+    .pl b { display: block; font-size: 36px; font-weight: 700; color: var(--cream); }
+    .pl span { display: block; font-size: 23px; font-weight: 600; letter-spacing: .08em; color: var(--gold2); margin-top: 6px; }
+    #a8-ring { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    #a8-cta { position: absolute; left: 0; width: 1920px; top: 800px; display: flex; justify-content: center; align-items: center; gap: 34px; }
+    #a8-btn { background: var(--gold); color: #031829; font-size: 32px; font-weight: 600; padding: 22px 38px; border-radius: 6px; box-shadow: 0 18px 40px rgba(216,168,40,.25); }
+    #a8-url { font-size: 34px; font-weight: 500; color: rgba(244,241,234,.85); letter-spacing: .01em; }
+    #a8-foot { position: absolute; left: 0; width: 1920px; top: 952px; text-align: center; font-size: 22px; font-weight: 500; color: rgba(244,241,234,.58); line-height: 1.55; }
+    #a8-word, #a8-tag, .pl b, .pl span { text-shadow: 0 0 22px #031829, 0 0 8px #031829, 0 0 3px #031829; }
+    #a8-flash { position: absolute; left: 0; top: 0; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; border: 3px solid var(--gold2); opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="act8" data-width="1920" data-height="1080">
+    <div class="stage">
+      <div class="cam" id="a8-cam">
+<!--@MAC:a8-->
+        <img class="ui" id="a8-s-adm" src="assets/ui/dash_admin.webp" alt="" />
+        <img class="ui" id="a8-s-land" src="assets/ui/landing.webp" alt="" style="opacity:0" />
+        <div id="a8-patch" style="position:absolute; left:952px; top:369px; width:180px; height:215px; background:#031829; opacity:0"></div>
+<!--@/MAC-->
+      </div>
+    </div>
+    <svg id="a8-ring" viewBox="0 0 1920 1080"></svg>
+    <div id="a8-flash"></div>
+    <div id="a8-logo-wrap"><!--@LOGO:a8-logo--></div>
+    <div id="a8-word">KWIKAMA</div>
+    <div id="a8-rule"></div>
+    <div id="a8-tag">Le bouclier numérique de l'UNICEP</div>
+    <div id="a8-pillars">
+      <div class="pl" id="a8-p0"><i></i><b>Détection</b><span>RI 6 · GAFI</span></div>
+      <div class="pl" id="a8-p1"><i></i><b>Répression</b><span>RI 7 · GAFI</span></div>
+      <div class="pl" id="a8-p2"><i></i><b>Recouvrement</b><span>RI 8 · GAFI</span></div>
+    </div>
+    <div id="a8-cta"><div id="a8-btn">Accéder à la plateforme</div><div id="a8-url">kwikama.vercel.app</div></div>
+    <div id="a8-foot">UNICEP · laboratoire hébergé à l'APLC · tutelle : Ministère de la Justice · appuis techniques : IDLO, GIZ<br/>Prototype de démonstration — données simulées, personnes et affaires fictives.</div>
+  </div>
+  <script>
+    /*@HELPERS*/
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const NS = "http://www.w3.org/2000/svg";
+      const tl = gsap.timeline({ paused: true });
+      const OV = { x: 0, y: 30, scale: 0.8, rotationX: 8, rotationY: -6 };
+      gsap.set("#a8-cam", OV);
+      gsap.set("#a8-cur", { opacity: 0 });
+      gsap.set(["#a8-logo-wrap", "#a8-word", "#a8-tag", "#a8-rule", "#a8-pillars", "#a8-cta", "#a8-foot"], { opacity: 0 });
+      const NODES = [[164.9, 47.2, 9.6], [239.9, 102.7, 10.6], [138.5, 158.5, 7.0], [256.0, 165.4, 6.4], [226.3, 182.5, 12.6], [105.4, 258.6, 10.6], [165.9, 282.8, 8.8]];
+      const svg = $("#a8-logo");
+      const ng = document.createElementNS(NS, "g");
+      NODES.forEach(([x, y, r], i) => { const c = document.createElementNS(NS, "circle"); c.id = "a8-n" + i; c.setAttribute("cx", x * 8); c.setAttribute("cy", y * 8); c.setAttribute("r", r * 8); c.setAttribute("fill", "#F6D77A"); c.setAttribute("opacity", "0"); ng.appendChild(c); });
+      svg.appendChild(ng);
+
+      /* 1. the real home page, its shield lifts out of the screen */
+      tl.to("#a8-cam", { filter: "blur(10px)", duration: 0.15 }, 0.05);
+      swap(tl, "#a8-s-adm", "#a8-s-land", 0.2);
+      tl.to("#a8-cam", { filter: "blur(0px)", duration: 0.2 }, 0.2);
+      const CL = camAt(1068, 490, 1.35, 960, 520);
+      tl.to("#a8-cam", Object.assign({ duration: 0.75, ease: "power2.inOut" }, CL), 0.15);
+      // frame rect of the shield on screen under CL (page box 984,384 168x211)
+      const pc = sp(1068, 489.5);
+      const fc = { x: 960 + CL.scale * (pc.X - 960) + CL.x, y: 540 + CL.scale * (pc.Y - 540) + CL.y };
+      const hScreen = 211 * K * CL.scale;
+      const FINAL = { x: 560, y: 400, h: 300 };
+      tl.set("#a8-logo-wrap", { opacity: 1, x: fc.x - 120, y: fc.y - 150, scale: hScreen / 300 }, 0.92);
+      tl.set("#a8-patch", { opacity: 1 }, 0.92);
+      tl.to("#a8-logo-wrap", { x: FINAL.x - 120, y: FINAL.y - 150, scale: 1, duration: 0.5, ease: "power3.inOut" }, 0.95);
+      tl.to("#a8-cam", { y: "+=1300", rotationX: 24, opacity: 0, duration: 0.6, ease: "power3.in" }, 0.92);
+      // landing on the downbeat
+      tl.set("#a8-flash", { x: FINAL.x, y: FINAL.y }, 0);
+      tl.fromTo("#a8-flash", { scale: 0.5, opacity: 1 }, { scale: 16, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }, 1.2);
+      NODES.forEach((n, i) => {
+        tl.fromTo("#a8-n" + i, { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none", immediateRender: false }, 1.25 + i * 0.08);
+        tl.to("#a8-n" + i, { opacity: 0, duration: 0.45, ease: "power2.out" }, 1.37 + i * 0.08);
+      });
+      // wordmark and promise
+      tl.fromTo("#a8-word", { opacity: 1, clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 0.75, ease: "power3.out" }, 1.3);
+      tl.fromTo("#a8-rule", { opacity: 1, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.45, ease: "power3.out" }, 1.75);
+      tl.fromTo("#a8-tag", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power2.out" }, 1.85);
+      // détecter, réprimer, recouvrer
+      tl.set("#a8-pillars", { opacity: 1 }, 2.1);
+      ["#a8-p0", "#a8-p1", "#a8-p2"].forEach((p, i) => {
+        tl.fromTo(p, { opacity: 0, y: 18, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, [2.2, 3.03, 3.95][i]);
+        tl.fromTo(p + " i", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power3.out" }, [2.25, 3.08, 4.0][i]);
+      });
+      /* 2. eighteen institutions, one file */
+      const ring = $("#a8-ring");
+      let rs = "";
+      for (let i = 0; i < 18; i++) {
+        const a = -Math.PI / 2 + i * (2 * Math.PI / 18);
+        const x = 960 + 860 * Math.cos(a), y = 520 + 430 * Math.sin(a);
+        const L = Math.hypot(x - FINAL.x, y - FINAL.y);
+        rs += `<line id="a8-l${i}" x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${FINAL.x}" y2="${FINAL.y}" stroke="#D8A828" stroke-width="1.6" opacity="0.32" stroke-dasharray="${L.toFixed(1)} ${L.toFixed(1)}" stroke-dashoffset="${L.toFixed(1)}"/>`;
+        rs += `<circle id="a8-d${i}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="#ECC657" opacity="0"/>`;
+      }
+      ring.innerHTML = rs;
+      for (let i = 0; i < 18; i++) {
+        tl.fromTo("#a8-d" + i, { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 4.85 + i * 0.035);
+        tl.to("#a8-l" + i, { attr: { "stroke-dashoffset": 0 }, duration: 0.7, ease: "power2.out" }, 5.0 + i * 0.035);
+      }
+      tl.to("#a8-ring line", { opacity: 0.75, duration: 0.25, ease: "power2.out" }, 6.38);
+      tl.to("#a8-ring line", { opacity: 0.0, duration: 0.9, ease: "power2.inOut" }, 6.9);
+      tl.to("#a8-ring circle", { opacity: 0.0, duration: 0.9, ease: "power2.inOut" }, 7.1);
+      /* 3. call to action */
+      tl.fromTo("#a8-cta", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, 7.35);
+      tl.fromTo("#a8-foot", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, 7.55);
+      window.__timelines["act8"] = tl;
+    })();
+  </script>
+</template>

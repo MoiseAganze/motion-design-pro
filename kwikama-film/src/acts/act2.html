@@ -1,0 +1,123 @@
+<template>
+  <style>
+    /*@BASE*/
+    #a2-flash { position: absolute; left: 960px; top: 540px; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; border: 3px solid var(--gold2); }
+    #a2-dot { position: absolute; left: 948px; top: 528px; width: 24px; height: 24px; border-radius: 50%; background: var(--gold2); box-shadow: 0 0 30px 8px rgba(236,198,87,.55); }
+    #a2-logo-wrap { position: absolute; left: 800px; top: 230px; width: 320px; height: 400px; transform-origin: 160px 200px; }
+    #a2-logo { width: 320px; height: 400px; overflow: visible; }
+    #a2-word { position: absolute; left: 0; width: 1920px; top: 668px; text-align: center; font-family: "Fraunces", serif; font-weight: 700; font-size: 108px; letter-spacing: .14em; color: var(--cream); line-height: 1; padding-left: .14em; }
+    #a2-tag { position: absolute; left: 0; width: 1920px; top: 812px; text-align: center; font-size: 38px; font-weight: 500; color: var(--gold); }
+    #a2-lines { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    .a2-t { position: absolute; left: 0; top: 0; width: 210px; height: 88px; margin: -44px 0 0 -105px; border-radius: 18px; background: rgba(10,44,71,.9);
+      border: 1.5px solid rgba(216,168,40,.55); display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10px;
+      font-size: 28px; font-weight: 700; color: var(--cream); line-height: 1.05; box-shadow: 0 16px 34px rgba(0,0,0,.35); }
+    #a2-folder { position: absolute; left: 670px; top: 360px; width: 580px; height: 350px; }
+    #a2-folder .tab { position: absolute; left: 0; top: -44px; width: 250px; height: 56px; border-radius: 14px 14px 0 0; background: #efe7d6; color: var(--ink);
+      font-size: 26px; font-weight: 700; padding: 11px 22px; letter-spacing: .02em; }
+    #a2-folder .body { position: absolute; inset: 0; border-radius: 0 16px 16px 16px; background: var(--paper); color: var(--ink); padding: 34px 38px;
+      box-shadow: 0 40px 90px rgba(0,0,0,.5); border-top: 6px solid var(--gold); }
+    #a2-folder .lb { font-size: 21px; font-weight: 700; letter-spacing: .1em; color: #8a6512; }
+    #a2-folder .tt { font-size: 36px; font-weight: 700; line-height: 1.18; margin-top: 16px; }
+    #a2-folder .rw { display: flex; justify-content: space-between; align-items: baseline; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+    #a2-folder .rw span { font-size: 24px; font-weight: 500; color: var(--muted); }
+    #a2-folder .rw b { font-family: "Fraunces", serif; font-size: 40px; font-weight: 600; color: var(--ink); }
+  </style>
+  <div id="root" data-composition-id="act2" data-width="1920" data-height="1080">
+    <svg id="a2-lines" viewBox="0 0 1920 1080"></svg>
+    <div id="a2-ring"></div>
+    <div id="a2-logo-wrap"><!--@LOGO:a2-logo--></div>
+    <div id="a2-flash"></div>
+    <div id="a2-dot"></div>
+    <div id="a2-word">KWIKAMA</div>
+    <div id="a2-tag"><span class="w">«</span> <span class="w">intégrité</span> <span class="w">»</span> <span class="w">en</span> <span class="w">kikongo</span></div>
+    <div class="stage" id="a2-stage">
+      <div class="cam" id="a2-cam">
+<!--@MAC:a2-->
+        <img class="ui" id="a2-s-conn" src="assets/ui/connexion.webp" alt="" />
+<!--@/MAC-->
+      </div>
+    </div>
+    <div id="a2-folder">
+      <div class="tab">DPJ-2026-014</div>
+      <div class="body">
+        <div class="lb">FILIÈRE UNICEP · ENQUÊTE FINANCIÈRE PARALLÈLE</div>
+        <div class="tt">Redevances minières — permis du ressort de Kolwezi</div>
+        <div class="rw"><span>Préjudice estimé</span><b>12 600 000 $US</b></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    /*@HELPERS*/
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const NS = "http://www.w3.org/2000/svg";
+      const tl = gsap.timeline({ paused: true });
+      const svg = $("#a2-logo");
+      svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+      // constellation nodes measured on the official logo (png px, x8 = viewBox units)
+      const NODES = [[164.9, 47.2, 9.6], [239.9, 102.7, 10.6], [138.5, 158.5, 7.0], [256.0, 165.4, 6.4], [226.3, 182.5, 12.6], [105.4, 258.6, 10.6], [165.9, 282.8, 8.8]];
+      const C = [1104, 1384];
+      // mask that lets the constellation's lines connect outward from the centre
+      const defs = document.createElementNS(NS, "defs");
+      defs.innerHTML = '<mask id="a2-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="2208" height="2768"><circle id="a2-mc" cx="1104" cy="1384" r="0" fill="#fff"/></mask>';
+      svg.insertBefore(defs, svg.firstChild);
+      $("#a2-logo-gold").setAttribute("mask", "url(#a2-mask)");
+      const ng = document.createElementNS(NS, "g"); ng.id = "a2-nodes";
+      NODES.forEach(([x, y, r], i) => { const c = document.createElementNS(NS, "circle"); c.setAttribute("fill", "#D5AC3C"); c.setAttribute("cx", C[0]); c.setAttribute("cy", C[1]); c.setAttribute("r", 0); c.id = "a2-n" + i; ng.appendChild(c); });
+      svg.appendChild(ng);
+
+      /* 1. the point of gold bursts into the constellation, the shield forms */
+      tl.fromTo("#a2-dot", { scale: 1, opacity: 1 }, { scale: 2.2, opacity: 0, duration: 0.3, ease: "power2.out" }, 0.0);
+      tl.fromTo("#a2-flash", { scale: 0.4, opacity: 1 }, { scale: 22, opacity: 0, duration: 0.9, ease: "power2.out" }, 0.0);
+      NODES.forEach(([x, y, r], i) => {
+        tl.fromTo("#a2-n" + i, { attr: { cx: C[0], cy: C[1], r: 0 } }, { attr: { cx: x * 8, cy: y * 8, r: r * 8 }, duration: 0.7, ease: "expo.out" }, 0.06 + i * 0.04);
+      });
+      tl.fromTo("#a2-mc", { attr: { r: 0 } }, { attr: { r: 1900 }, duration: 0.85, ease: "power2.inOut" }, 0.45);
+      tl.fromTo("#a2-logo-navy", { opacity: 0, scale: 0.9, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, 1.0);
+      tl.fromTo("#a2-logo-sil", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 1.38);
+      tl.fromTo("#a2-logo-wrap", { scale: 1.12 }, { scale: 1, duration: 1.6, ease: "power3.out" }, 0.2);
+      // wordmark wipes in on "Kwikama", the meaning follows
+      tl.fromTo("#a2-word", { clipPath: "inset(0 100% 0 0)", opacity: 1 }, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "power3.out" }, 1.45);
+      wordsIn(tl, $$("#a2-tag .w"), 2.55, 0.08);
+
+      /* 2. the eighteen institutions come back, this time linked to one shield */
+      tl.to(["#a2-word", "#a2-tag"], { opacity: 0, filter: "blur(10px)", duration: 0.3, ease: "power2.in" }, 4.15);
+      tl.to("#a2-logo-wrap", { y: 40, scale: 0.62, duration: 0.8, ease: "power3.inOut" }, 4.25);
+      const NAMES = ["CENAREF", "Parquet Général", "PJ / PNC", "APLC", "IGF", "DGDA", "GUCE", "COGEBISCO", "OSCEP", "DGM", "ICCN", "DIAF", "OAD", "Min. Défense", "DGI", "ANR", "Auditorat Général", "Cour des comptes"];
+      const ring = $("#a2-ring"), lines = $("#a2-lines");
+      const HX = 960, HY = 470;
+      let ls = "";
+      NAMES.forEach((n, i) => {
+        const a = -Math.PI / 2 + i * (2 * Math.PI / 18);
+        const x = 960 + 770 * Math.cos(a), y = 470 + 385 * Math.sin(a);
+        const d = document.createElement("div"); d.className = "a2-t"; d.id = "a2-t" + i; d.textContent = n; ring.appendChild(d);
+        const from = { x: 960 + 1500 * Math.cos(a), y: 470 + 900 * Math.sin(a) };
+        tl.fromTo(d, { x: from.x, y: from.y, opacity: 0, filter: "blur(12px)" }, { x, y, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "expo.out" }, 4.35 + i * 0.03);
+        const len = Math.hypot(x - HX, y - HY);
+        ls += `<line id="a2-l${i}" x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${HX}" y2="${HY}" stroke="#D8A828" stroke-width="2.5" stroke-dasharray="${len.toFixed(1)} ${len.toFixed(1)}" stroke-dashoffset="${len.toFixed(1)}" opacity="0.85"/>`;
+        ls += `<circle id="a2-p${i}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6" fill="#ECC657" opacity="0"/>`;
+        d.dataset.len = len; d.dataset.x = x; d.dataset.y = y;
+      });
+      lines.innerHTML = ls;
+      $$(".a2-t").forEach((d, i) => {
+        tl.to("#a2-l" + i, { attr: { "stroke-dashoffset": 0 }, duration: 0.55, ease: "power2.out" }, 5.6 + i * 0.04);
+        tl.set("#a2-p" + i, { opacity: 1 }, 6.0 + i * 0.04);
+        tl.fromTo("#a2-p" + i, { attr: { cx: +d.dataset.x, cy: +d.dataset.y } }, { attr: { cx: HX, cy: HY }, duration: 0.7, ease: "power1.in", immediateRender: false }, 6.0 + i * 0.04);
+        tl.set("#a2-p" + i, { opacity: 0 }, 6.7 + i * 0.04);
+      });
+
+      /* 3. ... around a single file */
+      tl.to("#a2-logo-wrap", { opacity: 0.0, scale: 0.4, duration: 0.45, ease: "power3.in" }, 7.35);
+      tl.fromTo("#a2-folder", { opacity: 0, scale: 0.55, y: 40, filter: "blur(10px)" }, { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", duration: 0.75, ease: "expo.out" }, 7.45);
+
+      /* 4. into the MacBook */
+      tl.to(["#a2-ring", "#a2-lines"], { opacity: 0, filter: "blur(10px)", scale: 1.08, transformOrigin: "960px 540px", duration: 0.5, ease: "power2.in" }, 8.55);
+      tl.fromTo("#a2-cam", { y: 1150, scale: 0.8, rotationX: 24, rotationY: -6 }, { y: 30, scale: 0.8, rotationX: 8, rotationY: -6, duration: 1.3, ease: "power3.out" }, 8.6);
+      tl.to("#a2-folder", { y: 70, scale: 0.18, opacity: 0, filter: "blur(4px)", duration: 0.75, ease: "power3.in" }, 8.75);
+      gsap.set("#a2-cur", { opacity: 0 });
+      gsap.set("#a2-cam", { opacity: 1 });
+      window.__timelines["act2"] = tl;
+    })();
+  </script>
+</template>

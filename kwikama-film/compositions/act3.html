@@ -1,0 +1,257 @@
+<template>
+  <style>
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/Fraunces-Variable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: block; }
+#root {
+  position: absolute; inset: 0; overflow: hidden;
+  --navy: #031829; --navy2: #052033; --navy3: #0a2c47; --navy4: #13385a;
+  --gold: #d8a828; --gold2: #ecc657; --cream: #f4f1ea; --paper: #fbf9f5;
+  --ink: #13181e; --muted: #5b6470; --line: #e8e3d8;
+  --blue: #13487f; --bluebg: #e6edf5; --green: #1e6b4f; --greenbg: #e3efe9;
+  --red: #9b2c24; --redbg: #f7e6e4; --amber: #8a6512; --amberbg: #f6ecd2;
+  font-family: "Inter", sans-serif; color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+#root * { box-sizing: border-box; }
+.abs { position: absolute; }
+.serif { font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -0.01em; }
+.gold { color: var(--gold); }
+.w { display: inline-block; }
+/* ---------- stage, camera, MacBook ---------- */
+.stage { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 960px 540px; }
+.cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 540px; transform-style: preserve-3d; }
+.mac { position: absolute; left: 242px; top: 70px; width: 1436px; height: 947px; }
+.mac-shadow { position: absolute; left: 60px; right: 60px; top: 880px; height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+.mac-lid { position: absolute; left: 0; top: 0; width: 1436px; height: 921px; border-radius: 30px 30px 12px 12px;
+  background: linear-gradient(180deg, #e4e6e9 0%, #b9bdc3 55%, #9ea2a8 100%); padding: 3px;
+  box-shadow: 0 50px 110px rgba(0,0,0,.50), 0 0 0 1px rgba(255,255,255,.08) inset; }
+.mac-bezel { position: absolute; inset: 3px; border-radius: 27px 27px 9px 9px; background: #0b0b0c; }
+.mac-screen { position: absolute; left: 15px; top: 21px; width: 1400px; height: 875px; overflow: hidden; background: var(--paper); border-radius: 7px; }
+.mac-screen > img.ui { position: absolute; left: 0; top: 0; width: 1400px; height: auto; display: block; }
+.mac-glare { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 38%); }
+.mac-notch { position: absolute; top: 0; left: 50%; width: 184px; height: 30px; margin-left: -92px; background: #0b0b0c; border-radius: 0 0 13px 13px; }
+.mac-notch i { position: absolute; left: 50%; top: 10px; width: 9px; height: 9px; margin-left: -4px; border-radius: 50%; background: #1d2633; box-shadow: 0 0 0 2px #121519; }
+.mac-base { position: absolute; left: -62px; top: 919px; width: 1560px; height: 28px; border-radius: 3px 3px 22px 22px;
+  background: linear-gradient(180deg, #f1f2f3 0%, #d3d5d8 30%, #a8abb0 75%, #7e8187 100%); }
+.mac-groove { position: absolute; left: 50%; top: 0; width: 250px; height: 10px; margin-left: -125px; border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, #8f9297, #c9cbcf); }
+.cursor { position: absolute; left: 0; top: 0; width: 40px; height: 57px; transform-origin: 3px 3px; z-index: 50; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
+/* ---------- recurring UI pieces rebuilt from the app ---------- */
+.chip { display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-weight: 600; font-size: 24px; line-height: 1; padding: 9px 16px 9px 14px; border-radius: 6px; white-space: nowrap; }
+.chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.chip.green { color: var(--green); background: var(--greenbg); }
+.chip.red { color: var(--red); background: var(--redbg); }
+.chip.blue { color: var(--blue); background: var(--bluebg); }
+.chip.amber { color: var(--amber); background: var(--amberbg); }
+.chip.beige { color: #6b5d45; background: #efe9dc; }
+.card { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 14px; color: var(--ink);
+  box-shadow: 0 30px 70px rgba(3,24,41,.38), 0 4px 14px rgba(3,24,41,.18); }
+.label { font-family: "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: .09em; text-transform: uppercase; color: #6b7480; }
+.persona { position: absolute; display: flex; align-items: center; gap: 18px; padding: 16px 26px 16px 16px; border-radius: 14px;
+  background: rgba(3,24,41,.92); border: 1px solid rgba(244,241,234,.14); color: var(--cream); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.persona .av { width: 62px; height: 62px; border-radius: 50%; background: var(--navy3); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; color: var(--cream); }
+.persona .nm { font-weight: 600; font-size: 28px; line-height: 1.15; }
+.persona .rl { font-weight: 500; font-size: 22px; color: rgba(244,241,234,.66); margin-top: 3px; }
+.digits { display: inline-flex; overflow: hidden; vertical-align: top; }
+.digit { display: inline-block; overflow: hidden; position: relative; }
+.digit .strip { display: flex; flex-direction: column; }
+.digit .strip span { display: block; text-align: center; }
+
+    .half { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; background-size: 1400px 875px; background-repeat: no-repeat; }
+    .clipL { clip-path: inset(0 38.89% 0 0); }
+    .clipR { clip-path: inset(0 0 0 61.11%); }
+    #a3-vwin { position: absolute; left: 248.9px; top: 102.1px; width: 1151.1px; height: 772.9px; overflow: hidden; }
+    #a3-vwin img { position: absolute; left: -248.9px; top: -102.1px; width: 1400px; height: auto; }
+    .rc { position: absolute; left: 0; top: 0; width: 780px; height: 140px; background: #fff; border-radius: 16px; color: var(--ink);
+      border-left: 6px solid var(--gold); box-shadow: 0 26px 60px rgba(0,0,0,.42); display: flex; align-items: center; padding: 0 26px 0 22px; gap: 20px; transform-origin: 50% 50%; }
+    .rc .av { flex: none; width: 70px; height: 70px; border-radius: 50%; background: var(--navy); color: var(--cream); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 26px; }
+    .rc .tx { flex: 1; min-width: 0; }
+    .rc .ro { font-size: 30px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
+    .rc .pe { font-size: 23px; font-weight: 500; color: var(--muted); margin-top: 6px; white-space: nowrap; }
+    .rc .rt { flex: none; width: 250px; text-align: right; white-space: nowrap; }
+    .rc .hb { display: inline-block; white-space: nowrap; font-size: 18px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 7px 11px; border-radius: 6px; }
+    .hb.def { background: var(--navy); color: var(--cream); }
+    .hb.con { background: var(--bluebg); color: var(--blue); }
+    .hb.res { background: #efe9dc; color: #6b5d45; }
+    .rc .md { margin-top: 12px; white-space: nowrap; display: flex; align-items: center; justify-content: flex-end; gap: 10px; font-size: 22px; font-weight: 600; color: var(--muted); }
+    .rc .bar { width: 96px; height: 8px; border-radius: 4px; background: #ece6da; overflow: hidden; }
+    .rc .bar i { display: block; height: 100%; background: var(--gold); transform-origin: 0 50%; }
+    #a3-persona { left: 70px; top: 930px; }
+  </style>
+  <div id="root" data-composition-id="act3" data-width="1920" data-height="1080">
+    <div class="stage">
+      <div class="cam" id="a3-cam">
+<div class="mac" id="a3-mac">
+  <div class="mac-shadow"></div>
+  <div class="mac-base"><div class="mac-groove"></div></div>
+  <div class="mac-lid">
+    <div class="mac-bezel">
+      <div class="mac-screen" id="a3-screen">
+
+        <img class="ui" id="a3-s-conn" src="assets/ui/connexion_full.webp" alt="" />
+        <img class="ui" id="a3-s-dash" src="assets/ui/dash_coord.webp" alt="" style="opacity:0" />
+        <div class="half" id="a3-s-ver" style="opacity:0; background-image:url('assets/ui/verification.webp')"><div id="a3-vwin"><img id="a3-s-verfull" src="assets/ui/verification_full.webp" alt="" /></div></div>
+        <div class="half clipL" id="a3-s-v0L" style="opacity:0; background-image:url('assets/ui/verif_0.webp')"></div>
+        <div class="half clipR" id="a3-s-v0R" style="opacity:0; background-image:url('assets/ui/verif_0.webp')"></div>
+        <img class="ui" id="a3-s-v1" src="assets/ui/verif_1.webp" alt="" style="opacity:0" />
+        <img class="ui" id="a3-s-v2" src="assets/ui/verif_2.webp" alt="" style="opacity:0" />
+        <img class="ui" id="a3-s-v3" src="assets/ui/verif_3.webp" alt="" style="opacity:0" />
+        <img class="ui" id="a3-s-after" src="assets/ui/verif_after.webp" alt="" style="opacity:0" />
+        <div class="half clipL" id="a3-s-v4L" style="opacity:0; background-image:url('assets/ui/verif_4.webp')"></div>
+        <div class="half clipR" id="a3-s-v4R" style="opacity:0; background-image:url('assets/ui/verif_4.webp')"></div>
+
+        <svg class="cursor" id="a3-cur" viewBox="0 0 28 40"><path d="M2 2 L2 31.5 L9.6 24.4 L14.6 36.2 L19.4 34.1 L14.4 22.6 L24.6 22.6 Z" fill="#101215" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round"/></svg>
+        <div class="mac-glare"></div>
+      </div>
+      <div class="mac-notch"><i></i></div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+    <div id="a3-cards"></div>
+    <div class="persona" id="a3-persona"><div class="av">IM</div><div><div class="nm">Ilunga Mwadi Josephine</div><div class="rl">Coordonnatrice de l'UNICEP · confidentiel défense</div></div></div>
+  </div>
+  <script>
+    /* ---- shared helpers (inlined into every act by tools/build.mjs) ---- */
+const K = 1400 / 1440;            // page px -> screen px
+const SCR = { x: 260, y: 94 };    // screen top-left inside .cam at scale 1
+function sp(sx, sy) { return { X: SCR.x + sx * K, Y: SCR.y + sy * K }; }
+// camera vars that put page point (sx, sy) of the Mac screen at frame point (fx, fy) with scale S
+function camAt(sx, sy, S, fx, fy, extra) {
+  const p = sp(sx, sy); fx = fx === undefined ? 960 : fx; fy = fy === undefined ? 540 : fy;
+  return Object.assign({ x: fx - 960 - S * (p.X - 960), y: fy - 540 - S * (p.Y - 540), scale: S, rotationX: 0, rotationY: 0 }, extra || {});
+}
+// cursor tip at page point (sx, sy) inside the screen
+function curPos(sx, sy) { return { x: sx * K - 3, y: sy * K - 3 }; }
+function click(tl, cur, t) {
+  tl.to(cur, { scale: 0.8, duration: 0.07, ease: "power2.out" }, t);
+  tl.to(cur, { scale: 1, duration: 0.16, ease: "power2.out" }, t + 0.07);
+}
+// show one screen layer at time t (instant swap, like the real UI)
+function swap(tl, from, to, t, fade) {
+  if (fade) { tl.to(to, { opacity: 1, duration: fade, ease: "none" }, t); if (from) tl.set(from, { opacity: 0 }, t + fade); }
+  else { tl.set(to, { opacity: 1 }, t); if (from) tl.set(from, { opacity: 0 }, t); }
+}
+// words: blur-in one by one
+function wordsIn(tl, els, t, gap, dur) {
+  gap = gap === undefined ? 0.07 : gap; dur = dur || 0.32;
+  tl.fromTo(els, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: dur, ease: "power2.out", stagger: gap }, t);
+}
+function wordsOut(tl, els, t, dur) {
+  tl.to(els, { opacity: 0, filter: "blur(10px)", duration: dur || 0.22, ease: "power2.in", stagger: 0.03 }, t);
+}
+// odometer number: build digit strips inside el for the string `str`; returns strips
+function odo(el, str, h) {
+  el.innerHTML = "";
+  const strips = [];
+  for (const ch of str) {
+    if (/\d/.test(ch)) {
+      const d = document.createElement("span"); d.className = "digit"; d.style.height = h + "px";
+      const s = document.createElement("span"); s.className = "strip";
+      for (let k = 0; k <= 19; k++) { const n = document.createElement("span"); n.textContent = k % 10; n.style.height = h + "px"; n.style.lineHeight = h + "px"; s.appendChild(n); }
+      d.appendChild(s); el.appendChild(d); strips.push({ s, v: +ch });
+    } else { const n = document.createElement("span"); n.textContent = ch; n.style.display = "inline-block"; n.style.lineHeight = h + "px"; el.appendChild(n); }
+  }
+  return strips;
+}
+// roll strips from 0 to their digit (plus one full turn) between t and t+dur
+function odoRoll(tl, strips, h, t, dur) {
+  strips.forEach((o, i) => {
+    tl.fromTo(o.s, { y: 0 }, { y: -(10 + o.v) * h, duration: dur - i * 0.04, ease: "power3.out" }, t + i * 0.04);
+  });
+}
+// mulberry32 PRNG
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const tl = gsap.timeline({ paused: true });
+      const cur = "#a3-cur";
+      const OV = { x: 0, y: 30, scale: 0.8, rotationX: 8, rotationY: -6 };
+      gsap.set("#a3-cam", OV);
+      gsap.set(cur, Object.assign(curPos(1240, 980), { opacity: 0 }));
+
+      /* 1. the role cards of the login page */
+      const SCROLL = 990;
+      tl.fromTo("#a3-s-conn", { y: 0 }, { y: -SCROLL * K, duration: 1.25, ease: "power2.inOut" }, 0.15);
+      const CR = camAt(1015, 500, 1.12, 1180, 560);
+      tl.to("#a3-cam", Object.assign({ duration: 1.35, ease: "power2.inOut" }, CR), 0.1);
+      // frame position of a viewport point under CR
+      const F = (sx, sy) => { const p = sp(sx, sy); return { x: 960 + CR.scale * (p.X - 960) + CR.x, y: 540 + CR.scale * (p.Y - 540) + CR.y }; };
+      const ROLES = [
+        ["IM", "Coordonnateur UNICEP", "Ilunga Mwadi Josephine · UNICEP", "def", "Confidentiel défense", 14, [667, 1137]],
+        ["MK", "Magistrat du Parquet", "Mulumba Kanyinda Victor · Parquet", "def", "Confidentiel défense", 6, [1021, 1137]],
+        ["KT", "Juriste", "Kalonji Tshibola Armand · APLC", "con", "Confidentiel", 9, [1021, 1603]],
+        ["MK", "Enquêteur", "Mukendi Kasongo Fabrice · APLC", "res", "Restreint", 8, [667, 1603]],
+        ["ML", "Point focal", "Masudi Lofombo Chantal · CENAREF", "res", "Restreint", 4, [667, 1847]]
+      ];
+      const box = $("#a3-cards");
+      ROLES.forEach((r, i) => {
+        const d = document.createElement("div"); d.className = "rc"; d.id = "a3-rc" + i;
+        d.innerHTML = `<div class="av">${r[0]}</div><div class="tx"><div class="ro">${r[1]}</div><div class="pe">${r[2]}</div></div>` +
+          `<div class="rt"><span class="hb ${r[3]}">${r[4]}</span><div class="md"><span id="a3-mn${i}">${r[5]} modules</span><span class="bar"><i id="a3-mb${i}"></i></span></div></div>`;
+        box.appendChild(d);
+        const src = F(r[6][0] + 171, r[6][1] - SCROLL + 116);
+        const dst = { x: 70 + i * 24, y: 150 + i * 160 };
+        tl.fromTo(d, { x: src.x - 320, y: src.y - 70, scale: 0.55, opacity: 0, filter: "blur(6px)" },
+          { x: dst.x, y: dst.y, scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.75, ease: "expo.out" }, 1.45 + i * 0.13);
+        // least privilege: each role sees only its modules
+        tl.fromTo("#a3-mb" + i, { scaleX: 0 }, { scaleX: r[5] / 14, duration: 0.5, ease: "power2.out" }, 2.45 + i * 0.32);
+        tl.fromTo("#a3-mn" + i, { color: "#5b6470" }, { color: "#8a6512", duration: 0.2 }, 2.45 + i * 0.32);
+        tl.to(d, { x: dst.x - 60, opacity: 0, filter: "blur(10px)", duration: 0.35, ease: "power3.in" }, 4.55 + i * 0.05);
+      });
+
+      /* 2. the coordinator signs in */
+      tl.to(cur, Object.assign({ opacity: 1, duration: 0.01 }), 4.3);
+      tl.fromTo(cur, curPos(1150, 820), Object.assign(curPos(860, 300), { duration: 0.6, ease: "power3.inOut", immediateRender: false }), 4.35);
+      click(tl, cur, 5.0);
+      swap(tl, "#a3-s-conn", "#a3-s-dash", 5.06, 0.14);
+      tl.to("#a3-cam", Object.assign({ duration: 0.9, ease: "power2.inOut" }, camAt(720, 450, 0.9, 960, 520)), 5.1);
+      tl.fromTo("#a3-persona", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "expo.out" }, 5.45);
+      // sidebar: Vérification
+      tl.to(cur, Object.assign(curPos(120, 248), { duration: 0.55, ease: "power3.inOut" }), 5.35);
+      click(tl, cur, 5.95);
+      swap(tl, "#a3-s-dash", "#a3-s-ver", 6.0, 0.12);
+
+      /* 3. the decision received is checked first (manual §9.3) */
+      tl.fromTo("#a3-s-verfull", { y: 0 }, { y: -350 * K, duration: 0.6, ease: "power2.inOut", immediateRender: false }, 6.3);
+      tl.to(cur, Object.assign(curPos(840, 1099 - 350 + 58), { duration: 0.65, ease: "power3.inOut" }), 6.3);
+      click(tl, cur, 7.0);
+      // drawer opens: the list behind dims, the drawer slides in from the right
+      tl.to("#a3-s-verfull", { y: -106 * K, duration: 0.35, ease: "power3.out" }, 7.05);
+      tl.fromTo("#a3-s-v0L", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, 7.12);
+      tl.set("#a3-s-v0R", { opacity: 1 }, 7.05);
+      tl.fromTo("#a3-s-v0R", { x: 560 * K }, { x: 0, duration: 0.4, ease: "power3.out", immediateRender: false }, 7.05);
+      tl.set("#a3-s-ver", { opacity: 0 }, 7.5);
+      // punch in on the controls
+      tl.to("#a3-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(1155, 560, 1.62)), 7.55);
+      tl.to(cur, Object.assign(curPos(1180, 300), { duration: 0.6, ease: "power2.inOut" }), 7.6);
+      // compétence de l'autorité — Oui
+      tl.to(cur, Object.assign(curPos(950, 400), { duration: 0.55, ease: "power3.inOut" }), 8.35);
+      click(tl, cur, 8.95); swap(tl, "#a3-s-v0R", "#a3-s-v1", 8.97); tl.set("#a3-s-v0L", { opacity: 0 }, 8.97);
+      // références de procédure — Oui
+      tl.to(cur, Object.assign(curPos(950, 532), { duration: 0.5, ease: "power3.inOut" }), 9.8);
+      click(tl, cur, 10.35); swap(tl, "#a3-s-v1", "#a3-s-v2", 10.37);
+      // droits des tiers — Non (no violation)
+      tl.to(cur, Object.assign(curPos(1016, 685), { duration: 0.5, ease: "power3.inOut" }), 11.2);
+      click(tl, cur, 11.75); swap(tl, "#a3-s-v2", "#a3-s-v3", 11.77);
+      // recherches initiales — Oui
+      tl.to(cur, Object.assign(curPos(950, 810), { duration: 0.4, ease: "power3.inOut" }), 11.95);
+      click(tl, cur, 12.38);
+      tl.set(["#a3-s-v4L", "#a3-s-v4R"], { opacity: 1 }, 12.4); tl.set("#a3-s-v3", { opacity: 0 }, 12.4);
+      // valider la régularité
+      tl.to(cur, Object.assign(curPos(1338, 864), { duration: 0.45, ease: "power3.inOut" }), 12.55);
+      click(tl, cur, 13.05);
+      tl.set("#a3-s-after", { opacity: 1 }, 13.08);
+      tl.to("#a3-s-v4R", { x: 560 * K, duration: 0.35, ease: "power3.in" }, 13.08);
+      tl.to("#a3-s-v4L", { opacity: 0, duration: 0.3, ease: "none" }, 13.08);
+      tl.to("#a3-cam", Object.assign({ duration: 0.75, ease: "power2.inOut" }, camAt(848, 480, 1.05)), 13.05);
+      tl.to(cur, { opacity: 0, duration: 0.2 }, 13.5);
+      window.__timelines["act3"] = tl;
+    })();
+  </script>
+</template>
