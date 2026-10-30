@@ -401,16 +401,12 @@
     }
   },
   "checks": {
-    "latest": {
-      "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
-      "id": "99256e19-f1fe-4469-b737-9f8c831333d2"
-    },
+    "latest": null,
     "revisions": {
       "1ef08555-31ca-4508-8d9c-fdb80b01d1f2": [
         {
           "id": "99256e19-f1fe-4469-b737-9f8c831333d2",
           "scope": "project",
-          "report": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/checks/99256e19-f1fe-4469-b737-9f8c831333d2.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -432,7 +428,9 @@
           "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
           "inputFingerprint": "a117edcd5f8d6bc1f2cc6326495ff7ce6656169f979e604e850e5a99df274979",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         }
       ]
     },
@@ -440,15 +438,14 @@
   },
   "snapshots": {
     "latest": {
-      "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
-      "id": "f4af649f-23e1-448f-928a-55864d09f153-6"
+      "revision": null,
+      "id": "a3a515d3-a98c-46f7-ac2e-141b7628a8ce-10"
     },
     "revisions": {
       "a8c6c460-907b-4981-b4f2-8ec73862e56a": [
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-0",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-00-at-0.5s.png",
           "time": 0.5,
           "metadata": {
             "width": 1080,
@@ -463,12 +460,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-1",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-01-at-30.8s.png",
           "time": 30.8,
           "metadata": {
             "width": 1080,
@@ -483,12 +481,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-2",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-02-at-32.4s.png",
           "time": 32.4,
           "metadata": {
             "width": 1080,
@@ -503,12 +502,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-3",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-03-at-33.9s.png",
           "time": 33.9,
           "metadata": {
             "width": 1080,
@@ -523,12 +523,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-4",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-04-at-34.6s.png",
           "time": 34.6,
           "metadata": {
             "width": 1080,
@@ -543,12 +544,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-5",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-05-at-35.8s.png",
           "time": 35.8,
           "metadata": {
             "width": 1080,
@@ -563,12 +565,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-6",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-06-at-36.9s.png",
           "time": 36.9,
           "metadata": {
             "width": 1080,
@@ -583,12 +586,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-7",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-07-at-38.3s.png",
           "time": 38.3,
           "metadata": {
             "width": 1080,
@@ -603,12 +607,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-8",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-08-at-40.2s.png",
           "time": 40.2,
           "metadata": {
             "width": 1080,
@@ -623,12 +628,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-9",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-09-at-44.2s.png",
           "time": 44.2,
           "metadata": {
             "width": 1080,
@@ -643,12 +649,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-10",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-10-at-47.9s.png",
           "time": 47.9,
           "metadata": {
             "width": 1080,
@@ -663,12 +670,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-11",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-11-at-49.6s.png",
           "time": 49.6,
           "metadata": {
             "width": 1080,
@@ -683,12 +691,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-12",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-12-at-50.3s.png",
           "time": 50.3,
           "metadata": {
             "width": 1080,
@@ -703,12 +712,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-13",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-13-at-52.6s.png",
           "time": 52.6,
           "metadata": {
             "width": 1080,
@@ -723,12 +733,13 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "0d7363eb-1619-4967-b2f6-324c606d2de6-14",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/058c8a6b-173d-46ea-a7ce-1603fafdd53b/frame-14-at-55.75s.png",
           "time": 55.75,
           "metadata": {
             "width": 1080,
@@ -743,14 +754,15 @@
           "revision": "a8c6c460-907b-4981-b4f2-8ec73862e56a",
           "inputFingerprint": "74899fa64bb33c0d2b7b34ae0cdd6f5779a8d7ca8f6050db4c91cee1a00fbc5f",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         }
       ],
       "1ef08555-31ca-4508-8d9c-fdb80b01d1f2": [
         {
           "scope": "full",
           "id": "f4af649f-23e1-448f-928a-55864d09f153-0",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/74c01046-114c-4989-953c-752fcd677721/frame-00-at-26.6s.png",
           "time": 26.6,
           "metadata": {
             "width": 1080,
@@ -765,12 +777,13 @@
           "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
           "inputFingerprint": "a117edcd5f8d6bc1f2cc6326495ff7ce6656169f979e604e850e5a99df274979",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "f4af649f-23e1-448f-928a-55864d09f153-1",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/74c01046-114c-4989-953c-752fcd677721/frame-01-at-30.6s.png",
           "time": 30.6,
           "metadata": {
             "width": 1080,
@@ -785,12 +798,13 @@
           "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
           "inputFingerprint": "a117edcd5f8d6bc1f2cc6326495ff7ce6656169f979e604e850e5a99df274979",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "f4af649f-23e1-448f-928a-55864d09f153-2",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/74c01046-114c-4989-953c-752fcd677721/frame-02-at-31.6s.png",
           "time": 31.6,
           "metadata": {
             "width": 1080,
@@ -805,12 +819,13 @@
           "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
           "inputFingerprint": "a117edcd5f8d6bc1f2cc6326495ff7ce6656169f979e604e850e5a99df274979",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "f4af649f-23e1-448f-928a-55864d09f153-3",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/74c01046-114c-4989-953c-752fcd677721/frame-03-at-33.4s.png",
           "time": 33.4,
           "metadata": {
             "width": 1080,
@@ -825,12 +840,13 @@
           "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
           "inputFingerprint": "a117edcd5f8d6bc1f2cc6326495ff7ce6656169f979e604e850e5a99df274979",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "f4af649f-23e1-448f-928a-55864d09f153-4",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/74c01046-114c-4989-953c-752fcd677721/frame-04-at-35.9s.png",
           "time": 35.9,
           "metadata": {
             "width": 1080,
@@ -845,12 +861,13 @@
           "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
           "inputFingerprint": "a117edcd5f8d6bc1f2cc6326495ff7ce6656169f979e604e850e5a99df274979",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "f4af649f-23e1-448f-928a-55864d09f153-5",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/74c01046-114c-4989-953c-752fcd677721/frame-05-at-47.9s.png",
           "time": 47.9,
           "metadata": {
             "width": 1080,
@@ -865,12 +882,13 @@
           "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
           "inputFingerprint": "a117edcd5f8d6bc1f2cc6326495ff7ce6656169f979e604e850e5a99df274979",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         },
         {
           "scope": "full",
           "id": "f4af649f-23e1-448f-928a-55864d09f153-6",
-          "image": "/home/user/motion-design-pro/formation-n8n-vertical/.hyperframes/artifacts/snapshots/74c01046-114c-4989-953c-752fcd677721/frame-06-at-55.75s.png",
           "time": 55.75,
           "metadata": {
             "width": 1080,
@@ -885,7 +903,9 @@
           "revision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
           "inputFingerprint": "a117edcd5f8d6bc1f2cc6326495ff7ce6656169f979e604e850e5a99df274979",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d"
         }
       ]
     },
@@ -1151,5 +1171,18 @@
         "attribution": "unversioned"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "d3e0c1e1-4f40-4f24-bce5-c6df575dc87d",
+      "completedAt": 1793371196314,
+      "output": "/home/user/motion-design-pro/formation-n8n-vertical/renders/formation-n8n-tiktok-9x16.mp4",
+      "status": "completed",
+      "revision": "56b03a0b-68a8-4641-9c9a-547ecb7c6a57"
+    },
+    "retainedRevisions": [
+      "56b03a0b-68a8-4641-9c9a-547ecb7c6a57"
+    ]
+  },
+  "pendingArtifactCleanup": []
 }
