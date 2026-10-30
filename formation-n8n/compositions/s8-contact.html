@@ -1,0 +1,355 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-ground, #f4f8fd);
+      font-family: var(--font-display, "Poppins"), sans-serif;
+      color: var(--color-ink, #0b2a45);
+    }
+    #s8-light {
+      position: absolute;
+      left: -200px;
+      top: -300px;
+      width: 2300px;
+      height: 1900px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 120, 195, 0.16) 0%, rgba(10, 164, 188, 0.06) 42%, rgba(0, 120, 195, 0) 66%);
+    }
+    /* the room, carried over from s7 and folded into a card */
+    #s8-room {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      clip-path: inset(0px 0px 0px 0px round 0px);
+    }
+    #s8-photo {
+      position: absolute;
+      left: 0;
+      top: -180px;
+      width: 1920px;
+      height: 1440px;
+      transform-origin: 905px 735px;
+    }
+    #s8-photo img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1440px;
+    }
+    #s8-tv {
+      position: absolute;
+      left: 826px;
+      top: 691px;
+      width: 158px;
+      height: 88px;
+      background: #171717;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    #s8-tv img {
+      position: absolute;
+      left: 2px;
+      top: 9px;
+      width: 154px;
+      height: 70px;
+    }
+    #s8-label {
+      position: absolute;
+      left: 120px;
+      top: 770px;
+      padding: 30px 40px 32px;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 30px 70px rgba(11, 42, 69, 0.25), 0 3px 8px rgba(11, 42, 69, 0.1);
+      transform-origin: 0 100%;
+    }
+    #s8-label .s8-name {
+      font-weight: 800;
+      font-size: 80px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    #s8-label .s8-where {
+      margin-top: 12px;
+      font-weight: 600;
+      font-size: 40px;
+      color: var(--color-accent, #0078c3);
+    }
+    /* registration */
+    #s8-form {
+      position: absolute;
+      left: 1000px;
+      top: 200px;
+      width: 800px;
+      height: 620px;
+      padding: 56px 56px;
+      border-radius: 28px;
+      background: #fff;
+      box-shadow: 0 30px 70px rgba(11, 42, 69, 0.16), 0 3px 8px rgba(11, 42, 69, 0.08);
+    }
+    .s8-item {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      margin-bottom: 34px;
+    }
+    .s8-ico {
+      flex: none;
+      width: 84px;
+      height: 84px;
+      border-radius: 22px;
+      background: rgba(0, 120, 195, 0.1);
+    }
+    .s8-ico svg {
+      width: 84px;
+      height: 84px;
+    }
+    .s8-item .s8-t {
+      font-weight: 700;
+      font-size: 50px;
+      line-height: 1.12;
+    }
+    #s8-cta {
+      position: absolute;
+      left: 56px;
+      right: 56px;
+      bottom: 56px;
+      height: 132px;
+      border-radius: 24px;
+      background: var(--color-accent, #0078c3);
+      color: #fff;
+      font-weight: 700;
+      font-size: 52px;
+      line-height: 132px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0, 120, 195, 0.35);
+    }
+    #s8-arrow {
+      display: inline-block;
+      width: 52px;
+      height: 52px;
+      margin-left: 14px;
+      vertical-align: -8px;
+    }
+    /* contacts */
+    #s8-q {
+      position: absolute;
+      left: 0;
+      top: 120px;
+      width: 1920px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 120px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    #s8-q span {
+      display: inline-block;
+    }
+    .s8-card {
+      position: absolute;
+      top: 360px;
+      width: 790px;
+      height: 520px;
+      border-radius: 30px;
+      background: #fff;
+      box-shadow: 0 30px 70px rgba(11, 42, 69, 0.16), 0 3px 8px rgba(11, 42, 69, 0.08);
+      overflow: hidden;
+    }
+    #s8-site {
+      left: 130px;
+    }
+    #s8-wa {
+      left: 1000px;
+    }
+    .s8-chrome {
+      height: 92px;
+      background: #eef3f9;
+      border-bottom: 2px solid #dde6f0;
+    }
+    .s8-chrome i {
+      position: absolute;
+      top: 34px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+    .s8-url {
+      position: absolute;
+      left: 150px;
+      right: 40px;
+      top: 18px;
+      height: 56px;
+      border-radius: 14px;
+      background: #fff;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+      font-weight: 600;
+      font-size: 28px;
+      line-height: 56px;
+      padding-left: 64px;
+      color: #4a6178;
+    }
+    .s8-url svg {
+      position: absolute;
+      left: 22px;
+      top: 14px;
+      width: 28px;
+      height: 28px;
+    }
+    .s8-kind {
+      position: absolute;
+      left: 60px;
+      top: 150px;
+      font-weight: 600;
+      font-size: 40px;
+      color: #4a6178;
+    }
+    .s8-big {
+      position: absolute;
+      left: 60px;
+      top: 226px;
+      font-weight: 800;
+      font-size: 66px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    #s8-site .s8-big {
+      color: var(--color-accent, #0078c3);
+    }
+    .s8-foot {
+      position: absolute;
+      left: 60px;
+      bottom: 56px;
+      font-weight: 600;
+      font-size: 34px;
+      color: #4a6178;
+    }
+    #s8-wa-badge {
+      position: absolute;
+      left: 60px;
+      top: 54px;
+      width: 120px;
+      height: 120px;
+      border-radius: 32px;
+      background: #25d366;
+    }
+    #s8-wa-badge img {
+      position: absolute;
+      left: 24px;
+      top: 24px;
+      width: 72px;
+      height: 72px;
+    }
+    #s8-wa .s8-kind {
+      left: 210px;
+      top: 88px;
+      color: #0b2a45;
+      font-weight: 700;
+      font-size: 48px;
+    }
+    #s8-num {
+      position: absolute;
+      left: 60px;
+      top: 240px;
+      font-weight: 800;
+      font-size: 78px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    #s8-num span {
+      display: inline-block;
+    }
+  </style>
+
+  <div id="root" data-composition-id="s8" data-width="1920" data-height="1080">
+    <div id="s8-light" data-layout-ignore></div>
+
+    <div id="s8-room">
+      <div id="s8-photo">
+        <img src="assets/img/salle-silikin-village.jpg" alt="Salle de formation, Silikin Village, Kinshasa" />
+        <div id="s8-tv"><img src="assets/img/workflow-courriers-esursi.png" alt="" /></div>
+      </div>
+    </div>
+    <div id="s8-label">
+      <div class="s8-name">Silikin Village</div>
+      <div class="s8-where">Kinshasa · RDC</div>
+    </div>
+
+    <!-- "Le formulaire d'inscription et tous les détails : lien en description" -->
+    <div id="s8-form">
+      <div class="s8-item" id="s8-i1">
+        <div class="s8-ico"><svg viewBox="0 0 84 84" fill="none" stroke="#0078C3" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><rect x="24" y="18" width="36" height="48" rx="5" /><path d="M32 32 H52 M32 42 H52 M32 52 H44" /></svg></div>
+        <div class="s8-t">Formulaire d'inscription</div>
+      </div>
+      <div class="s8-item" id="s8-i2">
+        <div class="s8-ico"><svg viewBox="0 0 84 84" fill="none" stroke="#0078C3" stroke-width="4.5" stroke-linecap="round"><circle cx="42" cy="42" r="22" /><path d="M42 38 V54" /><circle cx="42" cy="30" r="1.5" fill="#0078C3" /></svg></div>
+        <div class="s8-t">Tous les détails<br />de la formation</div>
+      </div>
+      <div id="s8-cta">Lien en description<svg id="s8-arrow" viewBox="0 0 52 52" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M26 8 V42 M12 29 L26 43 L40 29" /></svg></div>
+    </div>
+
+    <!-- "Des questions ? Contactez-nous…" -->
+    <div id="s8-q"><span>Des</span> <span>questions</span> <span>?</span></div>
+    <div class="s8-card" id="s8-site">
+      <div class="s8-chrome"><i style="left: 34px; background: #ff5f57"></i><i style="left: 70px; background: #febc2e"></i><i style="left: 106px; background: #28c840"></i><div class="s8-url"><svg viewBox="0 0 28 28" fill="none" stroke="#4A6178" stroke-width="2.6"><rect x="6" y="12" width="16" height="12" rx="2" /><path d="M9 12 V9 A5 5 0 0 1 19 9 V12" /></svg>https://chronoconcept.net</div></div>
+      <div class="s8-kind">Site web</div>
+      <div class="s8-big">chronoconcept.net</div>
+      <div class="s8-foot">CHRONOCONCEPT GROUP</div>
+    </div>
+    <div class="s8-card" id="s8-wa">
+      <div id="s8-wa-badge"><img src="assets/icons/whatsapp-blanc.svg" alt="" /></div>
+      <div class="s8-kind">WhatsApp</div>
+      <div id="s8-num"><span id="s8-g1">+243</span> <span id="s8-g2">853</span> <span id="s8-g3">420</span> <span id="s8-g4">317</span></div>
+      <div class="s8-foot">Écrivez-nous ou appelez-nous</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // ---- carry across (0.0): the room of s7 folds into a card on the left
+      tl.set("#s8-photo", { scale: 1.03 }, 0);
+      tl.fromTo("#s8-room", { clipPath: "inset(0px 0px 0px 0px round 0px)" }, { clipPath: "inset(200px 980px 260px 120px round 28px)", duration: 0.7, ease: "power3.inOut" }, 0.05);
+      tl.to("#s8-photo", { scale: 0.6, x: 530 - 905, y: 510 - 555, duration: 0.7, ease: "power3.inOut" }, 0.05);
+      tl.to("#s8-label", { x: 30, y: -177, scale: 0.72, duration: 0.7, ease: "power3.inOut" }, 0.05);
+      tl.fromTo("#s8-light", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.2);
+
+      // ---- "Le formulaire d'inscription" (0.09) / "tous les détails" (0.82)
+      tl.fromTo("#s8-form", { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.65, ease: "expo.out" }, 0.42);
+      tl.fromTo("#s8-i1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 0.55);
+      tl.fromTo("#s8-i2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 0.95);
+      // ---- "lien en description" (2.34): the button lands, its arrow points down to the description
+      tl.fromTo("#s8-cta", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, 2.25);
+      tl.fromTo("#s8-arrow", { y: -10 }, { y: 8, duration: 0.3, yoyo: true, repeat: 3, ease: "power1.inOut" }, 2.5);
+
+      // ---- "Des questions ?" (3.54): everything clears for the two ways to reach them
+      tl.to(["#s8-room", "#s8-label"], { opacity: 0, x: "-=120", filter: "blur(8px)", duration: 0.35, ease: "power3.in" }, 3.3);
+      tl.to("#s8-form", { opacity: 0, x: 120, filter: "blur(8px)", duration: 0.35, ease: "power3.in" }, 3.3);
+      tl.fromTo("#s8-q span", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, stagger: 0.1, ease: "power2.out" }, 3.55);
+
+      // ---- "chronoconcept.net" (5.14)
+      tl.fromTo("#s8-site", { opacity: 0, y: 80, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 4.75);
+      // ---- "ou sur WhatsApp au" (6.9), the number typed group by group as it is spoken
+      tl.fromTo("#s8-wa", { opacity: 0, y: 80, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 6.75);
+      [
+        ["#s8-g1", 7.74],
+        ["#s8-g2", 8.68],
+        ["#s8-g3", 9.48],
+        ["#s8-g4", 10.16],
+      ].forEach(([g, at]) => tl.fromTo(g, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.22, ease: "expo.out" }, at));
+
+      // ---- exit (11.0) into the end card
+      tl.to(["#s8-q", "#s8-site", "#s8-wa"], { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.3, stagger: 0.04, ease: "power3.in" }, 11.05);
+
+      window.__timelines["s8"] = tl;
+    })();
+  </script>
+</template>

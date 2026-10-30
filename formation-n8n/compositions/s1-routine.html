@@ -1,0 +1,363 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-ground, #f4f8fd);
+      font-family: var(--font-display, "Poppins"), sans-serif;
+      color: var(--color-ink, #0b2a45);
+    }
+    .s1-light {
+      position: absolute;
+      border-radius: 50%;
+    }
+    #s1-light-a {
+      left: 560px;
+      top: -340px;
+      width: 1800px;
+      height: 1800px;
+      background: radial-gradient(circle, rgba(0, 120, 195, 0.22) 0%, rgba(0, 120, 195, 0.08) 38%, rgba(0, 120, 195, 0) 66%);
+    }
+    #s1-light-b {
+      left: -520px;
+      top: 420px;
+      width: 1400px;
+      height: 1400px;
+      background: radial-gradient(circle, rgba(10, 164, 188, 0.16) 0%, rgba(10, 164, 188, 0) 64%);
+    }
+    #s1-rings {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    /* title column */
+    #s1-title {
+      position: absolute;
+      left: 140px;
+      top: 300px;
+      width: 640px;
+    }
+    .s1-line {
+      font-weight: 800;
+      font-size: 112px;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+    .s1-line span,
+    .s1-q span {
+      display: inline-block;
+    }
+    #s1-l3 {
+      margin-top: 26px;
+      font-weight: 700;
+      font-size: 58px;
+      color: var(--color-accent, #0078c3);
+      letter-spacing: -0.01em;
+    }
+    #s1-q {
+      position: absolute;
+      left: 140px;
+      top: 330px;
+      width: 760px;
+    }
+    #s1-q1 {
+      font-weight: 800;
+      font-size: 170px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    #s1-q2 {
+      margin-top: 24px;
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 1.1;
+      color: var(--color-accent, #0078c3);
+    }
+    /* orbit */
+    #s1-orbit {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      transform-origin: 1260px 560px;
+    }
+    .s1-tile {
+      position: absolute;
+      width: 124px;
+      height: 124px;
+      border-radius: 30px;
+      background: #fff;
+      box-shadow: 0 22px 48px rgba(11, 42, 69, 0.14), 0 2px 6px rgba(11, 42, 69, 0.08);
+    }
+    .s1-tile img {
+      position: absolute;
+      left: 30px;
+      top: 30px;
+      width: 64px;
+      height: 64px;
+    }
+    .s1-badge {
+      position: absolute;
+      right: -14px;
+      top: -14px;
+      min-width: 50px;
+      height: 50px;
+      padding: 0 12px;
+      border-radius: 25px;
+      background: #e5484d;
+      color: #fff;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 50px;
+      text-align: center;
+      box-shadow: 0 6px 14px rgba(229, 72, 77, 0.35);
+    }
+    /* clock */
+    #s1-hub {
+      position: absolute;
+      left: 1070px;
+      top: 370px;
+      width: 380px;
+      height: 380px;
+    }
+    #s1-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 30px 70px rgba(11, 42, 69, 0.18), 0 3px 8px rgba(11, 42, 69, 0.08);
+    }
+    #s1-face svg {
+      position: absolute;
+      inset: 0;
+    }
+    #s1-chip {
+      position: absolute;
+      left: 1170px;
+      top: 778px;
+      width: 180px;
+      height: 64px;
+      border-radius: 16px;
+      background: var(--color-ink, #0b2a45);
+      color: #fff;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 64px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    /* cards */
+    .s1-card {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 24px 16px 18px;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 18px 40px rgba(11, 42, 69, 0.13), 0 2px 6px rgba(11, 42, 69, 0.07);
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+      font-weight: 600;
+      font-size: 28px;
+      white-space: nowrap;
+      color: var(--color-ink, #0b2a45);
+    }
+    .s1-card img {
+      width: 36px;
+      height: 36px;
+    }
+    .s1-card .s1-tag {
+      font-weight: 700;
+      color: #e5484d;
+    }
+    #s1-sheet {
+      position: absolute;
+      left: 300px;
+      top: 740px;
+      width: 520px;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 18px 40px rgba(11, 42, 69, 0.13), 0 2px 6px rgba(11, 42, 69, 0.07);
+      overflow: hidden;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+    }
+    .s1-row {
+      display: flex;
+      height: 52px;
+      line-height: 52px;
+      border-top: 2px solid #e6edf5;
+    }
+    .s1-row div {
+      flex: 1;
+      padding-left: 18px;
+    }
+    .s1-row div + div {
+      border-left: 2px solid #e6edf5;
+    }
+    .s1-row.s1-head {
+      border-top: none;
+      background: #34a853;
+      color: #fff;
+    }
+  </style>
+
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080">
+    <div id="s1-light-a" class="s1-light" data-layout-ignore></div>
+    <div id="s1-light-b" class="s1-light" data-layout-ignore></div>
+
+    <svg id="s1-rings" viewBox="0 0 1920 1080" fill="none" stroke="#054C7A" stroke-opacity="0.08" stroke-width="2">
+      <circle cx="1260" cy="560" r="280" />
+      <circle cx="1260" cy="560" r="420" stroke-dasharray="4 14" />
+      <circle cx="1260" cy="560" r="560" />
+    </svg>
+
+    <!-- the title that is already there on frame 0 (thumbnail) -->
+    <div id="s1-title">
+      <div class="s1-line"><span>Les</span> <span>mêmes</span></div>
+      <div class="s1-line"><span>tâches.</span></div>
+      <div class="s1-line" id="s1-l3"><span>Tous</span> <span>les</span> <span>jours.</span></div>
+    </div>
+    <div id="s1-q">
+      <div id="s1-q1" class="s1-q"><span>Et</span> <span>si…</span></div>
+      <div id="s1-q2" class="s1-q"><span>tout</span> <span>tournait</span><br /><span>tout</span> <span>seul</span> <span>?</span></div>
+    </div>
+
+    <!-- apps orbiting the day -->
+    <div id="s1-orbit">
+      <div class="s1-tile" id="s1-t-gmail" style="left: 818px; top: 318px"><img src="assets/icons/gmail.svg" alt="" /><div class="s1-badge" id="s1-b-gmail">3</div></div>
+      <div class="s1-tile" id="s1-t-cal" style="left: 1118px; top: 88px"><img src="assets/icons/googlecalendar.svg" alt="" /><div class="s1-badge" id="s1-b-cal">1</div></div>
+      <div class="s1-tile" id="s1-t-wa" style="left: 1588px; top: 238px"><img src="assets/icons/whatsapp.svg" alt="" /><div class="s1-badge" id="s1-b-wa">2</div></div>
+      <div class="s1-tile" id="s1-t-tg" style="left: 1658px; top: 668px"><img src="assets/icons/telegram.svg" alt="" /></div>
+      <div class="s1-tile" id="s1-t-drive" style="left: 1288px; top: 878px"><img src="assets/icons/googledrive.svg" alt="" /></div>
+      <div class="s1-tile" id="s1-t-sheets" style="left: 868px; top: 728px"><img src="assets/icons/googlesheets.svg" alt="" /></div>
+    </div>
+
+    <!-- the clock: CHRONO -->
+    <div id="s1-hub">
+      <div id="s1-face">
+        <svg viewBox="0 0 380 380" width="380" height="380">
+          <path d="M190.0 40.0L190.0 14.0M265.0 60.1L278.0 37.6M319.9 115.0L342.4 102.0M340.0 190.0L366.0 190.0M319.9 265.0L342.4 278.0M265.0 319.9L278.0 342.4M190.0 340.0L190.0 366.0M115.0 319.9L102.0 342.4M60.1 265.0L37.6 278.0M40.0 190.0L14.0 190.0M60.1 115.0L37.6 102.0M115.0 60.1L102.0 37.6" stroke="#054C7A" stroke-width="7" stroke-linecap="round" />
+          <path d="M207.4 24.9L208.4 15.0M224.5 27.6L226.6 17.8M241.3 32.1L244.4 22.6M257.5 38.4L261.6 29.2M287.6 55.7L293.5 47.6M301.1 66.6L307.8 59.2M313.4 78.9L320.8 72.2M324.3 92.4L332.4 86.5M341.6 122.5L350.8 118.4M347.9 138.7L357.4 135.6M352.4 155.5L362.2 153.4M355.1 172.6L365.0 171.6M355.1 207.4L365.0 208.4M352.4 224.5L362.2 226.6M347.9 241.3L357.4 244.4M341.6 257.5L350.8 261.6M324.3 287.6L332.4 293.5M313.4 301.1L320.8 307.8M301.1 313.4L307.8 320.8M287.6 324.3L293.5 332.4M257.5 341.6L261.6 350.8M241.3 347.9L244.4 357.4M224.5 352.4L226.6 362.2M207.4 355.1L208.4 365.0M172.6 355.1L171.6 365.0M155.5 352.4L153.4 362.2M138.7 347.9L135.6 357.4M122.5 341.6L118.4 350.8M92.4 324.3L86.5 332.4M78.9 313.4L72.2 320.8M66.6 301.1L59.2 307.8M55.7 287.6L47.6 293.5M38.4 257.5L29.2 261.6M32.1 241.3L22.6 244.4M27.6 224.5L17.8 226.6M24.9 207.4L15.0 208.4M24.9 172.6L15.0 171.6M27.6 155.5L17.8 153.4M32.1 138.7L22.6 135.6M38.4 122.5L29.2 118.4M55.7 92.4L47.6 86.5M66.6 78.9L59.2 72.2M78.9 66.6L72.2 59.2M92.4 55.7L86.5 47.6M122.5 38.4L118.4 29.2M138.7 32.1L135.6 22.6M155.5 27.6L153.4 17.8M172.6 24.9L171.6 15.0" stroke="#9FB6CC" stroke-width="3" stroke-linecap="round" />
+          <g id="s1-hand-h"><rect x="182" y="96" width="16" height="108" rx="8" fill="#0B2A45" /></g>
+          <g id="s1-hand-m"><rect x="184.5" y="52" width="11" height="152" rx="5.5" fill="#054C7A" /></g>
+          <g id="s1-hand-s"><rect x="187.5" y="36" width="5" height="186" rx="2.5" fill="#0AA4BC" /><circle cx="190" cy="70" r="11" fill="#0AA4BC" /></g>
+          <circle cx="190" cy="190" r="15" fill="#0B2A45" />
+          <circle cx="190" cy="190" r="6" fill="#0AA4BC" />
+        </svg>
+      </div>
+    </div>
+    <div id="s1-chip">08:00</div>
+
+    <!-- "Répondre aux mêmes e-mails…" -->
+    <div class="s1-card" id="s1-mail-1" style="left: 600px; top: 64px"><img src="assets/icons/gmail.svg" alt="" /><span class="s1-tag">Re :</span> Facture n°2041</div>
+    <div class="s1-card" id="s1-mail-2" style="left: 660px; top: 150px"><img src="assets/icons/gmail.svg" alt="" /><span class="s1-tag">Re :</span> Demande de devis</div>
+
+    <!-- "copier les mêmes données…" -->
+    <div id="s1-sheet">
+      <div class="s1-row s1-head"><div>Client</div><div>Montant</div><div>Statut</div></div>
+      <div class="s1-row" id="s1-r1"><div>Client A</div><div>1 200</div><div>Payé</div></div>
+      <div class="s1-row" id="s1-r2"><div>Client A</div><div>1 200</div><div>Payé</div></div>
+      <div class="s1-row" id="s1-r3"><div>Client A</div><div>1 200</div><div>Payé</div></div>
+    </div>
+
+    <!-- "relancer, encore et encore" -->
+    <div class="s1-card" id="s1-rel-1" style="left: 1480px; top: 410px"><img src="assets/icons/whatsapp.svg" alt="" />Relance : devis</div>
+    <div class="s1-card" id="s1-rel-2" style="left: 1500px; top: 492px"><img src="assets/icons/googlecalendar.svg" alt="" />Relance : rendez-vous</div>
+    <div class="s1-card" id="s1-rel-3" style="left: 1488px; top: 574px"><img src="assets/icons/whatsapp.svg" alt="" />Relance : paiement</div>
+    <div class="s1-card" id="s1-rel-4" style="left: 1510px; top: 520px"><img src="assets/icons/telegram.svg" alt="" />Relance : facture</div>
+    <div class="s1-card" id="s1-rel-5" style="left: 1484px; top: 448px"><img src="assets/icons/gmail.svg" alt="" />Relance : paiement</div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const $ = (s) => document.querySelector(s);
+      const HUB = "190 190";
+
+      // ---- the light and the orbit move gently the whole time (the world, not the titles)
+      tl.fromTo("#s1-light-a", { x: 0, y: 0 }, { x: -40, y: 24, duration: 10, ease: "none" }, 0);
+      tl.fromTo("#s1-light-b", { x: 0, y: 0 }, { x: 36, y: -20, duration: 10, ease: "none" }, 0);
+      tl.fromTo("#s1-orbit", { rotation: 0 }, { rotation: 16, duration: 9.2, ease: "none" }, 0);
+      tl.fromTo(".s1-tile", { rotation: 0 }, { rotation: -16, duration: 9.2, ease: "none" }, 0);
+
+      // ---- clock: the second hand ticks on every "tic" of the score (0.5 s), until "Et si"
+      tl.set("#s1-hand-s", { rotation: 0, svgOrigin: HUB }, 0);
+      for (let k = 1; k <= 14; k++) {
+        tl.to("#s1-hand-s", { rotation: k * 6, svgOrigin: HUB, duration: 0.12, ease: "back.out(3)" }, k * 0.5);
+      }
+      // hours pass: 08:00 -> 09:10 slowly, then 18:47 on "encore et encore"
+      const time = { m: 480 };
+      const chip = $("#s1-chip");
+      const drawClock = () => {
+        const m = time.m;
+        const hh = Math.floor(m / 60) % 24;
+        const mm = Math.floor(m % 60);
+        chip.textContent = String(hh).padStart(2, "0") + ":" + String(mm).padStart(2, "0");
+        gsap.set("#s1-hand-m", { rotation: (m % 60) * 6, svgOrigin: HUB });
+        gsap.set("#s1-hand-h", { rotation: ((m / 60) % 12) * 30, svgOrigin: HUB });
+      };
+      tl.fromTo(time, { m: 480 }, { m: 550, duration: 4.2, ease: "none", onUpdate: drawClock }, 0);
+      tl.to(time, { m: 1127, duration: 2.7, ease: "power2.in", onUpdate: drawClock }, 4.2);
+      drawClock();
+
+      // ---- "Répondre aux mêmes e-mails…" (0.72): badges climb, replies pile up
+      const count = (id, from, to, at, dur) => {
+        const o = { v: from };
+        const el = $(id);
+        tl.fromTo(o, { v: from }, { v: to, duration: dur, ease: "power1.in", onUpdate: () => (el.textContent = Math.round(o.v)) }, at);
+        tl.fromTo(id, { scale: 1 }, { scale: 1.25, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, at);
+      };
+      count("#s1-b-gmail", 3, 27, 0.8, 1.4);
+      const pop = (id, at, rot) =>
+        tl.fromTo(id, { opacity: 0, scale: 0.82, y: 26, rotation: 0 }, { opacity: 1, scale: 1, y: 0, rotation: rot || 0, duration: 0.45, ease: "back.out(1.6)" }, at);
+      pop("#s1-mail-1", 0.75, -1.5);
+      pop("#s1-mail-2", 1.15, 1.2);
+
+      // ---- "copier les mêmes données…" (2.56): the same row, pasted again and again
+      tl.fromTo("#s1-sheet", { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }, 2.45);
+      tl.fromTo("#s1-t-sheets", { scale: 1 }, { scale: 1.12, duration: 0.14, yoyo: true, repeat: 1, ease: "power2.out" }, 2.5);
+      ["#s1-r2", "#s1-r3"].forEach((r, i) => {
+        const at = 2.95 + i * 0.42;
+        tl.fromTo(r, { opacity: 0, y: -52, backgroundColor: "rgba(0,120,195,0.22)" }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, at);
+        tl.to(r, { backgroundColor: "rgba(0,120,195,0)", duration: 0.5, ease: "power1.out" }, at + 0.3);
+      });
+
+      // ---- "relancer, encore et encore" (4.24): reminders keep landing on the same pile
+      count("#s1-b-wa", 2, 9, 4.35, 1.6);
+      count("#s1-b-cal", 1, 5, 4.9, 1.3);
+      const rel = [
+        ["#s1-rel-1", 4.3, -2.5],
+        ["#s1-rel-2", 4.75, 2],
+        ["#s1-rel-3", 5.2, -1.2],
+        ["#s1-rel-4", 5.65, 3],
+        ["#s1-rel-5", 6.1, -3.5],
+      ];
+      rel.forEach(([id, at, r]) => pop(id, at, r));
+      // title, second line
+      tl.fromTo("#s1-l3 span", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.08, ease: "power2.out" }, 4.35);
+
+      // ---- "Et si tout ça…" (7.33): the clock stops, the day blurs back
+      const busy = ["#s1-orbit", "#s1-sheet", "#s1-mail-1", "#s1-mail-2", ".s1-card", "#s1-rings"];
+      tl.to(busy, { opacity: 0.16, filter: "blur(10px)", duration: 0.5, ease: "power2.out" }, 7.3);
+      tl.to("#s1-title .s1-line span", { opacity: 0, filter: "blur(8px)", duration: 0.2, stagger: 0.03, ease: "power2.in" }, 7.25);
+      tl.fromTo("#s1-q1 span", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, stagger: 0.12, ease: "power2.out" }, 7.4);
+      tl.fromTo("#s1-q2 span", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.08, ease: "power2.out" }, 8.15);
+      tl.to("#s1-chip", { backgroundColor: "#0078C3", duration: 0.3 }, 7.33);
+
+      // ---- anticipation into the drop (10.0): the clock is pulled to the centre and shrinks to a point
+      tl.to(["#s1-q"], { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 9.68);
+      tl.to("#s1-chip", { opacity: 0, y: -40, duration: 0.3, ease: "power3.in" }, 9.3);
+      tl.to(busy, { opacity: 0, scale: 0.6, duration: 0.6, ease: "power3.in" }, 9.3);
+      tl.to("#s1-hub", { x: 960 - 1260, y: 540 - 560, scale: 0.12, duration: 0.7, ease: "power3.in" }, 9.3);
+
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>
