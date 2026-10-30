@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "010cd409-4088-4e03-9c4e-e5d6c615ca3c",
-  "currentRevision": "35506745-0d57-430e-b3cf-8b4383516390",
+  "currentRevision": "2f66aecd-868a-4b4e-960f-85336f9ea302",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -17,8 +17,8 @@
       "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
     },
     "index.html": {
-      "hash": "29bc51489bb175ded99dd36cd28cd34594f1ff40582f0dac86e6f8fbdc37bfd3",
-      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/29/29bc51489bb175ded99dd36cd28cd34594f1ff40582f0dac86e6f8fbdc37bfd3"
+      "hash": "eb3a8027cce67d923d9d74488fcfc67c055db2ba8d40496ab82a8e9fe16ff05d",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/eb/eb3a8027cce67d923d9d74488fcfc67c055db2ba8d40496ab82a8e9fe16ff05d"
     },
     "meta.json": {
       "hash": "81890e15221337b77b970b288ea832e366dad9a1b37bc53a0d45a91b0c8beb9f",
@@ -285,8 +285,8 @@
       "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/ac/ace44a07c6c179f5347d9b46a152d468e4c9f272ee0d68bf0354e00d60000693"
     },
     "compositions/s1-routine.html": {
-      "hash": "d4c1cdaa126d8b2f2255368529b1539da5bc2313730d09472715f64a29f19122",
-      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/d4/d4c1cdaa126d8b2f2255368529b1539da5bc2313730d09472715f64a29f19122"
+      "hash": "fcc71ff8f54bc09a87e3878c0ed8d520f6967299a812d1a6750b1d0fabfcbf3f",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/fc/fcc71ff8f54bc09a87e3878c0ed8d520f6967299a812d1a6750b1d0fabfcbf3f"
     },
     "music/compose.py": {
       "hash": "d52140840a036ac5b9c90d1f45b407f3d87f412f97e887a04fa629dbcb6f9ce4",
@@ -381,40 +381,48 @@
       "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/7d/7d005b7b8df4a359880b3f3ba6decffb1e99793455876fc364c5782807659128"
     },
     "compositions/s2-n8n.html": {
-      "hash": "c479066731523dc27f1728d988fb592e199c0e3423cb5c9990fd51eb2d49a8d7",
-      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/c4/c479066731523dc27f1728d988fb592e199c0e3423cb5c9990fd51eb2d49a8d7"
+      "hash": "f3b4775b012e3a7a8a8cad398b71ca15f9d12d16a5e5d1514db7fd2206099437",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/f3/f3b4775b012e3a7a8a8cad398b71ca15f9d12d16a5e5d1514db7fd2206099437"
     },
     "compositions/s3-courriers.html": {
-      "hash": "5056769cbc2b428473bb382d0a136af2adc8935ed3c120e25e51cc6f7254a15f",
-      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/50/5056769cbc2b428473bb382d0a136af2adc8935ed3c120e25e51cc6f7254a15f"
+      "hash": "eb561ff46514fa9c01f2b1dd0452f4e62ddaa9d27127b216078d802a3385eb51",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/eb/eb561ff46514fa9c01f2b1dd0452f4e62ddaa9d27127b216078d802a3385eb51"
     },
     "tools/build_esursi.py": {
       "hash": "a9c4da9662dbbdf50062c2b8b9ce335ec42e8752cda3798544b0e0b1fcb2b1ba",
       "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/a9/a9c4da9662dbbdf50062c2b8b9ce335ec42e8752cda3798544b0e0b1fcb2b1ba"
     },
     "compositions/s4-requete.html": {
-      "hash": "d4d955e4fe3f23d09c6e5199a7d3fc78db9bfe72c6363843f05a7471237b6b8d",
-      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/d4/d4d955e4fe3f23d09c6e5199a7d3fc78db9bfe72c6363843f05a7471237b6b8d"
+      "hash": "f0a90b33bec7ee03a5520ebc8428ecea7de3615fd9323ad14c8a1d811195046e",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/f0/f0a90b33bec7ee03a5520ebc8428ecea7de3615fd9323ad14c8a1d811195046e"
     },
     "compositions/s5-vous.html": {
-      "hash": "6b69caa214e3f9c7edc39b91f3ed3f0562e30482d6465717e7016c07f8f36445",
-      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/6b/6b69caa214e3f9c7edc39b91f3ed3f0562e30482d6465717e7016c07f8f36445"
+      "hash": "73c74dbf4c00ece8221d6eab94a674f25693909378c52fc3e11b8ec1b71cc74e",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/73/73c74dbf4c00ece8221d6eab94a674f25693909378c52fc3e11b8ec1b71cc74e"
     },
     "compositions/s6-formation.html": {
       "hash": "54437e17f4e761b65485690bff344100f1fa223c305fc9110d38111713436ff6",
       "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/54/54437e17f4e761b65485690bff344100f1fa223c305fc9110d38111713436ff6"
     },
     "compositions/s7-kinshasa.html": {
-      "hash": "70a55d82b38ba9d62882c798903e057c8f551b79733ac262eef7c3188b1ed63a",
-      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/70/70a55d82b38ba9d62882c798903e057c8f551b79733ac262eef7c3188b1ed63a"
+      "hash": "7899cb0065e7aa9c6ca46860f0e7d2b3db061d33c2d35f5d1c286beff1e12f2c",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/78/7899cb0065e7aa9c6ca46860f0e7d2b3db061d33c2d35f5d1c286beff1e12f2c"
     },
     "compositions/s8-contact.html": {
-      "hash": "06de338343fa38e9cc637f718dc3698e54caaa9b1202e8109c6ebe828235ebee",
-      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/06/06de338343fa38e9cc637f718dc3698e54caaa9b1202e8109c6ebe828235ebee"
+      "hash": "86e230762b1d61802489115261be82dbd62873667a6e0caee23e1aa35adf4a17",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/86/86e230762b1d61802489115261be82dbd62873667a6e0caee23e1aa35adf4a17"
     },
     "compositions/s9-fin.html": {
-      "hash": "0c7f474f99b823f361500832652f78eed0ee398f373c05a1e02d26c66a49fd8b",
-      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/0c/0c7f474f99b823f361500832652f78eed0ee398f373c05a1e02d26c66a49fd8b"
+      "hash": "66b275e0bf08e861e6232c7e20631202d41159f87a406ee4e8f890abb522132b",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/66/66b275e0bf08e861e6232c7e20631202d41159f87a406ee4e8f890abb522132b"
+    },
+    "tools/build_captions.py": {
+      "hash": "1209bf8f5f91a3ab3ed74a635cf8c3da9f6129fec7efc2faf3f4715b7681337e",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/12/1209bf8f5f91a3ab3ed74a635cf8c3da9f6129fec7efc2faf3f4715b7681337e"
+    },
+    "tools/make_vertical.py": {
+      "hash": "47c143dac9ffd3924965df68a811d0bd7adbc091adf8f0096cfd33648c365fd9",
+      "content": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/47/47c143dac9ffd3924965df68a811d0bd7adbc091adf8f0096cfd33648c365fd9"
     }
   },
   "revisions": {
@@ -937,6 +945,76 @@
           "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/54/54437e17f4e761b65485690bff344100f1fa223c305fc9110d38111713436ff6"
         }
       }
+    },
+    "50a44e1f-a8a0-4d3f-b245-d62f15881a47": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793370636879,
+      "endedAt": 1793370636917,
+      "files": {
+        "compositions/s1-routine.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/d4/d4c1cdaa126d8b2f2255368529b1539da5bc2313730d09472715f64a29f19122",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/fc/fcc71ff8f54bc09a87e3878c0ed8d520f6967299a812d1a6750b1d0fabfcbf3f"
+        },
+        "compositions/s3-courriers.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/50/5056769cbc2b428473bb382d0a136af2adc8935ed3c120e25e51cc6f7254a15f",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/eb/eb561ff46514fa9c01f2b1dd0452f4e62ddaa9d27127b216078d802a3385eb51"
+        },
+        "compositions/s4-requete.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/d4/d4d955e4fe3f23d09c6e5199a7d3fc78db9bfe72c6363843f05a7471237b6b8d",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/f0/f0a90b33bec7ee03a5520ebc8428ecea7de3615fd9323ad14c8a1d811195046e"
+        },
+        "compositions/s5-vous.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/6b/6b69caa214e3f9c7edc39b91f3ed3f0562e30482d6465717e7016c07f8f36445",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/89/89b82b3ba3a8bb338637fa390954df168bfaf4ab95e8092757fa69e4964b6101"
+        },
+        "compositions/s7-kinshasa.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/70/70a55d82b38ba9d62882c798903e057c8f551b79733ac262eef7c3188b1ed63a",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/78/7899cb0065e7aa9c6ca46860f0e7d2b3db061d33c2d35f5d1c286beff1e12f2c"
+        },
+        "compositions/s8-contact.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/06/06de338343fa38e9cc637f718dc3698e54caaa9b1202e8109c6ebe828235ebee",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/86/86e230762b1d61802489115261be82dbd62873667a6e0caee23e1aa35adf4a17"
+        },
+        "compositions/s9-fin.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/0c/0c7f474f99b823f361500832652f78eed0ee398f373c05a1e02d26c66a49fd8b",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/66/66b275e0bf08e861e6232c7e20631202d41159f87a406ee4e8f890abb522132b"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/29/29bc51489bb175ded99dd36cd28cd34594f1ff40582f0dac86e6f8fbdc37bfd3",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/eb/eb3a8027cce67d923d9d74488fcfc67c055db2ba8d40496ab82a8e9fe16ff05d"
+        },
+        "tools/build_captions.py": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/12/1209bf8f5f91a3ab3ed74a635cf8c3da9f6129fec7efc2faf3f4715b7681337e"
+        },
+        "tools/make_vertical.py": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/47/47c143dac9ffd3924965df68a811d0bd7adbc091adf8f0096cfd33648c365fd9"
+        }
+      }
+    },
+    "2f66aecd-868a-4b4e-960f-85336f9ea302": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793370712762,
+      "endedAt": 1793370712777,
+      "files": {
+        "compositions/s2-n8n.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/c4/c479066731523dc27f1728d988fb592e199c0e3423cb5c9990fd51eb2d49a8d7",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/f3/f3b4775b012e3a7a8a8cad398b71ca15f9d12d16a5e5d1514db7fd2206099437"
+        },
+        "compositions/s5-vous.html": {
+          "before": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/89/89b82b3ba3a8bb338637fa390954df168bfaf4ab95e8092757fa69e4964b6101",
+          "after": "/root/.cache/hyperframes/history/010cd409-4088-4e03-9c4e-e5d6c615ca3c/blobs/73/73c74dbf4c00ece8221d6eab94a674f25693909378c52fc3e11b8ec1b71cc74e"
+        }
+      }
     }
   },
   "checks": {
@@ -1008,8 +1086,8 @@
   },
   "snapshots": {
     "latest": {
-      "revision": "3631c789-2f65-4698-acc5-5ad001264946",
-      "id": "48d5f047-72ef-4c41-94a9-1794858338e8-11"
+      "revision": "2f66aecd-868a-4b4e-960f-85336f9ea302",
+      "id": "fa225eca-8978-4626-a0ba-aef4dfa45e4e-5"
     },
     "revisions": {
       "f69b34dd-8bb8-476d-b0d2-f1cc0d2dbc0b": [
@@ -2240,6 +2318,1522 @@
           "contentHash": "d0a73397497cb50b26fd5c04b7718adbe149621db95f15c6bb8d3dc2de1abdb7",
           "revision": "3631c789-2f65-4698-acc5-5ad001264946",
           "inputFingerprint": "b0c3efcb4ca6da6ad486d19e185452b093aadace536a87421ac32dd1a59d6f7e",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "50a44e1f-a8a0-4d3f-b245-d62f15881a47": [
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-0",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-01-at-0.3s.png",
+          "time": 0.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668846,
+          "contentHash": "e6579974492aa176cb4cc06b7c26aae58a323ad929ef2ffeb5e56940392c5db0",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-1",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-02-at-5s.png",
+          "time": 5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s1 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668846,
+          "contentHash": "7365816f416c8be54df2cafff4ac57e16a843369c301e2f69a242605c47334bc",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-2",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-03-at-10.3s.png",
+          "time": 10.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668846,
+          "contentHash": "5bcf9b29506a796d24f6cc165340aad8a1dfc52e64649e8c7a8c98a4270c9515",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-3",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-04-at-12.3s.png",
+          "time": 12.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s2 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668847,
+          "contentHash": "eebf2f04b93a46e5efa003984fa4b593f893ab703839c610ff4c2becba916dab",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-4",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-05-at-14.9s.png",
+          "time": 14.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s3"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668847,
+          "contentHash": "a54a5971a785ee828ab4fcb0b03814ea8fc3b9f0e1684411b75215c57b12fe68",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-5",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-06-at-17.45s.png",
+          "time": 17.45,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s3 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668847,
+          "contentHash": "4560de67fad0b7801b07cf1a762b436ba17a4f384e2495666d44f416fb3fc539",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-6",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-07-at-20.6s.png",
+          "time": 20.6,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s4"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668847,
+          "contentHash": "2c0284d180bcfb64350cb401e1d57cb1c134610cb1280412de449402493dbfd1",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-7",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-08-at-22.65s.png",
+          "time": 22.65,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s4 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668847,
+          "contentHash": "3aeb71f179689e8189b17f830f0c8d8971bd09a6ad90b5d11c231b57fb4680db",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-8",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-09-at-25.3s.png",
+          "time": 25.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s5"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668847,
+          "contentHash": "c4c59bb91e52046921546834c4de18b2207e269ccb1310984d9bf43fa9b9e175",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-9",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-10-at-27.5s.png",
+          "time": 27.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s5 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668847,
+          "contentHash": "fb2f3dde6da028efe5a6c8a061f1849d60a239dc1ede1d56ec2b16667f8d7808",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-10",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-11-at-30.3s.png",
+          "time": 30.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s6"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668848,
+          "contentHash": "464232f9f4bbb7caf976984aee51a8d3ce21e4a5382834f30809a0baf9bd2762",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-11",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-12-at-32.1s.png",
+          "time": 32.1,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s6 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668848,
+          "contentHash": "35f5c65acb278b01f846bae5d6c0c98ff2f7bbde610e02cc12e961075e713919",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-12",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-13-at-34.5s.png",
+          "time": 34.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s7"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668848,
+          "contentHash": "7a6083359aed4539d25bcbcf6ced348dfb8f90052794d4c749c4ee99446fed97",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-13",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-14-at-35.85s.png",
+          "time": 35.85,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s7 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668848,
+          "contentHash": "47d2a1678a0c6a5f42914597cdd04388f56bf97c0025d41dc37de6a2fbc0e0fc",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-14",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-15-at-37.8s.png",
+          "time": 37.8,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s8"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668848,
+          "contentHash": "f15485d6740ec78364a26f26ea82168ff5135b027aca4d9f6486361952d189d7",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-15",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-16-at-43.2s.png",
+          "time": 43.2,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s8 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668848,
+          "contentHash": "8714b6f9dcbadaf48613bc5ce31edcde8d1b6e6f06b91259449c1733a54cd7a4",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-16",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-17-at-49.2s.png",
+          "time": 49.2,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s9"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668849,
+          "contentHash": "222826445c5215df0889c96b5a7d16c7ee1fb63618e511abb1cc783d209a0f78",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-17",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/beat-18-at-52.45s.png",
+          "time": 52.45,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "beat",
+              "label": "s9 mid"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668849,
+          "contentHash": "d0a73397497cb50b26fd5c04b7718adbe149621db95f15c6bb8d3dc2de1abdb7",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-18",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-01-1-at-9.8s.png",
+          "time": 9.8,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668849,
+          "contentHash": "bf59af8eb764ef7ef153ad705fc5e2ac5aeebbb0b16de26a0533ccc9ff5f495a",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-19",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-01-2-at-9.9s.png",
+          "time": 9.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668849,
+          "contentHash": "1de8f13758c4bfea93014d1a5b42383aa5c628aeeb2923489d8a069fc673350f",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-20",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-01-3-at-10s.png",
+          "time": 10,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut s1 -> s2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668850,
+          "contentHash": "feaf40576cb8291f9e7faff24b77bdaf3e57e8600e30d1955cb738d2a5486fab",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-21",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-01-4-at-10.1s.png",
+          "time": 10.1,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668850,
+          "contentHash": "c4099544cd6bfbea7e36a1034b0981720b6696adb6c3ef61dd76ae996e379c2f",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-22",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-01-5-at-10.2s.png",
+          "time": 10.2,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668850,
+          "contentHash": "70d380cc3d4d403cfe6efbf64137d632f84f3668ac658176363db3f0085c3310",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-23",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-02-1-at-14.4s.png",
+          "time": 14.4,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668850,
+          "contentHash": "f78d64454d7b61942f45b29eb1eec367544ea5cda778749c633a4ebf58a6452c",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-24",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-02-2-at-14.5s.png",
+          "time": 14.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668850,
+          "contentHash": "6dcc65ff0e7df3e0e40b80147ac68d461b3dc7dbca4950dc12f350343bea7b6d",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-25",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-02-3-at-14.6s.png",
+          "time": 14.6,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut s2 -> s3"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668851,
+          "contentHash": "4a5f187a4aa0ccc971cd4fb1e575e059c932029d9b9b104031814253018a4956",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-26",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-02-4-at-14.7s.png",
+          "time": 14.7,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668851,
+          "contentHash": "f3f614cab7b93585b54eb15831212d0dcc4a3dad92bd62cfda3fa929b6c97bce",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-27",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-02-5-at-14.8s.png",
+          "time": 14.8,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668851,
+          "contentHash": "419eb7d10f3f26818b9c16f6ad5d64bab5722588bd560ef0c2d43c331a515a88",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-28",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-03-1-at-20.1s.png",
+          "time": 20.1,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668851,
+          "contentHash": "1ab26126aa048ddb59ac8e06e4dfe7bfdea05f169d88b1194011cbc286efaae1",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-29",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-03-2-at-20.2s.png",
+          "time": 20.2,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668851,
+          "contentHash": "1ab26126aa048ddb59ac8e06e4dfe7bfdea05f169d88b1194011cbc286efaae1",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-30",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-03-3-at-20.3s.png",
+          "time": 20.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut s3 -> s4"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668851,
+          "contentHash": "87f7c6a5a059135944d14739324e2f0c33c74cbe7625284507bc0e9149caa5e9",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-31",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-03-4-at-20.4s.png",
+          "time": 20.4,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668852,
+          "contentHash": "1274178a4b96db25fbb75935cdceac076c981c3f5cdfbfb32e964284e7885df5",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-32",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-03-5-at-20.5s.png",
+          "time": 20.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668852,
+          "contentHash": "e360c3a34b2e77c4a57d232d34a6751c84fd589b8f0a3f23ce9174494b031369",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-33",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-04-1-at-24.8s.png",
+          "time": 24.8,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668852,
+          "contentHash": "473e221fcf8924daa6f229af675414e2d9733ef9d01066e359b054e4e8db415d",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-34",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-04-2-at-24.9s.png",
+          "time": 24.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668852,
+          "contentHash": "0fa1c9444f77d27a4da8bf34c28206a1de8b699b836e8f183aa774351a39192f",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-35",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-04-3-at-25s.png",
+          "time": 25,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut s4 -> s5"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668852,
+          "contentHash": "a8f47537c3ec15f830c1c784097d38ca8609e1f4a616c46d043640fb81b0bbae",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-36",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-04-4-at-25.1s.png",
+          "time": 25.1,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668853,
+          "contentHash": "beaaed77234bdbf50a9b8e44ace88d6d52886db0b865b572163ac34ba1b15c19",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-37",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-04-5-at-25.2s.png",
+          "time": 25.2,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668853,
+          "contentHash": "61185b9fb3b5a6d87385071a00732f330f707400f11703510d2dec00b1712a4f",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-38",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-05-1-at-29.8s.png",
+          "time": 29.8,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668853,
+          "contentHash": "a8fd1e4797c624fbf5618ab12b366faa0be61cfb0ae32bd87c165342f18cca70",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-39",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-05-2-at-29.9s.png",
+          "time": 29.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668854,
+          "contentHash": "762d4869d880bde5fe62c8cb85f5130f09548a4efc27a2f56dc96116f80d1c58",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-40",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-05-3-at-30s.png",
+          "time": 30,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut s5 -> s6"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668854,
+          "contentHash": "387fd7de299f927c5892e1129775501f6578e61574408c7dc79cb4b6ce1daf9d",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-41",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-05-4-at-30.1s.png",
+          "time": 30.1,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668854,
+          "contentHash": "8036964163e8d5271503c9fda6840d6ebffa68b9d4e4d6039604ede1cdcf3879",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-42",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-05-5-at-30.2s.png",
+          "time": 30.2,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668854,
+          "contentHash": "27381d43cdab8464131fb315fab301e45ebd5bb14d42a1a15d7d643a2658380a",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-43",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-06-1-at-34s.png",
+          "time": 34,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668854,
+          "contentHash": "31e1ae2ae1495358c2d8769dd5fa36fee4c0bb16506b6e895b9acf23246d6039",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-44",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-06-2-at-34.1s.png",
+          "time": 34.1,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668854,
+          "contentHash": "6855a072c77cfaad07a37174e572e8a5eaa7d5507dbb568d2772c571e54b2b88",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-45",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-06-3-at-34.2s.png",
+          "time": 34.2,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut s6 -> s7"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668855,
+          "contentHash": "fb37adb4b9aaae64ac6e79e9da85a9c4157f263ddaa1ce21c0df7c6f5b3fb477",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-46",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-06-4-at-34.3s.png",
+          "time": 34.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668855,
+          "contentHash": "74e71b170b5e015a5651d858bec9c410f4a2cfaa8bda11dffee2696a45f7d726",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-47",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-06-5-at-34.4s.png",
+          "time": 34.4,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668855,
+          "contentHash": "20c13626c190e80eae2395fd6c70812d853da46f03261bcc00aeeaf791294b80",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-48",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-07-1-at-37.3s.png",
+          "time": 37.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668856,
+          "contentHash": "d931590d37a2ce1d33c457953bb4648a820055b3b0c5b2fa66238e612e138b76",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-49",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-07-2-at-37.4s.png",
+          "time": 37.4,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668856,
+          "contentHash": "8b379afa44564192793e62426f95dbfd7e67f020fdc526429aa0404785d9ccc4",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-50",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-07-3-at-37.5s.png",
+          "time": 37.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut s7 -> s8"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668856,
+          "contentHash": "8b379afa44564192793e62426f95dbfd7e67f020fdc526429aa0404785d9ccc4",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-51",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-07-4-at-37.6s.png",
+          "time": 37.6,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668856,
+          "contentHash": "3f5405ed0d935d7e4d6fe129b30c51cdffe047d597a036f43944b884db912fb4",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-52",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-07-5-at-37.7s.png",
+          "time": 37.7,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668856,
+          "contentHash": "3044657fa49340f5937a51a9d74413a87d015eafceec92f45fbf23bfda0bf8b4",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-53",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-08-1-at-48.7s.png",
+          "time": 48.7,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut -0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668857,
+          "contentHash": "e92bf75997cc3ad3a5c254c844ffdec979bd0187f17ecfa2ed3a067af2de03d0",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-54",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-08-2-at-48.8s.png",
+          "time": 48.8,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "-0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668857,
+          "contentHash": "0cfa340f4b97126978dd67f8efdd83771ea525df89f83126e3a3539fb6294352",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-55",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-08-3-at-48.9s.png",
+          "time": 48.9,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "cut s8 -> s9"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668857,
+          "contentHash": "387fd7de299f927c5892e1129775501f6578e61574408c7dc79cb4b6ce1daf9d",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-56",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-08-4-at-49s.png",
+          "time": 49,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.1"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668857,
+          "contentHash": "0f7c20fafaaf81b46e1d977a8ab8e2d0a3a6cf411fc5fede825b5ae0c78ba831",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "41801482-20a8-44cd-bafe-730ef3e8f085-57",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/eff1ba62-3f8f-4a7b-811a-d1d6c44adca8/seam-08-5-at-49.1s.png",
+          "time": 49.1,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "review": {
+              "role": "seam",
+              "label": "+0.2"
+            },
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370668858,
+          "contentHash": "6a52006b3619818bfad3198970e313f9b8fa2ae1bb60afb0412b2bb220d6f63b",
+          "revision": "50a44e1f-a8a0-4d3f-b245-d62f15881a47",
+          "inputFingerprint": "c751a7e0ae8055e44c950089be231a66d5efed3282bfbea1baf418f3087d54b7",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "2f66aecd-868a-4b4e-960f-85336f9ea302": [
+        {
+          "scope": "full",
+          "id": "fa225eca-8978-4626-a0ba-aef4dfa45e4e-0",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/a40b336f-ec24-40f6-a031-a41b9c4ee263/frame-00-at-14.3s.png",
+          "time": 14.3,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370719535,
+          "contentHash": "988571876150f394e2e22fadf5cc738e7ff09e2ee017e3bf4b8d335a70721b82",
+          "revision": "2f66aecd-868a-4b4e-960f-85336f9ea302",
+          "inputFingerprint": "3c21613e9c580f250da65a4e0679b45214ee1eaf4b8c376ffcbe8fc92a03e4d3",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fa225eca-8978-4626-a0ba-aef4dfa45e4e-1",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/a40b336f-ec24-40f6-a031-a41b9c4ee263/frame-01-at-14.4s.png",
+          "time": 14.4,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370719535,
+          "contentHash": "2e7732fae4dfdb06d1e521a4f42f0d2c530a9796d1c8c41045153651f9f2986d",
+          "revision": "2f66aecd-868a-4b4e-960f-85336f9ea302",
+          "inputFingerprint": "3c21613e9c580f250da65a4e0679b45214ee1eaf4b8c376ffcbe8fc92a03e4d3",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fa225eca-8978-4626-a0ba-aef4dfa45e4e-2",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/a40b336f-ec24-40f6-a031-a41b9c4ee263/frame-02-at-14.5s.png",
+          "time": 14.5,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370719536,
+          "contentHash": "17383a37cd193c3104e55c6d4dcffd77f9addbe3e5b9778347a3f8ca6357c3a1",
+          "revision": "2f66aecd-868a-4b4e-960f-85336f9ea302",
+          "inputFingerprint": "3c21613e9c580f250da65a4e0679b45214ee1eaf4b8c376ffcbe8fc92a03e4d3",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fa225eca-8978-4626-a0ba-aef4dfa45e4e-3",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/a40b336f-ec24-40f6-a031-a41b9c4ee263/frame-03-at-14.58s.png",
+          "time": 14.58,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370719536,
+          "contentHash": "e56c8a12ea742e141c9e930c7a3a94ae1cafc44b3d66e58f0203b478b54fb189",
+          "revision": "2f66aecd-868a-4b4e-960f-85336f9ea302",
+          "inputFingerprint": "3c21613e9c580f250da65a4e0679b45214ee1eaf4b8c376ffcbe8fc92a03e4d3",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fa225eca-8978-4626-a0ba-aef4dfa45e4e-4",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/a40b336f-ec24-40f6-a031-a41b9c4ee263/frame-04-at-25.2s.png",
+          "time": 25.2,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370719536,
+          "contentHash": "eb834e00e374266cdae3d088e09487660f6d5c13a23814ed0fc7f54d48d65150",
+          "revision": "2f66aecd-868a-4b4e-960f-85336f9ea302",
+          "inputFingerprint": "3c21613e9c580f250da65a4e0679b45214ee1eaf4b8c376ffcbe8fc92a03e4d3",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "fa225eca-8978-4626-a0ba-aef4dfa45e4e-5",
+          "image": "/home/user/motion-design-pro/formation-n8n/.hyperframes/artifacts/snapshots/a40b336f-ec24-40f6-a031-a41b9c4ee263/frame-05-at-55.75s.png",
+          "time": 55.75,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793370719537,
+          "contentHash": "d0a73397497cb50b26fd5c04b7718adbe149621db95f15c6bb8d3dc2de1abdb7",
+          "revision": "2f66aecd-868a-4b4e-960f-85336f9ea302",
+          "inputFingerprint": "3c21613e9c580f250da65a4e0679b45214ee1eaf4b8c376ffcbe8fc92a03e4d3",
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }

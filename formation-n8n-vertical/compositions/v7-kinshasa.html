@@ -1,0 +1,186 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-ground, #f4f8fd);
+      font-family: var(--font-display, "Poppins"), sans-serif;
+      color: var(--color-ink, #0b2a45);
+    }
+    #v7-light {
+      position: absolute;
+      left: -410px;
+      top: -340px;
+      width: 1900px;
+      height: 1900px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 120, 195, 0.16) 0%, rgba(0, 120, 195, 0) 64%);
+    }
+    /* map: Natural Earth, Mercator, viewBox 1443 x 1620; Kinshasa at (48.97%, 47.73%) */
+    #v7-map {
+      position: absolute;
+      left: 202px;
+      top: 250px;
+      width: 677px;
+      height: 760px;
+      transform-origin: 332px 363px;
+    }
+    #v7-map img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 677px;
+      height: 760px;
+    }
+    #v7-pin {
+      position: absolute;
+      left: 302px;
+      top: 275px;
+      width: 60px;
+      height: 90px;
+    }
+    #v7-text {
+      position: absolute;
+      left: 0;
+      top: 940px;
+      width: 1080px;
+      text-align: center;
+    }
+    #v7-city {
+      font-weight: 800;
+      font-size: 132px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    #v7-city span {
+      display: inline-block;
+    }
+    #v7-country {
+      margin-top: 14px;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 1.25;
+      color: #4a6178;
+    }
+    #v7-country b {
+      color: var(--color-accent, #0078c3);
+      font-weight: 700;
+    }
+    /* the room at Silikin Village */
+    #v7-room {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      clip-path: circle(0px at 534px 613px);
+    }
+    #v7-photo {
+      position: absolute;
+      left: -740px;
+      top: 0;
+      width: 2560px;
+      height: 1920px;
+      transform-origin: 1206px 980px;
+    }
+    #v7-photo img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2560px;
+      height: 1920px;
+    }
+    /* the screen on the far wall shows a workflow */
+    #v7-tv {
+      position: absolute;
+      left: 1101px;
+      top: 920px;
+      width: 211px;
+      height: 119px;
+      background: #171717;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    #v7-tv img {
+      position: absolute;
+      left: 2px;
+      top: 13px;
+      width: 207px;
+      height: 93px;
+    }
+    #v7-label {
+      position: absolute;
+      left: 60px;
+      top: 880px;
+      padding: 30px 40px 32px;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 30px 70px rgba(11, 42, 69, 0.25), 0 3px 8px rgba(11, 42, 69, 0.1);
+    }
+    #v7-label .v7-name {
+      font-weight: 800;
+      font-size: 80px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    #v7-label .v7-where {
+      margin-top: 12px;
+      font-weight: 600;
+      font-size: 40px;
+      color: var(--color-accent, #0078c3);
+    }
+  </style>
+
+  <div id="root" data-composition-id="v7" data-width="1080" data-height="1920">
+    <div id="v7-light" data-layout-ignore></div>
+    <div id="v7-map">
+      <img id="v7-land" src="assets/img/afrique-terres.svg" alt="" />
+      <img id="v7-rdc" src="assets/img/afrique-rdc.svg" alt="" />
+      <svg id="v7-pin" viewBox="0 0 60 90">
+        <path d="M30 88 C30 88 4 52 4 30 A26 26 0 0 1 56 30 C56 52 30 88 30 88 Z" fill="#EA4B71" stroke="#FFFFFF" stroke-width="4" />
+        <circle cx="30" cy="30" r="10" fill="#FFFFFF" />
+      </svg>
+    </div>
+    <div id="v7-text">
+      <div id="v7-city"><span>K</span><span>i</span><span>n</span><span>s</span><span>h</span><span>a</span><span>s</span><span>a</span></div>
+      <div id="v7-country">République démocratique du <b>Congo</b></div>
+    </div>
+
+    <div id="v7-room">
+      <div id="v7-photo">
+        <img src="assets/img/salle-silikin-village.jpg" alt="Salle de formation, Silikin Village, Kinshasa" />
+        <div id="v7-tv"><img src="assets/img/workflow-courriers-esursi.png" alt="" /></div>
+      </div>
+      <div id="v7-label">
+        <div class="v7-name">Silikin Village</div>
+        <div class="v7-where">Kinshasa · RDC</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // ---- out of the globe: Africa settles (the zoom of s6 continues)
+      tl.fromTo("#v7-map", { scale: 3.2, x: 540 - 534, y: 960 - 613, filter: "blur(10px)" }, { scale: 1, x: 0, y: 0, filter: "blur(0px)", duration: 0.75, ease: "expo.out" }, 0);
+      tl.fromTo("#v7-light", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 0);
+      tl.fromTo("#v7-rdc", { opacity: 0, scale: 0.92, transformOrigin: "62% 50%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.45);
+
+      // ---- "Kinshasa" (1.24): the pin drops, the name is spelled
+      tl.fromTo("#v7-pin", { opacity: 0, y: -160 }, { opacity: 1, y: 0, duration: 0.42, ease: "bounce.out" }, 0.95);
+      tl.fromTo("#v7-city span", { opacity: 0.0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.04, ease: "power2.out" }, 0.9);
+      tl.fromTo("#v7-country", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 1.2);
+
+      // ---- "à Silikin Village" (2.12): push into the pin, the room opens from it
+      tl.to("#v7-map", { scale: 2.6, duration: 0.45, ease: "power3.in" }, 1.85);
+      tl.fromTo("#v7-room", { clipPath: "circle(0px at 534px 613px)" }, { clipPath: "circle(2300px at 534px 613px)", duration: 0.55, ease: "power3.in" }, 2.0);
+      tl.fromTo("#v7-photo", { scale: 1.12 }, { scale: 1.03, duration: 1.3, ease: "power2.out" }, 2.0);
+      tl.fromTo("#v7-label", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 2.42);
+
+      window.__timelines["v7"] = tl;
+    })();
+  </script>
+</template>

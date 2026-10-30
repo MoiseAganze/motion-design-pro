@@ -1,0 +1,248 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      font-family: var(--font-display, "Poppins"), sans-serif;
+    }
+    .vc-g {
+      position: absolute;
+      left: 0;
+      top: 1176px;
+      width: 1080px;
+      text-align: center;
+      opacity: 0;
+      overflow: visible;
+    }
+    .vc-box {
+      display: inline-block;
+      max-width: 940px;
+      padding: 12px 30px 16px;
+      border-radius: 22px;
+      background: rgba(11, 42, 69, 0.92);
+      box-shadow: 0 14px 34px rgba(11, 42, 69, 0.28);
+      font-weight: 800;
+      font-size: 58px;
+      line-height: 1.16;
+      letter-spacing: -0.01em;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .vc-box span {
+      display: inline-block;
+    }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div class="vc-g" id="vc-0"><div class="vc-box"><span id="vc-0-0">Répondre</span> <span id="vc-0-1">aux</span> <span id="vc-0-2">mêmes</span> <span id="vc-0-3">e-mails…</span></div></div>
+    <div class="vc-g" id="vc-1"><div class="vc-box"><span id="vc-1-0">copier</span> <span id="vc-1-1">les</span> <span id="vc-1-2">mêmes</span> <span id="vc-1-3">données…</span></div></div>
+    <div class="vc-g" id="vc-2"><div class="vc-box"><span id="vc-2-0">relancer,</span> <span id="vc-2-1">encore</span> <span id="vc-2-2">et</span> <span id="vc-2-3">encore.</span></div></div>
+    <div class="vc-g" id="vc-3"><div class="vc-box"><span id="vc-3-0">Et</span> <span id="vc-3-1">si</span> <span id="vc-3-2">tout</span> <span id="vc-3-3">ça…</span></div></div>
+    <div class="vc-g" id="vc-4"><div class="vc-box"><span id="vc-4-0">se</span> <span id="vc-4-1">faisait</span> <span id="vc-4-2">tout</span> <span id="vc-4-3">seul ?</span></div></div>
+    <div class="vc-g" id="vc-5"><div class="vc-box"><span id="vc-5-0">Avec</span> <span id="vc-5-1" class="vc-acc">n8n,</span></div></div>
+    <div class="vc-g" id="vc-6"><div class="vc-box"><span id="vc-6-0">vos</span> <span id="vc-6-1">applications</span> <span id="vc-6-2">se</span> <span id="vc-6-3">parlent,</span></div></div>
+    <div class="vc-g" id="vc-7"><div class="vc-box"><span id="vc-7-0">et</span> <span id="vc-7-1">vos</span> <span id="vc-7-2">tâches</span> <span id="vc-7-3">s&#x27;enchaînent</span></div></div>
+    <div class="vc-g" id="vc-8"><div class="vc-box"><span id="vc-8-0">automatiquement.</span></div></div>
+    <div class="vc-g" id="vc-9"><div class="vc-box"><span id="vc-9-0">Un</span> <span id="vc-9-1">e-mail</span> <span id="vc-9-2">arrive :</span></div></div>
+    <div class="vc-g" id="vc-10"><div class="vc-box"><span id="vc-10-0">il</span> <span id="vc-10-1">est</span> <span id="vc-10-2">lu,</span> <span id="vc-10-3">analysé,</span> <span id="vc-10-4">classé…</span></div></div>
+    <div class="vc-g" id="vc-11"><div class="vc-box"><span id="vc-11-0">et</span> <span id="vc-11-1">la</span> <span id="vc-11-2">réponse</span> <span id="vc-11-3">part,</span></div></div>
+    <div class="vc-g" id="vc-12"><div class="vc-box"><span id="vc-12-0">toute</span> <span id="vc-12-1">seule.</span></div></div>
+    <div class="vc-g" id="vc-13"><div class="vc-box"><span id="vc-13-0">Une</span> <span id="vc-13-1">requête</span> <span id="vc-13-2">arrive :</span></div></div>
+    <div class="vc-g" id="vc-14"><div class="vc-box"><span id="vc-14-0">la</span> <span id="vc-14-1">base</span> <span id="vc-14-2">de</span> <span id="vc-14-3">données</span></div></div>
+    <div class="vc-g" id="vc-15"><div class="vc-box"><span id="vc-15-0">est</span> <span id="vc-15-1">interrogée,</span></div></div>
+    <div class="vc-g" id="vc-16"><div class="vc-box"><span id="vc-16-0">et</span> <span id="vc-16-1">le</span> <span id="vc-16-2">résultat</span> <span id="vc-16-3">est</span> <span id="vc-16-4">renvoyé.</span></div></div>
+    <div class="vc-g" id="vc-17"><div class="vc-box"><span id="vc-17-0">Ces</span> <span id="vc-17-1">workflows,</span></div></div>
+    <div class="vc-g" id="vc-18"><div class="vc-box"><span id="vc-18-0">c&#x27;est</span> <span id="vc-18-1" class="vc-acc">VOUS</span></div></div>
+    <div class="vc-g" id="vc-19"><div class="vc-box"><span id="vc-19-0">qui</span> <span id="vc-19-1">allez</span> <span id="vc-19-2">les</span> <span id="vc-19-3">construire.</span></div></div>
+    <div class="vc-g" id="vc-20"><div class="vc-box"><span id="vc-20-0">Étape</span> <span id="vc-20-1">par</span> <span id="vc-20-2">étape,</span></div></div>
+    <div class="vc-g" id="vc-21"><div class="vc-box"><span id="vc-21-0">jusqu&#x27;aux</span> <span id="vc-21-1">agents</span> <span id="vc-21-2" class="vc-acc">IA.</span></div></div>
+    <div class="vc-g" id="vc-22"><div class="vc-box"><span id="vc-22-0">La</span> <span id="vc-22-1">formation</span></div></div>
+    <div class="vc-g" id="vc-23"><div class="vc-box"><span id="vc-23-0">Automatisation</span> <span id="vc-23-1" class="vc-acc">n8n,</span></div></div>
+    <div class="vc-g" id="vc-24"><div class="vc-box"><span id="vc-24-0">organisée</span> <span id="vc-24-1">par</span></div></div>
+    <div class="vc-g" id="vc-25"><div class="vc-box"><span id="vc-25-0" class="vc-acc">Chronoconcept</span> <span id="vc-25-1" class="vc-acc">Group.</span></div></div>
+    <div class="vc-g" id="vc-26"><div class="vc-box"><span id="vc-26-0">Rendez-vous</span> <span id="vc-26-1">à</span> <span id="vc-26-2" class="vc-acc">Kinshasa,</span></div></div>
+    <div class="vc-g" id="vc-27"><div class="vc-box"><span id="vc-27-0">à</span> <span id="vc-27-1" class="vc-acc">Silikin</span> <span id="vc-27-2" class="vc-acc">Village.</span></div></div>
+    <div class="vc-g" id="vc-28"><div class="vc-box"><span id="vc-28-0">Le</span> <span id="vc-28-1">formulaire</span> <span id="vc-28-2">d&#x27;inscription</span></div></div>
+    <div class="vc-g" id="vc-29"><div class="vc-box"><span id="vc-29-0">et</span> <span id="vc-29-1">tous</span> <span id="vc-29-2">les</span> <span id="vc-29-3">détails :</span></div></div>
+    <div class="vc-g" id="vc-30"><div class="vc-box"><span id="vc-30-0">lien</span> <span id="vc-30-1">en</span> <span id="vc-30-2" class="vc-acc">description.</span></div></div>
+    <div class="vc-g" id="vc-31"><div class="vc-box"><span id="vc-31-0">Des</span> <span id="vc-31-1">questions ?</span></div></div>
+    <div class="vc-g" id="vc-32"><div class="vc-box"><span id="vc-32-0">Contactez-nous</span> <span id="vc-32-1">sur</span></div></div>
+    <div class="vc-g" id="vc-33"><div class="vc-box"><span id="vc-33-0" class="vc-acc">chronoconcept.net,</span></div></div>
+    <div class="vc-g" id="vc-34"><div class="vc-box"><span id="vc-34-0">ou</span> <span id="vc-34-1">sur</span> <span id="vc-34-2" class="vc-acc">WhatsApp</span> <span id="vc-34-3">au</span></div></div>
+    <div class="vc-g" id="vc-35"><div class="vc-box"><span id="vc-35-0" class="vc-acc">+243</span> <span id="vc-35-1" class="vc-acc">853</span> <span id="vc-35-2" class="vc-acc">420</span> <span id="vc-35-3" class="vc-acc">317</span></div></div>
+    <div class="vc-g" id="vc-36"><div class="vc-box"><span id="vc-36-0">Automatisez</span> <span id="vc-36-1">votre</span> <span id="vc-36-2">travail.</span></div></div>
+    <div class="vc-g" id="vc-37"><div class="vc-box"><span id="vc-37-0">Gagnez</span> <span id="vc-37-1">du</span> <span id="vc-37-2" class="vc-acc">temps.</span></div></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // a group pops in just before its first word and is hard-killed after its last
+      const group = (id, a, b) => {
+        tl.fromTo(id, { opacity: 0, y: 14, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.14, ease: "power2.out" }, a);
+        tl.to(id, { opacity: 0, duration: 0.08, ease: "power2.in" }, b - 0.08);
+        tl.set(id, { opacity: 0, visibility: "hidden" }, b);
+      };
+      // each word lights up when it is spoken; names, places and contacts in cyan
+      const word = (id, at) => {
+        const el = document.querySelector(id);
+        const lit = el.classList.contains("vc-acc") ? "#3FD0E6" : "#FFFFFF";
+        tl.set(id, { color: "rgba(255,255,255,0.5)" }, 0);
+        tl.set(id, { color: lit }, at);
+      };
+      word("#vc-0-0", 0.72);
+      word("#vc-0-1", 1.20);
+      word("#vc-0-2", 1.32);
+      word("#vc-0-3", 1.60);
+      group("#vc-0", 0.64, 2.46);
+      word("#vc-1-0", 2.56);
+      word("#vc-1-1", 2.96);
+      word("#vc-1-2", 3.08);
+      word("#vc-1-3", 3.36);
+      group("#vc-1", 2.48, 4.14);
+      word("#vc-2-0", 4.24);
+      word("#vc-2-1", 5.20);
+      word("#vc-2-2", 6.00);
+      word("#vc-2-3", 6.20);
+      group("#vc-2", 4.16, 7.22);
+      word("#vc-3-0", 7.33);
+      word("#vc-3-1", 7.44);
+      word("#vc-3-2", 7.68);
+      word("#vc-3-3", 7.92);
+      group("#vc-3", 7.25, 8.54);
+      word("#vc-4-0", 8.64);
+      word("#vc-4-1", 8.76);
+      word("#vc-4-2", 9.12);
+      word("#vc-4-3", 9.28);
+      group("#vc-4", 8.56, 9.90);
+      word("#vc-5-0", 10.00);
+      word("#vc-5-1", 10.32);
+      group("#vc-5", 9.92, 11.10);
+      word("#vc-6-0", 11.20);
+      word("#vc-6-1", 11.36);
+      word("#vc-6-2", 11.92);
+      word("#vc-6-3", 12.16);
+      group("#vc-6", 11.12, 12.50);
+      word("#vc-7-0", 12.60);
+      word("#vc-7-1", 12.72);
+      word("#vc-7-2", 12.88);
+      word("#vc-7-3", 13.20);
+      group("#vc-7", 12.52, 13.82);
+      word("#vc-8-0", 13.92);
+      group("#vc-8", 13.84, 14.74);
+      word("#vc-9-0", 14.84);
+      word("#vc-9-1", 14.96);
+      word("#vc-9-2", 15.32);
+      group("#vc-9", 14.76, 15.93);
+      word("#vc-10-0", 16.03);
+      word("#vc-10-1", 16.16);
+      word("#vc-10-2", 16.36);
+      word("#vc-10-3", 16.88);
+      word("#vc-10-4", 17.80);
+      group("#vc-10", 15.95, 18.34);
+      word("#vc-11-0", 18.44);
+      word("#vc-11-1", 18.52);
+      word("#vc-11-2", 18.64);
+      word("#vc-11-3", 19.04);
+      group("#vc-11", 18.36, 19.47);
+      word("#vc-12-0", 19.57);
+      word("#vc-12-1", 19.76);
+      group("#vc-12", 19.49, 20.30);
+      word("#vc-13-0", 20.40);
+      word("#vc-13-1", 20.60);
+      word("#vc-13-2", 20.88);
+      group("#vc-13", 20.32, 21.47);
+      word("#vc-14-0", 21.57);
+      word("#vc-14-1", 21.68);
+      word("#vc-14-2", 21.92);
+      word("#vc-14-3", 22.08);
+      group("#vc-14", 21.49, 22.22);
+      word("#vc-15-0", 22.32);
+      word("#vc-15-1", 22.48);
+      group("#vc-15", 22.24, 23.14);
+      word("#vc-16-0", 23.24);
+      word("#vc-16-1", 23.32);
+      word("#vc-16-2", 23.44);
+      word("#vc-16-3", 24.00);
+      word("#vc-16-4", 24.20);
+      group("#vc-16", 23.16, 24.94);
+      word("#vc-17-0", 25.04);
+      word("#vc-17-1", 25.20);
+      group("#vc-17", 24.96, 25.90);
+      word("#vc-18-0", 26.00);
+      word("#vc-18-1", 26.24);
+      group("#vc-18", 25.92, 26.38);
+      word("#vc-19-0", 26.48);
+      word("#vc-19-1", 26.56);
+      word("#vc-19-2", 26.77);
+      word("#vc-19-3", 26.88);
+      group("#vc-19", 26.40, 27.66);
+      word("#vc-20-0", 27.76);
+      word("#vc-20-1", 28.08);
+      word("#vc-20-2", 28.24);
+      group("#vc-20", 27.68, 28.78);
+      word("#vc-21-0", 28.88);
+      word("#vc-21-1", 29.44);
+      word("#vc-21-2", 29.68);
+      group("#vc-21", 28.80, 30.14);
+      word("#vc-22-0", 30.24);
+      word("#vc-22-1", 30.40);
+      group("#vc-22", 30.16, 30.94);
+      word("#vc-23-0", 31.04);
+      word("#vc-23-1", 32.00);
+      group("#vc-23", 30.96, 32.78);
+      word("#vc-24-0", 32.88);
+      word("#vc-24-1", 33.36);
+      group("#vc-24", 32.80, 33.42);
+      word("#vc-25-0", 33.52);
+      word("#vc-25-1", 34.32);
+      group("#vc-25", 33.44, 34.78);
+      word("#vc-26-0", 34.88);
+      word("#vc-26-1", 35.32);
+      word("#vc-26-2", 35.44);
+      group("#vc-26", 34.80, 36.10);
+      word("#vc-27-0", 36.20);
+      word("#vc-27-1", 36.32);
+      word("#vc-27-2", 36.80);
+      group("#vc-27", 36.12, 37.49);
+      word("#vc-28-0", 37.59);
+      word("#vc-28-1", 37.68);
+      word("#vc-28-2", 38.11);
+      group("#vc-28", 37.51, 38.62);
+      word("#vc-29-0", 38.72);
+      word("#vc-29-1", 38.88);
+      word("#vc-29-2", 39.00);
+      word("#vc-29-3", 39.12);
+      group("#vc-29", 38.64, 39.74);
+      word("#vc-30-0", 39.84);
+      word("#vc-30-1", 40.08);
+      word("#vc-30-2", 40.44);
+      group("#vc-30", 39.76, 40.94);
+      word("#vc-31-0", 41.04);
+      word("#vc-31-1", 41.20);
+      group("#vc-31", 40.96, 41.93);
+      word("#vc-32-0", 42.03);
+      word("#vc-32-1", 42.48);
+      group("#vc-32", 41.95, 42.54);
+      word("#vc-33-0", 42.64);
+      group("#vc-33", 42.56, 44.02);
+      word("#vc-34-0", 44.12);
+      word("#vc-34-1", 44.24);
+      word("#vc-34-2", 44.40);
+      word("#vc-34-3", 44.96);
+      group("#vc-34", 44.04, 45.14);
+      word("#vc-35-0", 45.24);
+      word("#vc-35-1", 46.18);
+      word("#vc-35-2", 46.98);
+      word("#vc-35-3", 47.66);
+      group("#vc-35", 45.16, 48.94);
+      word("#vc-36-0", 49.12);
+      word("#vc-36-1", 49.76);
+      word("#vc-36-2", 49.96);
+      group("#vc-36", 49.04, 50.62);
+      word("#vc-37-0", 50.72);
+      word("#vc-37-1", 51.08);
+      word("#vc-37-2", 51.20);
+      group("#vc-37", 50.64, 52.06);
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,332 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #171717;
+      font-family: var(--font-display, "Poppins"), sans-serif;
+    }
+    #v5-grid {
+      position: absolute;
+      left: -200px;
+      top: -200px;
+      width: 1480px;
+      height: 2320px;
+      background-image: radial-gradient(circle, #2e2e2e 2.2px, rgba(0, 0, 0, 0) 2.6px);
+      background-size: 32px 32px;
+    }
+    #v5-big {
+      position: absolute;
+      left: 0;
+      top: 520px;
+      width: 1080px;
+      text-align: center;
+      color: #fff;
+    }
+    #v5-cest {
+      font-weight: 600;
+      font-size: 64px;
+      color: #9fb6cc;
+      line-height: 1;
+    }
+    #v5-vous {
+      font-weight: 800;
+      font-size: 280px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    #v5-vous span,
+    #v5-cmd span,
+    #v5-head span {
+      display: inline-block;
+    }
+    #v5-cmd {
+      margin-top: 6px;
+      font-weight: 700;
+      font-size: 72px;
+      color: #0aa4bc;
+      line-height: 1;
+    }
+    #v5-head {
+      position: absolute;
+      left: 0;
+      top: 250px;
+      width: 1080px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 84px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    #v5-head .v5-acc {
+      color: #0aa4bc;
+    }
+    #v5-wires {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    .v5-node {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      margin: -65px 0 0 -65px;
+      border-radius: 16px;
+      background: #2b2b2b;
+      border: 3px solid #4a4a4a;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+    }
+    .v5-node img,
+    .v5-node svg {
+      position: absolute;
+      left: 33px;
+      top: 33px;
+      width: 58px;
+      height: 58px;
+    }
+    #v5-n1 {
+      border-radius: 65px 16px 16px 65px;
+    }
+    .v5-label {
+      position: absolute;
+      left: -70px;
+      right: -70px;
+      top: 146px;
+      text-align: center;
+      font-size: 29px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #e8e8e8;
+    }
+    #v5-add {
+      position: absolute;
+      left: 135px;
+      top: 535px;
+      width: 130px;
+      height: 130px;
+      border-radius: 16px;
+      border: 3px dashed #6b6b6b;
+      color: #bdbdbd;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+      font-size: 72px;
+      line-height: 118px;
+      text-align: center;
+    }
+    .v5-plus {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      margin: -20px 0 0 -20px;
+      border-radius: 8px;
+      border: 2px solid #5a5a5a;
+      background: #2b2b2b;
+      color: #cfcfcf;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+      font-size: 32px;
+      line-height: 34px;
+      text-align: center;
+    }
+    #v5-agent {
+      position: absolute;
+      left: 420px;
+      top: 815px;
+      width: 330px;
+      height: 130px;
+      border-radius: 16px;
+      background: #2b2b2b;
+      border: 3px solid #4a4a4a;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+    }
+    #v5-agent svg {
+      position: absolute;
+      left: 34px;
+      top: 33px;
+      width: 60px;
+      height: 60px;
+    }
+    #v5-agent .v5-an {
+      position: absolute;
+      left: 112px;
+      top: 0;
+      line-height: 124px;
+      font-size: 36px;
+      font-weight: 700;
+      color: #eeeeee;
+    }
+    .v5-port {
+      position: absolute;
+      top: 962px;
+      width: 130px;
+      margin-left: -65px;
+      text-align: center;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #a8a8a8;
+    }
+    .v5-subnode {
+      position: absolute;
+      top: 1040px;
+      width: 96px;
+      height: 96px;
+      margin-left: -48px;
+      border-radius: 50%;
+      background: #2b2b2b;
+      border: 3px solid #4a4a4a;
+    }
+    .v5-subnode img {
+      position: absolute;
+      left: 26px;
+      top: 26px;
+      width: 38px;
+      height: 38px;
+    }
+    .v5-subadd {
+      position: absolute;
+      top: 1063px;
+      width: 50px;
+      height: 50px;
+      margin-left: -25px;
+      border-radius: 9px;
+      border: 2px dashed #6b6b6b;
+      color: #bdbdbd;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+      font-size: 34px;
+      line-height: 44px;
+      text-align: center;
+    }
+    #v5-cursor {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 58px;
+      height: 70px;
+    }
+    #v5-iris {
+      position: absolute;
+      left: 585px;
+      top: 880px;
+      width: 120px;
+      height: 120px;
+      margin: -60px 0 0 -60px;
+      border-radius: 50%;
+      background: #f4f8fd;
+    }
+  </style>
+
+  <div id="root" data-composition-id="v5" data-width="1080" data-height="1920">
+    <div id="v5-grid"></div>
+
+    <div id="v5-big">
+      <div id="v5-cest">C'est</div>
+      <div id="v5-vous"><span>V</span><span>O</span><span>U</span><span>S</span></div>
+      <div id="v5-cmd"><span>aux</span> <span>commandes.</span></div>
+    </div>
+
+    <div id="v5-head"><span>Du</span> <span>premier</span> <span>nœud</span><br /><span class="v5-acc">à</span> <span class="v5-acc">l'agent</span> <span class="v5-acc">IA.</span></div>
+
+    <svg id="v5-wires" viewBox="0 0 1080 1920" fill="none" stroke="#6B6B6B" stroke-width="4" stroke-linecap="round">
+      <path id="v5-w1" d="M265 600 L475 600" />
+      <path id="v5-w2" d="M605 600 L815 600" />
+      <path id="v5-w3" d="M945 600 C 1030 600 1030 740 540 740 C 50 740 50 880 135 880" />
+      <path id="v5-w4" d="M265 880 L420 880" />
+      <g id="v5-dash" stroke-dasharray="7 9" stroke-width="3">
+        <path id="v5-d1" d="M470 945 L470 1040" />
+        <path id="v5-d2" d="M595 945 L595 1063" />
+        <path id="v5-d3" d="M710 945 L710 1063" />
+      </g>
+    </svg>
+
+    <div id="v5-add">+</div>
+    <div class="v5-node" id="v5-n1" style="left: 200px; top: 600px"><img src="assets/icons/gmail.svg" alt="" /><div class="v5-label">Gmail Trigger</div></div>
+    <div class="v5-node" id="v5-n2" style="left: 540px; top: 600px"><img src="assets/icons/googlesheets.svg" alt="" /><div class="v5-label">Google Sheets</div></div>
+    <div class="v5-node" id="v5-n3" style="left: 880px; top: 600px">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#00C950" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14 H16 C22 14 24 34 32 34 H40" /><path d="M6 14 H40" /><path d="M34 8 L40 14 L34 20" /><path d="M34 28 L40 34 L34 40" /></svg>
+      <div class="v5-label">If</div>
+    </div>
+    <div class="v5-node" id="v5-n4" style="left: 200px; top: 880px"><img src="assets/icons/whatsapp.svg" alt="" /><div class="v5-label">WhatsApp</div></div>
+    <div class="v5-plus" id="v5-p1" style="left: 370px; top: 600px">+</div>
+    <div class="v5-plus" id="v5-p2" style="left: 710px; top: 600px">+</div>
+    <div class="v5-plus" id="v5-p3" style="left: 540px; top: 740px">+</div>
+    <div class="v5-plus" id="v5-p4" style="left: 342px; top: 880px">+</div>
+
+    <div id="v5-agent">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"><rect x="9" y="15" width="30" height="22" rx="8" /><circle cx="18.5" cy="26" r="2.6" fill="#FFFFFF" /><circle cx="29.5" cy="26" r="2.6" fill="#FFFFFF" /><path d="M24 15 V9" /><circle cx="24" cy="7.5" r="2.2" /><path d="M5 24 V30 M43 24 V30" /></svg>
+      <div class="v5-an">AI Agent</div>
+    </div>
+    <div class="v5-port" id="v5-pt1" style="left: 470px" data-layout-ignore>Chat Model</div>
+    <div class="v5-port" id="v5-pt2" style="left: 595px" data-layout-ignore>Memory</div>
+    <div class="v5-port" id="v5-pt3" style="left: 710px" data-layout-ignore>Tool</div>
+    <div class="v5-subnode" id="v5-sub1" style="left: 470px"><img src="assets/icons/openrouter-blanc.svg" alt="" /></div>
+    <div class="v5-subadd" id="v5-sub2" style="left: 595px">+</div>
+    <div class="v5-subadd" id="v5-sub3" style="left: 710px">+</div>
+
+    <svg id="v5-cursor" viewBox="0 0 58 70"><path d="M4 3 L4 56 L17 44 L26 66 L36 62 L27 41 L45 41 Z" fill="#FFFFFF" stroke="#0B2A45" stroke-width="4" stroke-linejoin="round" /></svg>
+
+    <div id="v5-iris"></div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // ---- the canvas recedes from s4 and "VOUS" takes the frame
+      tl.fromTo("#v5-grid", { opacity: 0.25, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" }, 0);
+      tl.fromTo("#v5-cest", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 0.12);
+      // "VOUS" (1.24): one letter at a time, landing hard
+      tl.fromTo("#v5-vous span", { opacity: 0, scale: 1.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.28, stagger: 0.07, ease: "expo.out" }, 1.08);
+      tl.fromTo("#v5-cmd span", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.09, ease: "power2.out" }, 1.55);
+      tl.to("#v5-big", { opacity: 0, scale: 0.92, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 2.05);
+
+      // ---- "Étape par étape" (2.2): the cursor builds the workflow one node at a time
+      tl.fromTo("#v5-head span", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power2.out" }, 2.3);
+      tl.fromTo("#v5-add", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.8)" }, 2.1);
+      tl.fromTo("#v5-cursor", { x: 760, y: 2000 }, { x: 200, y: 610, duration: 0.35, ease: "power3.out" }, 1.95);
+
+      const steps = [
+        // [node, plus that leads to it, wire, click time, cursor target]
+        ["#v5-n1", "#v5-add", null, 2.3, [200, 610]],
+        ["#v5-n2", "#v5-p1", "#v5-w1", 2.75, [370, 610]],
+        ["#v5-n3", "#v5-p2", "#v5-w2", 3.2, [710, 610]],
+        ["#v5-n4", "#v5-p3", "#v5-w3", 3.65, [540, 750]],
+      ];
+      steps.forEach(([node, plus, wire, at, c], i) => {
+        if (i > 0) {
+          tl.fromTo(plus, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.18, ease: "back.out(2)" }, at - 0.32);
+          tl.to("#v5-cursor", { x: c[0], y: c[1], duration: 0.26, ease: "power3.inOut" }, at - 0.3);
+        }
+        // the click: the cursor dips, the + becomes the node
+        tl.to("#v5-cursor", { scale: 0.86, duration: 0.06, yoyo: true, repeat: 1, ease: "power1.inOut", transformOrigin: "4px 3px" }, at - 0.04);
+        tl.to(plus, { opacity: 0, scale: 0.6, duration: 0.12, ease: "power2.in" }, at);
+        if (wire) {
+          const len = document.querySelector(wire).getTotalLength() || 140;
+          tl.fromTo(wire, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: 0.2, ease: "power2.out" }, at);
+        }
+        tl.fromTo(node, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, at + 0.04);
+      });
+
+      // ---- "jusqu'aux agents IA" (3.88): the agent lands with its model, memory and tool ports
+      tl.fromTo("#v5-p4", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.18, ease: "back.out(2)" }, 3.78);
+      tl.to("#v5-cursor", { x: 342, y: 890, duration: 0.24, ease: "power3.inOut" }, 3.8);
+      tl.to("#v5-cursor", { scale: 0.86, duration: 0.06, yoyo: true, repeat: 1, ease: "power1.inOut", transformOrigin: "4px 3px" }, 4.06);
+      tl.to("#v5-p4", { opacity: 0, scale: 0.6, duration: 0.12 }, 4.1);
+      const l4 = document.querySelector("#v5-w4").getTotalLength() || 155;
+      tl.fromTo("#v5-w4", { strokeDasharray: l4, strokeDashoffset: l4 }, { strokeDashoffset: 0, duration: 0.2, ease: "power2.out" }, 4.1);
+      tl.fromTo("#v5-agent", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 4.14);
+      tl.to("#v5-cursor", { x: 1100, y: 1400, duration: 0.35, ease: "power3.in" }, 4.22);
+      ["#v5-d1", "#v5-d2", "#v5-d3"].forEach((d, i) => tl.fromTo(d, { opacity: 0 }, { opacity: 1, duration: 0.15 }, 4.3 + i * 0.05));
+      tl.fromTo(["#v5-pt1", "#v5-pt2", "#v5-pt3"], { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.25, stagger: 0.05, ease: "power2.out" }, 4.3);
+      tl.fromTo("#v5-sub1", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 4.38);
+      tl.fromTo(["#v5-sub2", "#v5-sub3"], { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.25, stagger: 0.05, ease: "back.out(2)" }, 4.42);
+
+      // ---- colour flood (4.7): the agent opens onto the bright world of s6
+      tl.fromTo("#v5-iris", { scale: 0 }, { scale: 42, duration: 0.42, ease: "power3.in" }, 4.58);
+
+      window.__timelines["v5"] = tl;
+    })();
+  </script>
+</template>

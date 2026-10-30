@@ -1,0 +1,396 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #171717;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+    }
+    #v4-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      transform-origin: 0 0;
+    }
+    #v4-grid {
+      position: absolute;
+      left: -1200px;
+      top: -800px;
+      width: 4320px;
+      height: 2680px;
+      background-image: radial-gradient(circle, #2e2e2e 2.2px, rgba(0, 0, 0, 0) 2.6px);
+      background-size: 32px 32px;
+    }
+    #v4-wires {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: visible;
+    }
+    .v4-node {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      margin: -65px 0 0 -65px;
+      border-radius: 16px;
+      background: #2b2b2b;
+      border: 3px solid #4a4a4a;
+    }
+    #v4-n-web {
+      border-radius: 65px 16px 16px 65px;
+    }
+    .v4-ico {
+      position: absolute;
+      left: 32px;
+      top: 32px;
+      width: 60px;
+      height: 60px;
+    }
+    .v4-ico svg,
+    .v4-ico img {
+      width: 60px;
+      height: 60px;
+    }
+    .v4-braces {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      line-height: 124px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 48px;
+      letter-spacing: -2px;
+      color: #ffb966;
+    }
+    .v4-label {
+      position: absolute;
+      left: -70px;
+      right: -70px;
+      top: 146px;
+      text-align: center;
+      font-size: 29px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #e8e8e8;
+    }
+    .v4-sub {
+      display: block;
+      margin-top: 4px;
+      font-size: 22px;
+      font-weight: 600;
+      color: #a8a8a8;
+      white-space: nowrap;
+    }
+    .v4-port {
+      position: absolute;
+      font-size: 20px;
+      font-weight: 600;
+      color: #9a9a9a;
+    }
+    .v4-ok {
+      position: absolute;
+      right: -16px;
+      bottom: -16px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #00c950;
+      border: 4px solid #171717;
+      opacity: 0;
+    }
+    .v4-ok svg {
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      width: 24px;
+      height: 24px;
+    }
+    .v4-pkt {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      margin: -11px 0 0 -11px;
+      border-radius: 50%;
+      background: #fff;
+      border: 5px solid #00c950;
+      opacity: 0;
+    }
+    #v4-plus {
+      position: absolute;
+      left: 1218px;
+      top: 676px;
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      border: 2px solid #5a5a5a;
+      background: #2b2b2b;
+      color: #cfcfcf;
+      font-size: 28px;
+      line-height: 28px;
+      text-align: center;
+    }
+    #v4-exec {
+      position: absolute;
+      left: 852px;
+      top: 856px;
+      width: 216px;
+      height: 64px;
+      border-radius: 12px;
+      background: #ff6900;
+      color: #fff;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 64px;
+      text-align: center;
+    }
+    /* screen-space UI */
+    #v4-bar {
+      position: absolute;
+      left: 0;
+      top: 170px;
+      width: 1080px;
+      height: 104px;
+      border-top: 2px solid #2a2a2a;
+      background: #171717;
+      border-bottom: 2px solid #2a2a2a;
+    }
+    #v4-crumb {
+      position: absolute;
+      left: 40px;
+      top: 0;
+      line-height: 104px;
+      font-size: 32px;
+      font-weight: 600;
+      color: #bdbdbd;
+    }
+    #v4-crumb b {
+      color: #f2f2f2;
+      font-weight: 700;
+    }
+    #v4-pub {
+      position: absolute;
+      right: 40px;
+      top: 24px;
+      height: 56px;
+      padding: 0 26px 0 50px;
+      border: 2px solid #3a3a3a;
+      border-radius: 10px;
+      line-height: 52px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #cfcfcf;
+    }
+    #v4-pub:before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 19px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #00c950;
+    }
+    .v4-card {
+      position: absolute;
+      padding: 22px 28px;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+      font-size: 30px;
+      font-weight: 700;
+      color: #0b2a45;
+      white-space: nowrap;
+    }
+    #v4-req {
+      left: 80px;
+      top: 380px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .v4-method {
+      padding: 4px 14px;
+      border-radius: 8px;
+      background: #ff4d80;
+      color: #fff;
+      font-size: 30px;
+    }
+    #v4-rows {
+      left: 250px;
+      top: 330px;
+      width: 290px;
+      padding: 20px 24px;
+    }
+    #v4-rows .v4-rt {
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+    .v4-row {
+      height: 18px;
+      margin-top: 12px;
+      border-radius: 9px;
+      background: #dbe6f2;
+    }
+    #v4-resp {
+      left: 360px;
+      top: 450px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    #v4-resp svg {
+      width: 44px;
+      height: 44px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="v4" data-width="1080" data-height="1920">
+    <div id="v4-cam" data-layout-allow-overflow>
+      <div id="v4-grid"></div>
+      <svg id="v4-wires" viewBox="0 0 1920 1080" fill="none" stroke-linecap="round" stroke-width="4">
+        <path id="v4-w-code" d="M288 560 L464 560" stroke="#6B6B6B" />
+        <path id="v4-w-if" d="M594 560 L749 560" stroke="#6B6B6B" />
+        <path id="v4-w-sql" d="M879 539 C 960 539 960 450 1033 450" stroke="#6B6B6B" />
+        <path id="v4-w-code1" d="M879 581 C 960 581 960 693 1033 693" stroke="#6B6B6B" />
+        <path id="v4-w-code2" d="M1163 450 L1318 450" stroke="#6B6B6B" />
+        <path id="v4-w-http" d="M1448 450 C 1530 450 1530 474 1602 474" stroke="#6B6B6B" />
+        <path id="v4-w-out" d="M1732 474 L1960 474" stroke="#6B6B6B" />
+        <path d="M1163 693 L1218 693" stroke="#6B6B6B" />
+      </svg>
+      <div class="v4-pkt" id="v4-p-code"></div>
+      <div class="v4-pkt" id="v4-p-if"></div>
+      <div class="v4-pkt" id="v4-p-sql"></div>
+      <div class="v4-pkt" id="v4-p-code2"></div>
+      <div class="v4-pkt" id="v4-p-http"></div>
+      <div class="v4-pkt" id="v4-p-out"></div>
+
+      <div class="v4-port" style="left: 300px; top: 526px" data-layout-ignore>POST</div>
+      <div class="v4-port" style="left: 890px; top: 506px" data-layout-ignore>true</div>
+      <div class="v4-port" style="left: 890px; top: 590px" data-layout-ignore>false</div>
+      <div id="v4-plus">+</div>
+
+      <div class="v4-node" id="v4-n-web" style="left: 223px; top: 560px">
+        <div class="v4-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#FF4D80" stroke-width="3.8" stroke-linecap="round"><circle cx="24" cy="12" r="6" /><circle cx="11" cy="35" r="6" /><circle cx="37" cy="35" r="6" /><path d="M21 17 L14 29 M17 35 H31 M27 17 L34 29" /></svg></div>
+        <div class="v4-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div class="v4-label">Webhook</div>
+      </div>
+      <div class="v4-node" id="v4-n-code" style="left: 529px; top: 560px">
+        <div class="v4-braces">{ }</div>
+        <div class="v4-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div class="v4-label">Code in JavaScript</div>
+      </div>
+      <div class="v4-node" id="v4-n-if" style="left: 814px; top: 560px">
+        <div class="v4-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#00C950" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14 H16 C22 14 24 34 32 34 H40" /><path d="M6 14 H40" /><path d="M34 8 L40 14 L34 20" /><path d="M34 28 L40 34 L34 40" /></svg></div>
+        <div class="v4-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div class="v4-label">If</div>
+      </div>
+      <div class="v4-node" id="v4-n-sql" style="left: 1098px; top: 450px">
+        <div class="v4-ico"><img src="assets/icons/mysql-blanc.svg" alt="" /></div>
+        <div class="v4-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div class="v4-label">Execute a SQL query<span class="v4-sub">executeQuery</span></div>
+      </div>
+      <div class="v4-node" id="v4-n-code2" style="left: 1383px; top: 450px">
+        <div class="v4-braces">{ }</div>
+        <div class="v4-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div class="v4-label">Code in JavaScript2</div>
+      </div>
+      <div class="v4-node" id="v4-n-http" style="left: 1667px; top: 474px">
+        <div class="v4-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#898FFF" stroke-width="3.4"><circle cx="24" cy="24" r="17" /><ellipse cx="24" cy="24" rx="7.5" ry="17" /><path d="M7 24 H41 M10 15 H38 M10 33 H38" /></svg></div>
+        <div class="v4-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        <div class="v4-label">HTTP Request<span class="v4-sub">POST: https://ai.mapsante.cd…</span></div>
+      </div>
+      <div class="v4-node" id="v4-n-code1" style="left: 1098px; top: 693px">
+        <div class="v4-braces">{ }</div>
+        <div class="v4-label">Code in JavaScript1</div>
+      </div>
+    </div>
+
+    <div id="v4-bar">
+      <div id="v4-crumb"><b>MapSante AI (Assistant Pro)</b></div>
+      <div id="v4-pub">Published</div>
+    </div>
+
+    <!-- "Une requête arrive" -->
+    <div class="v4-card" id="v4-req"><span class="v4-method">POST</span> Nouvelle requête</div>
+    <!-- "la base de données est interrogée" -->
+    <div class="v4-card" id="v4-rows">
+      <div class="v4-rt">Résultats SQL</div>
+      <div class="v4-row" id="v4-r1" style="width: 92%"></div>
+      <div class="v4-row" id="v4-r2" style="width: 76%"></div>
+      <div class="v4-row" id="v4-r3" style="width: 86%"></div>
+    </div>
+    <!-- "et le résultat est renvoyé" -->
+    <div class="v4-card" id="v4-resp">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#00C950" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="20" /><path d="M15 24.5 L21.5 31 L33 18" /></svg>
+      Résultat renvoyé
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // ---- whip in from the right (the camera keeps travelling from the ESURSI overview)
+      tl.fromTo("#v4-cam", { x: 1060, y: 200, filter: "blur(16px)" }, { x: 160, y: 200, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 0);
+      // the frame is narrow: the camera follows the request along the real layout
+      tl.to("#v4-cam", { x: -274, duration: 0.35, ease: "power2.inOut" }, 0.92);
+      tl.to("#v4-cam", { x: -700, y: 230, duration: 0.42, ease: "power2.inOut" }, 1.28);
+      tl.to("#v4-cam", { x: -1020, y: 200, duration: 0.42, ease: "power2.inOut" }, 2.58);
+      tl.fromTo(["#v4-bar"], { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0.1);
+
+      // ---- "Une requête arrive" (0.1): a POST lands on the Webhook
+      tl.fromTo("#v4-req", { opacity: 0, x: -260, scale: 0.9 }, { opacity: 1, x: 0, scale: 1, duration: 0.28, ease: "expo.out" }, 0.08);
+      tl.to("#v4-req", { x: 93, y: 335, scale: 0.15, opacity: 0, duration: 0.25, ease: "power3.in" }, 0.36);
+
+      const ok = (id, at) => {
+        tl.to(id, { borderColor: "#00C950", duration: 0.12 }, at);
+        tl.fromTo(id, { scale: 1 }, { scale: 1.07, duration: 0.11, yoyo: true, repeat: 1, ease: "power2.out" }, at);
+        tl.fromTo(id + " .v4-ok", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, at + 0.04);
+      };
+      const flow = (wire, pkt, t0, t1) => {
+        tl.set(pkt, { opacity: 0 }, 0);
+        tl.fromTo(pkt, { opacity: 1, motionPath: { path: wire, start: 0, end: 0 } }, { motionPath: { path: wire, start: 0, end: 1 }, duration: t1 - t0, ease: "none" }, t0);
+        tl.set(pkt, { opacity: 0 }, t1);
+        tl.to(wire, { stroke: "#00C950", duration: 0.15 }, t1);
+      };
+      ok("#v4-n-web", 0.6);
+      flow("#v4-w-code", "#v4-p-code", 0.66, 0.9);
+      ok("#v4-n-code", 0.9);
+      flow("#v4-w-if", "#v4-p-if", 0.96, 1.18);
+      ok("#v4-n-if", 1.18);
+      // the condition is true: the false branch goes quiet
+      tl.to(["#v4-n-code1", "#v4-w-code1", "#v4-plus"], { opacity: 0.35, duration: 0.3 }, 1.25);
+
+      // ---- "la base de données est interrogée" (1.27)
+      flow("#v4-w-sql", "#v4-p-sql", 1.24, 1.5);
+      ok("#v4-n-sql", 1.5);
+      tl.fromTo("#v4-rows", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 1.58);
+      ["#v4-r1", "#v4-r2", "#v4-r3"].forEach((r, i) => {
+        tl.fromTo(r, { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.35, ease: "expo.out" }, 1.85 + i * 0.16);
+      });
+      tl.to("#v4-rows", { opacity: 0, y: -30, duration: 0.25, ease: "power3.in" }, 2.75);
+      flow("#v4-w-code2", "#v4-p-code2", 2.35, 2.6);
+      ok("#v4-n-code2", 2.6);
+
+      // ---- "et le résultat est renvoyé" (2.94)
+      flow("#v4-w-http", "#v4-p-http", 2.66, 2.95);
+      ok("#v4-n-http", 2.95);
+      flow("#v4-w-out", "#v4-p-out", 3.05, 3.3);
+      tl.fromTo("#v4-resp", { opacity: 0, x: -140, scale: 0.7 }, { opacity: 1, x: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 3.3);
+
+      // ---- hand-off (4.2): pull back, the canvas recedes behind "VOUS"
+      tl.to(["#v4-resp", "#v4-bar"], { opacity: 0, duration: 0.25, ease: "power2.in" }, 4.15);
+      tl.to("#v4-cam", { scale: 0.5, x: 60, y: 480, opacity: 0.25, filter: "blur(6px)", duration: 0.5, ease: "power3.in" }, 4.2);
+
+      window.__timelines["v4"] = tl;
+    })();
+  </script>
+</template>

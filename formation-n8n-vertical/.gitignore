@@ -1,0 +1,8 @@
+# regenerable audio (music/compose.py then music/mixdown.py)
+music/stems/
+music/music-master.wav
+music/mix-preview.wav
+# HyperFrames working state, snapshots and renders
+.hyperframes/artifacts/
+renders/
+node_modules/

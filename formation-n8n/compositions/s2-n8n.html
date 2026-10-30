@@ -107,6 +107,12 @@
       font-size: 76px;
       letter-spacing: -0.02em;
     }
+    #s2-night {
+      position: absolute;
+      inset: 0;
+      background: #171717;
+      opacity: 0;
+    }
     #s2-title span,
     #s2-word span {
       display: inline-block;
@@ -155,6 +161,7 @@
       <div id="s2-hub"><img src="assets/icons/n8n.svg" alt="n8n" /></div>
     </div>
     <div id="s2-word"><span>n8n</span></div>
+    <div id="s2-night"></div>
     <div id="s2-title"><span>Vos</span> <span>outils,</span> <span class="s2-acc">enfin</span> <span class="s2-acc">connectés.</span></div>
   </div>
 
@@ -231,8 +238,11 @@
       // ---- dive (3.9): the camera falls into the Gmail node, which becomes the n8n canvas
       tl.to("#s2-title span", { opacity: 0, filter: "blur(8px)", duration: 0.18, stagger: 0.03, ease: "power2.in" }, 3.75);
       tl.fromTo("#s2-cam", { scale: 1, x: 0, y: 0 }, { scale: 20, x: 580, y: -60, duration: 0.7, ease: "power3.in" }, 3.9);
-      tl.to("#s2-gmail-dark", { opacity: 1, duration: 0.3, ease: "power1.in" }, 4.2);
-      tl.to("#s2-t-gmail img", { opacity: 0, duration: 0.2, ease: "power1.in" }, 4.2);
+      // at the fastest frame the node switches to n8n's canvas, and the whole frame follows
+      tl.to("#s2-chain-wires", { opacity: 0, duration: 0.15 }, 4.1);
+      tl.set("#s2-gmail-dark", { opacity: 1 }, 4.3);
+      tl.set("#s2-t-gmail img", { opacity: 0 }, 4.3);
+      tl.to("#s2-night", { opacity: 1, duration: 0.2, ease: "power2.in" }, 4.36);
       tl.to("#s2-light", { opacity: 0, duration: 0.3 }, 4.2);
 
       window.__timelines["s2"] = tl;

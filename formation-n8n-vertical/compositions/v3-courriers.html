@@ -1,0 +1,397 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #171717;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+    }
+    #v3-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4200px;
+      height: 1000px;
+      transform-origin: 0 0;
+    }
+    #v3-grid {
+      position: absolute;
+      left: -3000px;
+      top: -2400px;
+      width: 10200px;
+      height: 5800px;
+      background-image: radial-gradient(circle, #2e2e2e 2.2px, rgba(0, 0, 0, 0) 2.6px);
+      background-size: 32px 32px;
+    }
+    #v3-wires {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    .v3-node {
+      position: absolute;
+      border-radius: 14px;
+      background: #2b2b2b;
+      border: 3px solid #4a4a4a;
+    }
+    .v3-trigger {
+      border-radius: 60px 14px 14px 60px;
+    }
+    .v3-ico {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 60px;
+      height: 60px;
+      margin: -30px 0 0 -30px;
+    }
+    .v3-ico svg {
+      width: 60px;
+      height: 60px;
+    }
+    .v3-ico-agent {
+      left: 58px;
+    }
+    .v3-agent-name {
+      position: absolute;
+      left: 104px;
+      top: 0;
+      line-height: 110px;
+      font-size: 32px;
+      font-weight: 700;
+      color: #eeeeee;
+    }
+    .v3-braces {
+      width: 60px;
+      height: 60px;
+      line-height: 58px;
+      text-align: center;
+      font-family: var(--font-ui, "Open Sans"), sans-serif;
+      font-weight: 700;
+      font-size: 44px;
+      letter-spacing: -2px;
+      color: #ffb966;
+    }
+    .v3-braces-sm {
+      font-size: 30px;
+      color: #e8e8e8;
+      letter-spacing: 0;
+    }
+    .v3-bolt {
+      position: absolute;
+      left: -44px;
+      top: 44px;
+      width: 22px;
+      height: 30px;
+    }
+    .v3-label {
+      position: absolute;
+      left: -54px;
+      right: -54px;
+      text-align: center;
+      font-size: 27px;
+      line-height: 1.22;
+      font-weight: 700;
+      color: #e8e8e8;
+    }
+    .v3-sub {
+      position: absolute;
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: #2b2b2b;
+      border: 3px solid #4a4a4a;
+    }
+    .v3-sub img {
+      position: absolute;
+      left: 24px;
+      top: 24px;
+      width: 38px;
+      height: 38px;
+    }
+    .v3-sub .v3-braces-sm {
+      position: absolute;
+      left: 13px;
+      top: 13px;
+    }
+    .v3-ok {
+      position: absolute;
+      right: -16px;
+      bottom: -16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #00c950;
+      border: 4px solid #171717;
+      opacity: 0;
+    }
+    .v3-ok svg {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 24px;
+      height: 24px;
+    }
+    .v3-pkt {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      margin: -11px 0 0 -11px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 5px solid #00c950;
+      opacity: 0;
+    }
+    /* screen-space UI */
+    #v3-bar {
+      position: absolute;
+      left: 0;
+      top: 170px;
+      width: 1080px;
+      height: 104px;
+      border-top: 2px solid #2a2a2a;
+      background: #171717;
+      border-bottom: 2px solid #2a2a2a;
+    }
+    #v3-crumb {
+      position: absolute;
+      left: 40px;
+      top: 0;
+      line-height: 104px;
+      font-size: 30px;
+      font-weight: 600;
+      color: #bdbdbd;
+    }
+    #v3-crumb b {
+      color: #f2f2f2;
+      font-weight: 700;
+    }
+    #v3-pub {
+      position: absolute;
+      right: 40px;
+      top: 24px;
+      height: 56px;
+      padding: 0 26px 0 50px;
+      border: 2px solid #3a3a3a;
+      border-radius: 10px;
+      line-height: 52px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #cfcfcf;
+    }
+    #v3-pub:before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 19px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #00c950;
+    }
+    #v3-mail {
+      position: absolute;
+      left: 290px;
+      top: 380px;
+      width: 500px;
+      padding: 26px 30px;
+      border-radius: 22px;
+      background: #ffffff;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+      font-size: 30px;
+      font-weight: 700;
+      color: #0b2a45;
+    }
+    #v3-mail .v3-from {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    #v3-mail img {
+      width: 44px;
+      height: 44px;
+    }
+    #v3-mail .v3-subj {
+      margin-top: 12px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #4a6178;
+    }
+    #v3-reply {
+      position: absolute;
+      left: 250px;
+      top: 440px;
+      padding: 22px 30px;
+      border-radius: 20px;
+      background: #ffffff;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 30px;
+      font-weight: 700;
+      color: #0b2a45;
+      white-space: nowrap;
+    }
+    #v3-reply svg {
+      width: 44px;
+      height: 44px;
+    }
+    #v3-shot {
+      position: absolute;
+      left: 40px;
+      top: 480px;
+      width: 1000px;
+      height: 451px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6), 0 0 0 2px #2f2f2f;
+      opacity: 0;
+    }
+    #v3-shot img {
+      width: 1000px;
+      height: 451px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="v3" data-width="1080" data-height="1920">
+    <div id="v3-cam" data-layout-allow-overflow>
+      <div id="v3-grid"></div>
+      <svg id="v3-wires" viewBox="0 0 4200 1000" width="4200" height="1000" fill="none" stroke-linecap="round">
+        <g stroke="#5E5E5E" stroke-width="3" stroke-opacity="0.55"><path d="M790 518 H 880"/><path d="M1060 562 C 1170 562 1120 960 1260 960"/><path d="M2714 422 C 2910 422 2940 1100 3140 1160"/><path d="M3210 418 C 3320 418 3300 458 3450 458"/><path d="M3210 462 C 3320 462 3300 562 3450 562"/><path d="M3210 506 C 3320 506 3300 666 3450 666"/><path d="M4030 208 H 4120"/></g>
+        <g stroke="#6B6B6B" stroke-width="3" stroke-dasharray="7 9"><path d="M2490 458 C 2490 530 2400 584 2400 658"/><path d="M2670 458 C 2670 530 2634 584 2634 658"/></g>
+        <path class="v3-wire" id="v3-w-trig-prep" d="M260 540 C 327 540 327 540 394 540" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-prep-auto" d="M514 540 C 592 540 592 540 670 540" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-auto-pj" d="M790 562 C 865 562 865 540 940 540" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-pj-ocrq" d="M1060 518 C 1137 518 1137 404 1214 404" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-ocrq-ocr" d="M1334 404 C 1411 404 1411 404 1488 404" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-ocr-txt" d="M1608 404 C 1685 404 1685 404 1762 404" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-txt-lis" d="M1882 404 C 2026 404 2026 404 2170 404" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-lis-agent" d="M2290 382 C 2368 382 2368 400 2446 400" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-agent-dec" d="M2714 400 C 2774 400 2756 400 2816 400" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-dec-sw" d="M2936 400 C 3013 400 3013 440 3090 440" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-sw-gec" d="M3210 374 C 3288 374 3288 208 3366 208" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-gec-jr" d="M3486 208 C 3561 208 3561 208 3636 208" stroke="#6B6B6B" stroke-width="4"/>
+        <path class="v3-wire" id="v3-w-jr-ar" d="M3756 208 C 3833 208 3833 208 3910 208" stroke="#6B6B6B" stroke-width="4"/>
+      </svg>
+      <div class="v3-pkt" id="v3-p-prep"></div>
+      <div class="v3-pkt" id="v3-p-auto"></div>
+      <div class="v3-pkt" id="v3-p-pj"></div>
+      <div class="v3-pkt" id="v3-p-ocrq"></div>
+      <div class="v3-pkt" id="v3-p-ocr"></div>
+      <div class="v3-pkt" id="v3-p-txt"></div>
+      <div class="v3-pkt" id="v3-p-lis"></div>
+      <div class="v3-pkt" id="v3-p-agent"></div>
+      <div class="v3-pkt" id="v3-p-dec"></div>
+      <div class="v3-pkt" id="v3-p-sw"></div>
+      <div class="v3-pkt" id="v3-p-gec"></div>
+      <div class="v3-pkt" id="v3-p-jr"></div>
+      <div class="v3-pkt" id="v3-p-ar"></div>
+      <div class="v3-node v3-trigger" id="v3-n-trig" style="left: 140px; top: 480px; width: 120px; height: 120px"><svg class="v3-bolt" viewBox="0 0 20 28"><path d="M12 0 L2 16 H9 L7 28 L18 10 H11 Z" fill="#FF6D5A"/></svg><div class="v3-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#2FBF71" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><path d="M6 26 L12 10 H36 L42 26 V38 H6 Z"/><path d="M6 26 H16 L19 31 H29 L32 26 H42"/></svg></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Email Trigger (IMAP)</div></div>
+      <div class="v3-node" id="v3-n-prep" style="left: 394px; top: 480px; width: 120px; height: 120px"><div class="v3-ico"><div class="v3-braces">{ }</div></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Préparer le mail</div></div>
+      <div class="v3-node" id="v3-n-auto" style="left: 670px; top: 480px; width: 120px; height: 120px"><div class="v3-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#00C950" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14 H16 C22 14 24 34 32 34 H40"/><path d="M6 14 H40"/><path d="M34 8 L40 14 L34 20"/><path d="M34 28 L40 34 L34 40"/></svg></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Mail automatique ?</div></div>
+      <div class="v3-node" id="v3-n-pj" style="left: 940px; top: 480px; width: 120px; height: 120px"><div class="v3-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#00C950" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14 H16 C22 14 24 34 32 34 H40"/><path d="M6 14 H40"/><path d="M34 8 L40 14 L34 20"/><path d="M34 28 L40 34 L34 40"/></svg></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Pièce jointe valide ?</div></div>
+      <div class="v3-node" id="v3-n-ocrq" style="left: 1214px; top: 344px; width: 120px; height: 120px"><div class="v3-ico"><div class="v3-braces">{ }</div></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Préparer requête OCR</div></div>
+      <div class="v3-node" id="v3-n-ocr" style="left: 1488px; top: 344px; width: 120px; height: 120px"><div class="v3-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#898FFF" stroke-width="3.4"><circle cx="24" cy="24" r="17"/><ellipse cx="24" cy="24" rx="7.5" ry="17"/><path d="M7 24 H41 M10 15 H38 M10 33 H38"/></svg></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Extraction OCR (OpenRouter)</div></div>
+      <div class="v3-node" id="v3-n-txt" style="left: 1762px; top: 344px; width: 120px; height: 120px"><div class="v3-ico"><div class="v3-braces">{ }</div></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Texte du document</div></div>
+      <div class="v3-node" id="v3-n-lis" style="left: 2170px; top: 344px; width: 120px; height: 120px"><div class="v3-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#00C950" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14 H16 C22 14 24 34 32 34 H40"/><path d="M6 14 H40"/><path d="M34 8 L40 14 L34 20"/><path d="M34 28 L40 34 L34 40"/></svg></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Document lisible ?</div></div>
+      <div class="v3-node v3-agent" id="v3-n-agent" style="left: 2446px; top: 342px; width: 268px; height: 116px"><div class="v3-ico v3-ico-agent"><svg viewBox="0 0 48 48" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"><rect x="9" y="15" width="30" height="22" rx="8"/><circle cx="18.5" cy="26" r="2.6" fill="#FFFFFF"/><circle cx="29.5" cy="26" r="2.6" fill="#FFFFFF"/><path d="M24 15 V9"/><circle cx="24" cy="7.5" r="2.2"/><path d="M5 24 V30 M43 24 V30"/></svg></div><div class="v3-agent-name">AI Agent</div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <div class="v3-node" id="v3-n-dec" style="left: 2816px; top: 340px; width: 120px; height: 120px"><div class="v3-ico"><div class="v3-braces">{ }</div></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Décider</div></div>
+      <div class="v3-node" id="v3-n-sw" style="left: 3090px; top: 344px; width: 120px; height: 192px"><div class="v3-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#3B9CF0" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24 H18"/><path d="M18 24 C24 24 24 10 32 10 H40"/><path d="M18 24 H40"/><path d="M18 24 C24 24 24 38 32 38 H40"/><path d="M35 6 L40 10 L35 14"/><path d="M35 34 L40 38 L35 42"/></svg></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 206px">Décision</div></div>
+      <div class="v3-node" id="v3-n-gec" style="left: 3366px; top: 148px; width: 120px; height: 120px"><div class="v3-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#898FFF" stroke-width="3.4"><circle cx="24" cy="24" r="17"/><ellipse cx="24" cy="24" rx="7.5" ry="17"/><path d="M7 24 H41 M10 15 H38 M10 33 H38"/></svg></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Enregistrer dans le GEC</div></div>
+      <div class="v3-node" id="v3-n-jr" style="left: 3636px; top: 148px; width: 120px; height: 120px"><div class="v3-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#FF6D00" stroke-width="3.6" stroke-linejoin="round"><rect x="8" y="9" width="32" height="30" rx="3"/><path d="M8 19 H40 M8 29 H40 M19 9 V39 M29 9 V39"/></svg></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Journal enregistré</div></div>
+      <div class="v3-node" id="v3-n-ar" style="left: 3910px; top: 148px; width: 120px; height: 120px"><div class="v3-ico"><svg viewBox="0 0 48 48" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linejoin="round"><rect x="7" y="11" width="34" height="26" rx="3"/><path d="M7 13 L24 26 L41 13"/></svg></div><div class="v3-ok"><svg viewBox="0 0 24 24"><path d="M6 12.5 L10.5 17 L18.5 8" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="v3-label" style="top: 134px">Accusé de réception</div></div>
+      <div class="v3-sub" id="v3-s-model" style="left: 2354px; top: 658px"><img src="assets/icons/openrouter-blanc.svg" alt="" /><div class="v3-label" style="top: 106px">OpenRouter Chat Model</div></div>
+      <div class="v3-sub" id="v3-s-parser" style="left: 2588px; top: 658px"><div class="v3-braces v3-braces-sm">{⋯}</div><div class="v3-label" style="top: 106px">Structured Output Parser</div></div>
+    </div>
+
+    <!-- the real screen, revealed when the camera pulls back -->
+    <div id="v3-shot"><img src="assets/img/workflow-courriers-esursi.png" alt="Workflow n8n Agent Courriers ESURSI" /></div>
+
+    <div id="v3-bar">
+      <div id="v3-crumb"><b>Agent Courriers ESURSI</b></div>
+      <div id="v3-pub">Published</div>
+    </div>
+
+    <!-- "Un e-mail arrive" -->
+    <div id="v3-mail">
+      <div class="v3-from"><img src="assets/icons/gmail.svg" alt="" />Nouveau courrier</div>
+          </div>
+    <!-- "…et la réponse part, toute seule" -->
+    <div id="v3-reply">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#00C950" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="20" /><path d="M15 24.5 L21.5 31 L33 18" /></svg>
+      Accusé de réception envoyé
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // ---- camera (screen = s * world + t), keyed on the voice
+      const cam = "#v3-cam";
+      tl.fromTo(cam, { x: 140, y: -320, scale: 2.0 }, { x: 140, y: 18, scale: 1.3, duration: 0.7, ease: "expo.out" }, 0);
+      tl.to(cam, { x: -710, y: 45, scale: 1.25, duration: 0.75, ease: "power2.inOut" }, 0.7);
+      tl.to(cam, { x: -2814, y: 120, scale: 1.3, duration: 1.15, ease: "power2.inOut" }, 1.45);
+      tl.to(cam, { x: -3300, y: 192, scale: 1.2, duration: 0.65, ease: "power2.inOut" }, 2.7);
+      tl.to(cam, { x: -4144, y: 450, scale: 1.2, duration: 0.8, ease: "power2.inOut" }, 3.4);
+      // pull back onto the real screenshot: s = r/4, t = (Ld + 42.5 r, Td + 100 r), r = 1640/1153
+      tl.to(cam, { x: 76.86, y: 566.73, scale: 0.2168, duration: 0.65, ease: "power3.inOut" }, 4.6);
+
+      // ---- the e-mail arrives (0.24) and drops into the trigger
+      tl.fromTo("#v3-mail", { opacity: 0, y: -260, scale: 1 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 0.05);
+      tl.to("#v3-mail", { x: 400 - 540, y: 290, scale: 0.12, opacity: 0, duration: 0.3, ease: "power3.in" }, 0.42);
+
+      // ---- execution: each node turns green as the data reaches it
+      const run = [
+        ["trig", 0.68],
+        ["prep", 0.95],
+        ["auto", 1.18],
+        ["pj", 1.4],
+        ["ocrq", 1.62],
+        ["ocr", 1.86],
+        ["txt", 2.08],
+        ["lis", 2.3],
+        ["agent", 2.55],
+        ["dec", 2.98],
+        ["sw", 3.26],
+        ["gec", 3.55],
+        ["jr", 3.82],
+        ["ar", 4.1],
+      ];
+      run.forEach(([id, at], i) => {
+        const node = "#v3-n-" + id;
+        if (i > 0) {
+          const prev = run[i - 1][0];
+          const wire = "#v3-w-" + prev + "-" + id;
+          const pkt = "#v3-p-" + id;
+          const t0 = Math.max(run[i - 1][1], at - 0.24);
+          tl.fromTo(pkt, { opacity: 1, motionPath: { path: wire, start: 0, end: 0 } }, { motionPath: { path: wire, start: 0, end: 1 }, duration: at - t0, ease: "none" }, t0);
+          tl.set(pkt, { opacity: 0 }, at);
+          tl.set(pkt, { opacity: 0 }, 0);
+          tl.to(wire, { stroke: "#00C950", duration: 0.15 }, at);
+        }
+        tl.to(node, { borderColor: "#00C950", duration: 0.12 }, at);
+        tl.fromTo(node, { scale: 1 }, { scale: 1.07, duration: 0.11, yoyo: true, repeat: 1, ease: "power2.out" }, at);
+        tl.fromTo(node + " .v3-ok", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, at + 0.04);
+      });
+      // the agent consults its model and its parser
+      tl.to(["#v3-s-model", "#v3-s-parser"], { borderColor: "#00C950", duration: 0.12, stagger: 0.12 }, 2.62);
+
+      // ---- "…et la réponse part" (4.44): the acknowledgement leaves the last node
+      tl.fromTo("#v3-reply", { opacity: 0, x: -120, scale: 0.6 }, { opacity: 1, x: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 4.22);
+      tl.to("#v3-reply", { opacity: 0, x: 180, duration: 0.25, ease: "power3.in" }, 5.0);
+
+      // ---- proof: the camera lands exactly on the real workflow
+      tl.to("#v3-bar", { opacity: 0, duration: 0.3 }, 4.65);
+      tl.fromTo("#v3-shot", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 5.08);
+      tl.to(cam, { opacity: 0, duration: 0.2 }, 5.25);
+
+      window.__timelines["v3"] = tl;
+    })();
+  </script>
+</template>
