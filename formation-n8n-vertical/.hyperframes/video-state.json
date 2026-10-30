@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0",
-  "currentRevision": "1ef08555-31ca-4508-8d9c-fdb80b01d1f2",
+  "currentRevision": "56b03a0b-68a8-4641-9c9a-547ecb7c6a57",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -269,8 +269,8 @@
       "content": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/d5/d518cb650d41c79bf8cd87406e791de68f00594c9f0f19e50c1142b76ba85442"
     },
     "compositions/v2-n8n.html": {
-      "hash": "5c6393874b5d49d8ca6543fd532a01c4a82f0598ffca40607a92ffb38da45873",
-      "content": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/5c/5c6393874b5d49d8ca6543fd532a01c4a82f0598ffca40607a92ffb38da45873"
+      "hash": "8618f4abae168ea7ca619f416be23d716beffb73d0ccab7063b7e6b1692f515b",
+      "content": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/86/8618f4abae168ea7ca619f416be23d716beffb73d0ccab7063b7e6b1692f515b"
     },
     "compositions/v3-courriers.html": {
       "hash": "05512c089f308d9355df27bc2560f6ba084ff602b3afe5d36f2c45069100d832",
@@ -281,8 +281,8 @@
       "content": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/f2/f2c110a4307423521079a67a5ed5286d6af228a01aef8ad4884f171ee76aeb59"
     },
     "compositions/v5-vous.html": {
-      "hash": "0f94552e2dc68c8faba9ca563c8ba9600e2e0b05a470a93d7efbfadde9820ad0",
-      "content": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/0f/0f94552e2dc68c8faba9ca563c8ba9600e2e0b05a470a93d7efbfadde9820ad0"
+      "hash": "2fd08a7130dea82feffa07499b0aef9c781bc96cc438010f098d780d35cd4e9b",
+      "content": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/2f/2fd08a7130dea82feffa07499b0aef9c781bc96cc438010f098d780d35cd4e9b"
     },
     "compositions/v6-formation.html": {
       "hash": "12ab1d759c53c1ed06421f2c5bd6e9a4fbbf9bf2af72247a129ad038b42614f8",
@@ -323,6 +323,10 @@
     "assets/audio/voix-off.wav": {
       "hash": "3e59522470c2060051b9bbfff76e13ef7dc8e9e2eeefbe81ed72cc98771c5c92",
       "content": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/3e/3e59522470c2060051b9bbfff76e13ef7dc8e9e2eeefbe81ed72cc98771c5c92"
+    },
+    "README.md": {
+      "hash": "244386c70ef876a30766c505e4055f2446b8f9585a1fddab71f115b638c64da1",
+      "content": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/24/244386c70ef876a30766c505e4055f2446b8f9585a1fddab71f115b638c64da1"
     }
   },
   "revisions": {
@@ -369,6 +373,29 @@
         "compositions/v8-contact.html": {
           "before": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/3c/3c9d74773741aef9e84e357a065c823f7230177dba1c813aa2600feb478797d7",
           "after": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/7c/7c16ab06e6bae7afebbb2f64229cb70604aa9c93007893924555adff83ef9576"
+        }
+      }
+    },
+    "56b03a0b-68a8-4641-9c9a-547ecb7c6a57": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793370972386,
+      "endedAt": 1793370972435,
+      "files": {
+        "compositions/v2-n8n.html": {
+          "before": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/5c/5c6393874b5d49d8ca6543fd532a01c4a82f0598ffca40607a92ffb38da45873",
+          "after": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/86/8618f4abae168ea7ca619f416be23d716beffb73d0ccab7063b7e6b1692f515b"
+        },
+        "compositions/v5-vous.html": {
+          "before": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/0f/0f94552e2dc68c8faba9ca563c8ba9600e2e0b05a470a93d7efbfadde9820ad0",
+          "after": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/2f/2fd08a7130dea82feffa07499b0aef9c781bc96cc438010f098d780d35cd4e9b"
+        },
+        "README.md": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/515ee9b4-f363-4d4e-b5a5-80b95e0ea5f0/blobs/24/244386c70ef876a30766c505e4055f2446b8f9585a1fddab71f115b638c64da1"
         }
       }
     }

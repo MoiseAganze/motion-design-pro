@@ -3881,5 +3881,16 @@
         "attribution": "unversioned"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "3544e1af-5da0-439a-8ac4-abffa2421729",
+      "completedAt": 1793370955233,
+      "output": "/home/user/motion-design-pro/formation-n8n/renders/formation-n8n-youtube-16x9.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
 }
