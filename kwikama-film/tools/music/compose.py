@@ -1,9 +1,10 @@
-"""KWIKAMA — musique originale du film (127 s, ré mineur -> ré majeur, 100 BPM).
+"""KWIKAMA — musique originale du film, version 2 (153 s, ré mineur -> ré majeur, 94–104 BPM).
 
 Partition écrite note à note, rendue avec FluidSynth (banque FluidR3 GM) pour les instruments
 acoustiques et synthétisée en numpy pour la section rythmique moderne (kick, clap, hats, basse,
-arpège pluck, risers, impacts). Mixage pedalboard. La grille des mesures est calée sur le film :
-la révélation (28,6 s), le flux d'argent (76,6 s) et le logo (115,0 s) tombent sur des premiers temps.
+arpège pluck, risers, impacts). Mixage pedalboard. Chaque chapitre du film ouvre une nouvelle phrase :
+la grille de mesures repart sur chaque carte de chapitre (le tempo varie de quelques pour cent pour
+que le chapitre suivant tombe lui aussi sur un premier temps).
 
 Usage : python compose.py <dossier_de_travail> <sortie.wav>
 """
@@ -20,19 +21,13 @@ from pedalboard import (Chorus, Compressor, Delay, Distortion, Gain, HighpassFil
 from scipy.signal import butter, sosfilt
 
 SR = 48000
-DUR = 127.0
+DUR = 153.0
 N = int(DUR * SR)
 SF2 = "/usr/share/sounds/sf2/FluidR3_GM.sf2"
-BEAT, BAR, T0 = 0.6, 2.4, -0.2
 WORK = sys.argv[1] if len(sys.argv) > 1 else "/tmp/kwk_music"
 OUT = sys.argv[2] if len(sys.argv) > 2 else "kwikama-theme.wav"
 os.makedirs(WORK, exist_ok=True)
 rng = np.random.default_rng(2026)
-
-
-def bar(k, beat=0.0):
-    """film time of bar k (+ beats); bar 12 = 28.6 s (reveal), 32 = 76.6 s (payoff), 48 = 115.0 s (logo)."""
-    return T0 + k * BAR + beat * BEAT
 
 
 def nn(name):
@@ -52,6 +47,9 @@ CH = {
 ROOT = {"Dm": "D", "Dm9": "D", "Bb": "Bb", "Gm": "G", "A": "A", "A7b9": "A", "F": "F", "C/E": "C", "D": "D", "Dadd9": "D", "A/C#": "A",
         "Bm": "B", "Bm7": "B", "G": "G", "Gmaj7": "G", "Em": "E", "Asus": "A"}
 
+CH.update({"C": "C3 G3 C4 E4 G4", "D/F#": "F#2 D3 A3 D4 F#4", "Am": "A2 E3 A3 C4 E4"})
+ROOT.update({"C": "C", "D/F#": "D", "Am": "A"})
+
 # ----------------------------------------------------------------------------------------------
 # score: instrument -> list of (pitch, start, end, velocity); cc -> list of (cc, value, time)
 # ----------------------------------------------------------------------------------------------
@@ -70,176 +68,214 @@ def ramp(inst, cc, t0, t1, v0, v1, steps=24):
         ccs[inst].append((cc, int(v0 + (v1 - v0) * i / steps), t))
 
 
-# ---- A1 : Kolwezi (0 – 9.4) ------------------------------------------------------------------
-add("slow", "D2 A2", 0.0, 9.5, 60)
-ramp("slow", 11, 0.0, 2.0, 70, 110)
-add("pad", CH["Dm9"], 0.0, 9.4, 52)
-for p, s, d, v in [("D5", 0.62, 1.5, 62), ("F5", 2.2, 0.6, 52), ("E5", 2.8, 0.6, 50), ("D5", 3.4, 1.15, 55),
-                   ("A4", 4.6, 1.15, 50), ("C5", 5.8, 0.55, 48), ("Bb4", 6.4, 0.9, 52), ("A4", 7.0, 2.3, 50)]:
-    add("piano", p, s, s + d, v)
-add("piano", "D3 A3", 0.62, 4.6, 38)
-add("piano", "Bb2 F3", 4.6, 7.0, 36)
-add("trem", "C#3 G3", 7.55, 9.35, 50)
-ramp("trem", 11, 7.55, 9.3, 40, 115)
+class Sec:
+    """a phrase of bars of equal length starting at film time t0 (one per chapter)."""
+    def __init__(self, t0, t1, nbars):
+        self.t0, self.n = t0, nbars
+        self.bar_len = (t1 - t0) / nbars
+        self.beat = self.bar_len / 4
 
-# ---- A2 : dix-huit institutions (9.4 – 16.6) ---------------------------------------------------
-for k, c in [(4, "Dm"), (5, "F"), (6, "C/E")]:
-    add("pad", CH[c], bar(k), bar(k + 1), 50)
-add("slow", "D2 A2", 9.4, 16.7, 55)
-for t, p in [(11.43, "D5"), (12.47, "F5"), (13.23, "A5"), (14.03, "C6")]:
-    add("marimba", p, t, t + 0.6, 92)
-    add("marimba", pretty_midi.note_number_to_name(nn(p) - 12), t, t + 0.6, 60)
-for i, p in enumerate("D5 E5 F5 G5 A5 C6 D6 E6 F6 A6".split()):
-    add("harp", p, 14.98 + i * 0.055, 16.6, 62 + i * 2)
-add("celesta", "D6", 15.6, 16.6, 60)
-
-# ---- A3 : silos (16.6 – 26.2) ---------------------------------------------------------------
-progA3 = [(7, "Dm"), (8, "Bb"), (9, "Gm"), (10, "A7b9")]
-for k, c in progA3:
-    add("pad", CH[c], bar(k), bar(k + 1) if k < 10 else 25.9, 54 if k < 10 else 62)
-    if k >= 8:
-        add("timp", ROOT[c] + ("2" if ROOT[c] in "AB" or ROOT[c] == "Bb" else "2"), bar(k), bar(k) + 1.2, 58 + (k - 8) * 12)
-# low string ostinato: 8ths then 16ths, crescendo
-for k, c in progA3:
-    r = ROOT[c]
-    lo = nn(r + "2") if r not in ("A", "Bb") else nn(r + "1") + 12
-    hi = lo + 7
-    step = BEAT / 2 if k < 9 else BEAT / 4
-    t = bar(k)
-    i = 0
-    while t < (bar(k + 1) if k < 10 else 25.85) - 1e-6:
-        v = int(42 + (t - 16.6) / (25.9 - 16.6) * 48)
-        score["strings"].append((lo if i % 2 == 0 else hi, t, t + step * 0.55, v))
-        t += step
-        i += 1
-add("strings", CH["A7b9"], 23.8, 25.85, 44)
-ramp("strings", 11, 23.8, 25.85, 60, 127)
-ramp("pad", 11, 16.6, 25.85, 80, 120)
-# the stamp: orchestral stab, then silence
-add("timp", "D2", 25.92, 26.6, 120)
-add("brass", "Bb2 F3 Bb3 D4", 25.92, 26.25, 118)
-add("strings", "Bb2 F3 Bb3 D4 F4", 25.92, 26.15, 120)
-add("slow", "D6", 26.25, 28.55, 34)
-ramp("slow", 11, 26.25, 28.5, 50, 100)
-
-# ---- B : révélation (28.6 – 38.2) ------------------------------------------------------------
-progB = [(12, "Dadd9"), (13, "A/C#"), (14, "Bm7"), (15, "Gmaj7")]
-for k, c in progB:
-    add("pad", CH[c], bar(k), bar(k + 1), 58)
-    add("slow", CH[c], bar(k), bar(k + 1), 50)
-ramp("slow", 11, 28.6, 31.0, 50, 105)
-for i, p in enumerate("D4 F#4 A4 D5 E5 F#5 A5 D6".split()):
-    add("harp", p, 28.6 + i * 0.045, 31.0, 70)
-for i, p in enumerate("D6 F#6 A6 D7 E6 A5 F#5".split()):
-    add("celesta", p, 28.66 + i * 0.04, 29.6 + i * 0.04, 58)
+    def at(self, k, beat=0.0):
+        return self.t0 + k * self.bar_len + beat * self.beat
 
 
-def arpeggio(inst, k, c, vel, start_beat=0, pattern=(0, 2, 4, 3, 2, 4, 3, 2)):
-    notes = chord(CH[c])
-    for j in range(start_beat, 8):
-        t = bar(k, j * 0.5)
-        add(inst, [notes[pattern[j] % len(notes)] + (12 if pattern[j] >= 3 else 0)], t, t + 0.55, vel)
+# the film's chapters: each one starts on a first beat
+SB = Sec(14.36, 23.96, 4)      # reveal
+S1 = Sec(23.96, 49.45, 11)     # 1 · contrôle de légalité
+S2 = Sec(49.45, 68.65, 8)      # 2 · chaîne de garde
+S3 = Sec(68.65, 95.05, 11)     # 3 · croisement des dossiers
+S4 = Sec(95.05, 122.55, 11)    # 4 · météo de la coopération + CENAREF
+S5 = Sec(122.55, 137.75, 6)    # 5 · reversement au Trésor
+S6 = Sec(137.75, 144.46, 3)    # résultat immédiat 8, plein cadre
+SF = Sec(144.46, 151.66, 3)    # signature
 
-
-for k, c in progB:
-    arpeggio("piano", k, c, 40 if k == 12 else 44, start_beat=2 if k == 12 else 0)
-HOOK = [("A4", 0, 1), ("D5", 1, 1), ("E5", 2, 0.5), ("F#5", 2.5, 1.5), ("E5", 3.5, 0.5),   # bar 1
-        ("D5", 4, 1.5), ("B4", 5.5, 0.5), ("A4", 6, 2)]                                 # bar 2
+HOOK = [("A4", 0, 1), ("D5", 1, 1), ("E5", 2, 0.5), ("F#5", 2.5, 1.5), ("E5", 3.5, 0.5),
+        ("D5", 4, 1.5), ("B4", 5.5, 0.5), ("A4", 6, 2)]
 ANSWER = [("F#5", 0, 1), ("A5", 1, 1), ("G5", 2, 0.5), ("F#5", 2.5, 0.5), ("E5", 3, 1),
           ("D5", 4, 1), ("E5", 5, 1), ("F#5", 6, 2)]
 
 
-def melody(inst, k, notes, vel, octave=0, length=1.0):
+def melody(inst, S, k, notes, vel, octave=0, length=1.0):
     for p, b, d in notes:
-        t = bar(k, b)
-        add(inst, [nn(p) + 12 * octave], t, t + d * BEAT * length, vel)
+        t = S.at(k, b)
+        add(inst, [nn(p) + 12 * octave], t, t + d * S.beat * length, vel)
 
 
-melody("piano", 14, HOOK, 64)
+def arpeggio(inst, S, k, c, vel, start=0, pattern=(0, 2, 4, 3, 2, 4, 3, 2)):
+    notes = chord(CH[c])
+    for j in range(start, 8):
+        t = S.at(k, j * 0.5)
+        add(inst, [notes[pattern[j] % len(notes)] + (12 if pattern[j] >= 3 else 0)], t, t + S.beat * 0.9, vel)
 
-# ---- C : parcours (38.2 – 67.0), 12 bars Bm G D A ------------------------------------------
-progC = [(16 + i, ["Bm", "G", "D", "A"][i % 4]) for i in range(12)]
-for k, c in progC:
-    add("pad", CH[c], bar(k), bar(k + 1), 50)
-    add("piano", CH[c].split()[1:4], bar(k), bar(k, 1.5), 38)
-cm = ["F#5", "G5", "A5", "A5", "B5", "B5", "A5", "E5"]
-for i, (k, c) in enumerate(progC[4:]):
-    add("slow", cm[i % len(cm)], bar(k), bar(k + 1), 46)
 
-# ---- D : l'argent (67.0 – 81.4) ---------------------------------------------------------------
-progD = [(28, "Bm"), (29, "G"), (30, "Em"), (31, "Asus")]
-for k, c in progD:
-    add("pad", CH[c], bar(k), bar(k + 1) - (0.25 if k == 31 else 0), 56)
-for k, p in [(28, "F#4"), (29, "G4"), (30, "B4"), (31, "C#5")]:
-    add("trem", [nn(p), nn(p) - 12], bar(k), bar(k + 1) - (0.25 if k == 31 else 0), 64)
-ramp("trem", 11, 67.0, 76.3, 50, 127)
-add("pad", CH["A"], bar(31, 2), 76.35, 60)
-# payoff: D | A/C#
-for k, c in [(32, "D"), (33, "A/C#")]:
-    add("pad", CH[c], bar(k), bar(k + 1), 66)
-    add("strings", CH[c], bar(k), bar(k + 1), 70)
-    add("horn", CH[c].split()[1:4], bar(k), bar(k + 1), 62)
-melody("piano", 32, HOOK, 84)
-melody("piano", 32, HOOK, 70, octave=-1)
-melody("slow", 32, HOOK, 74, octave=1)
-add("timp", "D2", 76.6, 78.0, 112)
+def chords(S, prog, pad=52, piano=38, slow=0):
+    for k, c in enumerate(prog):
+        if c is None:
+            continue
+        add("pad", CH[c], S.at(k), S.at(k + 1), pad)
+        if piano:
+            add("piano", CH[c].split()[1:4], S.at(k), S.at(k, 1.5), piano)
+        if slow:
+            add("slow", CH[c].split()[2:5], S.at(k), S.at(k + 1), slow)
 
-# ---- E : preuves, avoirs, qualité (81.4 – 112.6) ----------------------------------------------
-progE = [(34 + i, ["D", "Bm", "G", "A"][i % 4]) for i in range(12)]
-for k, c in progE:
-    add("pad", CH[c], bar(k), bar(k + 1), 50)
-    add("piano", CH[c].split()[1:4], bar(k), bar(k, 1.5), 36)
-    if k >= 38:
-        add("slow", CH[c].split()[2:5], bar(k), bar(k + 1), 40)
-add("pad", CH["Asus"], bar(46), bar(47), 46)
-add("slow", "A4 D5 E5", bar(46), bar(47), 36)
-ramp("pad", 11, bar(46), bar(47), 110, 60)
-# build into the logo (112.6 – 115.0)
-add("trem", "A3 E4 A4", bar(47), 114.95, 60)
-ramp("trem", 11, bar(47), 114.9, 40, 127)
-add("timp", "A1", 113.8, 114.95, 90)
 
-# ---- F : signature (115.0 – 127.0) -----------------------------------------------------------
-progF = [(48, "D"), (49, "A/C#"), (50, "Bm"), (51, "G")]
-for k, c in progF:
-    add("pad", CH[c], bar(k), bar(k + 1), 64)
-    add("strings", CH[c], bar(k), bar(k + 1), 64)
-    add("horn", CH[c].split()[1:4], bar(k), bar(k + 1), 58)
-add("pad", CH["A"], bar(51, 2), bar(52), 64)
-add("strings", CH["A"], bar(51, 2), bar(52), 62)
-add("timp", "D2", 115.0, 116.6, 120)
-add("brass", "D3 A3 D4 F#4", 115.0, 115.6, 96)
-melody("piano", 48, HOOK, 80)
-melody("piano", 50, ANSWER, 76)
-melody("slow", 48, HOOK, 70, octave=1)
-melody("slow", 50, ANSWER, 66, octave=1)
+def sting(t, vel=60):
+    """the chapter motif: three bells and a harp sweep on each chapter card."""
+    for i, p in enumerate(["A5", "D6", "F#6"]):
+        add("celesta", p, t + i * 0.09, t + 1.4, vel)
+    for i, p in enumerate("D5 F#5 A5 D6 E6".split()):
+        add("harp", p, t + i * 0.035, t + 1.6, vel)
+
+
+# ---- A : Kolwezi, six silos (0 – 14.36), free time --------------------------------------------
+add("slow", "D2 A2", 0.0, 14.0, 58)
+ramp("slow", 11, 0.0, 2.0, 70, 110)
+ramp("slow", 11, 12.6, 14.0, 110, 30)
+add("pad", CH["Dm9"], 0.0, 8.7, 50)
+add("pad", CH["Bb"], 8.7, 11.8, 50)
+add("pad", CH["Gm"], 11.8, 13.0, 54)
+add("pad", CH["A7b9"], 13.0, 14.0, 50)
+ramp("pad", 11, 12.9, 14.1, 115, 20)
+for p, s, d, v in [("D5", 0.82, 1.5, 62), ("F5", 2.4, 0.6, 52), ("E5", 3.0, 0.6, 50), ("D5", 3.6, 1.15, 55),
+                   ("A4", 4.8, 1.15, 50), ("C5", 6.0, 0.55, 48), ("Bb4", 6.6, 0.9, 52), ("A4", 7.2, 1.6, 50)]:
+    add("piano", p, s, s + d, v)
+add("piano", "D3 A3", 0.82, 4.8, 38)
+add("piano", "Bb2 F3", 4.8, 7.2, 36)
+add("timp", "D2", 6.9, 8.0, 70)                      # the flow breaks
+for i, p in enumerate("D5 F5 A5 C6 D6 F6".split()):  # six institutions arrive
+    add("marimba", p, 9.1 + i * 0.1, 9.7 + i * 0.1, 70 + i * 3)
+add("trem", "A2 E3 G3 C#4", 11.8, 13.05, 46)          # the walls rise
+ramp("trem", 11, 11.8, 13.0, 40, 118)
+add("brass", "A2 E3 A3", 12.95, 13.15, 70)           # routes cut
+add("strings", "Bb2 F3 Bb3 D4", 12.95, 13.12, 74)
+add("slow", "D6", 13.2, 14.3, 30)
+
+# ---- B : KWIKAMA (14.36 – 23.96) --------------------------------------------------------------
+progB = ["Dadd9", "A/C#", "Bm7", "Gmaj7"]
+for k, c in enumerate(progB):
+    add("pad", CH[c], SB.at(k), SB.at(k + 1), 58)
+    add("slow", CH[c], SB.at(k), SB.at(k + 1), 50)
+    arpeggio("piano", SB, k, c, 40 if k == 0 else 44, start=2 if k == 0 else 0)
+ramp("slow", 11, 14.36, 16.6, 50, 105)
+for i, p in enumerate("D4 F#4 A4 D5 E5 F#5 A5 D6".split()):
+    add("harp", p, 14.36 + i * 0.045, 16.8, 70)
+for i, p in enumerate("D6 F#6 A6 D7 E6 A5 F#5".split()):
+    add("celesta", p, 14.42 + i * 0.04, 15.4 + i * 0.04, 58)
+melody("piano", SB, 1, HOOK, 64)
+add("strings", CH["Asus"], SB.at(3, 2), 23.9, 44)
+ramp("strings", 11, SB.at(3, 2), 23.9, 50, 115)
+
+# ---- 1 · contrôle de légalité (23.96 – 49.45) -------------------------------------------------
+prog1 = ["Bm", "G", "D", "A", "Bm", "G", "D", "A", "Em", "G", "A"]
+chords(S1, prog1, slow=40)
+sting(S1.at(0))
+melody("slow", S1, 4, HOOK, 52, octave=0)
+# validated: a bright major lift; blocked: a stab, then a breath
+for p in ["D5", "F#5", "A5"]:
+    add("celesta", p, 43.04, 44.4, 56)
+add("brass", "B1 F#2 B2", 47.45, 47.8, 96)
+add("timp", "B1", 47.45, 48.6, 100)
+
+# ---- 2 · chaîne de garde (49.45 – 68.65) -------------------------------------------------------
+prog2 = ["D", "A", "Bm", "G", "D", "A", "Bm", "G"]
+chords(S2, prog2, slow=0)
+sting(S2.at(0))
+# the piece that vanishes on paper (53.97): a falling minor line
+for i, p in enumerate(["F5", "E5", "D5", "C#5"]):
+    add("slow", p, 53.9 + i * 0.5, 54.5 + i * 0.5, 46)
+melody("piano", S2, 4, ANSWER, 58)
+for p in ["A5", "D6"]:
+    add("celesta", p, 66.19, 67.6, 58)        # "aucun scellé rompu"
+
+# ---- 3 · croisement des dossiers (68.65 – 95.05) -----------------------------------------------
+prog3 = ["Em", "C", "G", "D", "Em", "C", "G", "D", "Bm", "G", "A"]
+chords(S3, prog3, slow=0)
+sting(S3.at(0))
+# the map (78.6 – 86.5): sustained discovery
+add("slow", "E4 B4 G5", S3.at(4), S3.at(6), 50)
+add("slow", "D4 A4 F#5", S3.at(6), S3.at(8), 54)
+for i, p in enumerate("E5 G5 B5 D6 E6 G6".split()):
+    add("harp", p, 82.6 + i * 0.05, 84.0, 64)
+add("timp", "D2", 84.7, 86.2, 104)             # 84 %
+for p in ["D6", "A6"]:
+    add("celesta", p, 84.7, 86.4, 62)
+melody("piano", S3, 8, HOOK, 60)
+add("trem", "A3 E4 A4", S3.at(10), 95.0, 56)
+ramp("trem", 11, S3.at(10), 95.0, 40, 122)
+
+# ---- 4 · météo de la coopération, puis la vue cloisonnée (95.05 – 122.55) -----------------------
+prog4 = ["G", "D", "Em", "C", "G", "D", None, None, None, "G", "D/F#"]
+chords(S4, prog4, slow=0)
+sting(S4.at(0))
+for i, p in enumerate("G5 B5 D6 G6 B6".split()):   # sunshine on the hexagon
+    add("celesta", p, 103.6 + i * 0.12, 105.0, 52)
+add("timp", "C2", 108.2, 109.4, 96)                # the blockage
+# the CENAREF post: muted, filtered, sparse (110.05 – 117.55)
+for k, c in [(6, "Em"), (7, "C"), (8, "Em")]:
+    add("pad", CH[c], S4.at(k), S4.at(k + 1), 40)
+    add("slow", CH[c].split()[1:3], S4.at(k), S4.at(k + 1), 34)
+add("strings", "G3 D4 G4 B4", 117.55, S4.at(10), 50)
+add("strings", "F#3 D4 A4 D5", S4.at(10), 122.5, 56)
+ramp("strings", 11, 117.55, 122.4, 50, 115)
+add("brass", "G2 D3 G3 B3", 117.55, 118.6, 64)
+
+# ---- 5 · reversement au Trésor (122.55 – 137.75) ----------------------------------------------
+prog5 = ["Bm", "G", "D", "A", "Bm", "G"]
+chords(S5, prog5, slow=40)
+sting(S5.at(0))
+for t, p in [(127.88, "D5"), (128.70, "F#5"), (129.38, "A5"), (130.10, "D6")]:
+    add("marimba", p, t, t + 0.7, 96)
+    add("celesta", p, t, t + 1.0, 50)
+add("celesta", "A6", 131.75, 133.0, 60)          # the Treasury
+add("trem", "B3 F#4 B4", 131.3, 137.7, 52)
+ramp("trem", 11, 131.3, 137.7, 40, 124)
+add("strings", "G3 D4 G4 B4", S5.at(4), S5.at(5), 52)
+add("strings", "A3 E4 A4 C#5", S5.at(5), 137.7, 60)
+ramp("strings", 11, S5.at(4), 137.7, 60, 124)
+add("timp", "A1", 136.3, 137.7, 88)
+
+# ---- résultat immédiat 8 (137.75 – 144.46): the payoff ------------------------------------------
+progR = ["D", "A/C#", "G"]
+for k, c in enumerate(progR):
+    add("pad", CH[c], S6.at(k), S6.at(k + 1) if k < 2 else 143.3, 66)
+    add("strings", CH[c], S6.at(k), S6.at(k + 1) if k < 2 else 143.3, 72)
+    add("horn", CH[c].split()[1:4], S6.at(k), S6.at(k + 1) if k < 2 else 143.3, 64)
+melody("piano", S6, 0, HOOK, 84)
+melody("piano", S6, 0, HOOK, 70, octave=-1)
+melody("slow", S6, 0, HOOK, 74, octave=1)
+add("timp", "D2", 137.75, 139.2, 116)
+add("brass", "D3 A3 D4 F#4", 137.75, 138.3, 92)
+add("brass", "G2 D3 G3 B3", 142.0, 142.45, 110)    # "devant le GAFI"
+add("timp", "G1", 142.0, 143.2, 120)
+ramp("strings", 11, 142.6, 143.3, 110, 30)
+ramp("pad", 11, 142.6, 143.3, 110, 30)
+
+# ---- signature (144.46 – 153.0) ---------------------------------------------------------------
+progF = ["D", "A/C#", "Bm"]
+for k, c in enumerate(progF):
+    add("pad", CH[c], SF.at(k), SF.at(k + 1), 62)
+    add("strings", CH[c], SF.at(k), SF.at(k + 1), 58)
 for i, p in enumerate("D5 F#5 A5 D6 E6 F#6 A6 D7".split()):
-    add("harp", p, 115.0 + i * 0.04, 117.0, 66)
+    add("harp", p, 144.46 + i * 0.04, 146.5, 66)
+add("timp", "D2", 144.46, 146.0, 110)
+melody("piano", SF, 0, ANSWER, 70)
 # final chord, held and fading
-add("pad", CH["D"], 124.6, 127.0, 70)
-add("strings", "D3 A3 D4 F#4 A4 D5", 124.6, 127.0, 66)
-add("piano", "D2 D3 A3 D4 F#4 A4 D5", 124.6, 127.0, 70)
-add("celesta", "D6 A6", 124.6, 126.5, 54)
-add("timp", "D2", 124.6, 126.0, 96)
-ramp("strings", 11, 125.4, 126.95, 110, 0)
-ramp("pad", 11, 125.4, 126.95, 110, 0)
+add("pad", CH["D"], 151.66, 153.0, 66)
+add("strings", "D3 A3 D4 F#4 A4 D5", 151.66, 153.0, 60)
+add("piano", "D2 D3 A3 D4 F#4 A4 D5", 151.66, 153.0, 66)
+add("celesta", "D6 A6", 151.66, 153.0, 50)
+ramp("strings", 11, 151.7, 152.95, 105, 0)
+ramp("pad", 11, 151.7, 152.95, 105, 0)
 
-# ---- drums from the GM kit (crashes, rolls, toms) ---------------------------------------------
+# ---- drums from the GM kit (crashes, rolls) -----------------------------------------------------
 CRASH, SNARE, TOM_L, TOM_M, TOM_H, RIDE = 49, 38, 45, 47, 50, 51
-for t in [76.6, 98.2, 115.0, 124.6]:
-    score["drums"].append((CRASH, t, t + 2.5, 104 if t != 98.2 else 70))
-for i, (p, b) in enumerate([(TOM_H, 2.0), (TOM_H, 2.5), (TOM_M, 3.0), (TOM_L, 3.5)]):
-    score["drums"].append((p, bar(27, b), bar(27, b) + 0.3, 70 + i * 8))
-# snare build before the payoff: 8ths then 16ths
-for j in range(8):
-    score["drums"].append((SNARE, bar(30, j * 0.5), bar(30, j * 0.5) + 0.1, 40 + j * 3))
-for j in range(16):
-    score["drums"].append((SNARE, bar(31, j * 0.25), bar(31, j * 0.25) + 0.08, 60 + j * 3))
-# fill into act 7 (97.6 – 98.2) and roll into the logo
-for j in range(4):
-    score["drums"].append((SNARE, bar(40, 3 + j * 0.25), bar(40, 3 + j * 0.25) + 0.08, 58 + j * 8))
-for j in range(8):
-    score["drums"].append((SNARE, bar(47, 2 + j * 0.25), bar(47, 2 + j * 0.25) + 0.08, 50 + j * 9))
+for t, v in [(23.96, 70), (49.45, 66), (68.65, 66), (95.05, 66), (117.55, 74), (122.55, 66), (137.75, 108), (142.0, 96), (144.46, 100)]:
+    score["drums"].append((CRASH, t, t + 2.5, v))
+for j in range(16):   # roll into the payoff
+    score["drums"].append((SNARE, S5.at(5, j * 0.25), S5.at(5, j * 0.25) + 0.08, 48 + j * 4))
+for j in range(8):    # fill into each chapter
+    for S in (S1, S2, S3, S4):
+        score["drums"].append((SNARE, S.at(S.n - 1, 2 + j * 0.25), S.at(S.n - 1, 2 + j * 0.25) + 0.07, 34 + j * 5))
 
 PROGRAMS = {"piano": 0, "strings": 48, "slow": 49, "trem": 44, "pad": 89, "harp": 46, "celesta": 8, "marimba": 12,
             "timp": 47, "brass": 61, "horn": 60, "drums": 0}
@@ -406,96 +442,124 @@ def hz(name):
 bus = {k: np.zeros((N, 2)) for k in ["kick", "clap", "hats", "shaker", "bass", "pluck", "fx", "tick"]}
 K, CL, HT, HO, SH = kick(), clap(), hat(), hat(True), shaker()
 
-# heartbeat during the hook, clock during the delays
-for b in (1, 2, 3):
-    place(bus["kick"], heartbeat(), bar(b), 0.55)
-    place(bus["kick"], heartbeat(), bar(b) + 0.3, 0.3)
-for j in range(int((25.85 - 9.4) / BEAT) + 1):
-    t = 9.4 + j * BEAT
-    if t > 25.85:
-        break
-    g = 0.05 if t < 22.6 else 0.05 + (t - 22.6) / (25.85 - 22.6) * 0.16
+# heartbeat under Kolwezi, a clock while the institutions wait
+for t in (0.82, 3.2, 5.6):
+    place(bus["kick"], heartbeat(), t, 0.55)
+    place(bus["kick"], heartbeat(), t + 0.3, 0.3)
+for j in range(int((13.6 - 8.9) / 0.6) + 1):
+    t = 8.9 + j * 0.6
+    g = 0.05 + (t - 8.9) / (13.6 - 8.9) * 0.12
     place(bus["tick"], tick(j % 2 == 0), t, g, pan=0.25 if j % 2 else -0.25)
-# pulse bass in A2 / A3
-for k, c in [(4, "Dm"), (5, "F"), (6, "C/E"), (7, "Dm"), (8, "Bb"), (9, "Gm"), (10, "A")]:
-    r = {"Dm": "D2", "F": "F2", "C/E": "C2", "Bb": "Bb1", "Gm": "G1", "A": "A1"}[c]
-    for j in range(8):
-        t = bar(k, j * 0.5)
-        if t >= 25.85:
-            break
-        place(bus["bass"], bassnote(hz(r), 0.26), t, 0.32 + 0.1 * (k >= 7))
-# stamp + reveal impacts, risers
-place(bus["fx"], boom(1.4, 70, 30), 25.92, 0.9)
-place(bus["fx"], riser(1.4), 27.2, 0.35)
-place(bus["fx"], rev_cymbal(1.4), 27.2, 0.5)
-place(bus["fx"], boom(3.5, 58, 26), 28.6, 0.55)
-place(bus["fx"], riser(2.4), 74.2, 0.45)
-place(bus["fx"], rev_cymbal(2.0), 74.6, 0.55)
-place(bus["fx"], boom(3.0, 66, 28), 76.6, 0.8)
-place(bus["fx"], riser(2.4), 112.6, 0.4)
-place(bus["fx"], rev_cymbal(1.6), 113.4, 0.6)
-place(bus["fx"], boom(3.4, 66, 27), 115.0, 0.95)
-place(bus["fx"], boom(2.6, 60, 26), 124.6, 0.6)
+for t in np.arange(8.9, 12.9, 0.3):
+    r = "D2" if t < 11.8 else "G1"
+    place(bus["bass"], bassnote(hz(r), 0.24), t, 0.28)
+# impacts and risers
+place(bus["fx"], boom(1.2, 66, 30), 12.95, 0.45)
+place(bus["fx"], rev_cymbal(1.2), 13.16, 0.45)
+place(bus["fx"], boom(3.5, 58, 26), 14.36, 0.6)
+place(bus["fx"], riser(1.6), 22.36, 0.3)
+place(bus["fx"], boom(1.4, 70, 30), 47.45, 0.7)
+place(bus["fx"], rev_cymbal(1.3), 48.15, 0.4)
+place(bus["fx"], rev_cymbal(1.2), 67.45, 0.38)
+place(bus["fx"], boom(2.6, 60, 27), 84.7, 0.55)
+place(bus["fx"], riser(1.8), 93.25, 0.35)
+place(bus["fx"], boom(1.2, 62, 30), 108.2, 0.4)
+place(bus["fx"], rev_cymbal(1.4), 116.15, 0.4)
+place(bus["fx"], riser(1.5), 121.05, 0.3)
+place(bus["fx"], riser(2.6), 135.15, 0.45)
+place(bus["fx"], rev_cymbal(2.0), 135.75, 0.55)
+place(bus["fx"], boom(3.0, 66, 28), 137.75, 0.85)
+place(bus["fx"], boom(1.8, 64, 28), 142.0, 0.75)
+place(bus["fx"], rev_cymbal(1.0), 143.46, 0.5)
+place(bus["fx"], boom(3.4, 66, 27), 144.46, 0.9)
+for t in (23.96, 49.45, 68.65, 95.05, 122.55):      # each chapter card
+    place(bus["fx"], boom(1.6, 64, 30), t, 0.4)
 
 
-def groove(k, c, kick_pat, clap_on, hat_div, shaker_on, bass_on, pluck_on, pluck_div=0.5, level=1.0):
-    root = {"Bm": "B1", "G": "G1", "D": "D2", "A": "A1", "Em": "E2", "Asus": "A1", "A/C#": "A1", "Dadd9": "D2"}[c]
+def groove(S, k, c, kick_pat, clap_on, hat_div, shaker_on, bass_on, pluck_on, pluck_div=0.5, level=1.0, dark=False):
+    root = {"Bm": "B1", "G": "G1", "D": "D2", "A": "A1", "Em": "E2", "Asus": "A1", "A/C#": "A1", "Dadd9": "D2",
+            "C": "C2", "D/F#": "D2", "Am": "A1", "Gmaj7": "G1", "Bm7": "B1"}[c]
+    at = lambda b: S.at(k, b)
     for b in kick_pat:
-        place(bus["kick"], K, bar(k, b), 0.85 * level)
+        place(bus["kick"], K, at(b), 0.85 * level)
     if clap_on:
         for b in (1, 3):
-            place(bus["clap"], CL, bar(k, b), 0.55 * level, pan=0.05)
+            place(bus["clap"], CL, at(b), 0.55 * level, pan=0.05)
     if hat_div:
-        n = int(4 / hat_div)
-        for j in range(n):
+        for j in range(int(4 / hat_div)):
             accent = 1.0 if (j * hat_div) % 1 == 0.5 else 0.6
-            place(bus["hats"], HT, bar(k, j * hat_div), 0.32 * accent * level, pan=0.3)
+            place(bus["hats"], HT, at(j * hat_div), 0.32 * accent * level, pan=0.3)
     if shaker_on:
         for j in range(16):
-            place(bus["shaker"], SH, bar(k, j * 0.25), (0.25 if j % 2 else 0.15) * level, pan=-0.35)
+            place(bus["shaker"], SH, at(j * 0.25), (0.25 if j % 2 else 0.15) * level, pan=-0.35)
     if bass_on:
         for j in range(8):
             f = hz(root) * (2 if j in (3, 7) else 1)
-            place(bus["bass"], bassnote(f, 0.27), bar(k, j * 0.5), 0.5 * level)
+            place(bus["bass"], bassnote(f, S.beat * 0.45), at(j * 0.5), 0.5 * level)
     if pluck_on:
         notes = chord(CH[c])
         tones = [notes[1] + 12, notes[3] + 12, notes[4] + 12, notes[3] + 12, notes[2] + 12, notes[4] + 12, notes[3] + 24, notes[4] + 12]
-        n = int(4 / pluck_div)
-        for j in range(n):
+        for j in range(int(4 / pluck_div)):
             p = tones[j % len(tones)]
             v = 0.16 if j % 2 else 0.22
-            place(bus["pluck"], pluck(pretty_midi.note_number_to_hz(p), 0.5), bar(k, j * pluck_div), v * level, pan=(-0.4 if j % 2 else 0.4))
+            sig = pluck(pretty_midi.note_number_to_hz(p), 0.5)
+            if dark:
+                sig = lp(sig, 1600)
+            place(bus["pluck"], sig, at(j * pluck_div), v * level, pan=(-0.4 if j % 2 else 0.4))
 
 
-# C : parcours
-for i, (k, c) in enumerate(progC):
-    groove(k, c, kick_pat=(0, 2) if i < 4 else (0, 1.5, 2), clap_on=i >= 4, hat_div=0.5 if i < 8 else 0.25,
-           shaker_on=True, bass_on=True, pluck_on=True, pluck_div=0.5 if i < 8 else 0.25, level=0.9)
-# D : build and payoff
-for i, (k, c) in enumerate(progD):
-    groove(k, c, kick_pat=(0, 2) if i < 2 else (0, 1, 2, 3), clap_on=i < 2, hat_div=0.25, shaker_on=True,
-           bass_on=True, pluck_on=True, pluck_div=0.25, level=0.95 + 0.05 * i)
-# pre-drop silence: cut the groove buses just before 76.6
+# reveal: plucks join on "Suivons-le" (bar 2)
+for k, c in enumerate(progB):
+    if k >= 2:
+        groove(SB, k, c, kick_pat=(0,) if k == 3 else (), clap_on=False, hat_div=0.5 if k == 3 else 0, shaker_on=k == 3,
+               bass_on=k == 3, pluck_on=True, level=0.75)
+# 1 · légalité
+for k, c in enumerate(prog1):
+    groove(S1, k, c, kick_pat=(0, 2) if k < 4 else (0, 1.5, 2), clap_on=k >= 4, hat_div=0.5, shaker_on=True,
+           bass_on=True, pluck_on=True, pluck_div=0.5 if k < 8 else 0.25, level=0.88)
+# the lock: the groove stops for a breath (47.45 – 48.2)
 for name in ["kick", "clap", "hats", "shaker", "bass", "pluck"]:
-    a, b = int(76.32 * SR), int(76.6 * SR)
-    bus[name][a:b] *= np.linspace(1, 0, b - a)[:, None] ** 3
-for k, c in [(32, "D"), (33, "A/C#")]:
-    groove(k, c, kick_pat=(0, 1, 2, 3), clap_on=True, hat_div=0.25, shaker_on=True, bass_on=True, pluck_on=True, pluck_div=0.25, level=1.1)
+    a, b = int(47.4 * SR), int(48.25 * SR)
+    bus[name][a:b] *= 0.0
+# 2 · chaîne de garde: the paper problem is bare (bars 1 – 2), the answer comes back full
+for k, c in enumerate(prog2):
+    bare = k in (1, 2)
+    groove(S2, k, c, kick_pat=() if bare else ((0, 2) if k < 5 else (0, 1.5, 2)), clap_on=k >= 4, hat_div=0 if bare else 0.5,
+           shaker_on=not bare, bass_on=not bare, pluck_on=True, dark=bare, level=0.86)
+# 3 · croisement: half-time on the map (bars 4 – 7), full on the infrastructure
+for k, c in enumerate(prog3):
+    mapb = 4 <= k <= 7
+    groove(S3, k, c, kick_pat=(0,) if mapb else ((0, 2) if k < 4 else (0, 1, 2, 3)), clap_on=not mapb and k >= 2,
+           hat_div=0 if mapb else (0.5 if k < 8 else 0.25), shaker_on=not mapb, bass_on=not mapb or k == 7, pluck_on=True,
+           pluck_div=0.5 if k < 8 else 0.25, dark=mapb, level=0.88)
+# 4 · coopération; the CENAREF post is muted (bars 6 – 8)
+for k, c in enumerate(prog4):
+    if c is None:
+        continue
+    groove(S4, k, c, kick_pat=(0, 2) if k < 2 else (0, 1.5, 2), clap_on=k >= 2, hat_div=0.5 if k < 9 else 0.25,
+           shaker_on=True, bass_on=True, pluck_on=True, pluck_div=0.5, level=0.86)
+for k, c in [(6, "Em"), (7, "C"), (8, "Em")]:
+    groove(S4, k, c, kick_pat=(), clap_on=False, hat_div=0, shaker_on=False, bass_on=False, pluck_on=True,
+           pluck_div=0.5, dark=True, level=0.7)
+# 5 · reversement
+for k, c in enumerate(prog5):
+    groove(S5, k, c, kick_pat=(0, 2) if k < 3 else (0, 1, 2, 3), clap_on=k >= 1, hat_div=0.5 if k < 4 else 0.25,
+           shaker_on=True, bass_on=True, pluck_on=True, pluck_div=0.5 if k < 4 else 0.25, level=0.9)
+# payoff
+for k, c in enumerate(progR):
+    groove(S6, k, c, kick_pat=(0, 1, 2, 3), clap_on=True, hat_div=0.25, shaker_on=True, bass_on=True, pluck_on=True,
+           pluck_div=0.25, level=1.08)
     for b in (0.5, 1.5, 2.5, 3.5):
-        place(bus["hats"], HO, bar(k, b), 0.2, pan=0.35)
-# E : evidence, assets, quality
-for i, (k, c) in enumerate(progE):
-    full = i >= 8
-    groove(k, c, kick_pat=(0, 2) if not full else (0, 1.5, 2), clap_on=i >= 2, hat_div=0.5 if not full else 0.25,
-           shaker_on=i < 4 or full, bass_on=True, pluck_on=i >= 1, pluck_div=0.5 if not full else 0.25, level=0.82)
-# breakdown bar 46: filtered plucks only
-for j in range(8):
-    place(bus["pluck"], lp(pluck(hz("A4") if j % 2 else hz("E5"), 0.5), 1800), bar(46, j * 0.5), 0.14 * (1 - j / 10))
-# F : signature
-for i, (k, c) in enumerate(progF):
-    groove(k, c, kick_pat=(0, 1, 2, 3), clap_on=True, hat_div=0.5, shaker_on=True, bass_on=True, pluck_on=True, pluck_div=0.5, level=1.0)
-place(bus["kick"], K, 124.6, 1.0)
-place(bus["bass"], bassnote(hz("D2"), 2.2), 124.6, 0.6)
+        place(bus["hats"], HO, S6.at(k, b), 0.2, pan=0.35)
+for name in ["kick", "clap", "hats", "shaker", "bass", "pluck"]:   # the panel empties: silence before the logo
+    a, b = int(143.25 * SR), int(144.46 * SR)
+    bus[name][a:b] *= np.linspace(1, 0, b - a)[:, None] ** 2
+    bus[name][b:] *= 0.0
+# signature: one soft pulse
+for k, c in enumerate(progF):
+    groove(SF, k, c, kick_pat=(0,), clap_on=False, hat_div=0, shaker_on=False, bass_on=True, pluck_on=True, pluck_div=0.5, level=0.7)
+place(bus["kick"], K, 144.46, 1.0)
+place(bus["bass"], bassnote(hz("D2"), 1.3), 151.66, 0.55)
 
 # ----------------------------------------------------------------------------------------------
 # mix
@@ -536,16 +600,19 @@ for name, (ch, g) in bus_chain.items():
     z = ch(bus[name].T.astype(np.float32), SR).T
     mix[: len(z)] += z[:N] * 10 ** (g / 20)
 
-# arrangement automation: a real breath before the reveal, a warmer reveal, an audible breakdown
+# arrangement automation: a breath before the reveal, a warmer reveal, a lifted payoff
 t_ax = np.arange(N) / SR
 auto = np.ones(N)
 def seg_gain(t0, t1, g, ramp_in=0.3, ramp_out=0.3):
     up = np.clip((t_ax - (t0 - ramp_in)) / ramp_in, 0, 1)
     down = np.clip(((t1 + ramp_out) - t_ax) / ramp_out, 0, 1)
     return 1 + (g - 1) * np.minimum(up, down)
-auto *= seg_gain(26.5, 27.15, 10 ** (-16 / 20), ramp_in=0.35, ramp_out=0.45)
-auto *= seg_gain(28.75, 38.0, 10 ** (4 / 20), ramp_in=0.15, ramp_out=0.25)
-auto *= seg_gain(110.4, 112.5, 10 ** (5 / 20), ramp_in=0.2, ramp_out=0.1)
+auto *= seg_gain(13.45, 14.25, 10 ** (-12 / 20), ramp_in=0.3, ramp_out=0.1)   # breath before KWIKAMA
+auto *= seg_gain(14.4, 23.0, 10 ** (3 / 20), ramp_in=0.1, ramp_out=0.6)       # a warmer reveal
+auto *= seg_gain(138.0, 142.4, 10 ** (2 / 20), ramp_in=0.2, ramp_out=0.3)     # the payoff
+auto *= seg_gain(51.9, 56.0, 10 ** (8 / 20), ramp_in=0.4, ramp_out=0.4)       # the bare paper route
+auto *= seg_gain(78.9, 83.2, 10 ** (6 / 20), ramp_in=0.4, ramp_out=0.5)       # the map
+auto *= seg_gain(110.2, 116.6, 10 ** (9 / 20), ramp_in=0.3, ramp_out=0.4)     # the CENAREF post
 mix *= auto[:, None]
 
 # gentle master: glue + tone, fade out

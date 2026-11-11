@@ -1,0 +1,207 @@
+<template>
+  <style>
+    /*@BASE*/
+    /* two files on the map, one account */
+    #s3-ill { position: absolute; inset: 0; }
+    #s3-mapg { position: absolute; left: 200px; top: 170px; width: 710px; height: 700px; }
+    #s3-map { position: absolute; left: 0; top: 0; width: 710px; height: 700px; overflow: visible; }
+    .s3-pin { position: absolute; width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 6px rgba(216,168,40,.25); }
+    .s3-city { position: absolute; font-size: 30px; font-weight: 700; color: var(--cream); white-space: nowrap; }
+    #s3-dA { left: 96px; top: 250px; width: 470px; padding: 20px 24px; }
+    #s3-dB { left: 470px; top: 860px; width: 520px; padding: 20px 24px; }
+    #s3-dA .tt, #s3-dB .tt { font-size: 27px; }
+    #s3-acc { left: 1170px; top: 430px; width: 600px; padding: 30px 34px 30px 230px; min-height: 236px; border: 2px solid var(--gold); }
+    #s3-acc .ref { color: var(--amber); }
+    #s3-acc .tt { font-family: "Fraunces", serif; font-size: 44px; font-weight: 600; color: #0a2c47; margin-top: 8px; white-space: nowrap; }
+    #s3-acc .mt { font-size: 24px; }
+    #s3-ring { position: absolute; left: 26px; top: 28px; width: 180px; height: 180px; }
+    #s3-ring svg { position: absolute; inset: 0; width: 180px; height: 180px; transform: rotate(-90deg); }
+    #s3-pct { position: absolute; left: 0; top: 52px; width: 180px; text-align: center; font-family: "Fraunces", serif; font-size: 58px; font-weight: 600; color: #0a2c47; line-height: 1; }
+    #s3-pctl { position: absolute; left: 0; top: 116px; width: 180px; text-align: center; font-size: 17px; font-weight: 700; letter-spacing: .08em; color: var(--muted); }
+    #s3-threads { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    #s3-note { position: absolute; left: 1170px; top: 700px; width: 600px; font-size: 26px; font-weight: 500; line-height: 1.4; color: rgba(244,241,234,.82); }
+    /* thousands of pieces */
+    #s3-flow { position: absolute; inset: 0; }
+    .s3-p { position: absolute; left: 0; top: 0; width: 30px; height: 38px; margin: -19px 0 0 -15px; border-radius: 4px; background: var(--paper); box-shadow: 0 4px 10px rgba(0,0,0,.35); }
+    #s3-sov { position: absolute; left: 0; width: 1920px; top: 472px; text-align: center; }
+    #s3-sov .chip { font-size: 32px; padding: 16px 26px 16px 22px; box-shadow: 0 18px 40px rgba(0,0,0,.45); }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+    <div class="stage">
+      <div class="cam" id="s3-cam">
+<!--@MAC:s3-->
+        <div class="scr" id="s3-prv" style="background-image:url(assets/ui/m_preuves.webp)"></div>
+        <div class="scr" id="s3-a0" style="background-image:url(assets/ui/m_analyse0.webp)"></div>
+        <div class="scr" id="s3-r0" style="background-image:url(assets/ui/m_analyse_run0.webp)"></div>
+        <div class="scr" id="s3-r1" style="background-image:url(assets/ui/m_analyse_run1.webp)"></div>
+        <div class="scr" id="s3-r2" style="background-image:url(assets/ui/m_analyse_run2.webp)"></div>
+        <div class="pg" id="s3-res">
+          <div class="pg-sc" id="s3-sc">
+            <div class="pg-img" style="background-image:url(assets/ui/m_analyse.webp); height: 3561.8px"></div>
+            <div class="hl" id="s3-h-148"></div>
+            <div class="hl" id="s3-h-312"></div>
+            <div class="hl" id="s3-h-rap"></div>
+            <div class="hl" id="s3-h-84"></div>
+            <div class="hl" id="s3-h-bcf"></div>
+            <div class="hl" id="s3-h-node" style="border-radius:50%"></div>
+            <div class="hl" id="s3-h-infra" style="background: rgba(236,198,87,.16)"></div>
+          </div>
+          <div class="pg-chrome" style="background-image:url(assets/ui/m_analyse_v.webp)"></div>
+        </div>
+        <div class="hl" id="s3-h-nav"></div>
+        <div class="hl" id="s3-h-run"></div>
+        <div class="rip" id="s3-rip"></div>
+<!--@/MAC-->
+      </div>
+    </div>
+    <div class="chap" id="s3-chap">
+      <div class="chap-n">03</div>
+      <div class="chap-k">Troisième écran · 3 / 5</div>
+      <div class="chap-r"></div>
+      <div class="chap-t"><span class="w">Le</span> <span class="w">croisement</span> <span class="w">des</span> <span class="w">dossiers</span></div>
+      <div class="chap-m"><span class="w">Deux</span> <span class="w">dossiers</span> <span class="w">que</span> <span class="w">personne</span> <span class="w">n'aurait</span> <span class="w">rapprochés</span> <span class="w">sur</span> <span class="w">papier.</span></div>
+    </div>
+    <div id="s3-ill">
+      <svg id="s3-threads" viewBox="0 0 1920 1080">
+        <path id="s3-thA" d="M267 606 C 520 470, 900 470, 1170 548" fill="none" stroke="#ECC657" stroke-width="4" stroke-linecap="round"/>
+        <path id="s3-thB" d="M713 788 C 900 760, 1020 640, 1170 600" fill="none" stroke="#ECC657" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <div id="s3-mapg">
+        <svg id="s3-map" viewBox="0 0 710 700"><path id="s3-out" d="{{DRC}}" fill="rgba(216,168,40,0.05)" stroke="#D8A828" stroke-width="2.4" stroke-linejoin="round" opacity="0.75"/></svg>
+        <div class="s3-pin" id="s3-pM" style="left:46.7px; top:415.7px"></div>
+        <div class="s3-pin" id="s3-pK" style="left:493.2px; top:597.9px"></div>
+        <div class="s3-city" id="s3-cM" style="left:-10px; top:440px">Matadi</div>
+        <div class="s3-city" id="s3-cK" style="left:420px; top:520px">Kolwezi</div>
+      </div>
+      <div class="uic" id="s3-dA"><div class="ref">DPJ-2026-007</div><div class="tt">Réhabilitation de la RN1 — tronçon Matadi–Kasangulu</div></div>
+      <div class="uic" id="s3-dB"><div class="ref">DPJ-2026-014</div><div class="tt">Redevances minières — permis du ressort de Kolwezi</div></div>
+      <div class="uic" id="s3-acc">
+        <div id="s3-ring"><svg viewBox="0 0 180 180"><circle cx="90" cy="90" r="78" fill="none" stroke="#efe9dc" stroke-width="14"/><circle id="s3-arc" cx="90" cy="90" r="78" fill="none" stroke="#D8A828" stroke-width="14" stroke-linecap="round" stroke-dasharray="490.1 490.1" stroke-dashoffset="490.1"/></svg>
+          <div id="s3-pct"><span id="s3-pctv" data-layout-ignore></span>&#8239;%</div><div id="s3-pctl">PROXIMITÉ</div></div>
+        <div class="ref">COMPTE INTERMÉDIAIRE COMMUN</div>
+        <div class="tt">BCF 00214-…-77</div>
+        <div class="mt">Cité dans le relevé du DPJ-2026-007 et dans la pièce 4 du DPJ-2026-014</div>
+      </div>
+      <div id="s3-note"><span class="w">Une</span> <span class="w">piste</span> <span class="w">à</span> <span class="w">vérifier</span> <span class="w">par</span> <span class="w">réquisition</span> <span class="w">du</span> <span class="w">parquet,</span> <span class="w">pas</span> <span class="w">une</span> <span class="w">preuve.</span></div>
+    </div>
+    <div id="s3-flow"></div>
+    <div id="s3-sov"><span class="chip amber">Infrastructure souveraine · à acquérir</span></div>
+  </div>
+  <script>
+    /*@HELPERS*/
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 68.2;
+      const at = (t) => t - T0;
+      const cur = "#s3-cur", rip = "#s3-rip";
+      const B = BOX, A = B.m_analyse;
+      gsap.set("#s3-cam", CHP);
+      gsap.set(cur, curPos(700, 560));
+      gsap.set(["#s3-a0", "#s3-r0", "#s3-r1", "#s3-r2", "#s3-res", "#s3-chap", "#s3-ill", "#s3-sov"], { opacity: 0 });
+      const SC = (y) => ({ y: -y * K });   // scroll the result page to page y
+
+      /* ---------- chapter 3: one click on "Analyse et enquête financière" ---------- */
+      tl.set("#s3-chap", { opacity: 1 }, at(68.65));
+      chapter(tl, $("#s3-chap"), at(68.65), at(70.75));
+      const nv = B.m_home.n_analyse;
+      over("#s3-h-nav", nv, 2);
+      clickAt(tl, cur, rip, nv.x + 40, nv.y + nv.h / 2, at(69.25), 0.75);
+      hlOn(tl, "#s3-h-nav", at(69.25), 0.25);
+      hlOff(tl, "#s3-h-nav", at(70.2));
+      swap(tl, "#s3-prv", "#s3-a0", at(69.35));
+
+      /* ---------- "L'analyse lit 148 pièces et 312 opérations" 71.22 – 74.79 ---------- */
+      tl.to("#s3-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(848, 470, 1.22)), at(70.55));
+      const ln = B.m_analyse0.launch;
+      over("#s3-h-run", ln, 4);
+      hlOn(tl, "#s3-h-run", at(70.9), 0.25);
+      clickAt(tl, cur, rip, ln.x + ln.w / 2, ln.y + ln.h / 2, at(71.25), 0.7);
+      hlOff(tl, "#s3-h-run", at(71.35), 0.15);
+      swap(tl, "#s3-a0", "#s3-r0", at(71.35));
+      swap(tl, "#s3-r0", "#s3-r1", at(71.75));
+      swap(tl, "#s3-r1", "#s3-r2", at(72.1));
+      swap(tl, "#s3-r2", "#s3-res", at(72.35));
+      tl.to(cur, Object.assign({ duration: 0.6, ease: "power2.inOut" }, curPos(1250, 760)), at(72.4));
+      over("#s3-h-148", { x: 288, y: 504, w: 268, h: 124 }, 3);
+      over("#s3-h-312", { x: 572, y: 504, w: 268, h: 124 }, 3);
+      hlOn(tl, "#s3-h-148", at(72.4));
+      hlOn(tl, "#s3-h-312", at(73.9));
+      hlOff(tl, ["#s3-h-148", "#s3-h-312"], at(75.1));
+
+      /* ---------- "Elle relie deux dossiers que personne n'aurait rapprochés sur papier" 75.34 – 78.74 ---------- */
+      tl.to("#s3-sc", Object.assign({ duration: 0.9, ease: "power2.inOut" }, SC(380)), at(75.0));
+      tl.to("#s3-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(848, 883 - 380, 1.3)), at(75.0));
+      over("#s3-h-rap", { x: 288, y: 662, w: 1120, h: 442 }, 2);
+      over("#s3-h-84", { x: 1023, y: 695, w: 352, h: 217 }, 3);
+      hlOn(tl, "#s3-h-rap", at(75.9));
+      tl.set(cur, { opacity: 0 }, at(76.0));
+
+      /* ---------- the map: RN1 at Matadi, the mines at Kolwezi, one account (78.80 – 86.02) ---------- */
+      tl.to("#s3-cam", { opacity: 0, scale: 1.6, filter: "blur(14px)", duration: 0.55, ease: "power2.in" }, at(78.25));
+      tl.set("#s3-ill", { opacity: 1 }, at(78.6));
+      tl.fromTo("#s3-out", { opacity: 0 }, { opacity: 0.75, duration: 0.6, ease: "power2.out" }, at(78.6));
+      tl.fromTo("#s3-mapg", { scale: 1.08, filter: "blur(10px)" }, { scale: 1, filter: "blur(0px)", duration: 0.8, ease: "expo.out" }, at(78.6));
+      tl.fromTo(["#s3-pM", "#s3-cM"], { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, at(79.95));
+      tl.fromTo("#s3-dA", { opacity: 0, y: -24, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, at(80.1));
+      tl.fromTo(["#s3-pK", "#s3-cK"], { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, at(81.25));
+      tl.fromTo("#s3-dB", { opacity: 0, y: 24, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, at(81.4));
+      // "passent par le même compte bancaire intermédiaire" 82.10 – 83.70
+      tl.fromTo("#s3-acc", { opacity: 0, x: 60, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, at(82.4));
+      ["#s3-thA", "#s3-thB"].forEach((th, i) => {
+        const p = $(th); const L = p.getTotalLength ? (p.getTotalLength() || 960) : 960;
+        tl.fromTo(p, { attr: { "stroke-dasharray": `${L} ${L}`, "stroke-dashoffset": L } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.9, ease: "power2.inOut" }, at(82.6) + i * 0.15);
+      });
+      // "84 %" 84.70
+      const strips = odo($("#s3-pctv"), "84", 58);
+      gsap.set("#s3-pct", { opacity: 0 });
+      tl.to("#s3-pct", { opacity: 1, duration: 0.2 }, at(84.5));
+      odoRoll(tl, strips, 58, at(84.5), 1.2);
+      tl.to("#s3-arc", { attr: { "stroke-dashoffset": 490.1 * 0.16 }, duration: 1.2, ease: "power3.out" }, at(84.5));
+      wordsIn(tl, $$("#s3-note .w"), at(85.4), 0.04);
+      tl.to("#s3-ill", { opacity: 0, filter: "blur(14px)", duration: 0.45, ease: "power2.in" }, at(86.55));
+
+      /* ---------- back in the screen: the 84 % box, then the account on the flow graph ---------- */
+      tl.set("#s3-cam", { filter: "blur(0px)" }, at(86.6));
+      tl.set("#s3-cam", camAt(1199, 803 - 380, 1.9), at(86.6));
+      tl.to("#s3-cam", Object.assign({ opacity: 1, duration: 0.6, ease: "power2.out" }, camAt(1199, 803 - 380, 1.55)), at(86.62));
+      hlOff(tl, "#s3-h-rap", at(86.6), 0.01);
+      hlOn(tl, "#s3-h-84", at(86.85));
+      hlOff(tl, "#s3-h-84", at(87.75));
+      // the junction on the graph ("moteur de croisement" 88.76)
+      const nb = A.n_bcf, ny = nb.y - 17, nx = nb.x + nb.w / 2;
+      tl.to("#s3-sc", Object.assign({ duration: 0.9, ease: "power2.inOut" }, SC(1566)), at(87.55));
+      tl.to("#s3-cam", Object.assign({ duration: 0.9, ease: "power2.inOut" }, camAt(nx + 140, ny - 1566, 1.6)), at(87.55));
+      over("#s3-h-node", { x: nx - 24, y: ny - 24, w: 48, h: 48 }, 0);
+      over("#s3-h-bcf", { x: nb.x - 4, y: nb.y - 4, w: nb.w + 8, h: nb.h + 8 }, 2);
+      hlOn(tl, ["#s3-h-node", "#s3-h-bcf"], at(88.4));
+
+      /* ---------- "…sur des milliers de pièces que nous devons acquérir l'infrastructure souveraine" 89.72 – 93.52 ---------- */
+      hlOff(tl, ["#s3-h-node", "#s3-h-bcf"], at(89.35));
+      tl.to("#s3-sc", Object.assign({ duration: 1.0, ease: "power2.inOut" }, SC(2763)), at(89.35));
+      tl.to("#s3-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(848, 3563 - 2763, 1.22, 960, 640)), at(89.35));
+      over("#s3-h-infra", { x: 288, y: 3497, w: 1120, h: 133 }, 4);
+      hlOn(tl, "#s3-h-infra", at(90.3));
+      // a stream of pieces into the box (seeded)
+      const flow = $("#s3-flow"), r = rng(31);
+      for (let i = 0; i < 46; i++) {
+        const d = document.createElement("div"); d.className = "s3-p"; d.id = "s3-p" + i; flow.appendChild(d);
+        const sx = -80 - r() * 260, sy = 120 + r() * 840, t = at(90.1) + i * 0.035;
+        const ex = 380 + r() * 1160, ey = 600 + (r() - 0.5) * 60;
+        tl.fromTo(d, { x: sx, y: sy, rotation: (r() - 0.5) * 60, opacity: 0 }, { x: ex, y: ey, rotation: (r() - 0.5) * 20, opacity: 1, duration: 0.85, ease: "power2.in", immediateRender: false }, t);
+        tl.to(d, { opacity: 0, scale: 0.4, duration: 0.15 }, t + 0.85);
+      }
+      gsap.set(".s3-p", { opacity: 0 });
+      tl.set("#s3-sov", { opacity: 1 }, at(92.0));
+      tl.fromTo("#s3-sov .chip", { opacity: 0, y: 20, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, at(92.1));
+
+      /* ---------- hand-over to chapter 4 ---------- */
+      tl.to("#s3-sov", { opacity: 0, y: -20, duration: 0.3, ease: "power2.in" }, at(93.7));
+      hlOff(tl, "#s3-h-infra", at(93.7));
+      tl.to("#s3-cam", Object.assign({ duration: 0.8, ease: "power2.inOut" }, CHP), at(93.75));
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(700, 560)), at(94.3));
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

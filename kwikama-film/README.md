@@ -1,35 +1,56 @@
-# KWIKAMA — film de présentation
+# KWIKAMA — film de démonstration (v2)
 
-Projet [HyperFrames](https://hyperframes.heygen.com) (HTML → vidéo). 1920 x 1080, 30 fps, 127 s.
+Projet [HyperFrames](https://hyperframes.heygen.com) (HTML → vidéo) : 1920 x 1080, 30 fps, 153 s.
 
-- `SPEC.md` décrit la direction artistique.
-- `SCRIPT.md` contient la voix off, avec ses sources dans le manuel EFP.
-- `STORYLINES.md` présente les trois pistes narratives.
-- `REVIEW.md` fait le bilan.
+Il filme https://kwikamademo.vercel.app/ en suivant la note de démonstration : cinq écrans, un seul dossier, un changement de rôle.
+
+| Document | Contenu |
+|---|---|
+| `SPEC.md` | Direction artistique |
+| `SCRIPT.md` | Voix off et sources |
+| `STORYLINES.md` | Pistes narratives |
+| `REVIEW.md` | Bilan, points à écouter, avertissements |
 
 ## Structure
 
-- `index.html` : composition racine. Elle contient 8 actes, la voix off (14 clips), la musique et les effets entre `<!-- @AUDIO:BEGIN -->` et `<!-- @AUDIO:END -->`.
-- `src/acts/*.html` : **les sources à éditer**. `src/base.css` regroupe le style commun (MacBook, cartes, puces), `src/helpers.js` les fonctions caméra, curseur et compteurs, et `src/mac.html` le MacBook.
-- `compositions/*.html` : fichiers **générés**, à ne pas éditer à la main. Pour les régénérer :
+- **`index.html`** — composition racine : le fond, 7 scènes, la voix (17 clips), la musique et 122 bruitages. Les deux derniers sont écrits entre `<!-- @AUDIO:BEGIN -->` et `<!-- @AUDIO:END -->`.
+
+  | Scène | Contenu | Début |
+  |---|---|---|
+  | `s0` | ouverture | 0 s |
+  | `s1` | contrôle de légalité | 21,6 s |
+  | `s2` | chaîne de garde | 49,0 s |
+  | `s3` | croisement des dossiers | 68,2 s |
+  | `s4` | coordination et vue CENAREF | 94,6 s |
+  | `s5` | avoirs et RI 8 | 121,8 s |
+  | `s6` | signature | 143,8 s |
+
+- **`src/acts/*.html`** — **les sources à éditer.**
+  - `src/base.css` : MacBook, composite de défilement `.pg`, surlignage `.hl`, carte de chapitre `.chap`.
+  - `src/helpers.js` : caméra `camAt`, `clickAt`, `over`, `chapter`, odomètres. Il contient aussi `BOX`, les positions mesurées des éléments d'UI, injectées depuis `assets/ui/boxes.json`.
+  - `src/mac.html`.
+- **`compositions/*.html`** — fichiers **générés**, à ne pas éditer à la main.
   ```bash
-  node tools/build.mjs            # tous les actes
-  node tools/build.mjs act4 act8  # seulement ceux-là
+  node tools/build.mjs            # tout régénérer
+  node tools/build.mjs s3 s4      # seulement ces scènes
   ```
-- `assets/ui/` : captures 2x de kwikama.vercel.app. `assets/brand/` : logo vectorisé et tracé de la RDC. `assets/audio/` : voix, musique et effets.
+- **`assets/ui/`** — captures 2x de kwikamademo.vercel.app, message « À dire » masqué. Pour les refaire : `node tools/capture/capture.js <dossier>/`, puis `python tools/capture/drawers.py <dossier> .` ; convertir les PNG en WebP dans `assets/ui/` et copier `boxes.json`.
+  - `drawer_0163/0186.webp` : tiroirs reconstitués pour le défilement.
+  - `boxes.json` : positions des éléments en px de page.
 
 ## Commandes
 
 ```bash
-npx hyperframes preview --background   # Studio dans le navigateur
-npm run check                          # lint + runtime + layout + motion + contraste
-npx hyperframes render --quality delivery --output renders/kwikama-presentation.mp4
+npx hyperframes preview --background   # Studio
+npm run check
+npx hyperframes render --quality delivery --output renders/kwikama-demonstration.mp4
 ```
 
-## Musique et mix (`tools/music/`)
+## Son (`tools/`)
 
-- `compose.py` écrit la partition (FluidSynth + FluidR3_GM et synthèse numpy) et produit `music_free.wav`.
-- `mixdown.py <projet> <music_free.wav> <work>` traite la voix, fait le ducking et pose les 84 effets. Il écrit `assets/audio/music/kwikama-theme.*` et `assets/audio/sfx/cues.json`.
-- `write_audio_tags.py` réécrit le bloc audio de `index.html` à partir de `cues.json`.
+1. **`vo/cut_vo.py <prise.wav> <words.json> .`** découpe la prise ElevenLabs en 17 phrases et les place sur l'horloge du film. Il écrit `assets/audio/vo/segments.json` et `words_film.json`, qui donnent l'heure de chaque mot dans le film.
+2. **`music/compose.py <work> x`** produit la partition : une phrase par chapitre, la grille de mesures repart sur chaque carte de chapitre. Rendu FluidSynth (FluidR3_GM) plus synthèse numpy, vers `<work>/music_free.wav`.
+3. **`music/mixdown.py . <work>/music_free.wav <work>`** traite la voix, atténue la musique sous la voix, prépare les bruitages et écrit `cues.json`. Il mesure aussi le mix de référence.
+4. **`music/write_audio_tags.py .`** réécrit le bloc audio de `index.html`.
 
-Dépendances Python : numpy, scipy, pedalboard, pretty_midi, soundfile, pyloudnorm, plus fluidsynth et la soundfont FluidR3_GM.
+Dépendances Python : numpy, scipy, pedalboard, pretty_midi, soundfile, pyloudnorm, plus fluidsynth et FluidR3_GM.

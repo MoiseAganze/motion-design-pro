@@ -1,0 +1,369 @@
+<template>
+  <style>
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/Fraunces-Variable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: block; }
+#root {
+  position: absolute; inset: 0; overflow: hidden;
+  --navy: #031829; --navy2: #052033; --navy3: #0a2c47; --navy4: #13385a;
+  --gold: #d8a828; --gold2: #ecc657; --cream: #f4f1ea; --paper: #fbf9f5;
+  --ink: #13181e; --muted: #5b6470; --line: #e8e3d8;
+  --blue: #13487f; --bluebg: #e6edf5; --green: #1e6b4f; --greenbg: #e3efe9;
+  --red: #9b2c24; --redbg: #f7e6e4; --amber: #8a6512; --amberbg: #f6ecd2;
+  font-family: "Inter", sans-serif; color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+#root * { box-sizing: border-box; }
+.abs { position: absolute; }
+.serif { font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -0.01em; }
+.gold { color: var(--gold); }
+.w { display: inline-block; }
+/* ---------- stage, camera, MacBook ---------- */
+.stage { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 960px 540px; }
+.cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 540px; transform-style: preserve-3d; }
+.mac { position: absolute; left: 242px; top: 70px; width: 1436px; height: 947px; }
+.mac-shadow { position: absolute; left: 60px; right: 60px; top: 880px; height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+.mac-lid { position: absolute; left: 0; top: 0; width: 1436px; height: 921px; border-radius: 30px 30px 12px 12px;
+  background: linear-gradient(180deg, #e4e6e9 0%, #b9bdc3 55%, #9ea2a8 100%); padding: 3px;
+  box-shadow: 0 50px 110px rgba(0,0,0,.50), 0 0 0 1px rgba(255,255,255,.08) inset; }
+.mac-bezel { position: absolute; inset: 3px; border-radius: 27px 27px 9px 9px; background: #0b0b0c; }
+.mac-screen { position: absolute; left: 15px; top: 21px; width: 1400px; height: 875px; overflow: hidden; background: var(--paper); border-radius: 7px; }
+.mac-screen > img.ui { position: absolute; left: 0; top: 0; width: 1400px; height: auto; display: block; }
+.mac-glare { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 38%); }
+.mac-notch { position: absolute; top: 0; left: 50%; width: 184px; height: 30px; margin-left: -92px; background: #0b0b0c; border-radius: 0 0 13px 13px; }
+.mac-notch i { position: absolute; left: 50%; top: 10px; width: 9px; height: 9px; margin-left: -4px; border-radius: 50%; background: #1d2633; box-shadow: 0 0 0 2px #121519; }
+.mac-base { position: absolute; left: -62px; top: 919px; width: 1560px; height: 28px; border-radius: 3px 3px 22px 22px;
+  background: linear-gradient(180deg, #f1f2f3 0%, #d3d5d8 30%, #a8abb0 75%, #7e8187 100%); }
+.mac-groove { position: absolute; left: 50%; top: 0; width: 250px; height: 10px; margin-left: -125px; border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, #8f9297, #c9cbcf); }
+.cursor { position: absolute; left: 0; top: 0; width: 40px; height: 57px; transform-origin: 3px 3px; z-index: 50; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
+/* ---------- recurring UI pieces rebuilt from the app ---------- */
+.chip { display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-weight: 600; font-size: 24px; line-height: 1; padding: 9px 16px 9px 14px; border-radius: 6px; white-space: nowrap; }
+.chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.chip.green { color: var(--green); background: var(--greenbg); }
+.chip.red { color: var(--red); background: var(--redbg); }
+.chip.blue { color: var(--blue); background: var(--bluebg); }
+.chip.amber { color: var(--amber); background: var(--amberbg); }
+.chip.beige { color: #6b5d45; background: #efe9dc; }
+.card { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 14px; color: var(--ink);
+  box-shadow: 0 30px 70px rgba(3,24,41,.38), 0 4px 14px rgba(3,24,41,.18); }
+.label { font-family: "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: .09em; text-transform: uppercase; color: #6b7480; }
+.persona { position: absolute; display: flex; align-items: center; gap: 18px; padding: 16px 26px 16px 16px; border-radius: 14px;
+  background: rgba(3,24,41,.92); border: 1px solid rgba(244,241,234,.14); color: var(--cream); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.persona .av { width: 62px; height: 62px; border-radius: 50%; background: var(--navy3); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; color: var(--cream); }
+.persona .nm { font-weight: 600; font-size: 28px; line-height: 1.15; }
+.persona .rl { font-weight: 500; font-size: 22px; color: rgba(244,241,234,.66); margin-top: 3px; }
+.digits { display: inline-flex; overflow: hidden; vertical-align: top; }
+.digit { display: inline-block; overflow: hidden; position: relative; }
+.digit .strip { display: flex; flex-direction: column; }
+.digit .strip span { display: block; text-align: center; }
+/* ---------- v2: screens, scrolling composite, highlights, clicks ---------- */
+.scr { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; background-size: 1400px auto; background-repeat: no-repeat; background-color: var(--paper); }
+.pg { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; overflow: hidden; background: var(--paper); }
+.pg-sc { position: absolute; left: 0; top: 0; width: 1400px; }
+.pg-img { position: absolute; left: 0; top: 0; width: 1400px; background-size: 1400px auto; background-repeat: no-repeat; }
+/* sticky header (217 page px) and fixed sidebar (256 page px) of the app, from the viewport capture */
+.pg-chrome { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; background-size: 1400px auto; background-repeat: no-repeat;
+  clip-path: polygon(0 0, 100% 0, 100% 211px, 249px 211px, 249px 100%, 0 100%); }
+.hl { position: absolute; border: 3px solid var(--gold); border-radius: 10px; opacity: 0; pointer-events: none;
+  box-shadow: 0 0 0 5px rgba(216,168,40,.20), 0 0 26px rgba(216,168,40,.55); }
+.hl.red { border-color: #c2412f; box-shadow: 0 0 0 5px rgba(194,65,47,.18), 0 0 26px rgba(194,65,47,.5); }
+.hl.green { border-color: #2f8a63; box-shadow: 0 0 0 5px rgba(47,138,99,.18), 0 0 26px rgba(47,138,99,.5); }
+.rip { position: absolute; left: 0; top: 0; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; border: 3px solid var(--gold); opacity: 0; z-index: 49; }
+/* right-hand drawer of the app (page x 880..1440, y 255..900) */
+.drw { position: absolute; left: 855.6px; top: 247.9px; width: 544.4px; height: 627.1px; overflow: hidden; background: #fff; }
+.drw-img { position: absolute; left: 0; top: 0; width: 544.4px; background-size: 544.4px auto; background-repeat: no-repeat; }
+/* chapter card */
+.chap { position: absolute; left: 118px; top: 0; width: 760px; height: 1080px; }
+.chap-n { position: absolute; left: 0; top: 214px; font-family: "Fraunces", serif; font-weight: 600; font-size: 210px; line-height: 1; color: var(--gold); letter-spacing: -0.02em; }
+.chap-k { position: absolute; left: 6px; top: 452px; font-size: 25px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold2); white-space: nowrap; }
+.chap-r { position: absolute; left: 6px; top: 498px; width: 96px; height: 3px; background: var(--gold); transform-origin: 0 50%; }
+.chap-t { position: absolute; left: 0; top: 530px; width: 760px; font-family: "Fraunces", serif; font-weight: 600; font-size: 70px; line-height: 1.08; color: var(--cream); letter-spacing: -0.01em; }
+.chap-m { position: absolute; left: 4px; top: 720px; width: 700px; font-size: 32px; line-height: 1.35; font-weight: 500; color: rgba(244,241,234,.78); }
+/* floating white card rebuilt from the app */
+.uic { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 16px; color: var(--ink); padding: 26px 30px;
+  box-shadow: 0 30px 70px rgba(3,24,41,.42), 0 4px 14px rgba(3,24,41,.18); font-family: "Inter", sans-serif; }
+.uic .ref { font-size: 22px; font-weight: 600; letter-spacing: .04em; color: #6b7480; }
+.uic .kind { font-size: 21px; font-weight: 700; letter-spacing: .1em; color: var(--amber); text-transform: uppercase; }
+.uic .tt { font-size: 32px; font-weight: 600; color: #0a2c47; line-height: 1.2; margin-top: 10px; }
+.uic .mt { font-size: 22px; font-weight: 500; color: var(--muted); margin-top: 10px; }
+
+    .s1-dhead { position: absolute; left: 0; top: 0; width: 544.4px; height: 86.5px; background-size: 544.4px auto; background-repeat: no-repeat; }
+    .s1-dwin { position: absolute; left: 0; top: 86.5px; width: 544.4px; height: 540.6px; overflow: hidden; }
+    .s1-dimg { position: absolute; left: 0; top: -86.5px; width: 544.4px; height: 957.6px; background-size: 544.4px auto; background-repeat: no-repeat; }
+    #s1-ok { position: absolute; left: 150px; top: 880px; }
+    #s1-ok .chip { font-size: 26px; padding: 12px 20px 12px 16px; box-shadow: 0 14px 30px rgba(0,0,0,.3); }
+    /* the two seizures, side by side outside the screen */
+    #s1-cards { position: absolute; left: 110px; top: 0; width: 760px; height: 1080px; }
+    #s1-cA { left: 0; top: 168px; width: 720px; }
+    #s1-cB { left: 0; top: 610px; width: 720px; }
+    .s1-row { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+    .s1-row .chip { font-size: 22px; }
+    #s1-fold { position: absolute; left: 150px; top: 430px; width: 520px; height: 120px; }
+    #s1-fold .tab { position: absolute; left: 0; top: -34px; width: 210px; height: 44px; border-radius: 12px 12px 0 0; background: #e9e1cf; color: var(--ink);
+      font-size: 21px; font-weight: 700; padding: 9px 18px; letter-spacing: .02em; white-space: nowrap; }
+    #s1-fold .body { position: absolute; inset: 0; border-radius: 0 14px 14px 14px; background: var(--paper); color: var(--ink); padding: 20px 26px; border-top: 5px solid var(--green);
+      box-shadow: 0 26px 60px rgba(0,0,0,.45); }
+    #s1-fold .t1 { font-size: 20px; font-weight: 700; letter-spacing: .1em; color: var(--green); }
+    #s1-fold .t2 { font-size: 28px; font-weight: 600; color: #0a2c47; margin-top: 8px; white-space: nowrap; }
+    #s1-xq { display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 24px; font-weight: 600; color: var(--red); }
+    #s1-xq i { width: 34px; height: 34px; border-radius: 50%; background: var(--redbg); display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 20px; font-weight: 800; color: var(--red); }
+    #s1-lock { position: absolute; left: 610px; top: 576px; width: 96px; height: 96px; border-radius: 50%; background: #9b2c24; display: flex; align-items: center; justify-content: center; box-shadow: 0 16px 34px rgba(0,0,0,.4); }
+    #s1-lock svg { width: 48px; height: 48px; }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080">
+    <div class="stage">
+      <div class="cam" id="s1-cam">
+<div class="mac" id="s1-mac">
+  <div class="mac-shadow"></div>
+  <div class="mac-base"><div class="mac-groove"></div></div>
+  <div class="mac-lid">
+    <div class="mac-bezel">
+      <div class="mac-screen" id="s1-screen">
+
+        <div class="scr" id="s1-conn" style="background-image:url(assets/ui/connexion.webp)"></div>
+        <div class="scr" id="s1-home" style="background-image:url(assets/ui/m_home.webp)"></div>
+        <div class="scr" id="s1-verif" style="background-image:url(assets/ui/m_verif.webp)"></div>
+        <div class="scr" id="s1-dim" style="background-image:url(assets/ui/m_sig0163_a.webp); clip-path: inset(0 544.4px 0 0); background-color: transparent"></div>
+        <div class="drw" id="s1-d163">
+          <div class="s1-dhead" style="background-image:url(assets/ui/drawer_0163.webp)"></div>
+          <div class="s1-dwin"><div class="s1-dimg" id="s1-b163" style="background-image:url(assets/ui/drawer_0163.webp)"></div></div>
+        </div>
+        <div class="drw" id="s1-d186">
+          <div class="s1-dhead" style="background-image:url(assets/ui/drawer_0186.webp)"></div>
+          <div class="s1-dwin"><div class="s1-dimg" id="s1-b186" style="background-image:url(assets/ui/drawer_0186.webp); height: 936.2px"></div></div>
+        </div>
+        <div class="hl" id="s1-h-card"></div>
+        <div class="hl" id="s1-h-nav"></div>
+        <div class="hl" id="s1-h-verrou"></div>
+        <div class="hl red" id="s1-h-bloc"></div>
+        <div class="hl" id="s1-h-q1"></div>
+        <div class="hl" id="s1-h-q2"></div>
+        <div class="hl" id="s1-h-q3"></div>
+        <div class="hl" id="s1-h-q4"></div>
+        <div class="hl red" id="s1-h-x2"></div>
+        <div class="rip" id="s1-rip"></div>
+
+        <svg class="cursor" id="s1-cur" viewBox="0 0 28 40"><path d="M2 2 L2 31.5 L9.6 24.4 L14.6 36.2 L19.4 34.1 L14.4 22.6 L24.6 22.6 Z" fill="#101215" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round"/></svg>
+        <div class="mac-glare"></div>
+      </div>
+      <div class="mac-notch"><i></i></div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+    <div id="s1-ok"><span class="chip green">4 contrôles sur 4 · régularité établie</span></div>
+    <div class="persona" id="s1-who" style="left:60px; top:930px"><div class="av">MK</div><div><div class="nm">Mulumba Kanyinda Victor</div><div class="rl">Magistrat du Parquet · secret judiciaire, niveau 1</div></div></div>
+    <div class="chap" id="s1-chap">
+      <div class="chap-n">01</div>
+      <div class="chap-k">Premier écran · 1 / 5</div>
+      <div class="chap-r"></div>
+      <div class="chap-t"><span class="w">Le</span> <span class="w">contrôle</span> <span class="w">de</span> <span class="w">légalité</span></div>
+      <div class="chap-m"><span class="w">Rien</span> <span class="w">n'entre</span> <span class="w">dans</span> <span class="w">le</span> <span class="w">système</span> <span class="w">sans</span> <span class="w">contrôle</span> <span class="w">de</span> <span class="w">validité</span> <span class="w">juridique.</span></div>
+    </div>
+    <div id="s1-cards">
+      <div class="uic" id="s1-cA">
+        <div><span class="ref">SIG-2026-0163</span> &nbsp;<span class="kind">Dissémination CENAREF</span></div>
+        <div class="tt">Redevances minières non reversées au Trésor</div>
+        <div class="s1-row"><span class="chip beige">4 contrôles sur 4</span><span class="chip green" id="s1-cA-ok">Validée</span></div>
+      </div>
+      <div id="s1-fold"><div class="tab">DPJ-2026-014</div><div class="body"><div class="t1">DOSSIER OUVERT</div><div class="t2">Redevances minières — Kolwezi</div></div></div>
+      <div class="uic" id="s1-cB">
+        <div><span class="ref">SIG-2026-0186</span> &nbsp;<span class="kind">Média</span></div>
+        <div class="tt">Rétrocessions provinciales non reversées</div>
+        <div id="s1-xq"><i>✕</i>Références procédurales : non</div>
+        <div class="s1-row"><span class="chip amber" id="s1-cB-st">Clarification demandée</span><span class="chip red" id="s1-cB-no">Aucune enquête ouverte</span></div>
+      </div>
+      <div id="s1-lock"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><rect x="10" y="21" width="28" height="21" rx="4" fill="#fff" stroke="none"/><path d="M16 21 V15 a8 8 0 0 1 16 0 V21"/></svg></div>
+    </div>
+  </div>
+  <script>
+    /* ---- shared helpers (inlined into every act by tools/build.mjs) ---- */
+const K = 1400 / 1440;            // page px -> screen px
+const SCR = { x: 260, y: 94 };    // screen top-left inside .cam at scale 1
+function sp(sx, sy) { return { X: SCR.x + sx * K, Y: SCR.y + sy * K }; }
+// camera vars that put page point (sx, sy) of the Mac screen at frame point (fx, fy) with scale S
+function camAt(sx, sy, S, fx, fy, extra) {
+  const p = sp(sx, sy); fx = fx === undefined ? 960 : fx; fy = fy === undefined ? 540 : fy;
+  return Object.assign({ x: fx - 960 - S * (p.X - 960), y: fy - 540 - S * (p.Y - 540), scale: S, rotationX: 0, rotationY: 0 }, extra || {});
+}
+// cursor tip at page point (sx, sy) inside the screen
+function curPos(sx, sy) { return { x: sx * K - 3, y: sy * K - 3 }; }
+function click(tl, cur, t) {
+  tl.to(cur, { scale: 0.8, duration: 0.07, ease: "power2.out" }, t);
+  tl.to(cur, { scale: 1, duration: 0.16, ease: "power2.out" }, t + 0.07);
+}
+// show one screen layer at time t (instant swap, like the real UI)
+function swap(tl, from, to, t, fade) {
+  if (fade) { tl.to(to, { opacity: 1, duration: fade, ease: "none" }, t); if (from) tl.set(from, { opacity: 0 }, t + fade); }
+  else { tl.set(to, { opacity: 1 }, t); if (from) tl.set(from, { opacity: 0 }, t); }
+}
+// words: blur-in one by one
+function wordsIn(tl, els, t, gap, dur) {
+  gap = gap === undefined ? 0.07 : gap; dur = dur || 0.32;
+  tl.fromTo(els, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: dur, ease: "power2.out", stagger: gap }, t);
+}
+function wordsOut(tl, els, t, dur) {
+  tl.to(els, { opacity: 0, filter: "blur(10px)", duration: dur || 0.22, ease: "power2.in", stagger: 0.03 }, t);
+}
+// odometer number: build digit strips inside el for the string `str`; returns strips
+function odo(el, str, h) {
+  el.innerHTML = "";
+  const strips = [];
+  for (const ch of str) {
+    if (/\d/.test(ch)) {
+      const d = document.createElement("span"); d.className = "digit"; d.style.height = h + "px";
+      const s = document.createElement("span"); s.className = "strip";
+      for (let k = 0; k <= 19; k++) { const n = document.createElement("span"); n.textContent = k % 10; n.style.height = h + "px"; n.style.lineHeight = h + "px"; s.appendChild(n); }
+      d.appendChild(s); el.appendChild(d); strips.push({ s, v: +ch });
+    } else { const n = document.createElement("span"); n.textContent = ch; n.style.display = "inline-block"; n.style.lineHeight = h + "px"; el.appendChild(n); }
+  }
+  return strips;
+}
+// roll strips from 0 to their digit (plus one full turn) between t and t+dur
+function odoRoll(tl, strips, h, t, dur) {
+  strips.forEach((o, i) => {
+    tl.fromTo(o.s, { y: 0 }, { y: -(10 + o.v) * h, duration: dur - i * 0.04, ease: "power3.out" }, t + i * 0.04);
+  });
+}
+// mulberry32 PRNG
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* ---- v2 helpers ---- */
+const BOX = {"landing":{"h1":{"x":124,"y":242,"w":705,"h":147}},"connexion":{"w_parquet":{"x":667,"y":281,"w":696,"h":329},"w_coord":{"x":667,"y":625,"w":696,"h":329},"w_cenaref":{"x":667,"y":970,"w":696,"h":329},"title":{"x":667,"y":119,"w":696,"h":41}},"m_home":{"kpi1":{"x":288,"y":404,"w":268,"h":123},"persona":{"x":1133,"y":55,"w":275,"h":17},"badge":{"x":1037,"y":920,"w":161,"h":24},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_verif":{"k_recues":{"x":313,"y":502,"w":313,"h":21},"k_reg":{"x":692,"y":502,"w":313,"h":21},"k_bloc":{"x":1070,"y":502,"w":313,"h":21},"c0163":{"x":288,"y":640,"w":1120,"h":123},"c0186":{"x":288,"y":775,"w":1120,"h":123},"verrou":{"x":327,"y":400,"w":240,"h":17},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_sig0163_a":{"panel":{"x":880,"y":255,"w":560,"h":900},"title":{"x":905,"y":289,"w":457,"h":21},"chip":{"x":905,"y":368,"w":84,"h":24},"ctrl_h":{"x":905,"y":707,"w":511,"h":18},"foot":{"x":905,"y":1097,"w":511,"h":42}},"m_sig0163_b":{"panel":{"x":880,"y":255,"w":560,"h":900},"title":{"x":905,"y":289,"w":457,"h":21},"chip":{"x":905,"y":28,"w":84,"h":24},"ctrl_h":{"x":905,"y":367,"w":511,"h":18},"foot":{"x":905,"y":1097,"w":511,"h":42},"q1":{"x":905,"y":394,"w":511,"h":119},"q2":{"x":905,"y":524,"w":511,"h":119},"q3":{"x":905,"y":655,"w":511,"h":119},"q4":{"x":905,"y":786,"w":511,"h":119},"obs":{"x":922,"y":946,"w":477,"h":18}},"m_sig0163_scroll":{"cls":"panneau-corps","max":340,"h":736,"sh":1076,"top0":0},"m_sig0186_a":{"panel":{"x":880,"y":255,"w":560,"h":900},"title":{"x":905,"y":289,"w":457,"h":21},"chip":{"x":905,"y":368,"w":184,"h":24},"ctrl_h":{"x":905,"y":685,"w":511,"h":18},"foot":{"x":905,"y":1097,"w":511,"h":42}},"m_sig0186_b":{"panel":{"x":880,"y":255,"w":560,"h":900},"title":{"x":905,"y":289,"w":457,"h":21},"chip":{"x":905,"y":50,"w":184,"h":24},"ctrl_h":{"x":905,"y":367,"w":511,"h":18},"foot":{"x":905,"y":1097,"w":511,"h":42},"q1":{"x":905,"y":394,"w":511,"h":119},"q2":{"x":905,"y":524,"w":511,"h":119},"q3":{"x":905,"y":655,"w":511,"h":119},"q4":{"x":905,"y":786,"w":511,"h":119},"obs":{"x":922,"y":946,"w":477,"h":18}},"m_sig0186_scroll":{"cls":"panneau-corps","max":318,"h":736,"sh":1054,"top0":0},"m_preuves":{"badge":{"x":608,"y":381,"w":161,"h":24},"counts":{"x":288,"y":381,"w":1120,"h":24},"r0356":{"x":289,"y":476,"w":1118,"h":92},"r0355":{"x":289,"y":568,"w":1118,"h":115},"r0357":{"x":289,"y":683,"w":1118,"h":92},"st0356":{"x":1216,"y":510,"w":175,"h":24},"garantit":{"x":327,"y":827,"w":181,"h":17},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_prv0356":{"panel":{"x":880,"y":255,"w":560,"h":900},"chips":{"x":1013,"y":368,"w":174,"h":24},"scelle":{"x":1119,"y":448,"w":74,"h":17},"chaine":{"x":905,"y":668,"w":511,"h":18},"t1":{"x":929,"y":752,"w":487,"h":21},"t2":{"x":929,"y":891,"w":487,"h":21},"i1":{"x":929,"y":851,"w":114,"h":24},"i2":{"x":929,"y":968,"w":114,"h":24}},"m_analyse0":{"launch":{"x":1231,"y":287,"w":177,"h":52},"idle":{"x":738,"y":655,"w":220,"h":21},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_analyse_run0":{"list":{"x":288,"y":507,"w":1120,"h":475}},"m_analyse":{"k_pieces":{"x":313,"y":525,"w":218,"h":21},"k_ops":{"x":597,"y":525,"w":218,"h":21},"rap":{"x":323,"y":695,"w":668,"h":21},"rap_title":{"x":323,"y":724,"w":668,"h":51},"rn1":{"x":323,"y":782,"w":668,"h":22},"p84":{"x":1040,"y":720,"w":318,"h":48},"p84box":{"x":1040,"y":776,"w":318,"h":21},"bcf":{"x":347,"y":858,"w":644,"h":45},"nedemontre":{"x":339,"y":994,"w":299,"h":17},"graph_h":{"x":288,"y":1819,"w":1120,"h":21},"graph":{"x":305,"y":1872,"w":708,"h":504},"n_bcf":{"x":443,"y":2168,"w":157,"h":15},"n_kmp":{"x":596,"y":2319,"w":172,"h":15},"n_ash":{"x":571,"y":2139,"w":167,"h":15},"n_imm":{"x":548,"y":1897,"w":185,"h":15},"ops_h":{"x":288,"y":2688,"w":1120,"h":21},"infra":{"x":305,"y":3514,"w":1086,"h":18},"infra_txt":{"x":305,"y":3541,"w":1086,"h":45},"nonctr":{"x":327,"y":400,"w":443,"h":17},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_avoirs":{"ri8":{"x":323,"y":417,"w":596,"h":21},"ri8_q":{"x":323,"y":450,"w":596,"h":35},"acquis":{"x":951,"y":413,"w":425,"h":21},"taux":{"x":951,"y":557,"w":425,"h":21},"k_prej":{"x":313,"y":695,"w":218,"h":21},"k_conf":{"x":1165,"y":695,"w":218,"h":21},"bar":{"x":313,"y":879,"w":1070,"h":21},"table":{"x":289,"y":1047,"w":1118,"h":661},"a071":{"x":289,"y":1093,"w":1118,"h":113},"a075":{"x":289,"y":1595,"w":1118,"h":113},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"c_home":{"persona":{"x":1169,"y":55,"w":239,"h":17},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":55,"y":342,"w":176,"h":45},"n_avoirs":{"x":12,"y":397,"w":231,"h":44},"n_switch":{"x":56,"y":654,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"c_coord":{"k_ech":{"x":313,"y":399,"w":313,"h":21},"k_hd":{"x":692,"y":399,"w":313,"h":21},"k_taux":{"x":1070,"y":399,"w":313,"h":21},"hexa":{"x":860,"y":570,"w":515,"h":471},"qui":{"x":321,"y":603,"w":491,"h":21},"table":{"x":289,"y":1160,"w":1274,"h":658},"r_no41":{"x":289,"y":1205,"w":1274,"h":90},"r_cog":{"x":289,"y":1727,"w":1274,"h":90},"retard":{"x":1445,"y":1761,"w":95,"h":24},"registres":{"x":288,"y":1866,"w":1120,"h":25},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":55,"y":342,"w":176,"h":45},"n_avoirs":{"x":12,"y":397,"w":231,"h":44},"n_switch":{"x":56,"y":654,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"f_home":{"persona":{"x":1166,"y":55,"w":242,"h":17},"niveau":{"x":885,"y":56,"w":203,"h":31},"vue":{"x":327,"y":423,"w":260,"h":17},"visible":{"x":313,"y":687,"w":839,"h":21},"h1":{"x":675,"y":816,"w":346,"h":22},"h2":{"x":1037,"y":816,"w":346,"h":22},"k_dem":{"x":313,"y":525,"w":313,"h":21},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":null,"n_preuves":null,"n_analyse":null,"n_coord":{"x":55,"y":355,"w":176,"h":45},"n_avoirs":null,"n_switch":{"x":56,"y":692,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"f_coord":{"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":null,"n_preuves":null,"n_analyse":null,"n_coord":{"x":55,"y":355,"w":176,"h":45},"n_avoirs":null,"n_switch":{"x":56,"y":692,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}}};
+// put an absolutely positioned element over a page box (page px -> screen px), with padding
+function over(el, b, pad, dy) {
+  pad = pad === undefined ? 6 : pad; dy = dy || 0;
+  const e = typeof el === "string" ? document.querySelector(el) : el;
+  Object.assign(e.style, { left: ((b.x - pad) * K) + "px", top: ((b.y - pad + dy) * K) + "px", width: ((b.w + 2 * pad) * K) + "px", height: ((b.h + 2 * pad) * K) + "px" });
+  return e;
+}
+function hlOn(tl, el, t, d) { tl.fromTo(el, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: d || 0.35, ease: "expo.out" }, t); }
+function hlOff(tl, el, t, d) { tl.to(el, { opacity: 0, duration: d || 0.25, ease: "power2.in" }, t); }
+// move the cursor to page point (sx, sy), arriving at t, then click with a gold ring
+function clickAt(tl, cur, rip, sx, sy, t, move) {
+  move = move === undefined ? 0.6 : move;
+  const p = curPos(sx, sy);
+  if (move > 0) tl.to(cur, { x: p.x, y: p.y, duration: move, ease: "power2.inOut" }, t - move);
+  else tl.set(cur, { x: p.x, y: p.y }, t);
+  click(tl, cur, t);
+  if (rip) { tl.set(rip, { left: sx * K, top: sy * K }, t); tl.fromTo(rip, { scale: 0.2, opacity: 1 }, { scale: 1.6, opacity: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, t); }
+}
+// chapter card: numeral wipes in, label, rule, title words, message; leaves at tout
+function chapter(tl, root, tin, tout) {
+  const q = (s) => root.querySelector(s);
+  tl.fromTo(q(".chap-n"), { opacity: 1, clipPath: "inset(0 100% 0 0)", x: -30 }, { clipPath: "inset(0 0% 0 0)", x: 0, duration: 0.7, ease: "expo.out" }, tin);
+  tl.fromTo(q(".chap-k"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, tin + 0.12);
+  tl.fromTo(q(".chap-r"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, tin + 0.18);
+  wordsIn(tl, root.querySelectorAll(".chap-t .w"), tin + 0.22, 0.06, 0.4);
+  wordsIn(tl, root.querySelectorAll(".chap-m .w"), tin + 0.5, 0.025, 0.35);
+  tl.to(root, { opacity: 0, x: -60, filter: "blur(10px)", duration: 0.4, ease: "power3.in" }, tout);
+}
+function personaIn(tl, el, tin, tout) {
+  tl.fromTo(el, { opacity: 0, y: 24, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, tin);
+  if (tout) tl.to(el, { opacity: 0, y: 14, duration: 0.3, ease: "power2.in" }, tout);
+}
+// the Mac seen from the chapter position (room on the left for the card)
+const CHP = { x: 300, y: 18, scale: 0.64, rotationX: 5, rotationY: -13 };
+const OV = { x: 0, y: 30, scale: 0.8, rotationX: 8, rotationY: -6 };
+
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 21.6; // scene start on the film clock: local = film - T0
+      const at = (t) => t - T0;
+      const cur = "#s1-cur", rip = "#s1-rip";
+      gsap.set("#s1-cam", OV);
+      gsap.set(["#s1-home", "#s1-verif", "#s1-dim", "#s1-d163", "#s1-d186", "#s1-ok", "#s1-who", "#s1-cards"], { opacity: 0 });
+      gsap.set(cur, { opacity: 0 });
+      const B = BOX;
+
+      /* ---------- the magistrate's workstation ---------- */
+      const card = B.connexion.w_parquet;
+      over("#s1-h-card", card, 4);
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(1180, 860)), 0.05);
+      tl.to("#s1-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(1015, 470, 1.02, 1000, 560)), 0.0);
+      hlOn(tl, "#s1-h-card", 0.45);
+      clickAt(tl, cur, rip, 960, 352, at(22.45), 0.75);
+      swap(tl, "#s1-conn", "#s1-home", at(22.55));
+      tl.set("#s1-h-card", { opacity: 0 }, at(22.55));
+      tl.set("#s1-who", { opacity: 1 }, at(22.55));
+      personaIn(tl, "#s1-who", at(22.6), at(24.6));
+
+      /* ---------- chapter 1: one click on "Contrôle de légalité" ---------- */
+      tl.to("#s1-cam", Object.assign({ duration: 1.05, ease: "power2.inOut" }, CHP), at(23.0));
+      tl.set("#s1-chap", { opacity: 1 }, 0);
+      gsap.set("#s1-chap", { opacity: 0 });
+      tl.set("#s1-chap", { opacity: 1 }, at(23.7));
+      chapter(tl, $("#s1-chap"), at(23.7), at(26.25));
+      const nv = B.m_home.n_verif;
+      over("#s1-h-nav", nv, 2);
+      clickAt(tl, cur, rip, nv.x + 40, nv.y + nv.h / 2, at(24.35), 0.8);
+      hlOn(tl, "#s1-h-nav", at(24.35), 0.25);
+      hlOff(tl, "#s1-h-nav", at(25.3));
+      swap(tl, "#s1-home", "#s1-verif", at(24.45));
+
+      /* ---------- "KWIKAMA empêche les enquêtes sauvages ou politisées" 26.59 – 29.40 ---------- */
+      tl.to("#s1-cam", Object.assign({ duration: 1.1, ease: "power2.inOut" }, camAt(848, 520, 1.32)), at(26.15));
+      over("#s1-h-verrou", { x: 288, y: 381, w: 1120, h: 78 }, 4);
+      over("#s1-h-bloc", { x: 1046, y: 484, w: 362, h: 122 }, 4);
+      hlOn(tl, "#s1-h-verrou", at(26.6));
+      hlOff(tl, "#s1-h-verrou", at(27.95));
+      hlOn(tl, "#s1-h-bloc", at(28.1));
+      hlOff(tl, "#s1-h-bloc", at(30.0));
+      tl.to(cur, Object.assign({ duration: 0.8, ease: "power2.inOut" }, curPos(1250, 760)), at(27.6));
+
+      /* ---------- "Rien n'entre…" 30.34: open the CENAREF seizure, read its four controls ---------- */
+      clickAt(tl, cur, rip, 700, 700, at(30.55), 0.6);
+      tl.fromTo("#s1-dim", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, at(30.65));
+      tl.set("#s1-d163", { opacity: 1, x: 544.4 }, at(30.64));
+      tl.to("#s1-d163", { x: 0, duration: 0.45, ease: "power3.out" }, at(30.65));
+      tl.set(cur, { opacity: 0 }, at(31.0));
+      tl.to("#s1-cam", Object.assign({ duration: 1.1, ease: "power2.inOut" }, camAt(1160, 578, 1.42, 1060, 540)), at(30.75));
+      // the drawer scrolls to the controls ("validité juridique, selon le manuel" 33.3 – 35.6)
+      tl.to("#s1-b163", { y: -340 * K, duration: 1.3, ease: "power2.inOut" }, at(33.9));
+      const Q = B.m_sig0163_b;
+      ["q1", "q2", "q3", "q4"].forEach((q) => over("#s1-h-" + q, Q[q], 3));
+      const QT = [36.57, 38.46, 39.9, 40.62];
+      QT.forEach((t, i) => {
+        hlOn(tl, "#s1-h-q" + (i + 1), at(t));
+        if (i < 3) tl.to("#s1-h-q" + (i + 1), { borderColor: "#2f8a63", boxShadow: "0 0 0 4px rgba(47,138,99,.14), 0 0 0 rgba(0,0,0,0)", duration: 0.35 }, at(QT[i + 1]) - 0.05);
+      });
+      tl.to("#s1-h-q4", { borderColor: "#2f8a63", boxShadow: "0 0 0 4px rgba(47,138,99,.14), 0 0 0 rgba(0,0,0,0)", duration: 0.35 }, at(41.1));
+      tl.fromTo("#s1-ok", { opacity: 0, y: 16, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, at(40.85));
+
+      /* ---------- "Le signalement de la CENAREF est validé… l'article de presse reste bloqué" 41.44 – 48.04 ---------- */
+      tl.to("#s1-ok", { opacity: 0, y: 10, duration: 0.3, ease: "power2.in" }, at(43.2));
+      tl.to(["#s1-h-q1", "#s1-h-q2", "#s1-h-q3", "#s1-h-q4"], { opacity: 0, duration: 0.3 }, at(41.7));
+      tl.to("#s1-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, CHP), at(41.6));
+      tl.set("#s1-cards", { opacity: 1 }, at(41.6));
+      tl.fromTo("#s1-cA", { opacity: 0, x: -80, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, at(41.75));
+      tl.fromTo("#s1-cA-ok", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, at(43.04));
+      tl.fromTo("#s1-fold", { opacity: 0, y: -90, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.4)" }, at(43.85));
+      // the media seizure: shown in the screen and as a card
+      tl.set("#s1-d186", { opacity: 1, x: 0 }, at(44.85));
+      tl.set("#s1-b186", { y: -318 * K }, 0);
+      tl.fromTo("#s1-d186", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.35, ease: "power2.inOut" }, at(44.85));
+      over("#s1-h-x2", B.m_sig0186_b.q2, 3);
+      hlOn(tl, "#s1-h-x2", at(46.3));
+      tl.fromTo("#s1-cB", { opacity: 0, x: -80, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, at(45.0));
+      tl.fromTo("#s1-xq", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, at(46.3));
+      tl.fromTo(["#s1-cB-st", "#s1-cB-no"], { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", stagger: 0.12 }, at(47.3));
+      tl.fromTo("#s1-lock", { opacity: 0, scale: 2.2, rotation: -16 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.2, ease: "power4.in" }, at(47.45));
+      tl.to("#s1-cB", { x: 8, duration: 0.04, ease: "none" }, at(47.66));
+      tl.to("#s1-cB", { x: -6, duration: 0.05, ease: "none" }, at(47.70));
+      tl.to("#s1-cB", { x: 0, duration: 0.06, ease: "none" }, at(47.75));
+
+      /* ---------- hand-over to chapter 2: the drawer closes, the list is back ---------- */
+      tl.to("#s1-cards", { opacity: 0, x: -80, filter: "blur(12px)", duration: 0.45, ease: "power3.in" }, at(48.3));
+      tl.to("#s1-h-x2", { opacity: 0, duration: 0.2 }, at(48.3));
+      tl.to(["#s1-d186", "#s1-d163"], { x: 544.4, duration: 0.35, ease: "power3.in" }, at(48.4));
+      tl.to("#s1-dim", { opacity: 0, duration: 0.3 }, at(48.45));
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(700, 560)), at(48.8));
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>

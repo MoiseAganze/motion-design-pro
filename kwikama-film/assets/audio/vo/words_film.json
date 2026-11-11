@@ -1,1508 +1,2120 @@
 [
 {
-"w": "Kolwezi.",
 "seg": "vo01",
-"t0": 0.68,
-"t1": 1.72
+"text": "Kolwezi.",
+"start": 0.797,
+"end": 1.637
 },
 {
-"w": "Un",
 "seg": "vo01",
-"t0": 1.8,
-"t1": 1.88
+"text": "Huit",
+"start": 1.837,
+"end": 1.917
 },
 {
-"w": "sonneur",
 "seg": "vo01",
-"t0": 1.96,
-"t1": 2.2
+"text": "trimestres",
+"start": 1.997,
+"end": 2.557
 },
 {
-"w": "d'alerte",
 "seg": "vo01",
-"t0": 2.23,
-"t1": 2.68
+"text": "de",
+"start": 2.597,
+"end": 2.637
 },
 {
-"w": "signale",
 "seg": "vo01",
-"t0": 2.8,
-"t1": 3.08
+"text": "redevances",
+"start": 2.717,
+"end": 3.197
 },
 {
-"w": "que",
 "seg": "vo01",
-"t0": 3.2,
-"t1": 3.32
+"text": "minières",
+"start": 3.357,
+"end": 3.757
 },
 {
-"w": "12,6",
 "seg": "vo01",
-"t0": 3.36,
-"t1": 3.56
+"text": "—",
+"start": 3.997,
+"end": 4.024
 },
 {
-"w": "millions",
 "seg": "vo01",
-"t0": 3.64,
-"t1": 4.52
+"text": "12",
+"start": 4.05,
+"end": 4.157
 },
 {
-"w": "de",
 "seg": "vo01",
-"t0": 4.6,
-"t1": 4.68
+"text": "600",
+"start": 4.237,
+"end": 4.477
 },
 {
-"w": "dollars",
 "seg": "vo01",
-"t0": 4.8,
-"t1": 5.0
+"text": "000",
+"start": 4.637,
+"end": 4.717
 },
 {
-"w": "de",
 "seg": "vo01",
-"t0": 5.08,
-"t1": 5.16
+"text": "dollars",
+"start": 4.797,
+"end": 5.517
 },
 {
-"w": "redevances",
 "seg": "vo01",
-"t0": 5.24,
-"t1": 5.64
+"text": "—",
+"start": 5.757,
+"end": 5.797
 },
 {
-"w": "minières…",
 "seg": "vo01",
-"t0": 5.76,
-"t1": 6.49
+"text": "ne",
+"start": 5.837,
+"end": 5.917
 },
 {
-"w": "ne",
 "seg": "vo01",
-"t0": 6.55,
-"t1": 6.6
+"text": "sont",
+"start": 5.997,
+"end": 6.237
 },
 {
-"w": "sont",
 "seg": "vo01",
-"t0": 6.64,
-"t1": 6.84
+"text": "jamais",
+"start": 6.317,
+"end": 6.717
 },
 {
-"w": "jamais",
 "seg": "vo01",
-"t0": 6.92,
-"t1": 7.16
+"text": "arrivés",
+"start": 6.877,
+"end": 7.117
 },
 {
-"w": "arrivés",
 "seg": "vo01",
-"t0": 7.28,
-"t1": 7.48
+"text": "au",
+"start": 7.157,
+"end": 7.197
 },
 {
-"w": "au",
 "seg": "vo01",
-"t0": 7.52,
-"t1": 7.56
+"text": "Trésor",
+"start": 7.237,
+"end": 7.517
 },
 {
-"w": "Trésor",
 "seg": "vo01",
-"t0": 7.64,
-"t1": 7.88
+"text": "public.",
+"start": 7.597,
+"end": 8.397
 },
 {
-"w": "public.",
-"seg": "vo01",
-"t0": 7.96,
-"t1": 8.92
-},
-{
-"w": "Pour",
 "seg": "vo02",
-"t0": 9.76,
-"t1": 9.79
+"text": "Six",
+"start": 9.115,
+"end": 9.195
 },
 {
-"w": "suivre",
 "seg": "vo02",
-"t0": 9.83,
-"t1": 10.11
+"text": "institutions",
+"start": 9.275,
+"end": 9.915
 },
 {
-"w": "cet",
 "seg": "vo02",
-"t0": 10.15,
-"t1": 10.27
+"text": "en",
+"start": 9.995,
+"end": 10.075
 },
 {
-"w": "argent,",
 "seg": "vo02",
-"t0": 10.35,
-"t1": 10.91
+"text": "détiennent",
+"start": 10.155,
+"end": 10.475
 },
 {
-"w": "il",
 "seg": "vo02",
-"t0": 10.99,
-"t1": 11.07
+"text": "chacune",
+"start": 10.515,
+"end": 10.875
 },
 {
-"w": "faut",
 "seg": "vo02",
-"t0": 11.15,
-"t1": 11.23
+"text": "une",
+"start": 10.955,
+"end": 11.035
 },
 {
-"w": "la",
 "seg": "vo02",
-"t0": 11.31,
-"t1": 11.39
+"text": "partie.",
+"start": 11.155,
+"end": 11.755
 },
 {
-"w": "CENAREF,",
 "seg": "vo02",
-"t0": 11.43,
-"t1": 12.19
+"text": "Sur",
+"start": 11.835,
+"end": 11.915
 },
 {
-"w": "le",
 "seg": "vo02",
-"t0": 12.27,
-"t1": 12.35
+"text": "papier,",
+"start": 11.995,
+"end": 12.555
 },
 {
-"w": "Parquet,",
 "seg": "vo02",
-"t0": 12.47,
-"t1": 12.99
+"text": "elles",
+"start": 12.635,
+"end": 12.715
 },
 {
-"w": "la",
 "seg": "vo02",
-"t0": 13.07,
-"t1": 13.15
+"text": "ne",
+"start": 12.755,
+"end": 12.795
 },
 {
-"w": "DGI,",
 "seg": "vo02",
-"t0": 13.23,
-"t1": 13.87
+"text": "se",
+"start": 12.875,
+"end": 12.955
 },
 {
-"w": "la",
 "seg": "vo02",
-"t0": 13.91,
-"t1": 13.95
+"text": "parlent",
+"start": 13.035,
+"end": 13.275
 },
 {
-"w": "douane…",
 "seg": "vo02",
-"t0": 14.03,
-"t1": 14.91
+"text": "pas.",
+"start": 13.355,
+"end": 13.755
 },
 {
-"w": "dix-huit",
-"seg": "vo02",
-"t0": 14.99,
-"t1": 15.39
-},
-{
-"w": "institutions.",
-"seg": "vo02",
-"t0": 15.47,
-"t1": 16.51
-},
-{
-"w": "Mais",
 "seg": "vo03",
-"t0": 17.23,
-"t1": 17.24
+"text": "KWIKAMA",
+"start": 14.357,
+"end": 14.877
 },
 {
-"w": "chacune",
 "seg": "vo03",
-"t0": 17.32,
-"t1": 17.72
+"text": "—",
+"start": 15.117,
+"end": 15.137
 },
 {
-"w": "enquête",
 "seg": "vo03",
-"t0": 17.8,
-"t1": 18.12
+"text": "«",
+"start": 15.157,
+"end": 15.177
 },
 {
-"w": "de",
 "seg": "vo03",
-"t0": 18.2,
-"t1": 18.28
+"text": "intégrité",
+"start": 15.197,
+"end": 15.757
 },
 {
-"w": "son",
 "seg": "vo03",
-"t0": 18.36,
-"t1": 18.44
+"text": "»,",
+"start": 15.837,
+"end": 15.917
 },
 {
-"w": "côté.",
 "seg": "vo03",
-"t0": 18.48,
-"t1": 19.16
+"text": "en",
+"start": 15.957,
+"end": 15.997
 },
 {
-"w": "Les",
 "seg": "vo03",
-"t0": 19.24,
-"t1": 19.32
+"text": "kikongo",
+"start": 16.077,
+"end": 16.557
 },
 {
-"w": "informations",
 "seg": "vo03",
-"t0": 19.4,
-"t1": 19.88
+"text": "—",
+"start": 16.877,
+"end": 16.917
 },
 {
-"w": "circulent",
 "seg": "vo03",
-"t0": 19.96,
-"t1": 20.28
+"text": "les",
+"start": 16.957,
+"end": 17.037
 },
 {
-"w": "par",
 "seg": "vo03",
-"t0": 20.36,
-"t1": 20.44
+"text": "réunit",
+"start": 17.117,
+"end": 17.517
 },
 {
-"w": "courrier",
 "seg": "vo03",
-"t0": 20.52,
-"t1": 20.92
+"text": "autour",
+"start": 17.637,
+"end": 17.997
 },
 {
-"w": "quand",
 "seg": "vo03",
-"t0": 21.29,
-"t1": 21.48
+"text": "d'un",
+"start": 18.05,
+"end": 18.157
 },
 {
-"w": "elles",
 "seg": "vo03",
-"t0": 21.56,
-"t1": 21.64
+"text": "seul",
+"start": 18.237,
+"end": 18.397
 },
 {
-"w": "circulent.",
 "seg": "vo03",
-"t0": 21.76,
-"t1": 22.6
+"text": "dossier.",
+"start": 18.437,
+"end": 19.197
 },
 {
-"w": "Les",
 "seg": "vo03",
-"t0": 22.64,
-"t1": 22.68
+"text": "Suivons-le,",
+"start": 19.237,
+"end": 19.917
 },
 {
-"w": "délais",
 "seg": "vo03",
-"t0": 22.76,
-"t1": 23.0
+"text": "en",
+"start": 19.997,
+"end": 20.077
 },
 {
-"w": "s'allongent,",
 "seg": "vo03",
-"t0": 23.08,
-"t1": 23.72
+"text": "cinq",
+"start": 20.157,
+"end": 20.317
 },
 {
-"w": "les",
 "seg": "vo03",
-"t0": 23.8,
-"t1": 23.88
+"text": "écrans.",
+"start": 20.397,
+"end": 21.037
 },
 {
-"w": "pièces",
-"seg": "vo03",
-"t0": 23.92,
-"t1": 24.12
-},
-{
-"w": "se",
-"seg": "vo03",
-"t0": 24.2,
-"t1": 24.28
-},
-{
-"w": "perdent…",
-"seg": "vo03",
-"t0": 24.36,
-"t1": 25.03
-},
-{
-"w": "et",
-"seg": "vo03",
-"t0": 25.05,
-"t1": 25.08
-},
-{
-"w": "les",
-"seg": "vo03",
-"t0": 25.16,
-"t1": 25.24
-},
-{
-"w": "poursuites",
-"seg": "vo03",
-"t0": 25.32,
-"t1": 25.88
-},
-{
-"w": "n'aboutissent",
-"seg": "vo03",
-"t0": 25.92,
-"t1": 26.44
-},
-{
-"w": "pas.",
-"seg": "vo03",
-"t0": 26.52,
-"t1": 27.0
-},
-{
-"w": "Voici",
 "seg": "vo04",
-"t0": 29.69,
-"t1": 30.01
+"text": "Premier",
+"start": 23.912,
+"end": 24.152
 },
 {
-"w": "Kwikama.",
 "seg": "vo04",
-"t0": 30.09,
-"t1": 30.97
+"text": "écran",
+"start": 24.352,
+"end": 24.552
 },
 {
-"w": "«Intégrité»,",
 "seg": "vo04",
-"t0": 31.15,
-"t1": 31.69
+"text": ":",
+"start": 24.792,
+"end": 24.832
 },
 {
-"w": "en",
 "seg": "vo04",
-"t0": 31.9,
-"t1": 31.93
+"text": "le",
+"start": 24.872,
+"end": 24.952
 },
 {
-"w": "kikongo.",
 "seg": "vo04",
-"t0": 32.01,
-"t1": 32.89
+"text": "contrôle",
+"start": 25.032,
+"end": 25.432
 },
 {
-"w": "La",
 "seg": "vo04",
-"t0": 32.93,
-"t1": 32.97
+"text": "de",
+"start": 25.512,
+"end": 25.552
 },
 {
-"w": "plateforme",
 "seg": "vo04",
-"t0": 33.05,
-"t1": 33.53
+"text": "légalité.",
+"start": 25.592,
+"end": 26.552
 },
 {
-"w": "qui",
 "seg": "vo04",
-"t0": 33.61,
-"t1": 33.69
+"text": "KWIKAMA",
+"start": 26.592,
+"end": 27.112
 },
 {
-"w": "réunit",
 "seg": "vo04",
-"t0": 33.77,
-"t1": 34.09
+"text": "empêche",
+"start": 27.192,
+"end": 27.592
 },
 {
-"w": "les",
 "seg": "vo04",
-"t0": 34.21,
-"t1": 34.33
+"text": "les",
+"start": 27.632,
+"end": 27.672
 },
 {
-"w": "dix-huit",
 "seg": "vo04",
-"t0": 34.37,
-"t1": 34.73
+"text": "enquêtes",
+"start": 27.752,
+"end": 28.072
 },
 {
-"w": "institutions",
 "seg": "vo04",
-"t0": 34.81,
-"t1": 35.37
+"text": "sauvages",
+"start": 28.112,
+"end": 28.552
 },
 {
-"w": "de",
 "seg": "vo04",
-"t0": 35.41,
-"t1": 35.45
+"text": "ou",
+"start": 28.632,
+"end": 28.672
 },
 {
-"w": "l'UNICEP",
 "seg": "vo04",
-"t0": 35.53,
-"t1": 36.09
+"text": "politisées.",
+"start": 28.712,
+"end": 29.672
 },
 {
-"w": "autour",
-"seg": "vo04",
-"t0": 36.17,
-"t1": 36.57
-},
-{
-"w": "d'un",
-"seg": "vo04",
-"t0": 36.61,
-"t1": 36.81
-},
-{
-"w": "seul",
-"seg": "vo04",
-"t0": 36.85,
-"t1": 36.97
-},
-{
-"w": "dossier.",
-"seg": "vo04",
-"t0": 37.05,
-"t1": 37.69
-},
-{
-"w": "Chaque",
 "seg": "vo05",
-"t0": 39.19,
-"t1": 39.36
+"text": "Rien",
+"start": 30.34,
+"end": 30.62
 },
 {
-"w": "agent",
 "seg": "vo05",
-"t0": 39.48,
-"t1": 39.6
+"text": "n'entre",
+"start": 30.7,
+"end": 31.02
 },
 {
-"w": "s'y",
 "seg": "vo05",
-"t0": 39.68,
-"t1": 39.84
+"text": "dans",
+"start": 31.047,
+"end": 31.1
 },
 {
-"w": "connecte",
 "seg": "vo05",
-"t0": 40.0,
-"t1": 40.24
+"text": "le",
+"start": 31.18,
+"end": 31.22
 },
 {
-"w": "avec",
 "seg": "vo05",
-"t0": 40.32,
-"t1": 40.4
+"text": "système",
+"start": 31.26,
+"end": 31.74
 },
 {
-"w": "son",
 "seg": "vo05",
-"t0": 40.48,
-"t1": 40.56
+"text": "sans",
+"start": 31.82,
+"end": 31.98
 },
 {
-"w": "rôle,",
 "seg": "vo05",
-"t0": 40.64,
-"t1": 40.96
+"text": "un",
+"start": 32.02,
+"end": 32.06
 },
 {
-"w": "et",
 "seg": "vo05",
-"t0": 41.0,
-"t1": 41.04
+"text": "contrôle",
+"start": 32.14,
+"end": 32.54
 },
 {
-"w": "ne",
 "seg": "vo05",
-"t0": 41.12,
-"t1": 41.2
+"text": "préalable",
+"start": 32.58,
+"end": 33.18
 },
 {
-"w": "voit",
 "seg": "vo05",
-"t0": 41.28,
-"t1": 41.52
+"text": "de",
+"start": 33.22,
+"end": 33.26
 },
 {
-"w": "que",
 "seg": "vo05",
-"t0": 41.56,
-"t1": 41.6
+"text": "validité",
+"start": 33.34,
+"end": 33.82
 },
 {
-"w": "ce",
 "seg": "vo05",
-"t0": 41.68,
-"t1": 41.76
+"text": "juridique,",
+"start": 33.9,
+"end": 34.7
 },
 {
-"w": "que",
 "seg": "vo05",
-"t0": 41.84,
-"t1": 41.92
+"text": "selon",
+"start": 34.78,
+"end": 34.94
 },
 {
-"w": "sa",
 "seg": "vo05",
-"t0": 42.0,
-"t1": 42.08
+"text": "le",
+"start": 34.98,
+"end": 35.02
 },
 {
-"w": "mission",
 "seg": "vo05",
-"t0": 42.24,
-"t1": 42.4
+"text": "manuel",
+"start": 35.1,
+"end": 35.42
 },
 {
-"w": "exige.",
 "seg": "vo05",
-"t0": 42.52,
-"t1": 43.28
+"text": "de",
+"start": 35.5,
+"end": 35.54
 },
 {
-"w": "La",
+"seg": "vo05",
+"text": "l'UNICEP",
+"start": 35.58,
+"end": 36.14
+},
+{
+"seg": "vo05",
+"text": ":",
+"start": 36.46,
+"end": 36.513
+},
+{
+"seg": "vo05",
+"text": "compétence",
+"start": 36.567,
+"end": 36.94
+},
+{
+"seg": "vo05",
+"text": "de",
+"start": 36.98,
+"end": 37.02
+},
+{
+"seg": "vo05",
+"text": "l'autorité",
+"start": 37.073,
+"end": 37.5
+},
+{
+"seg": "vo05",
+"text": "saisissante,",
+"start": 37.58,
+"end": 38.38
+},
+{
+"seg": "vo05",
+"text": "références",
+"start": 38.46,
+"end": 38.9
+},
+{
+"seg": "vo05",
+"text": "de",
+"start": 38.94,
+"end": 38.98
+},
+{
+"seg": "vo05",
+"text": "procédure,",
+"start": 39.02,
+"end": 39.82
+},
+{
+"seg": "vo05",
+"text": "droits",
+"start": 39.9,
+"end": 40.06
+},
+{
+"seg": "vo05",
+"text": "des",
+"start": 40.14,
+"end": 40.22
+},
+{
+"seg": "vo05",
+"text": "tiers.",
+"start": 40.26,
+"end": 40.94
+},
+{
 "seg": "vo06",
-"t0": 44.93,
-"t1": 44.97
+"text": "Le",
+"start": 41.44,
+"end": 41.52
 },
 {
-"w": "décision",
 "seg": "vo06",
-"t0": 45.05,
-"t1": 45.45
+"text": "signalement",
+"start": 41.64,
+"end": 42.0
 },
 {
-"w": "reçue",
 "seg": "vo06",
-"t0": 45.57,
-"t1": 45.93
+"text": "de",
+"start": 42.04,
+"end": 42.08
 },
 {
-"w": "est",
 "seg": "vo06",
-"t0": 46.01,
-"t1": 46.09
+"text": "la",
+"start": 42.12,
+"end": 42.16
 },
 {
-"w": "d'abord",
 "seg": "vo06",
-"t0": 46.12,
-"t1": 46.41
+"text": "CENAREF",
+"start": 42.24,
+"end": 42.8
 },
 {
-"w": "contrôlée",
 "seg": "vo06",
-"t0": 46.57,
-"t1": 46.97
+"text": "est",
+"start": 42.88,
+"end": 42.96
 },
 {
-"w": "compétence",
 "seg": "vo06",
-"t0": 47.29,
-"t1": 47.69
+"text": "validé",
+"start": 43.04,
+"end": 43.44
 },
 {
-"w": "de",
 "seg": "vo06",
-"t0": 47.77,
-"t1": 47.81
+"text": ":",
+"start": 43.76,
+"end": 43.787
 },
 {
-"w": "l'autorité,",
 "seg": "vo06",
-"t0": 47.85,
-"t1": 48.65
+"text": "le",
+"start": 43.813,
+"end": 43.84
 },
 {
-"w": "références",
 "seg": "vo06",
-"t0": 48.73,
-"t1": 49.17
+"text": "dossier",
+"start": 43.92,
+"end": 44.24
 },
 {
-"w": "de",
 "seg": "vo06",
-"t0": 49.21,
-"t1": 49.25
+"text": "s'ouvre.",
+"start": 44.32,
+"end": 44.96
 },
 {
-"w": "procédure,",
 "seg": "vo06",
-"t0": 49.29,
-"t1": 50.09
+"text": "L'article",
+"start": 45.0,
+"end": 45.36
 },
 {
-"w": "droits",
 "seg": "vo06",
-"t0": 50.17,
-"t1": 50.33
+"text": "de",
+"start": 45.44,
+"end": 45.52
 },
 {
-"w": "des",
 "seg": "vo06",
-"t0": 50.41,
-"t1": 50.49
+"text": "presse,",
+"start": 45.6,
+"end": 46.08
 },
 {
-"w": "tiers.",
 "seg": "vo06",
-"t0": 50.53,
-"t1": 51.37
+"text": "sans",
+"start": 46.2,
+"end": 46.32
 },
 {
-"w": "Le",
+"seg": "vo06",
+"text": "aucune",
+"start": 46.4,
+"end": 46.64
+},
+{
+"seg": "vo06",
+"text": "pièce,",
+"start": 46.72,
+"end": 47.2
+},
+{
+"seg": "vo06",
+"text": "reste",
+"start": 47.36,
+"end": 47.52
+},
+{
+"seg": "vo06",
+"text": "bloqué.",
+"start": 47.6,
+"end": 48.32
+},
+{
 "seg": "vo07",
-"t0": 52.64,
-"t1": 52.68
+"text": "Deuxième",
+"start": 49.49,
+"end": 49.85
 },
 {
-"w": "dossier",
 "seg": "vo07",
-"t0": 52.76,
-"t1": 53.08
+"text": "écran",
+"start": 50.05,
+"end": 50.25
 },
 {
-"w": "reçoit",
 "seg": "vo07",
-"t0": 53.16,
-"t1": 53.4
+"text": ":",
+"start": 50.49,
+"end": 50.53
 },
 {
-"w": "alors",
 "seg": "vo07",
-"t0": 53.48,
-"t1": 53.72
+"text": "la",
+"start": 50.57,
+"end": 50.65
 },
 {
-"w": "son",
 "seg": "vo07",
-"t0": 53.8,
-"t1": 53.88
+"text": "chaîne",
+"start": 50.73,
+"end": 50.97
 },
 {
-"w": "numéro",
 "seg": "vo07",
-"t0": 53.96,
-"t1": 54.28
+"text": "de",
+"start": 51.01,
+"end": 51.05
 },
 {
-"w": "unique",
 "seg": "vo07",
-"t0": 54.44,
-"t1": 54.84
+"text": "garde.",
+"start": 51.13,
+"end": 51.85
 },
 {
-"w": "au",
 "seg": "vo07",
-"t0": 54.88,
-"t1": 54.92
+"text": "Voici",
+"start": 51.93,
+"end": 52.17
 },
 {
-"w": "registre",
 "seg": "vo07",
-"t0": 55.0,
-"t1": 55.4
+"text": "la",
+"start": 52.25,
+"end": 52.29
 },
 {
-"w": "central.",
 "seg": "vo07",
-"t0": 55.48,
-"t1": 56.36
+"text": "réponse",
+"start": 52.33,
+"end": 52.73
 },
 {
-"w": "Vingt-trois",
 "seg": "vo07",
-"t0": 56.41,
-"t1": 56.76
+"text": "au",
+"start": 52.77,
+"end": 52.81
 },
 {
-"w": "étapes,",
 "seg": "vo07",
-"t0": 56.84,
-"t1": 57.4
+"text": "problème",
+"start": 52.89,
+"end": 53.21
 },
 {
-"w": "chacune",
 "seg": "vo07",
-"t0": 57.48,
-"t1": 57.96
+"text": "des",
+"start": 53.29,
+"end": 53.37
 },
 {
-"w": "avec",
 "seg": "vo07",
-"t0": 58.08,
-"t1": 58.2
+"text": "pièces",
+"start": 53.45,
+"end": 53.69
 },
 {
-"w": "son",
 "seg": "vo07",
-"t0": 58.28,
-"t1": 58.36
+"text": "qui",
+"start": 53.77,
+"end": 53.85
 },
 {
-"w": "responsable",
 "seg": "vo07",
-"t0": 58.6,
-"t1": 59.08
+"text": "disparaissent",
+"start": 53.97,
+"end": 54.57
 },
 {
-"w": "et",
 "seg": "vo07",
-"t0": 59.16,
-"t1": 59.24
+"text": "entre",
+"start": 54.69,
+"end": 54.81
 },
 {
-"w": "son",
 "seg": "vo07",
-"t0": 59.32,
-"t1": 59.4
+"text": "la",
+"start": 54.85,
+"end": 54.89
 },
 {
-"w": "délai.",
 "seg": "vo07",
-"t0": 59.48,
-"t1": 60.2
+"text": "police",
+"start": 54.97,
+"end": 55.21
 },
 {
-"w": "Les",
+"seg": "vo07",
+"text": "judiciaire",
+"start": 55.29,
+"end": 55.93
+},
+{
+"seg": "vo07",
+"text": "et",
+"start": 56.01,
+"end": 56.09
+},
+{
+"seg": "vo07",
+"text": "le",
+"start": 56.13,
+"end": 56.17
+},
+{
+"seg": "vo07",
+"text": "parquet.",
+"start": 56.25,
+"end": 56.89
+},
+{
 "seg": "vo08",
-"t0": 60.95,
-"t1": 60.99
+"text": "184",
+"start": 57.514,
+"end": 57.634
 },
 {
-"w": "réquisitions",
 "seg": "vo08",
-"t0": 61.07,
-"t1": 61.63
+"text": "000",
+"start": 57.674,
+"end": 58.194
 },
 {
-"w": "partent",
 "seg": "vo08",
-"t0": 61.71,
-"t1": 61.95
+"text": "dollars",
+"start": 58.354,
+"end": 58.914
 },
 {
-"w": "vers",
 "seg": "vo08",
-"t0": 62.03,
-"t1": 62.11
+"text": "saisis",
+"start": 58.954,
+"end": 59.234
 },
 {
-"w": "la",
 "seg": "vo08",
-"t0": 62.15,
-"t1": 62.19
+"text": "en",
+"start": 59.274,
+"end": 59.314
 },
 {
-"w": "CENAREF",
 "seg": "vo08",
-"t0": 62.27,
-"t1": 62.83
+"text": "perquisition,",
+"start": 59.394,
+"end": 60.274
 },
 {
-"w": "ou",
 "seg": "vo08",
-"t0": 62.87,
-"t1": 62.91
+"text": "puis",
+"start": 60.314,
+"end": 60.434
 },
 {
-"w": "la",
 "seg": "vo08",
-"t0": 62.99,
-"t1": 63.07
+"text": "transmis",
+"start": 60.594,
+"end": 60.914
 },
 {
-"w": "DGI,",
 "seg": "vo08",
-"t0": 63.15,
-"t1": 63.79
+"text": "au",
+"start": 60.954,
+"end": 60.994
 },
 {
-"w": "délai",
 "seg": "vo08",
-"t0": 63.83,
-"t1": 64.03
+"text": "parquet",
+"start": 61.114,
+"end": 61.394
 },
 {
-"w": "affiché.",
 "seg": "vo08",
-"t0": 64.11,
-"t1": 64.99
+"text": ":",
+"start": 61.714,
+"end": 61.741
 },
 {
-"w": "Les",
 "seg": "vo08",
-"t0": 65.03,
-"t1": 65.07
+"text": "chaque",
+"start": 61.767,
+"end": 61.954
 },
 {
-"w": "réponses",
 "seg": "vo08",
-"t0": 65.15,
-"t1": 65.63
+"text": "transfert",
+"start": 62.074,
+"end": 62.514
 },
 {
-"w": "arrivent",
 "seg": "vo08",
-"t0": 65.71,
-"t1": 66.03
+"text": "est",
+"start": 62.594,
+"end": 62.754
 },
 {
-"w": "directement",
 "seg": "vo08",
-"t0": 66.23,
-"t1": 66.59
+"text": "horodaté,",
+"start": 62.834,
+"end": 63.634
 },
 {
-"w": "dans",
 "seg": "vo08",
-"t0": 66.67,
-"t1": 66.75
+"text": "nominatif,",
+"start": 63.674,
+"end": 64.514
 },
 {
-"w": "le",
 "seg": "vo08",
-"t0": 66.79,
-"t1": 66.83
+"text": "et",
+"start": 64.554,
+"end": 64.594
 },
 {
-"w": "dossier.",
 "seg": "vo08",
-"t0": 66.87,
-"t1": 67.47
+"text": "scellé",
+"start": 64.754,
+"end": 65.074
 },
 {
-"w": "Et",
+"seg": "vo08",
+"text": "numériquement.",
+"start": 65.154,
+"end": 66.114
+},
+{
+"seg": "vo08",
+"text": "Aucun",
+"start": 66.194,
+"end": 66.434
+},
+{
+"seg": "vo08",
+"text": "scellé",
+"start": 66.594,
+"end": 66.834
+},
+{
+"seg": "vo08",
+"text": "rompu.",
+"start": 66.954,
+"end": 67.634
+},
+{
 "seg": "vo09",
-"t0": 68.66,
-"t1": 68.67
+"text": "Troisième",
+"start": 68.699,
+"end": 69.019
 },
 {
-"w": "l'argent",
 "seg": "vo09",
-"t0": 68.75,
-"t1": 69.15
+"text": "écran",
+"start": 69.219,
+"end": 69.419
 },
 {
-"w": "devient",
 "seg": "vo09",
-"t0": 69.31,
-"t1": 69.63
+"text": ":",
+"start": 69.659,
+"end": 69.712
 },
 {
-"w": "visible.",
 "seg": "vo09",
-"t0": 69.91,
-"t1": 70.35
+"text": "le",
+"start": 69.766,
+"end": 69.819
 },
 {
-"w": "De",
 "seg": "vo09",
-"t0": 70.51,
-"t1": 70.59
+"text": "croisement",
+"start": 69.899,
+"end": 70.299
 },
 {
-"w": "Katanga",
 "seg": "vo09",
-"t0": 70.67,
-"t1": 71.07
+"text": "des",
+"start": 70.339,
+"end": 70.379
 },
 {
-"w": "Mineral",
 "seg": "vo09",
-"t0": 71.15,
-"t1": 71.47
+"text": "dossiers.",
+"start": 70.419,
+"end": 71.179
 },
 {
-"w": "Processing",
 "seg": "vo09",
-"t0": 71.55,
-"t1": 72.19
+"text": "L'analyse",
+"start": 71.219,
+"end": 71.819
 },
 {
-"w": "vers",
 "seg": "vo09",
-"t0": 72.27,
-"t1": 72.35
+"text": "lit",
+"start": 71.899,
+"end": 72.139
 },
 {
-"w": "une",
 "seg": "vo09",
-"t0": 72.43,
-"t1": 72.51
+"text": "148",
+"start": 72.219,
+"end": 72.379
 },
 {
-"w": "société",
 "seg": "vo09",
-"t0": 72.55,
-"t1": 72.99
+"text": "pièces",
+"start": 72.419,
+"end": 73.659
 },
 {
-"w": "des",
 "seg": "vo09",
-"t0": 73.07,
-"t1": 73.15
+"text": "et",
+"start": 73.739,
+"end": 73.819
 },
 {
-"w": "Îles",
 "seg": "vo09",
-"t0": 73.23,
-"t1": 73.31
+"text": "312",
+"start": 73.899,
+"end": 74.059
 },
 {
-"w": "Vierges",
 "seg": "vo09",
-"t0": 73.39,
-"t1": 73.71
+"text": "opérations.",
+"start": 74.139,
+"end": 74.939
 },
 {
-"w": "britanniques…",
-"seg": "vo09",
-"t0": 73.83,
-"t1": 74.67
-},
-{
-"w": "puis",
-"seg": "vo09",
-"t0": 74.75,
-"t1": 74.99
-},
-{
-"w": "vers",
-"seg": "vo09",
-"t0": 75.07,
-"t1": 75.31
-},
-{
-"w": "un",
-"seg": "vo09",
-"t0": 75.35,
-"t1": 75.39
-},
-{
-"w": "immeuble",
-"seg": "vo09",
-"t0": 75.47,
-"t1": 75.79
-},
-{
-"w": "à",
-"seg": "vo09",
-"t0": 75.83,
-"t1": 75.87
-},
-{
-"w": "Lubumbashi.",
-"seg": "vo09",
-"t0": 75.95,
-"t1": 76.91
-},
-{
-"w": "Chaque",
 "seg": "vo10",
-"t0": 81.07,
-"t1": 81.27
+"text": "Elle",
+"start": 75.344,
+"end": 75.464
 },
 {
-"w": "pièce",
 "seg": "vo10",
-"t0": 81.35,
-"t1": 81.75
+"text": "relie",
+"start": 75.544,
+"end": 75.864
 },
 {
-"w": "est",
 "seg": "vo10",
-"t0": 81.83,
-"t1": 81.91
+"text": "deux",
+"start": 75.904,
+"end": 76.024
 },
 {
-"w": "scellée,",
 "seg": "vo10",
-"t0": 81.95,
-"t1": 82.47
+"text": "dossiers",
+"start": 76.064,
+"end": 76.504
 },
 {
-"w": "son",
 "seg": "vo10",
-"t0": 82.55,
-"t1": 82.63
+"text": "que",
+"start": 76.624,
+"end": 76.744
 },
 {
-"w": "empreinte",
 "seg": "vo10",
-"t0": 82.75,
-"t1": 83.03
+"text": "personne",
+"start": 76.944,
+"end": 77.224
 },
 {
-"w": "numérique",
 "seg": "vo10",
-"t0": 83.11,
-"t1": 83.51
+"text": "n'aurait",
+"start": 77.264,
+"end": 77.464
 },
 {
-"w": "enregistrée,",
 "seg": "vo10",
-"t0": 83.59,
-"t1": 84.55
+"text": "rapprochés",
+"start": 77.504,
+"end": 77.944
 },
 {
-"w": "chaque",
 "seg": "vo10",
-"t0": 84.63,
-"t1": 84.87
+"text": "sur",
+"start": 78.024,
+"end": 78.104
 },
 {
-"w": "transfert",
 "seg": "vo10",
-"t0": 85.03,
-"t1": 85.43
+"text": "papier",
+"start": 78.157,
+"end": 78.424
 },
 {
-"w": "consigné.",
 "seg": "vo10",
-"t0": 85.59,
-"t1": 86.47
+"text": ":",
+"start": 78.744,
+"end": 78.771
 },
 {
-"w": "La",
 "seg": "vo10",
-"t0": 86.55,
-"t1": 86.63
+"text": "la",
+"start": 78.797,
+"end": 78.824
 },
 {
-"w": "preuve",
 "seg": "vo10",
-"t0": 86.71,
-"t1": 87.11
+"text": "route",
+"start": 78.904,
+"end": 79.064
 },
 {
-"w": "reste",
 "seg": "vo10",
-"t0": 87.27,
-"t1": 87.43
+"text": "nationale",
+"start": 79.144,
+"end": 79.544
 },
 {
-"w": "recevable",
 "seg": "vo10",
-"t0": 87.51,
-"t1": 88.07
+"text": "1,",
+"start": 79.704,
+"end": 79.944
 },
 {
-"w": "devant",
 "seg": "vo10",
-"t0": 88.15,
-"t1": 88.39
+"text": "à",
+"start": 79.984,
+"end": 80.024
 },
 {
-"w": "le",
 "seg": "vo10",
-"t0": 88.43,
-"t1": 88.47
+"text": "Matadi,",
+"start": 80.104,
+"end": 80.744
 },
 {
-"w": "juge.",
 "seg": "vo10",
-"t0": 88.55,
-"t1": 89.27
+"text": "et",
+"start": 80.784,
+"end": 80.824
 },
 {
-"w": "Comptes",
+"seg": "vo10",
+"text": "les",
+"start": 80.904,
+"end": 80.984
+},
+{
+"seg": "vo10",
+"text": "mines",
+"start": 81.064,
+"end": 81.224
+},
+{
+"seg": "vo10",
+"text": "de",
+"start": 81.264,
+"end": 81.304
+},
+{
+"seg": "vo10",
+"text": "Kolwezi",
+"start": 81.384,
+"end": 81.944
+},
+{
+"seg": "vo10",
+"text": "passent",
+"start": 82.104,
+"end": 82.344
+},
+{
+"seg": "vo10",
+"text": "par",
+"start": 82.424,
+"end": 82.504
+},
+{
+"seg": "vo10",
+"text": "le",
+"start": 82.624,
+"end": 82.744
+},
+{
+"seg": "vo10",
+"text": "même",
+"start": 82.864,
+"end": 82.984
+},
+{
+"seg": "vo10",
+"text": "compte",
+"start": 83.064,
+"end": 83.224
+},
+{
+"seg": "vo10",
+"text": "bancaire",
+"start": 83.304,
+"end": 83.624
+},
+{
+"seg": "vo10",
+"text": "intermédiaire.",
+"start": 83.704,
+"end": 84.664
+},
+{
+"seg": "vo10",
+"text": "84",
+"start": 84.704,
+"end": 85.384
+},
+{
+"seg": "vo10",
+"text": "%",
+"start": 85.544,
+"end": 85.624
+},
+{
+"seg": "vo10",
+"text": "de",
+"start": 85.704,
+"end": 85.944
+},
+{
+"seg": "vo10",
+"text": "proximité.",
+"start": 86.024,
+"end": 86.984
+},
+{
 "seg": "vo11",
-"t0": 89.86,
-"t1": 90.14
+"text": "C'est",
+"start": 87.693,
+"end": 87.8
 },
 {
-"w": "gelés,",
 "seg": "vo11",
-"t0": 90.22,
-"t1": 90.78
+"text": "pour",
+"start": 87.84,
+"end": 87.88
 },
 {
-"w": "immeuble",
 "seg": "vo11",
-"t0": 90.86,
-"t1": 91.26
+"text": "faire",
+"start": 87.96,
+"end": 88.2
 },
 {
-"w": "saisi,",
 "seg": "vo11",
-"t0": 91.3,
-"t1": 91.9
+"text": "tourner",
+"start": 88.28,
+"end": 88.52
 },
 {
-"w": "véhicules,",
 "seg": "vo11",
-"t0": 91.98,
-"t1": 92.7
+"text": "ce",
+"start": 88.6,
+"end": 88.68
 },
 {
-"w": "numéraire",
 "seg": "vo11",
-"t0": 92.78,
-"t1": 93.26
+"text": "moteur",
+"start": 88.76,
+"end": 89.0
 },
 {
-"w": "près",
 "seg": "vo11",
-"t0": 93.72,
-"t1": 93.82
+"text": "de",
+"start": 89.08,
+"end": 89.16
 },
 {
-"w": "de",
 "seg": "vo11",
-"t0": 93.9,
-"t1": 94.06
+"text": "croisement",
+"start": 89.24,
+"end": 89.64
 },
 {
-"w": "neuf",
 "seg": "vo11",
-"t0": 94.14,
-"t1": 94.38
+"text": "sur",
+"start": 89.72,
+"end": 89.8
 },
 {
-"w": "millions",
 "seg": "vo11",
-"t0": 94.46,
-"t1": 94.78
+"text": "des",
+"start": 89.88,
+"end": 90.04
 },
 {
-"w": "de",
 "seg": "vo11",
-"t0": 94.86,
-"t1": 94.94
+"text": "milliers",
+"start": 90.12,
+"end": 90.44
 },
 {
-"w": "dollars",
 "seg": "vo11",
-"t0": 95.02,
-"t1": 95.26
+"text": "de",
+"start": 90.52,
+"end": 90.6
 },
 {
-"w": "d'avoirs",
 "seg": "vo11",
-"t0": 95.3,
-"t1": 95.62
+"text": "pièces",
+"start": 90.68,
+"end": 91.0
 },
 {
-"w": "identifiés,",
 "seg": "vo11",
-"t0": 95.66,
-"t1": 96.46
+"text": "que",
+"start": 91.08,
+"end": 91.16
 },
 {
-"w": "pour",
 "seg": "vo11",
-"t0": 96.54,
-"t1": 96.62
+"text": "nous",
+"start": 91.2,
+"end": 91.32
 },
 {
-"w": "ce",
 "seg": "vo11",
-"t0": 96.74,
-"t1": 96.86
+"text": "devons",
+"start": 91.4,
+"end": 91.64
 },
 {
-"w": "seul",
 "seg": "vo11",
-"t0": 96.94,
-"t1": 97.1
+"text": "acquérir",
+"start": 91.72,
+"end": 92.12
 },
 {
-"w": "dossier.",
 "seg": "vo11",
-"t0": 97.18,
-"t1": 97.9
+"text": "l'infrastructure",
+"start": 92.16,
+"end": 92.84
 },
 {
-"w": "Avant",
+"seg": "vo11",
+"text": "souveraine.",
+"start": 92.92,
+"end": 93.8
+},
+{
 "seg": "vo12",
-"t0": 98.67,
-"t1": 98.87
+"text": "Quatrième",
+"start": 95.057,
+"end": 95.417
 },
 {
-"w": "transmission,",
 "seg": "vo12",
-"t0": 98.99,
-"t1": 99.67
+"text": "écran.",
+"start": 95.497,
+"end": 96.057
 },
 {
-"w": "le",
 "seg": "vo12",
-"t0": 99.71,
-"t1": 99.75
+"text": "Changeons",
+"start": 96.177,
+"end": 96.377
 },
 {
-"w": "rapport",
 "seg": "vo12",
-"t0": 99.83,
-"t1": 100.15
+"text": "de",
+"start": 96.417,
+"end": 96.457
 },
 {
-"w": "passe",
 "seg": "vo12",
-"t0": 100.19,
-"t1": 100.39
+"text": "poste",
+"start": 96.537,
+"end": 96.897
 },
 {
-"w": "la",
 "seg": "vo12",
-"t0": 100.43,
-"t1": 100.47
+"text": ":",
+"start": 97.017,
+"end": 97.07
 },
 {
-"w": "revue",
 "seg": "vo12",
-"t0": 100.55,
-"t1": 100.79
+"text": "voici",
+"start": 97.124,
+"end": 97.337
 },
 {
-"w": "technique,",
 "seg": "vo12",
-"t0": 100.91,
-"t1": 101.43
+"text": "la",
+"start": 97.417,
+"end": 97.577
 },
 {
-"w": "la",
 "seg": "vo12",
-"t0": 101.47,
-"t1": 101.51
+"text": "coordination",
+"start": 97.697,
+"end": 98.217
 },
 {
-"w": "revue",
 "seg": "vo12",
-"t0": 101.59,
-"t1": 101.83
+"text": "de",
+"start": 98.297,
+"end": 98.337
 },
 {
-"w": "juridique,",
 "seg": "vo12",
-"t0": 101.91,
-"t1": 102.63
+"text": "l'UNICEP.",
+"start": 98.377,
+"end": 99.337
 },
 {
-"w": "puis",
-"seg": "vo12",
-"t0": 102.71,
-"t1": 102.95
-},
-{
-"w": "le",
-"seg": "vo12",
-"t0": 103.03,
-"t1": 103.11
-},
-{
-"w": "comité",
-"seg": "vo12",
-"t0": 103.19,
-"t1": 103.51
-},
-{
-"w": "interne",
-"seg": "vo12",
-"t0": 103.67,
-"t1": 103.99
-},
-{
-"w": "d'examen.",
-"seg": "vo12",
-"t0": 104.07,
-"t1": 104.87
-},
-{
-"w": "Le",
-"seg": "vo12",
-"t0": 104.95,
-"t1": 105.03
-},
-{
-"w": "Parquet",
-"seg": "vo12",
-"t0": 105.11,
-"t1": 105.51
-},
-{
-"w": "reçoit",
-"seg": "vo12",
-"t0": 105.59,
-"t1": 105.91
-},
-{
-"w": "un",
-"seg": "vo12",
-"t0": 105.95,
-"t1": 105.99
-},
-{
-"w": "dossier",
-"seg": "vo12",
-"t0": 106.03,
-"t1": 106.47
-},
-{
-"w": "complet.",
-"seg": "vo12",
-"t0": 106.59,
-"t1": 107.27
-},
-{
-"w": "Chaque",
 "seg": "vo13",
-"t0": 107.87,
-"t1": 108.07
+"text": "L'arrêté",
+"start": 99.88,
+"end": 100.24
 },
 {
-"w": "consultation,",
 "seg": "vo13",
-"t0": 108.27,
-"t1": 109.03
+"text": "ministériel",
+"start": 100.32,
+"end": 100.96
 },
 {
-"w": "chaque",
 "seg": "vo13",
-"t0": 109.11,
-"t1": 109.27
+"text": "a",
+"start": 101.04,
+"end": 101.12
 },
 {
-"w": "décision",
 "seg": "vo13",
-"t0": 109.31,
-"t1": 109.83
+"text": "créé",
+"start": 101.2,
+"end": 101.52
 },
 {
-"w": "est",
 "seg": "vo13",
-"t0": 109.91,
-"t1": 110.07
+"text": "l'UNICEP.",
+"start": 101.56,
+"end": 102.28
 },
 {
-"w": "journalisée,",
 "seg": "vo13",
-"t0": 110.15,
-"t1": 110.95
+"text": "KWIKAMA",
+"start": 102.4,
+"end": 102.88
 },
 {
-"w": "sur",
 "seg": "vo13",
-"t0": 111.03,
-"t1": 111.11
+"text": "vous",
+"start": 102.96,
+"end": 103.04
 },
 {
-"w": "les",
 "seg": "vo13",
-"t0": 111.19,
-"t1": 111.27
+"text": "en",
+"start": 103.12,
+"end": 103.2
 },
 {
-"w": "serveurs",
 "seg": "vo13",
-"t0": 111.39,
-"t1": 111.67
+"text": "donne",
+"start": 103.24,
+"end": 103.36
 },
 {
-"w": "de",
 "seg": "vo13",
-"t0": 111.71,
-"t1": 111.75
+"text": "la",
+"start": 103.44,
+"end": 103.52
 },
 {
-"w": "l'État.",
 "seg": "vo13",
-"t0": 111.78,
-"t1": 112.39
+"text": "météo",
+"start": 103.627,
+"end": 103.92
 },
 {
-"w": "Rien",
 "seg": "vo13",
-"t0": 112.43,
-"t1": 112.63
+"text": "en",
+"start": 104.0,
+"end": 104.16
 },
 {
-"w": "ne",
 "seg": "vo13",
-"t0": 112.71,
-"t1": 112.79
+"text": "temps",
+"start": 104.24,
+"end": 104.32
 },
 {
-"w": "se",
 "seg": "vo13",
-"t0": 112.87,
-"t1": 112.95
+"text": "réel",
+"start": 104.4,
+"end": 104.72
 },
 {
-"w": "perd.",
 "seg": "vo13",
-"t0": 113.03,
-"t1": 113.59
+"text": ":",
+"start": 104.96,
+"end": 105.04
 },
 {
-"w": "Kwikama.",
+"seg": "vo13",
+"text": "vous",
+"start": 105.12,
+"end": 105.2
+},
+{
+"seg": "vo13",
+"text": "savez",
+"start": 105.32,
+"end": 105.52
+},
+{
+"seg": "vo13",
+"text": "quelle",
+"start": 105.6,
+"end": 105.68
+},
+{
+"seg": "vo13",
+"text": "institution",
+"start": 105.76,
+"end": 106.32
+},
+{
+"seg": "vo13",
+"text": "répond",
+"start": 106.4,
+"end": 106.72
+},
+{
+"seg": "vo13",
+"text": "dans",
+"start": 106.747,
+"end": 106.8
+},
+{
+"seg": "vo13",
+"text": "les",
+"start": 106.88,
+"end": 106.96
+},
+{
+"seg": "vo13",
+"text": "délais…",
+"start": 107.0,
+"end": 107.68
+},
+{
+"seg": "vo13",
+"text": "et",
+"start": 107.72,
+"end": 107.76
+},
+{
+"seg": "vo13",
+"text": "où",
+"start": 107.92,
+"end": 108.0
+},
+{
+"seg": "vo13",
+"text": "se",
+"start": 108.08,
+"end": 108.16
+},
+{
+"seg": "vo13",
+"text": "situent",
+"start": 108.24,
+"end": 108.48
+},
+{
+"seg": "vo13",
+"text": "les",
+"start": 108.52,
+"end": 108.56
+},
+{
+"seg": "vo13",
+"text": "blocages.",
+"start": 108.64,
+"end": 109.52
+},
+{
 "seg": "vo14",
-"t0": 115.09,
-"t1": 115.98
+"text": "Vu",
+"start": 110.579,
+"end": 110.659
 },
 {
-"w": "Détecter,",
 "seg": "vo14",
-"t0": 116.03,
-"t1": 116.78
+"text": "depuis",
+"start": 110.739,
+"end": 110.899
 },
 {
-"w": "réprimer,",
 "seg": "vo14",
-"t0": 116.86,
-"t1": 117.66
+"text": "la",
+"start": 110.939,
+"end": 110.979
 },
 {
-"w": "recouvrer.",
 "seg": "vo14",
-"t0": 117.78,
-"t1": 118.62
+"text": "CENAREF,",
+"start": 111.059,
+"end": 111.779
 },
 {
-"w": "Dix-huit",
 "seg": "vo14",
-"t0": 118.66,
-"t1": 119.02
+"text": "le",
+"start": 111.859,
+"end": 111.939
 },
 {
-"w": "institutions…",
 "seg": "vo14",
-"t0": 119.1,
-"t1": 120.14
+"text": "même",
+"start": 112.019,
+"end": 112.179
 },
 {
-"w": "un",
 "seg": "vo14",
-"t0": 120.18,
-"t1": 120.22
+"text": "dossier",
+"start": 112.219,
+"end": 112.579
 },
 {
-"w": "seul",
 "seg": "vo14",
-"t0": 120.38,
-"t1": 120.54
+"text": "se",
+"start": 112.659,
+"end": 112.739
 },
 {
-"w": "dossier.",
 "seg": "vo14",
-"t0": 120.62,
-"t1": 121.26
+"text": "réduit",
+"start": 112.819,
+"end": 113.139
+},
+{
+"seg": "vo14",
+"text": "à",
+"start": 113.219,
+"end": 113.379
+},
+{
+"seg": "vo14",
+"text": "une",
+"start": 113.499,
+"end": 113.619
+},
+{
+"seg": "vo14",
+"text": "seule",
+"start": 113.659,
+"end": 113.859
+},
+{
+"seg": "vo14",
+"text": "demande",
+"start": 114.019,
+"end": 114.259
+},
+{
+"seg": "vo14",
+"text": ":",
+"start": 114.499,
+"end": 114.579
+},
+{
+"seg": "vo14",
+"text": "ni",
+"start": 114.659,
+"end": 114.739
+},
+{
+"seg": "vo14",
+"text": "pièces",
+"start": 114.819,
+"end": 115.059
+},
+{
+"seg": "vo14",
+"text": "sous",
+"start": 115.139,
+"end": 115.299
+},
+{
+"seg": "vo14",
+"text": "scellé,",
+"start": 115.339,
+"end": 115.859
+},
+{
+"seg": "vo14",
+"text": "ni",
+"start": 115.939,
+"end": 116.019
+},
+{
+"seg": "vo14",
+"text": "personnes",
+"start": 116.099,
+"end": 116.499
+},
+{
+"seg": "vo14",
+"text": "mises",
+"start": 116.552,
+"end": 116.659
+},
+{
+"seg": "vo14",
+"text": "en",
+"start": 116.739,
+"end": 116.819
+},
+{
+"seg": "vo14",
+"text": "cause.",
+"start": 116.979,
+"end": 117.459
+},
+{
+"seg": "vo14",
+"text": "Le",
+"start": 117.499,
+"end": 117.539
+},
+{
+"seg": "vo14",
+"text": "secret",
+"start": 117.619,
+"end": 117.939
+},
+{
+"seg": "vo14",
+"text": "de",
+"start": 117.979,
+"end": 118.019
+},
+{
+"seg": "vo14",
+"text": "l'instruction",
+"start": 118.059,
+"end": 118.739
+},
+{
+"seg": "vo14",
+"text": "est",
+"start": 118.819,
+"end": 118.899
+},
+{
+"seg": "vo14",
+"text": "appliqué",
+"start": 119.019,
+"end": 119.379
+},
+{
+"seg": "vo14",
+"text": "par",
+"start": 119.459,
+"end": 119.539
+},
+{
+"seg": "vo14",
+"text": "le",
+"start": 119.579,
+"end": 119.619
+},
+{
+"seg": "vo14",
+"text": "système",
+"start": 119.699,
+"end": 120.099
+},
+{
+"seg": "vo14",
+"text": "lui-même.",
+"start": 120.179,
+"end": 121.059
+},
+{
+"seg": "vo15",
+"text": "Cinquième",
+"start": 122.543,
+"end": 122.863
+},
+{
+"seg": "vo15",
+"text": "écran",
+"start": 123.063,
+"end": 123.263
+},
+{
+"seg": "vo15",
+"text": ":",
+"start": 123.503,
+"end": 123.53
+},
+{
+"seg": "vo15",
+"text": "le",
+"start": 123.556,
+"end": 123.583
+},
+{
+"seg": "vo15",
+"text": "reversement",
+"start": 123.663,
+"end": 124.303
+},
+{
+"seg": "vo15",
+"text": "au",
+"start": 124.343,
+"end": 124.383
+},
+{
+"seg": "vo15",
+"text": "Trésor.",
+"start": 124.463,
+"end": 125.263
+},
+{
+"seg": "vo15",
+"text": "Chaque",
+"start": 125.303,
+"end": 125.503
+},
+{
+"seg": "vo15",
+"text": "bien",
+"start": 125.583,
+"end": 125.903
+},
+{
+"seg": "vo15",
+"text": "suit",
+"start": 126.023,
+"end": 126.143
+},
+{
+"seg": "vo15",
+"text": "une",
+"start": 126.223,
+"end": 126.303
+},
+{
+"seg": "vo15",
+"text": "trajectoire",
+"start": 126.383,
+"end": 126.943
+},
+{
+"seg": "vo15",
+"text": "unique",
+"start": 127.023,
+"end": 127.423
+},
+{
+"seg": "vo15",
+"text": ":",
+"start": 127.663,
+"end": 127.77
+},
+{
+"seg": "vo15",
+"text": "identifié,",
+"start": 127.876,
+"end": 128.623
+},
+{
+"seg": "vo15",
+"text": "gelé,",
+"start": 128.703,
+"end": 129.343
+},
+{
+"seg": "vo15",
+"text": "saisi,",
+"start": 129.383,
+"end": 129.983
+},
+{
+"seg": "vo15",
+"text": "confisqué.",
+"start": 130.103,
+"end": 130.863
+},
+{
+"seg": "vo16",
+"text": "Au",
+"start": 131.293,
+"end": 131.373
+},
+{
+"seg": "vo16",
+"text": "bout",
+"start": 131.413,
+"end": 131.453
+},
+{
+"seg": "vo16",
+"text": "de",
+"start": 131.533,
+"end": 131.586
+},
+{
+"seg": "vo16",
+"text": "la",
+"start": 131.64,
+"end": 131.693
+},
+{
+"seg": "vo16",
+"text": "chaîne,",
+"start": 131.773,
+"end": 132.173
+},
+{
+"seg": "vo16",
+"text": "KWIKAMA",
+"start": 132.253,
+"end": 132.733
+},
+{
+"seg": "vo16",
+"text": "transforme",
+"start": 132.973,
+"end": 133.293
+},
+{
+"seg": "vo16",
+"text": "l'effort",
+"start": 133.333,
+"end": 133.613
+},
+{
+"seg": "vo16",
+"text": "judiciaire",
+"start": 133.693,
+"end": 134.413
+},
+{
+"seg": "vo16",
+"text": "en",
+"start": 134.533,
+"end": 134.653
+},
+{
+"seg": "vo16",
+"text": "millions",
+"start": 134.773,
+"end": 135.053
+},
+{
+"seg": "vo16",
+"text": "de",
+"start": 135.133,
+"end": 135.213
+},
+{
+"seg": "vo16",
+"text": "dollars",
+"start": 135.333,
+"end": 135.613
+},
+{
+"seg": "vo16",
+"text": "restitués",
+"start": 135.693,
+"end": 136.093
+},
+{
+"seg": "vo16",
+"text": "au",
+"start": 136.173,
+"end": 136.253
+},
+{
+"seg": "vo16",
+"text": "Trésor",
+"start": 136.293,
+"end": 136.573
+},
+{
+"seg": "vo16",
+"text": "public",
+"start": 136.733,
+"end": 136.893
+},
+{
+"seg": "vo16",
+"text": "congolais…",
+"start": 136.973,
+"end": 137.613
+},
+{
+"seg": "vo16",
+"text": "et",
+"start": 137.693,
+"end": 137.773
+},
+{
+"seg": "vo16",
+"text": "permet",
+"start": 137.893,
+"end": 138.173
+},
+{
+"seg": "vo16",
+"text": "à",
+"start": 138.2,
+"end": 138.226
+},
+{
+"seg": "vo16",
+"text": "la",
+"start": 138.253,
+"end": 138.413
+},
+{
+"seg": "vo16",
+"text": "RDC",
+"start": 138.493,
+"end": 138.973
+},
+{
+"seg": "vo16",
+"text": "de",
+"start": 139.053,
+"end": 139.213
+},
+{
+"seg": "vo16",
+"text": "prouver",
+"start": 139.253,
+"end": 139.533
+},
+{
+"seg": "vo16",
+"text": "son",
+"start": 139.613,
+"end": 139.693
+},
+{
+"seg": "vo16",
+"text": "efficacité,",
+"start": 139.773,
+"end": 140.653
+},
+{
+"seg": "vo16",
+"text": "chiffre",
+"start": 140.693,
+"end": 140.973
+},
+{
+"seg": "vo16",
+"text": "à",
+"start": 141.0,
+"end": 141.026
+},
+{
+"seg": "vo16",
+"text": "l'appui,",
+"start": 141.053,
+"end": 141.613
+},
+{
+"seg": "vo16",
+"text": "devant",
+"start": 141.693,
+"end": 141.853
+},
+{
+"seg": "vo16",
+"text": "le",
+"start": 141.893,
+"end": 141.933
+},
+{
+"seg": "vo16",
+"text": "GAFI.",
+"start": 142.013,
+"end": 142.733
+},
+{
+"seg": "vo17",
+"text": "KWIKAMA.",
+"start": 144.461,
+"end": 145.301
+},
+{
+"seg": "vo17",
+"text": "Le",
+"start": 145.381,
+"end": 145.461
+},
+{
+"seg": "vo17",
+"text": "bouclier",
+"start": 145.541,
+"end": 145.941
+},
+{
+"seg": "vo17",
+"text": "numérique",
+"start": 146.021,
+"end": 146.581
+},
+{
+"seg": "vo17",
+"text": "de",
+"start": 146.621,
+"end": 146.661
+},
+{
+"seg": "vo17",
+"text": "l'UNICEP.",
+"start": 146.741,
+"end": 147.541
 }
 ]

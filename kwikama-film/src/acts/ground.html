@@ -43,7 +43,7 @@
       pts.forEach(p => { s += `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4.5" fill="#D8A828"/>`; });
       net.innerHTML = s;
       const tl = gsap.timeline({ paused: true });
-      const D = 127;
+      const D = 153;
       tl.fromTo("#g-blue", { rotation: -10 }, { rotation: 42, duration: D, ease: "none" }, 0);
       tl.fromTo("#g-gold", { rotation: 6 }, { rotation: -40, duration: D, ease: "none" }, 0);
       tl.fromTo("#g-net", { x: 0, y: 0 }, { x: -70, y: -24, duration: D, ease: "none" }, 0);

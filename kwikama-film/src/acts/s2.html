@@ -1,0 +1,154 @@
+<template>
+  <style>
+    /*@BASE*/
+    /* the paper route: police → parquet */
+    #s2-route { position: absolute; left: 110px; top: 300px; width: 740px; height: 420px; }
+    #s2-route svg.ln { position: absolute; left: 0; top: 0; width: 740px; height: 420px; overflow: visible; }
+    .s2-end { position: absolute; top: 120px; width: 220px; text-align: center; }
+    .s2-end .ic { width: 112px; height: 112px; margin: 0 auto; border-radius: 28px; background: rgba(10,44,71,.9); border: 1.5px solid rgba(244,241,234,.2); display: flex; align-items: center; justify-content: center; }
+    .s2-end svg { width: 62px; height: 62px; fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .s2-end .t { font-size: 28px; font-weight: 600; color: var(--cream); margin-top: 14px; line-height: 1.15; }
+    #s2-doc { position: absolute; left: 0; top: 0; width: 84px; height: 106px; margin: -53px 0 0 -42px; border-radius: 8px; background: var(--paper); box-shadow: 0 12px 26px rgba(0,0,0,.4); padding: 14px 12px; }
+    #s2-doc b { display: block; height: 7px; border-radius: 4px; background: #cfc6b5; margin-bottom: 9px; }
+    #s2-ghost { position: absolute; left: 0; top: 0; width: 84px; height: 106px; margin: -53px 0 0 -42px; border-radius: 8px; border: 3px dashed rgba(220,90,78,.9); opacity: 0; }
+    #s2-lost { position: absolute; left: 0; top: 0; width: 300px; margin-left: -150px; text-align: center; font-size: 28px; font-weight: 700; color: #f08a7f; opacity: 0; white-space: nowrap; }
+    #s2-paper { position: absolute; left: 0; top: 330px; width: 740px; text-align: center; font-size: 24px; font-weight: 600; letter-spacing: .14em; color: rgba(244,241,234,.55); }
+    /* the three guarantees */
+    #s2-g { position: absolute; left: 96px; top: 250px; width: 760px; }
+    .s2-gi { display: flex; align-items: center; gap: 22px; padding: 20px 28px 20px 20px; margin-bottom: 22px; border-radius: 18px; background: rgba(3,24,41,.94); border: 1.5px solid rgba(216,168,40,.45); box-shadow: 0 18px 40px rgba(0,0,0,.4); }
+    .s2-gi .ic { flex: none; width: 72px; height: 72px; border-radius: 50%; background: rgba(216,168,40,.14); display: flex; align-items: center; justify-content: center; }
+    .s2-gi svg { width: 40px; height: 40px; fill: none; stroke: var(--gold2); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .s2-gi .k { font-size: 34px; font-weight: 700; color: var(--cream); }
+    .s2-gi .v { font-size: 24px; font-weight: 500; color: rgba(244,241,234,.72); margin-top: 4px; white-space: nowrap; }
+    #s2-none { position: absolute; left: 96px; top: 830px; }
+    #s2-none .chip { font-size: 34px; padding: 16px 26px 16px 20px; box-shadow: 0 18px 40px rgba(0,0,0,.4); }
+    #s2-none .sub { font-size: 26px; font-weight: 500; color: rgba(244,241,234,.78); margin-top: 14px; padding-left: 6px; }
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1920" data-height="1080">
+    <div class="stage">
+      <div class="cam" id="s2-cam">
+<!--@MAC:s2-->
+        <div class="scr" id="s2-verif" style="background-image:url(assets/ui/m_verif.webp)"></div>
+        <div class="scr" id="s2-prv" style="background-image:url(assets/ui/m_preuves.webp)"></div>
+        <div class="scr" id="s2-dim" style="background-image:url(assets/ui/m_prv0356.webp); clip-path: inset(0 544.4px 0 0); background-color: transparent"></div>
+        <div class="scr" id="s2-drw" style="background-image:url(assets/ui/m_prv0356.webp); clip-path: inset(0 0 0 855.6px); background-color: transparent"></div>
+        <div class="hl" id="s2-h-nav"></div>
+        <div class="hl" id="s2-h-row"></div>
+        <div class="hl" id="s2-h-st"></div>
+        <div class="hl" id="s2-h-t1"></div>
+        <div class="hl" id="s2-h-n1"></div>
+        <div class="hl green" id="s2-h-i1"></div>
+        <div class="hl" id="s2-h-sc"></div>
+        <div class="rip" id="s2-rip"></div>
+<!--@/MAC-->
+      </div>
+    </div>
+    <div class="chap" id="s2-chap">
+      <div class="chap-n">02</div>
+      <div class="chap-k">Deuxième écran · 2 / 5</div>
+      <div class="chap-r"></div>
+      <div class="chap-t"><span class="w">La</span> <span class="w">chaîne</span> <span class="w">de</span> <span class="w">garde</span></div>
+      <div class="chap-m"><span class="w">Chaque</span> <span class="w">transfert</span> <span class="w">est</span> <span class="w">horodaté,</span> <span class="w">nominatif</span> <span class="w">et</span> <span class="w">scellé.</span></div>
+    </div>
+    <div id="s2-route">
+      <svg class="ln" viewBox="0 0 740 420"><path id="s2-path" d="M110 175 L630 175" fill="none" stroke="rgba(244,241,234,.5)" stroke-width="3.5" stroke-dasharray="12 12"/></svg>
+      <div class="s2-end" style="left:0"><div class="ic"><svg viewBox="0 0 64 64"><path d="M32 6 L54 14 V30 C54 44 44 53 32 58 C20 53 10 44 10 30 V14 Z"/><circle cx="32" cy="29" r="7"/><path d="M21 45 C24 39 40 39 43 45"/></svg></div><div class="t">Police judiciaire</div></div>
+      <div class="s2-end" style="left:520px"><div class="ic"><svg viewBox="0 0 64 64"><line x1="32" y1="8" x2="32" y2="52"/><line x1="12" y1="16" x2="52" y2="16"/><path d="M12 16 L4 34 H20 Z"/><path d="M52 16 L44 34 H60 Z"/><line x1="20" y1="54" x2="44" y2="54"/></svg></div><div class="t">Parquet</div></div>
+      <div id="s2-doc"><b></b><b style="width:70%"></b><b></b><b style="width:56%"></b><b style="width:80%"></b></div>
+      <div id="s2-ghost"></div>
+      <div id="s2-lost">Pièce introuvable</div>
+      <div id="s2-paper">SUR PAPIER</div>
+    </div>
+    <div id="s2-g">
+      <div class="s2-gi" id="s2-g1"><div class="ic"><svg viewBox="0 0 40 40"><circle cx="20" cy="21" r="14"/><polyline points="20,13 20,21 26,25"/><line x1="15" y1="4" x2="25" y2="4"/></svg></div><div><div class="k">Horodaté</div><div class="v">18/09/2026 à 20:40, puis 19/09/2026 à 09:00</div></div></div>
+      <div class="s2-gi" id="s2-g2"><div class="ic"><svg viewBox="0 0 40 40"><circle cx="20" cy="13" r="7"/><path d="M6 36 C8 26 32 26 34 36"/></svg></div><div><div class="k">Nominatif</div><div class="v">Tshimanga Wembo Gaspard (APLC) → huissier</div></div></div>
+      <div class="s2-gi" id="s2-g3"><div class="ic"><svg viewBox="0 0 40 40"><rect x="9" y="17" width="22" height="17" rx="3"/><path d="M14 17 V12 a6 6 0 0 1 12 0 V17"/></svg></div><div><div class="k">Scellé numériquement</div><div class="v">Scellé SC-00356 · scellé intact</div></div></div>
+    </div>
+    <div id="s2-none"><span class="chip green">Aucun scellé rompu</span><div class="sub">3 pièces au registre · 6 transferts consignés</div></div>
+  </div>
+  <script>
+    /*@HELPERS*/
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 49.0;
+      const at = (t) => t - T0;
+      const cur = "#s2-cur", rip = "#s2-rip";
+      const B = BOX;
+      gsap.set("#s2-cam", CHP);
+      gsap.set(cur, curPos(700, 560));
+      gsap.set(["#s2-prv", "#s2-dim", "#s2-drw", "#s2-route", "#s2-g", "#s2-none", "#s2-chap"], { opacity: 0 });
+
+      /* ---------- chapter 2: one click on "Preuves et scellés" ---------- */
+      tl.set("#s2-chap", { opacity: 1 }, at(49.45));
+      chapter(tl, $("#s2-chap"), at(49.45), at(51.55));
+      const nv = B.m_home.n_preuves;
+      over("#s2-h-nav", nv, 2);
+      clickAt(tl, cur, rip, nv.x + 40, nv.y + nv.h / 2, at(50.05), 0.75);
+      hlOn(tl, "#s2-h-nav", at(50.05), 0.25);
+      hlOff(tl, "#s2-h-nav", at(51.0));
+      swap(tl, "#s2-verif", "#s2-prv", at(50.15));
+
+      /* ---------- "…des pièces qui disparaissent entre la police judiciaire et le parquet" 51.93 – 56.73 ---------- */
+      tl.set("#s2-route", { opacity: 1 }, at(51.8));
+      tl.fromTo("#s2-route .s2-end", { opacity: 0, y: 20, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out", stagger: 0.15 }, at(51.85));
+      tl.fromTo("#s2-path", { opacity: 0 }, { opacity: 1, duration: 0.4 }, at(52.1));
+      tl.fromTo("#s2-paper", { opacity: 0 }, { opacity: 1, duration: 0.4 }, at(52.3));
+      // the piece leaves the police and fades halfway ("disparaissent" 53.97)
+      tl.fromTo("#s2-doc", { x: 225, y: 175, opacity: 0, rotation: -4 }, { opacity: 1, duration: 0.25 }, at(52.6));
+      tl.to("#s2-doc", { x: 370, y: 175, rotation: 3, duration: 1.3, ease: "power1.inOut" }, at(52.8));
+      tl.to("#s2-doc", { opacity: 0, filter: "blur(8px)", scale: 0.9, duration: 0.45, ease: "power2.in" }, at(53.95));
+      tl.set("#s2-ghost", { x: 370, y: 175 }, 0);
+      tl.fromTo("#s2-ghost", { opacity: 0, rotation: 3 }, { opacity: 1, duration: 0.3 }, at(54.3));
+      tl.set("#s2-lost", { x: 370, y: 248 }, 0);
+      tl.fromTo("#s2-lost", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35 }, at(54.45));
+      tl.to("#s2-path", { attr: { stroke: "rgba(208,71,58,.6)" }, duration: 0.3 }, at(54.3));
+      tl.to("#s2-route", { opacity: 0, x: -60, filter: "blur(12px)", duration: 0.45, ease: "power3.in" }, at(56.55));
+
+      /* ---------- "184 000 dollars saisis en perquisition, puis transmis au parquet" 57.51 – 61.71 ---------- */
+      tl.to("#s2-cam", Object.assign({ duration: 1.1, ease: "power2.inOut" }, camAt(850, 560, 1.32)), at(56.6));
+      over("#s2-h-row", B.m_preuves.r0356, 2);
+      over("#s2-h-st", B.m_preuves.st0356, 5);
+      hlOn(tl, "#s2-h-row", at(57.5));
+      hlOn(tl, "#s2-h-st", at(60.55));
+      tl.to(cur, Object.assign({ duration: 1.0, ease: "power2.inOut" }, curPos(560, 600)), at(58.4));
+      // open the piece
+      clickAt(tl, cur, rip, 620, 522, at(61.1), 0.5);
+      hlOff(tl, ["#s2-h-row", "#s2-h-st"], at(61.15), 0.2);
+      tl.fromTo("#s2-dim", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, at(61.2));
+      tl.set("#s2-drw", { opacity: 1, x: 544.4 }, at(61.19));
+      tl.to("#s2-drw", { x: 0, duration: 0.45, ease: "power3.out" }, at(61.2));
+      tl.set(cur, { opacity: 0 }, at(61.6));
+      tl.to("#s2-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(1160, 600, 1.34, 1330, 560)), at(61.3));
+
+      /* ---------- "horodaté (62.83), nominatif (63.67), et scellé numériquement (64.75)" ---------- */
+      const D = B.m_prv0356;
+      over("#s2-h-t1", D.t1, 4);
+      over("#s2-h-n1", { x: 929, y: 776, w: 487, h: 46 }, 4);
+      over("#s2-h-i1", D.i1, 4);
+      over("#s2-h-sc", D.scelle, 6);
+      tl.set("#s2-g", { opacity: 1 }, at(62.6));
+      const G = [[62.83, "#s2-g1", ["#s2-h-t1"]], [63.67, "#s2-g2", ["#s2-h-n1"]], [64.75, "#s2-g3", ["#s2-h-i1", "#s2-h-sc"]]];
+      G.forEach(([t, g, hs], i) => {
+        tl.fromTo(g, { opacity: 0, x: -50, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, at(t) - 0.08);
+        hs.forEach((h) => hlOn(tl, h, at(t)));
+      });
+
+      /* ---------- "Aucun scellé rompu" 66.19 ---------- */
+      tl.to("#s2-g", { y: -60, duration: 0.5, ease: "power3.inOut" }, at(65.95));
+      tl.set("#s2-none", { opacity: 1 }, at(66.1));
+      tl.fromTo("#s2-none .chip", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, at(66.15));
+      tl.fromTo("#s2-none .sub", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, at(66.5));
+
+      /* ---------- hand-over to chapter 3 ---------- */
+      tl.to("#s2-g", { opacity: 0, x: -60, filter: "blur(12px)", duration: 0.4, ease: "power3.in" }, at(67.45));
+      tl.to("#s2-none", { opacity: 0, x: -60, filter: "blur(12px)", duration: 0.35, ease: "power3.in" }, at(67.8));
+      hlOff(tl, ["#s2-h-t1", "#s2-h-n1", "#s2-h-i1", "#s2-h-sc"], at(67.45));
+      tl.to("#s2-drw", { x: 544.4, duration: 0.35, ease: "power3.in" }, at(67.5));
+      tl.to("#s2-dim", { opacity: 0, duration: 0.3 }, at(67.55));
+      tl.to("#s2-cam", Object.assign({ duration: 0.75, ease: "power2.inOut" }, CHP), at(67.45));
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(700, 560)), at(68.0));
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>

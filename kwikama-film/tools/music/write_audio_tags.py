@@ -6,7 +6,7 @@ import sys
 proj = sys.argv[1] if len(sys.argv) > 1 else "."
 cues = json.load(open(f"{proj}/assets/audio/sfx/cues.json"))
 lines = ['      <!-- musique originale (tools/music/compose.py), déjà atténuée sous la voix (tools/music/mixdown.py) -->',
-         '      <audio id="music" class="clip" src="assets/audio/music/kwikama-theme.mp3" data-start="0" data-duration="127" data-track-index="21" data-volume="1"></audio>',
+         '      <audio id="music" class="clip" src="assets/audio/music/kwikama-theme.mp3" data-start="0" data-duration="153" data-track-index="21" data-volume="1"></audio>',
          '      <!-- bruitages : chaque son a une cause à l\'écran -->']
 lane_end = []  # first free lane per effect, so overlapping effects sit on separate Studio lanes
 for c in cues:

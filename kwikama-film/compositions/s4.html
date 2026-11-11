@@ -1,0 +1,426 @@
+<template>
+  <style>
+    @font-face { font-family: "Fraunces"; src: url("assets/fonts/Fraunces-Variable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: block; }
+#root {
+  position: absolute; inset: 0; overflow: hidden;
+  --navy: #031829; --navy2: #052033; --navy3: #0a2c47; --navy4: #13385a;
+  --gold: #d8a828; --gold2: #ecc657; --cream: #f4f1ea; --paper: #fbf9f5;
+  --ink: #13181e; --muted: #5b6470; --line: #e8e3d8;
+  --blue: #13487f; --bluebg: #e6edf5; --green: #1e6b4f; --greenbg: #e3efe9;
+  --red: #9b2c24; --redbg: #f7e6e4; --amber: #8a6512; --amberbg: #f6ecd2;
+  font-family: "Inter", sans-serif; color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+#root * { box-sizing: border-box; }
+.abs { position: absolute; }
+.serif { font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -0.01em; }
+.gold { color: var(--gold); }
+.w { display: inline-block; }
+/* ---------- stage, camera, MacBook ---------- */
+.stage { position: absolute; inset: 0; perspective: 2400px; perspective-origin: 960px 540px; }
+.cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 540px; transform-style: preserve-3d; }
+.mac { position: absolute; left: 242px; top: 70px; width: 1436px; height: 947px; }
+.mac-shadow { position: absolute; left: 60px; right: 60px; top: 880px; height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+.mac-lid { position: absolute; left: 0; top: 0; width: 1436px; height: 921px; border-radius: 30px 30px 12px 12px;
+  background: linear-gradient(180deg, #e4e6e9 0%, #b9bdc3 55%, #9ea2a8 100%); padding: 3px;
+  box-shadow: 0 50px 110px rgba(0,0,0,.50), 0 0 0 1px rgba(255,255,255,.08) inset; }
+.mac-bezel { position: absolute; inset: 3px; border-radius: 27px 27px 9px 9px; background: #0b0b0c; }
+.mac-screen { position: absolute; left: 15px; top: 21px; width: 1400px; height: 875px; overflow: hidden; background: var(--paper); border-radius: 7px; }
+.mac-screen > img.ui { position: absolute; left: 0; top: 0; width: 1400px; height: auto; display: block; }
+.mac-glare { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 38%); }
+.mac-notch { position: absolute; top: 0; left: 50%; width: 184px; height: 30px; margin-left: -92px; background: #0b0b0c; border-radius: 0 0 13px 13px; }
+.mac-notch i { position: absolute; left: 50%; top: 10px; width: 9px; height: 9px; margin-left: -4px; border-radius: 50%; background: #1d2633; box-shadow: 0 0 0 2px #121519; }
+.mac-base { position: absolute; left: -62px; top: 919px; width: 1560px; height: 28px; border-radius: 3px 3px 22px 22px;
+  background: linear-gradient(180deg, #f1f2f3 0%, #d3d5d8 30%, #a8abb0 75%, #7e8187 100%); }
+.mac-groove { position: absolute; left: 50%; top: 0; width: 250px; height: 10px; margin-left: -125px; border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, #8f9297, #c9cbcf); }
+.cursor { position: absolute; left: 0; top: 0; width: 40px; height: 57px; transform-origin: 3px 3px; z-index: 50; filter: drop-shadow(0 3px 4px rgba(0,0,0,.35)); }
+/* ---------- recurring UI pieces rebuilt from the app ---------- */
+.chip { display: inline-flex; align-items: center; gap: 10px; font-family: "Inter", sans-serif; font-weight: 600; font-size: 24px; line-height: 1; padding: 9px 16px 9px 14px; border-radius: 6px; white-space: nowrap; }
+.chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.chip.green { color: var(--green); background: var(--greenbg); }
+.chip.red { color: var(--red); background: var(--redbg); }
+.chip.blue { color: var(--blue); background: var(--bluebg); }
+.chip.amber { color: var(--amber); background: var(--amberbg); }
+.chip.beige { color: #6b5d45; background: #efe9dc; }
+.card { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 14px; color: var(--ink);
+  box-shadow: 0 30px 70px rgba(3,24,41,.38), 0 4px 14px rgba(3,24,41,.18); }
+.label { font-family: "Inter", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: .09em; text-transform: uppercase; color: #6b7480; }
+.persona { position: absolute; display: flex; align-items: center; gap: 18px; padding: 16px 26px 16px 16px; border-radius: 14px;
+  background: rgba(3,24,41,.92); border: 1px solid rgba(244,241,234,.14); color: var(--cream); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.persona .av { width: 62px; height: 62px; border-radius: 50%; background: var(--navy3); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 24px; color: var(--cream); }
+.persona .nm { font-weight: 600; font-size: 28px; line-height: 1.15; }
+.persona .rl { font-weight: 500; font-size: 22px; color: rgba(244,241,234,.66); margin-top: 3px; }
+.digits { display: inline-flex; overflow: hidden; vertical-align: top; }
+.digit { display: inline-block; overflow: hidden; position: relative; }
+.digit .strip { display: flex; flex-direction: column; }
+.digit .strip span { display: block; text-align: center; }
+/* ---------- v2: screens, scrolling composite, highlights, clicks ---------- */
+.scr { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; background-size: 1400px auto; background-repeat: no-repeat; background-color: var(--paper); }
+.pg { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; overflow: hidden; background: var(--paper); }
+.pg-sc { position: absolute; left: 0; top: 0; width: 1400px; }
+.pg-img { position: absolute; left: 0; top: 0; width: 1400px; background-size: 1400px auto; background-repeat: no-repeat; }
+/* sticky header (217 page px) and fixed sidebar (256 page px) of the app, from the viewport capture */
+.pg-chrome { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; background-size: 1400px auto; background-repeat: no-repeat;
+  clip-path: polygon(0 0, 100% 0, 100% 211px, 249px 211px, 249px 100%, 0 100%); }
+.hl { position: absolute; border: 3px solid var(--gold); border-radius: 10px; opacity: 0; pointer-events: none;
+  box-shadow: 0 0 0 5px rgba(216,168,40,.20), 0 0 26px rgba(216,168,40,.55); }
+.hl.red { border-color: #c2412f; box-shadow: 0 0 0 5px rgba(194,65,47,.18), 0 0 26px rgba(194,65,47,.5); }
+.hl.green { border-color: #2f8a63; box-shadow: 0 0 0 5px rgba(47,138,99,.18), 0 0 26px rgba(47,138,99,.5); }
+.rip { position: absolute; left: 0; top: 0; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; border: 3px solid var(--gold); opacity: 0; z-index: 49; }
+/* right-hand drawer of the app (page x 880..1440, y 255..900) */
+.drw { position: absolute; left: 855.6px; top: 247.9px; width: 544.4px; height: 627.1px; overflow: hidden; background: #fff; }
+.drw-img { position: absolute; left: 0; top: 0; width: 544.4px; background-size: 544.4px auto; background-repeat: no-repeat; }
+/* chapter card */
+.chap { position: absolute; left: 118px; top: 0; width: 760px; height: 1080px; }
+.chap-n { position: absolute; left: 0; top: 214px; font-family: "Fraunces", serif; font-weight: 600; font-size: 210px; line-height: 1; color: var(--gold); letter-spacing: -0.02em; }
+.chap-k { position: absolute; left: 6px; top: 452px; font-size: 25px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold2); white-space: nowrap; }
+.chap-r { position: absolute; left: 6px; top: 498px; width: 96px; height: 3px; background: var(--gold); transform-origin: 0 50%; }
+.chap-t { position: absolute; left: 0; top: 530px; width: 760px; font-family: "Fraunces", serif; font-weight: 600; font-size: 70px; line-height: 1.08; color: var(--cream); letter-spacing: -0.01em; }
+.chap-m { position: absolute; left: 4px; top: 720px; width: 700px; font-size: 32px; line-height: 1.35; font-weight: 500; color: rgba(244,241,234,.78); }
+/* floating white card rebuilt from the app */
+.uic { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 16px; color: var(--ink); padding: 26px 30px;
+  box-shadow: 0 30px 70px rgba(3,24,41,.42), 0 4px 14px rgba(3,24,41,.18); font-family: "Inter", sans-serif; }
+.uic .ref { font-size: 22px; font-weight: 600; letter-spacing: .04em; color: #6b7480; }
+.uic .kind { font-size: 21px; font-weight: 700; letter-spacing: .1em; color: var(--amber); text-transform: uppercase; }
+.uic .tt { font-size: 32px; font-weight: 600; color: #0a2c47; line-height: 1.2; margin-top: 10px; }
+.uic .mt { font-size: 22px; font-weight: 500; color: var(--muted); margin-top: 10px; }
+
+    .s4-wx { position: absolute; width: 30px; height: 30px; margin: -15px 0 0 -15px; opacity: 0; }
+    .s4-wx svg { width: 30px; height: 30px; overflow: visible; }
+    #s4-legend { position: absolute; left: 0; width: 1920px; top: 952px; display: flex; justify-content: center; gap: 22px; }
+    #s4-legend .chip { font-size: 28px; padding: 14px 24px 14px 18px; box-shadow: 0 16px 34px rgba(0,0,0,.4); }
+    #s4-late { position: absolute; left: 0; top: 0; }
+    #s4-late .chip { font-size: 26px; box-shadow: 0 16px 34px rgba(0,0,0,.4); }
+    /* three perimeters */
+    #s4-per { position: absolute; inset: 0; }
+    #s4-per h2 { position: absolute; left: 0; width: 1920px; top: 64px; text-align: center; font-family: "Fraunces", serif; font-weight: 600; font-size: 54px; color: var(--cream); letter-spacing: -0.01em; }
+    .s4-col { position: absolute; top: 170px; width: 300px; }
+    .s4-col .hd { height: 118px; }
+    .s4-col .rl { font-size: 28px; font-weight: 700; color: var(--cream); white-space: nowrap; }
+    .s4-col .lv { display: inline-block; margin-top: 10px; font-size: 19px; font-weight: 600; padding: 7px 12px; border-radius: 6px; background: #efe9dc; color: #4a4033; white-space: nowrap; }
+    .s4-col .lv.cl { background: var(--redbg); color: var(--red); }
+    .s4-side { width: 300px; height: 680px; border-radius: 16px; background-repeat: no-repeat; background-size: 1685px auto; background-position: 0 -140px; background-color: #031829;
+      border: 1.5px solid rgba(244,241,234,.2); box-shadow: 0 26px 60px rgba(0,0,0,.45); }
+    .s4-lk { position: absolute; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: #9b2c24; display: flex; align-items: center; justify-content: center; opacity: 0; box-shadow: 0 8px 18px rgba(0,0,0,.4); }
+    .s4-lk svg { width: 24px; height: 24px; }
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1920" data-height="1080">
+    <div class="stage">
+      <div class="cam" id="s4-cam">
+<div class="mac" id="s4-mac">
+  <div class="mac-shadow"></div>
+  <div class="mac-base"><div class="mac-groove"></div></div>
+  <div class="mac-lid">
+    <div class="mac-bezel">
+      <div class="mac-screen" id="s4-screen">
+
+        <div class="pg" id="s4-an">
+          <div class="pg-sc" style="transform: translateY(-2686.3px)"><div class="pg-img" style="background-image:url(assets/ui/m_analyse.webp); height: 3561.8px"></div></div>
+          <div class="pg-chrome" style="background-image:url(assets/ui/m_analyse_v.webp)"></div>
+        </div>
+        <div class="pg" id="s4-conn">
+          <div class="pg-sc" id="s4-csc">
+            <div class="pg-img" style="background-image:url(assets/ui/connexion.webp); height: 1444.7px"></div>
+            <div class="hl" id="s4-h-wc"></div>
+            <div class="hl red" id="s4-h-wf"></div>
+            <div class="hl red" id="s4-h-strike"></div>
+          </div>
+        </div>
+        <div class="scr" id="s4-chome" style="background-image:url(assets/ui/c_home.webp)"></div>
+        <div class="pg" id="s4-coord">
+          <div class="pg-sc" id="s4-sc">
+            <div class="pg-img" style="background-image:url(assets/ui/c_coord.webp); height: 2312.9px"></div>
+            <div class="hl" id="s4-h-ech"></div>
+            <div class="hl red" id="s4-h-hd"></div>
+            <div class="hl" id="s4-h-taux"></div>
+            <div class="hl green" id="s4-h-r0"></div>
+            <div class="hl green" id="s4-h-r1"></div>
+            <div class="hl green" id="s4-h-r2"></div>
+            <div class="hl green" id="s4-h-r3"></div>
+            <div class="hl green" id="s4-h-r4"></div>
+            <div class="hl red" id="s4-h-r5"></div>
+            <div id="s4-wx"></div>
+          </div>
+          <div class="pg-chrome" style="background-image:url(assets/ui/c_coord_v.webp)"></div>
+        </div>
+        <div class="scr" id="s4-fhome" style="background-image:url(assets/ui/f_home.webp)"></div>
+        <div class="hl" id="s4-h-nav"></div>
+        <div class="hl" id="s4-h-sw"></div>
+        <div class="hl" id="s4-h-vue"></div>
+        <div class="hl" id="s4-h-er"></div>
+        <div class="hl red" id="s4-h-locks"></div>
+        <div class="hl red" id="s4-h-h1"></div>
+        <div class="hl red" id="s4-h-h2"></div>
+        <div class="rip" id="s4-rip"></div>
+
+        <svg class="cursor" id="s4-cur" viewBox="0 0 28 40"><path d="M2 2 L2 31.5 L9.6 24.4 L14.6 36.2 L19.4 34.1 L14.4 22.6 L24.6 22.6 Z" fill="#101215" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round"/></svg>
+        <div class="mac-glare"></div>
+      </div>
+      <div class="mac-notch"><i></i></div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+    <div class="chap" id="s4-chap">
+      <div class="chap-n">04</div>
+      <div class="chap-k">Quatrième écran · 4 / 5</div>
+      <div class="chap-r"></div>
+      <div class="chap-t"><span class="w">La</span> <span class="w">météo</span> <span class="w">de</span> <span class="w">la</span> <span class="w">coopération</span></div>
+      <div class="chap-m"><span class="w">Qui</span> <span class="w">répond</span> <span class="w">dans</span> <span class="w">les</span> <span class="w">délais,</span> <span class="w">et</span> <span class="w">où</span> <span class="w">sont</span> <span class="w">les</span> <span class="w">blocages.</span></div>
+    </div>
+    <div class="persona" id="s4-pC" style="left:60px; top:930px"><div class="av">IM</div><div><div class="nm">Ilunga Mwadi Josephine</div><div class="rl">Coordonnatrice UNICEP · secret judiciaire, niveau 1</div></div></div>
+    <div class="persona" id="s4-pF" style="left:60px; top:930px"><div class="av" style="border-color:#c2412f">NL</div><div><div class="nm">Nsimba Lelo Georgine</div><div class="rl">Point focal CENAREF · accès cloisonné, niveau 3</div></div></div>
+    <div id="s4-legend"><span class="chip green">Dans les délais · 5</span><span class="chip red">Hors délai · 1</span><span class="chip blue">Taux de réponse · 83 %</span></div>
+    <div id="s4-late"><span class="chip red">En retard · relance à émettre</span></div>
+    <div id="s4-per">
+      <h2>Un dossier, trois périmètres d'habilitation</h2>
+      <div class="s4-col" id="s4-c0" style="left:395px"><div class="hd"><div class="rl">Magistrat du Parquet</div><div class="lv">Secret judiciaire — niveau 1</div></div><div class="s4-side" style="background-image:url(assets/ui/m_home.webp)"></div></div>
+      <div class="s4-col" id="s4-c1" style="left:810px"><div class="hd"><div class="rl">Coordonnateur UNICEP</div><div class="lv">Secret judiciaire — niveau 1</div></div><div class="s4-side" style="background-image:url(assets/ui/c_home.webp)"></div></div>
+      <div class="s4-col" id="s4-c2" style="left:1225px"><div class="hd"><div class="rl">Point focal CENAREF</div><div class="lv cl">Accès cloisonné — niveau 3</div></div><div class="s4-side" style="background-image:url(assets/ui/f_home.webp)"></div></div>
+      <div id="s4-lks"></div>
+    </div>
+  </div>
+  <script>
+    /* ---- shared helpers (inlined into every act by tools/build.mjs) ---- */
+const K = 1400 / 1440;            // page px -> screen px
+const SCR = { x: 260, y: 94 };    // screen top-left inside .cam at scale 1
+function sp(sx, sy) { return { X: SCR.x + sx * K, Y: SCR.y + sy * K }; }
+// camera vars that put page point (sx, sy) of the Mac screen at frame point (fx, fy) with scale S
+function camAt(sx, sy, S, fx, fy, extra) {
+  const p = sp(sx, sy); fx = fx === undefined ? 960 : fx; fy = fy === undefined ? 540 : fy;
+  return Object.assign({ x: fx - 960 - S * (p.X - 960), y: fy - 540 - S * (p.Y - 540), scale: S, rotationX: 0, rotationY: 0 }, extra || {});
+}
+// cursor tip at page point (sx, sy) inside the screen
+function curPos(sx, sy) { return { x: sx * K - 3, y: sy * K - 3 }; }
+function click(tl, cur, t) {
+  tl.to(cur, { scale: 0.8, duration: 0.07, ease: "power2.out" }, t);
+  tl.to(cur, { scale: 1, duration: 0.16, ease: "power2.out" }, t + 0.07);
+}
+// show one screen layer at time t (instant swap, like the real UI)
+function swap(tl, from, to, t, fade) {
+  if (fade) { tl.to(to, { opacity: 1, duration: fade, ease: "none" }, t); if (from) tl.set(from, { opacity: 0 }, t + fade); }
+  else { tl.set(to, { opacity: 1 }, t); if (from) tl.set(from, { opacity: 0 }, t); }
+}
+// words: blur-in one by one
+function wordsIn(tl, els, t, gap, dur) {
+  gap = gap === undefined ? 0.07 : gap; dur = dur || 0.32;
+  tl.fromTo(els, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: dur, ease: "power2.out", stagger: gap }, t);
+}
+function wordsOut(tl, els, t, dur) {
+  tl.to(els, { opacity: 0, filter: "blur(10px)", duration: dur || 0.22, ease: "power2.in", stagger: 0.03 }, t);
+}
+// odometer number: build digit strips inside el for the string `str`; returns strips
+function odo(el, str, h) {
+  el.innerHTML = "";
+  const strips = [];
+  for (const ch of str) {
+    if (/\d/.test(ch)) {
+      const d = document.createElement("span"); d.className = "digit"; d.style.height = h + "px";
+      const s = document.createElement("span"); s.className = "strip";
+      for (let k = 0; k <= 19; k++) { const n = document.createElement("span"); n.textContent = k % 10; n.style.height = h + "px"; n.style.lineHeight = h + "px"; s.appendChild(n); }
+      d.appendChild(s); el.appendChild(d); strips.push({ s, v: +ch });
+    } else { const n = document.createElement("span"); n.textContent = ch; n.style.display = "inline-block"; n.style.lineHeight = h + "px"; el.appendChild(n); }
+  }
+  return strips;
+}
+// roll strips from 0 to their digit (plus one full turn) between t and t+dur
+function odoRoll(tl, strips, h, t, dur) {
+  strips.forEach((o, i) => {
+    tl.fromTo(o.s, { y: 0 }, { y: -(10 + o.v) * h, duration: dur - i * 0.04, ease: "power3.out" }, t + i * 0.04);
+  });
+}
+// mulberry32 PRNG
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* ---- v2 helpers ---- */
+const BOX = {"landing":{"h1":{"x":124,"y":242,"w":705,"h":147}},"connexion":{"w_parquet":{"x":667,"y":281,"w":696,"h":329},"w_coord":{"x":667,"y":625,"w":696,"h":329},"w_cenaref":{"x":667,"y":970,"w":696,"h":329},"title":{"x":667,"y":119,"w":696,"h":41}},"m_home":{"kpi1":{"x":288,"y":404,"w":268,"h":123},"persona":{"x":1133,"y":55,"w":275,"h":17},"badge":{"x":1037,"y":920,"w":161,"h":24},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_verif":{"k_recues":{"x":313,"y":502,"w":313,"h":21},"k_reg":{"x":692,"y":502,"w":313,"h":21},"k_bloc":{"x":1070,"y":502,"w":313,"h":21},"c0163":{"x":288,"y":640,"w":1120,"h":123},"c0186":{"x":288,"y":775,"w":1120,"h":123},"verrou":{"x":327,"y":400,"w":240,"h":17},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_sig0163_a":{"panel":{"x":880,"y":255,"w":560,"h":900},"title":{"x":905,"y":289,"w":457,"h":21},"chip":{"x":905,"y":368,"w":84,"h":24},"ctrl_h":{"x":905,"y":707,"w":511,"h":18},"foot":{"x":905,"y":1097,"w":511,"h":42}},"m_sig0163_b":{"panel":{"x":880,"y":255,"w":560,"h":900},"title":{"x":905,"y":289,"w":457,"h":21},"chip":{"x":905,"y":28,"w":84,"h":24},"ctrl_h":{"x":905,"y":367,"w":511,"h":18},"foot":{"x":905,"y":1097,"w":511,"h":42},"q1":{"x":905,"y":394,"w":511,"h":119},"q2":{"x":905,"y":524,"w":511,"h":119},"q3":{"x":905,"y":655,"w":511,"h":119},"q4":{"x":905,"y":786,"w":511,"h":119},"obs":{"x":922,"y":946,"w":477,"h":18}},"m_sig0163_scroll":{"cls":"panneau-corps","max":340,"h":736,"sh":1076,"top0":0},"m_sig0186_a":{"panel":{"x":880,"y":255,"w":560,"h":900},"title":{"x":905,"y":289,"w":457,"h":21},"chip":{"x":905,"y":368,"w":184,"h":24},"ctrl_h":{"x":905,"y":685,"w":511,"h":18},"foot":{"x":905,"y":1097,"w":511,"h":42}},"m_sig0186_b":{"panel":{"x":880,"y":255,"w":560,"h":900},"title":{"x":905,"y":289,"w":457,"h":21},"chip":{"x":905,"y":50,"w":184,"h":24},"ctrl_h":{"x":905,"y":367,"w":511,"h":18},"foot":{"x":905,"y":1097,"w":511,"h":42},"q1":{"x":905,"y":394,"w":511,"h":119},"q2":{"x":905,"y":524,"w":511,"h":119},"q3":{"x":905,"y":655,"w":511,"h":119},"q4":{"x":905,"y":786,"w":511,"h":119},"obs":{"x":922,"y":946,"w":477,"h":18}},"m_sig0186_scroll":{"cls":"panneau-corps","max":318,"h":736,"sh":1054,"top0":0},"m_preuves":{"badge":{"x":608,"y":381,"w":161,"h":24},"counts":{"x":288,"y":381,"w":1120,"h":24},"r0356":{"x":289,"y":476,"w":1118,"h":92},"r0355":{"x":289,"y":568,"w":1118,"h":115},"r0357":{"x":289,"y":683,"w":1118,"h":92},"st0356":{"x":1216,"y":510,"w":175,"h":24},"garantit":{"x":327,"y":827,"w":181,"h":17},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_prv0356":{"panel":{"x":880,"y":255,"w":560,"h":900},"chips":{"x":1013,"y":368,"w":174,"h":24},"scelle":{"x":1119,"y":448,"w":74,"h":17},"chaine":{"x":905,"y":668,"w":511,"h":18},"t1":{"x":929,"y":752,"w":487,"h":21},"t2":{"x":929,"y":891,"w":487,"h":21},"i1":{"x":929,"y":851,"w":114,"h":24},"i2":{"x":929,"y":968,"w":114,"h":24}},"m_analyse0":{"launch":{"x":1231,"y":287,"w":177,"h":52},"idle":{"x":738,"y":655,"w":220,"h":21},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_analyse_run0":{"list":{"x":288,"y":507,"w":1120,"h":475}},"m_analyse":{"k_pieces":{"x":313,"y":525,"w":218,"h":21},"k_ops":{"x":597,"y":525,"w":218,"h":21},"rap":{"x":323,"y":695,"w":668,"h":21},"rap_title":{"x":323,"y":724,"w":668,"h":51},"rn1":{"x":323,"y":782,"w":668,"h":22},"p84":{"x":1040,"y":720,"w":318,"h":48},"p84box":{"x":1040,"y":776,"w":318,"h":21},"bcf":{"x":347,"y":858,"w":644,"h":45},"nedemontre":{"x":339,"y":994,"w":299,"h":17},"graph_h":{"x":288,"y":1819,"w":1120,"h":21},"graph":{"x":305,"y":1872,"w":708,"h":504},"n_bcf":{"x":443,"y":2168,"w":157,"h":15},"n_kmp":{"x":596,"y":2319,"w":172,"h":15},"n_ash":{"x":571,"y":2139,"w":167,"h":15},"n_imm":{"x":548,"y":1897,"w":185,"h":15},"ops_h":{"x":288,"y":2688,"w":1120,"h":21},"infra":{"x":305,"y":3514,"w":1086,"h":18},"infra_txt":{"x":305,"y":3541,"w":1086,"h":45},"nonctr":{"x":327,"y":400,"w":443,"h":17},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"m_avoirs":{"ri8":{"x":323,"y":417,"w":596,"h":21},"ri8_q":{"x":323,"y":450,"w":596,"h":35},"acquis":{"x":951,"y":413,"w":425,"h":21},"taux":{"x":951,"y":557,"w":425,"h":21},"k_prej":{"x":313,"y":695,"w":218,"h":21},"k_conf":{"x":1165,"y":695,"w":218,"h":21},"bar":{"x":313,"y":879,"w":1070,"h":21},"table":{"x":289,"y":1047,"w":1118,"h":661},"a071":{"x":289,"y":1093,"w":1118,"h":113},"a075":{"x":289,"y":1595,"w":1118,"h":113},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":56,"y":346,"w":148,"h":45},"n_avoirs":{"x":12,"y":405,"w":231,"h":44},"n_switch":{"x":56,"y":662,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"c_home":{"persona":{"x":1169,"y":55,"w":239,"h":17},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":55,"y":342,"w":176,"h":45},"n_avoirs":{"x":12,"y":397,"w":231,"h":44},"n_switch":{"x":56,"y":654,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"c_coord":{"k_ech":{"x":313,"y":399,"w":313,"h":21},"k_hd":{"x":692,"y":399,"w":313,"h":21},"k_taux":{"x":1070,"y":399,"w":313,"h":21},"hexa":{"x":860,"y":570,"w":515,"h":471},"qui":{"x":321,"y":603,"w":491,"h":21},"table":{"x":289,"y":1160,"w":1274,"h":658},"r_no41":{"x":289,"y":1205,"w":1274,"h":90},"r_cog":{"x":289,"y":1727,"w":1274,"h":90},"retard":{"x":1445,"y":1761,"w":95,"h":24},"registres":{"x":288,"y":1866,"w":1120,"h":25},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":{"x":12,"y":180,"w":231,"h":44},"n_preuves":{"x":12,"y":226,"w":231,"h":44},"n_analyse":{"x":12,"y":272,"w":231,"h":61},"n_coord":{"x":55,"y":342,"w":176,"h":45},"n_avoirs":{"x":12,"y":397,"w":231,"h":44},"n_switch":{"x":56,"y":654,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"f_home":{"persona":{"x":1166,"y":55,"w":242,"h":17},"niveau":{"x":885,"y":56,"w":203,"h":31},"vue":{"x":327,"y":423,"w":260,"h":17},"visible":{"x":313,"y":687,"w":839,"h":21},"h1":{"x":675,"y":816,"w":346,"h":22},"h2":{"x":1037,"y":816,"w":346,"h":22},"k_dem":{"x":313,"y":525,"w":313,"h":21},"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":null,"n_preuves":null,"n_analyse":null,"n_coord":{"x":55,"y":355,"w":176,"h":45},"n_avoirs":null,"n_switch":{"x":56,"y":692,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}},"f_coord":{"n_home":{"x":12,"y":134,"w":231,"h":44},"n_verif":null,"n_preuves":null,"n_analyse":null,"n_coord":{"x":55,"y":355,"w":176,"h":45},"n_avoirs":null,"n_switch":{"x":56,"y":692,"w":99,"h":21},"steps":{"x":327,"y":160,"w":138,"h":21}}};
+// put an absolutely positioned element over a page box (page px -> screen px), with padding
+function over(el, b, pad, dy) {
+  pad = pad === undefined ? 6 : pad; dy = dy || 0;
+  const e = typeof el === "string" ? document.querySelector(el) : el;
+  Object.assign(e.style, { left: ((b.x - pad) * K) + "px", top: ((b.y - pad + dy) * K) + "px", width: ((b.w + 2 * pad) * K) + "px", height: ((b.h + 2 * pad) * K) + "px" });
+  return e;
+}
+function hlOn(tl, el, t, d) { tl.fromTo(el, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: d || 0.35, ease: "expo.out" }, t); }
+function hlOff(tl, el, t, d) { tl.to(el, { opacity: 0, duration: d || 0.25, ease: "power2.in" }, t); }
+// move the cursor to page point (sx, sy), arriving at t, then click with a gold ring
+function clickAt(tl, cur, rip, sx, sy, t, move) {
+  move = move === undefined ? 0.6 : move;
+  const p = curPos(sx, sy);
+  if (move > 0) tl.to(cur, { x: p.x, y: p.y, duration: move, ease: "power2.inOut" }, t - move);
+  else tl.set(cur, { x: p.x, y: p.y }, t);
+  click(tl, cur, t);
+  if (rip) { tl.set(rip, { left: sx * K, top: sy * K }, t); tl.fromTo(rip, { scale: 0.2, opacity: 1 }, { scale: 1.6, opacity: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, t); }
+}
+// chapter card: numeral wipes in, label, rule, title words, message; leaves at tout
+function chapter(tl, root, tin, tout) {
+  const q = (s) => root.querySelector(s);
+  tl.fromTo(q(".chap-n"), { opacity: 1, clipPath: "inset(0 100% 0 0)", x: -30 }, { clipPath: "inset(0 0% 0 0)", x: 0, duration: 0.7, ease: "expo.out" }, tin);
+  tl.fromTo(q(".chap-k"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, tin + 0.12);
+  tl.fromTo(q(".chap-r"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, tin + 0.18);
+  wordsIn(tl, root.querySelectorAll(".chap-t .w"), tin + 0.22, 0.06, 0.4);
+  wordsIn(tl, root.querySelectorAll(".chap-m .w"), tin + 0.5, 0.025, 0.35);
+  tl.to(root, { opacity: 0, x: -60, filter: "blur(10px)", duration: 0.4, ease: "power3.in" }, tout);
+}
+function personaIn(tl, el, tin, tout) {
+  tl.fromTo(el, { opacity: 0, y: 24, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, tin);
+  if (tout) tl.to(el, { opacity: 0, y: 14, duration: 0.3, ease: "power2.in" }, tout);
+}
+// the Mac seen from the chapter position (room on the left for the card)
+const CHP = { x: 300, y: 18, scale: 0.64, rotationX: 5, rotationY: -13 };
+const OV = { x: 0, y: 30, scale: 0.8, rotationX: 8, rotationY: -6 };
+
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const NS = "http://www.w3.org/2000/svg";
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 94.6;
+      const at = (t) => t - T0;
+      const cur = "#s4-cur", rip = "#s4-rip";
+      const B = BOX;
+      gsap.set("#s4-cam", CHP);
+      gsap.set(cur, curPos(700, 560));
+      gsap.set(["#s4-conn", "#s4-chome", "#s4-coord", "#s4-fhome", "#s4-chap", "#s4-pC", "#s4-pF", "#s4-legend", "#s4-late", "#s4-per"], { opacity: 0 });
+      const SCROLL = (sel, y) => ({ y: -y * K });
+
+      /* ---------- chapter 4: change workstation, then one click on "Coordination des institutions" ---------- */
+      tl.set("#s4-chap", { opacity: 1 }, at(95.05));
+      chapter(tl, $("#s4-chap"), at(95.05), at(97.75));
+      const sw = B.m_home.n_switch;
+      over("#s4-h-sw", sw, 6);
+      clickAt(tl, cur, rip, sw.x + 30, sw.y + sw.h / 2, at(95.7), 0.65);
+      hlOn(tl, "#s4-h-sw", at(95.7), 0.2);
+      hlOff(tl, "#s4-h-sw", at(95.85), 0.1);
+      swap(tl, "#s4-an", "#s4-conn", at(95.8));
+      // "Changeons de poste" 96.18: the coordination workstation
+      const wc = B.connexion.w_coord;
+      over("#s4-h-wc", wc, 4);
+      tl.to("#s4-csc", Object.assign({ duration: 0.5, ease: "power2.inOut" }, SCROLL(0, 250)), at(95.95));
+      hlOn(tl, "#s4-h-wc", at(96.35));
+      clickAt(tl, cur, rip, 960, wc.y + 70 - 250, at(96.85), 0.55);
+      swap(tl, "#s4-conn", "#s4-chome", at(96.95));
+      tl.set("#s4-pC", { opacity: 1 }, at(97.0));
+      personaIn(tl, "#s4-pC", at(97.0), at(99.7));
+      const nc = B.c_home.n_coord;
+      over("#s4-h-nav", { x: 12, y: nc.y - 6, w: 231, h: nc.h + 12 }, 2);
+      clickAt(tl, cur, rip, 110, nc.y + nc.h / 2, at(97.7), 0.55);
+      hlOn(tl, "#s4-h-nav", at(97.7), 0.25);
+      hlOff(tl, "#s4-h-nav", at(98.5));
+      swap(tl, "#s4-chome", "#s4-coord", at(97.8));
+
+      /* ---------- "L'arrêté ministériel a créé l'UNICEP" 99.88 – 101.56: the coordination's figures ---------- */
+      tl.to("#s4-cam", Object.assign({ duration: 1.1, ease: "power2.inOut" }, camAt(848, 470, 1.3)), at(98.2));
+      tl.to(cur, Object.assign({ duration: 0.8, ease: "power2.inOut" }, curPos(1230, 640)), at(98.6));
+      const C = B.c_coord;
+      over("#s4-h-ech", { x: 288, y: 372, w: 338, h: 102 }, 3);
+      over("#s4-h-hd", { x: 667, y: 372, w: 338, h: 102 }, 3);
+      over("#s4-h-taux", { x: 1046, y: 372, w: 362, h: 102 }, 3);
+      hlOn(tl, "#s4-h-ech", at(100.3));
+      hlOn(tl, "#s4-h-hd", at(100.95));
+      hlOn(tl, "#s4-h-taux", at(101.55));
+      hlOff(tl, ["#s4-h-ech", "#s4-h-hd", "#s4-h-taux"], at(102.3));
+
+      /* ---------- "…la météo en temps réel" 103.63: weather on the app's own hexagon ---------- */
+      tl.set(cur, { opacity: 0 }, at(102.2));
+      tl.to("#s4-sc", Object.assign({ duration: 0.9, ease: "power2.inOut" }, SCROLL(0, 290)), at(102.2));
+      tl.to("#s4-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(1119, 805 - 290, 2.05, 960, 500)), at(102.15));
+      // nodes measured on the capture (page px): Parquet, CENAREF, APLC, COGEBISCO, GUCE, IGF
+      const NODES = [[1117.4, 668.4, 0, -1], [1236.0, 736.9, 1, -0.5], [1236.0, 873.7, 1, 0.5], [1117.4, 942.2, 0, 1], [998.9, 873.7, -1, 0.5], [998.8, 736.9, -1, -0.5]];
+      const SUN = '<circle cx="15" cy="15" r="7" fill="#ECC657"/>' + [0, 45, 90, 135, 180, 225, 270, 315].map((a) => { const r = a * Math.PI / 180; return `<line x1="${(15 + 10 * Math.cos(r)).toFixed(1)}" y1="${(15 + 10 * Math.sin(r)).toFixed(1)}" x2="${(15 + 14 * Math.cos(r)).toFixed(1)}" y2="${(15 + 14 * Math.sin(r)).toFixed(1)}" stroke="#D8A828" stroke-width="2.4" stroke-linecap="round"/>`; }).join("");
+      const STORM = '<path d="M7 19 a6 6 0 0 1 1-12 a8 8 0 0 1 15 2 a5 5 0 0 1 0 10 Z" fill="#5b6470"/><path d="M15 17 L11 25 H16 L13 32" fill="none" stroke="#e0533f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>';
+      const wx = $("#s4-wx");
+      NODES.forEach(([x, y, dx, dy], i) => {
+        const d = document.createElement("div"); d.className = "s4-wx"; d.id = "s4-w" + i;
+        d.innerHTML = `<svg viewBox="0 0 30 30">${i === 3 ? STORM : SUN}</svg>`;
+        // sit just outside the node, away from the label
+        // on the spoke, a third of the way to the hub (labels sit outside the hexagon)
+        const gx = x + 0.34 * (1119.4 - x), gy = y + 0.34 * (804.3 - y);
+        d.style.left = (gx * K) + "px"; d.style.top = (gy * K) + "px";
+        wx.appendChild(d);
+        tl.fromTo(d, { opacity: 0, scale: 0.3, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.2)" }, at(103.6) + i * 0.12);
+      });
+      tl.set("#s4-legend", { opacity: 1 }, at(104.3));
+      tl.fromTo("#s4-legend .chip", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out", stagger: 0.15 }, at(104.35));
+
+      /* ---------- "…quelle institution répond dans les délais (106.4) … où se situent les blocages (108.24)" ---------- */
+      tl.to("#s4-legend", { opacity: 0, y: 20, duration: 0.3, ease: "power2.in" }, at(106.3));
+      tl.to("#s4-sc", Object.assign({ duration: 0.9, ease: "power2.inOut" }, SCROLL(0, 960)), at(105.25));
+      tl.to("#s4-cam", Object.assign({ duration: 0.95, ease: "power2.inOut" }, camAt(848, 1510 - 960, 1.18)), at(105.2));
+      const ROWS = [[1205, 91], [1296, 113], [1409, 114], [1523, 113], [1636, 91], [1727, 91]];
+      ROWS.forEach(([y, h], i) => over("#s4-h-r" + i, { x: 289, y, w: 1119, h }, 1));
+      for (let i = 0; i < 5; i++) hlOn(tl, "#s4-h-r" + i, at(106.2) + i * 0.13);
+      hlOff(tl, ["#s4-h-r0", "#s4-h-r1", "#s4-h-r2", "#s4-h-r3", "#s4-h-r4"], at(107.9));
+      hlOn(tl, "#s4-h-r5", at(108.2));
+      tl.fromTo("#s4-h-r5", { boxShadow: "0 0 0 5px rgba(194,65,47,.18), 0 0 26px rgba(194,65,47,.5)" }, { boxShadow: "0 0 0 12px rgba(194,65,47,.10), 0 0 40px rgba(194,65,47,.7)", duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, at(108.4));
+      tl.set("#s4-late", { opacity: 1, left: 1260, top: 774 }, at(108.3));
+      tl.fromTo("#s4-late .chip", { opacity: 0, x: 30, scale: 0.85 }, { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, at(108.35));
+
+      /* ---------- change workstation: the CENAREF focal point (109.3 – 110.4) ---------- */
+      tl.to("#s4-late", { opacity: 0, duration: 0.2 }, at(109.45));
+      hlOff(tl, "#s4-h-r5", at(109.2));
+      tl.to("#s4-cam", Object.assign({ duration: 0.75, ease: "power2.inOut" }, camAt(560, 520, 1.05)), at(109.15));
+      const fsw = B.c_home.n_switch;
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(420, 600)), at(109.1));
+      clickAt(tl, cur, rip, fsw.x + 30, fsw.y + fsw.h / 2, at(109.55), 0.4);
+      swap(tl, "#s4-coord", "#s4-conn", at(109.65));
+      tl.set("#s4-h-wc", { opacity: 0 }, at(109.65));
+      tl.set("#s4-csc", SCROLL(0, 560), at(109.65));
+      const wf = B.connexion.w_cenaref;
+      over("#s4-h-wf", wf, 4);
+      over("#s4-h-strike", { x: 692, y: 1184, w: 640, h: 66 }, 4);
+      tl.to("#s4-cam", Object.assign({ duration: 0.6, ease: "power2.inOut" }, camAt(1015, wf.y + 165 - 560, 1.35)), at(109.7));
+      hlOn(tl, "#s4-h-wf", at(109.75), 0.25);
+      hlOn(tl, "#s4-h-strike", at(109.95), 0.25);
+      clickAt(tl, cur, rip, 900, wf.y + 70 - 560, at(110.3), 0.4);
+      swap(tl, "#s4-conn", "#s4-fhome", at(110.4));
+      tl.set("#s4-pF", { opacity: 1 }, at(110.45));
+      personaIn(tl, "#s4-pF", at(110.45), at(113.3));
+
+      /* ---------- "Vu depuis la CENAREF, le même dossier se réduit à une seule demande" 110.58 – 114.02 ---------- */
+      tl.set(cur, { opacity: 0 }, at(110.6));
+      tl.to("#s4-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(848, 600, 1.2)), at(110.5));
+      const F = B.f_home;
+      over("#s4-h-vue", { x: 288, y: 404, w: 1120, h: 78 }, 3);
+      over("#s4-h-er", { x: 305, y: 728, w: 330, h: 50 }, 4);
+      hlOn(tl, "#s4-h-vue", at(111.1));
+      hlOff(tl, "#s4-h-vue", at(113.1));
+      hlOn(tl, "#s4-h-er", at(113.5));
+      // "ni pièces sous scellé (114.82), ni personnes mises en cause (116.10)"
+      over("#s4-h-locks", { x: 14, y: 182, w: 228, h: 290 }, 2);
+      hlOn(tl, "#s4-h-locks", at(114.8));
+      over("#s4-h-h1", F.h1, 8);
+      over("#s4-h-h2", F.h2, 8);
+      hlOn(tl, ["#s4-h-h1", "#s4-h-h2"], at(116.1));
+
+      /* ---------- "Le secret de l'instruction est appliqué par le système lui-même" 117.50 – 120.81 ---------- */
+      hlOff(tl, ["#s4-h-er", "#s4-h-locks", "#s4-h-h1", "#s4-h-h2"], at(117.3));
+      tl.to("#s4-cam", { opacity: 0, scale: 0.9, filter: "blur(12px)", duration: 0.5, ease: "power2.in" }, at(117.3));
+      tl.set("#s4-per", { opacity: 1 }, at(117.55));
+      tl.fromTo("#s4-per h2", { opacity: 0, y: -16, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, at(117.6));
+      ["#s4-c0", "#s4-c1", "#s4-c2"].forEach((c, i) => tl.fromTo(c, { opacity: 0, y: 50, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, at(117.75) + i * 0.15));
+      // the locked modules of the CENAREF post (sidebar y of each lock in page px)
+      const LK = [203, 251, 310, 443], lks = $("#s4-lks");
+      const S = 300 / 256;
+      LK.forEach((y, i) => {
+        const d = document.createElement("div"); d.className = "s4-lk"; d.id = "s4-lk" + i;
+        d.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2" fill="#fff" stroke="none"/><path d="M8 11 V8 a4 4 0 0 1 8 0 V11"/></svg>';
+        d.style.left = (1225 + 222 * S) + "px"; d.style.top = (170 + 118 + (y - 120) * S) + "px";
+        lks.appendChild(d);
+        tl.fromTo(d, { opacity: 0, scale: 2 }, { opacity: 1, scale: 1, duration: 0.22, ease: "power4.in" }, at(119.0) + i * 0.12);
+      });
+
+      /* ---------- hand-over to chapter 5 ---------- */
+      tl.to("#s4-per", { opacity: 0, scale: 1.04, filter: "blur(12px)", duration: 0.45, ease: "power2.in" }, at(121.0));
+      tl.set("#s4-cam", Object.assign({ filter: "blur(0px)" }, CHP), at(121.3));
+      tl.to("#s4-cam", { opacity: 1, duration: 0.45, ease: "power2.out" }, at(121.32));
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(700, 560)), at(121.5));
+      window.__timelines["s4"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,237 @@
+<template>
+  <style>
+    /*@BASE*/
+    .s4-wx { position: absolute; width: 30px; height: 30px; margin: -15px 0 0 -15px; opacity: 0; }
+    .s4-wx svg { width: 30px; height: 30px; overflow: visible; }
+    #s4-legend { position: absolute; left: 0; width: 1920px; top: 952px; display: flex; justify-content: center; gap: 22px; }
+    #s4-legend .chip { font-size: 28px; padding: 14px 24px 14px 18px; box-shadow: 0 16px 34px rgba(0,0,0,.4); }
+    #s4-late { position: absolute; left: 0; top: 0; }
+    #s4-late .chip { font-size: 26px; box-shadow: 0 16px 34px rgba(0,0,0,.4); }
+    /* three perimeters */
+    #s4-per { position: absolute; inset: 0; }
+    #s4-per h2 { position: absolute; left: 0; width: 1920px; top: 64px; text-align: center; font-family: "Fraunces", serif; font-weight: 600; font-size: 54px; color: var(--cream); letter-spacing: -0.01em; }
+    .s4-col { position: absolute; top: 170px; width: 300px; }
+    .s4-col .hd { height: 118px; }
+    .s4-col .rl { font-size: 28px; font-weight: 700; color: var(--cream); white-space: nowrap; }
+    .s4-col .lv { display: inline-block; margin-top: 10px; font-size: 19px; font-weight: 600; padding: 7px 12px; border-radius: 6px; background: #efe9dc; color: #4a4033; white-space: nowrap; }
+    .s4-col .lv.cl { background: var(--redbg); color: var(--red); }
+    .s4-side { width: 300px; height: 680px; border-radius: 16px; background-repeat: no-repeat; background-size: 1685px auto; background-position: 0 -140px; background-color: #031829;
+      border: 1.5px solid rgba(244,241,234,.2); box-shadow: 0 26px 60px rgba(0,0,0,.45); }
+    .s4-lk { position: absolute; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: #9b2c24; display: flex; align-items: center; justify-content: center; opacity: 0; box-shadow: 0 8px 18px rgba(0,0,0,.4); }
+    .s4-lk svg { width: 24px; height: 24px; }
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1920" data-height="1080">
+    <div class="stage">
+      <div class="cam" id="s4-cam">
+<!--@MAC:s4-->
+        <div class="pg" id="s4-an">
+          <div class="pg-sc" style="transform: translateY(-2686.3px)"><div class="pg-img" style="background-image:url(assets/ui/m_analyse.webp); height: 3561.8px"></div></div>
+          <div class="pg-chrome" style="background-image:url(assets/ui/m_analyse_v.webp)"></div>
+        </div>
+        <div class="pg" id="s4-conn">
+          <div class="pg-sc" id="s4-csc">
+            <div class="pg-img" style="background-image:url(assets/ui/connexion.webp); height: 1444.7px"></div>
+            <div class="hl" id="s4-h-wc"></div>
+            <div class="hl red" id="s4-h-wf"></div>
+            <div class="hl red" id="s4-h-strike"></div>
+          </div>
+        </div>
+        <div class="scr" id="s4-chome" style="background-image:url(assets/ui/c_home.webp)"></div>
+        <div class="pg" id="s4-coord">
+          <div class="pg-sc" id="s4-sc">
+            <div class="pg-img" style="background-image:url(assets/ui/c_coord.webp); height: 2312.9px"></div>
+            <div class="hl" id="s4-h-ech"></div>
+            <div class="hl red" id="s4-h-hd"></div>
+            <div class="hl" id="s4-h-taux"></div>
+            <div class="hl green" id="s4-h-r0"></div>
+            <div class="hl green" id="s4-h-r1"></div>
+            <div class="hl green" id="s4-h-r2"></div>
+            <div class="hl green" id="s4-h-r3"></div>
+            <div class="hl green" id="s4-h-r4"></div>
+            <div class="hl red" id="s4-h-r5"></div>
+            <div id="s4-wx"></div>
+          </div>
+          <div class="pg-chrome" style="background-image:url(assets/ui/c_coord_v.webp)"></div>
+        </div>
+        <div class="scr" id="s4-fhome" style="background-image:url(assets/ui/f_home.webp)"></div>
+        <div class="hl" id="s4-h-nav"></div>
+        <div class="hl" id="s4-h-sw"></div>
+        <div class="hl" id="s4-h-vue"></div>
+        <div class="hl" id="s4-h-er"></div>
+        <div class="hl red" id="s4-h-locks"></div>
+        <div class="hl red" id="s4-h-h1"></div>
+        <div class="hl red" id="s4-h-h2"></div>
+        <div class="rip" id="s4-rip"></div>
+<!--@/MAC-->
+      </div>
+    </div>
+    <div class="chap" id="s4-chap">
+      <div class="chap-n">04</div>
+      <div class="chap-k">Quatrième écran · 4 / 5</div>
+      <div class="chap-r"></div>
+      <div class="chap-t"><span class="w">La</span> <span class="w">météo</span> <span class="w">de</span> <span class="w">la</span> <span class="w">coopération</span></div>
+      <div class="chap-m"><span class="w">Qui</span> <span class="w">répond</span> <span class="w">dans</span> <span class="w">les</span> <span class="w">délais,</span> <span class="w">et</span> <span class="w">où</span> <span class="w">sont</span> <span class="w">les</span> <span class="w">blocages.</span></div>
+    </div>
+    <div class="persona" id="s4-pC" style="left:60px; top:930px"><div class="av">IM</div><div><div class="nm">Ilunga Mwadi Josephine</div><div class="rl">Coordonnatrice UNICEP · secret judiciaire, niveau 1</div></div></div>
+    <div class="persona" id="s4-pF" style="left:60px; top:930px"><div class="av" style="border-color:#c2412f">NL</div><div><div class="nm">Nsimba Lelo Georgine</div><div class="rl">Point focal CENAREF · accès cloisonné, niveau 3</div></div></div>
+    <div id="s4-legend"><span class="chip green">Dans les délais · 5</span><span class="chip red">Hors délai · 1</span><span class="chip blue">Taux de réponse · 83 %</span></div>
+    <div id="s4-late"><span class="chip red">En retard · relance à émettre</span></div>
+    <div id="s4-per">
+      <h2>Un dossier, trois périmètres d'habilitation</h2>
+      <div class="s4-col" id="s4-c0" style="left:395px"><div class="hd"><div class="rl">Magistrat du Parquet</div><div class="lv">Secret judiciaire — niveau 1</div></div><div class="s4-side" style="background-image:url(assets/ui/m_home.webp)"></div></div>
+      <div class="s4-col" id="s4-c1" style="left:810px"><div class="hd"><div class="rl">Coordonnateur UNICEP</div><div class="lv">Secret judiciaire — niveau 1</div></div><div class="s4-side" style="background-image:url(assets/ui/c_home.webp)"></div></div>
+      <div class="s4-col" id="s4-c2" style="left:1225px"><div class="hd"><div class="rl">Point focal CENAREF</div><div class="lv cl">Accès cloisonné — niveau 3</div></div><div class="s4-side" style="background-image:url(assets/ui/f_home.webp)"></div></div>
+      <div id="s4-lks"></div>
+    </div>
+  </div>
+  <script>
+    /*@HELPERS*/
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const NS = "http://www.w3.org/2000/svg";
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 94.6;
+      const at = (t) => t - T0;
+      const cur = "#s4-cur", rip = "#s4-rip";
+      const B = BOX;
+      gsap.set("#s4-cam", CHP);
+      gsap.set(cur, curPos(700, 560));
+      gsap.set(["#s4-conn", "#s4-chome", "#s4-coord", "#s4-fhome", "#s4-chap", "#s4-pC", "#s4-pF", "#s4-legend", "#s4-late", "#s4-per"], { opacity: 0 });
+      const SCROLL = (sel, y) => ({ y: -y * K });
+
+      /* ---------- chapter 4: change workstation, then one click on "Coordination des institutions" ---------- */
+      tl.set("#s4-chap", { opacity: 1 }, at(95.05));
+      chapter(tl, $("#s4-chap"), at(95.05), at(97.75));
+      const sw = B.m_home.n_switch;
+      over("#s4-h-sw", sw, 6);
+      clickAt(tl, cur, rip, sw.x + 30, sw.y + sw.h / 2, at(95.7), 0.65);
+      hlOn(tl, "#s4-h-sw", at(95.7), 0.2);
+      hlOff(tl, "#s4-h-sw", at(95.85), 0.1);
+      swap(tl, "#s4-an", "#s4-conn", at(95.8));
+      // "Changeons de poste" 96.18: the coordination workstation
+      const wc = B.connexion.w_coord;
+      over("#s4-h-wc", wc, 4);
+      tl.to("#s4-csc", Object.assign({ duration: 0.5, ease: "power2.inOut" }, SCROLL(0, 250)), at(95.95));
+      hlOn(tl, "#s4-h-wc", at(96.35));
+      clickAt(tl, cur, rip, 960, wc.y + 70 - 250, at(96.85), 0.55);
+      swap(tl, "#s4-conn", "#s4-chome", at(96.95));
+      tl.set("#s4-pC", { opacity: 1 }, at(97.0));
+      personaIn(tl, "#s4-pC", at(97.0), at(99.7));
+      const nc = B.c_home.n_coord;
+      over("#s4-h-nav", { x: 12, y: nc.y - 6, w: 231, h: nc.h + 12 }, 2);
+      clickAt(tl, cur, rip, 110, nc.y + nc.h / 2, at(97.7), 0.55);
+      hlOn(tl, "#s4-h-nav", at(97.7), 0.25);
+      hlOff(tl, "#s4-h-nav", at(98.5));
+      swap(tl, "#s4-chome", "#s4-coord", at(97.8));
+
+      /* ---------- "L'arrêté ministériel a créé l'UNICEP" 99.88 – 101.56: the coordination's figures ---------- */
+      tl.to("#s4-cam", Object.assign({ duration: 1.1, ease: "power2.inOut" }, camAt(848, 470, 1.3)), at(98.2));
+      tl.to(cur, Object.assign({ duration: 0.8, ease: "power2.inOut" }, curPos(1230, 640)), at(98.6));
+      const C = B.c_coord;
+      over("#s4-h-ech", { x: 288, y: 372, w: 338, h: 102 }, 3);
+      over("#s4-h-hd", { x: 667, y: 372, w: 338, h: 102 }, 3);
+      over("#s4-h-taux", { x: 1046, y: 372, w: 362, h: 102 }, 3);
+      hlOn(tl, "#s4-h-ech", at(100.3));
+      hlOn(tl, "#s4-h-hd", at(100.95));
+      hlOn(tl, "#s4-h-taux", at(101.55));
+      hlOff(tl, ["#s4-h-ech", "#s4-h-hd", "#s4-h-taux"], at(102.3));
+
+      /* ---------- "…la météo en temps réel" 103.63: weather on the app's own hexagon ---------- */
+      tl.set(cur, { opacity: 0 }, at(102.2));
+      tl.to("#s4-sc", Object.assign({ duration: 0.9, ease: "power2.inOut" }, SCROLL(0, 290)), at(102.2));
+      tl.to("#s4-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(1119, 805 - 290, 2.05, 960, 500)), at(102.15));
+      // nodes measured on the capture (page px): Parquet, CENAREF, APLC, COGEBISCO, GUCE, IGF
+      const NODES = [[1117.4, 668.4, 0, -1], [1236.0, 736.9, 1, -0.5], [1236.0, 873.7, 1, 0.5], [1117.4, 942.2, 0, 1], [998.9, 873.7, -1, 0.5], [998.8, 736.9, -1, -0.5]];
+      const SUN = '<circle cx="15" cy="15" r="7" fill="#ECC657"/>' + [0, 45, 90, 135, 180, 225, 270, 315].map((a) => { const r = a * Math.PI / 180; return `<line x1="${(15 + 10 * Math.cos(r)).toFixed(1)}" y1="${(15 + 10 * Math.sin(r)).toFixed(1)}" x2="${(15 + 14 * Math.cos(r)).toFixed(1)}" y2="${(15 + 14 * Math.sin(r)).toFixed(1)}" stroke="#D8A828" stroke-width="2.4" stroke-linecap="round"/>`; }).join("");
+      const STORM = '<path d="M7 19 a6 6 0 0 1 1-12 a8 8 0 0 1 15 2 a5 5 0 0 1 0 10 Z" fill="#5b6470"/><path d="M15 17 L11 25 H16 L13 32" fill="none" stroke="#e0533f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>';
+      const wx = $("#s4-wx");
+      NODES.forEach(([x, y, dx, dy], i) => {
+        const d = document.createElement("div"); d.className = "s4-wx"; d.id = "s4-w" + i;
+        d.innerHTML = `<svg viewBox="0 0 30 30">${i === 3 ? STORM : SUN}</svg>`;
+        // sit just outside the node, away from the label
+        // on the spoke, a third of the way to the hub (labels sit outside the hexagon)
+        const gx = x + 0.34 * (1119.4 - x), gy = y + 0.34 * (804.3 - y);
+        d.style.left = (gx * K) + "px"; d.style.top = (gy * K) + "px";
+        wx.appendChild(d);
+        tl.fromTo(d, { opacity: 0, scale: 0.3, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.2)" }, at(103.6) + i * 0.12);
+      });
+      tl.set("#s4-legend", { opacity: 1 }, at(104.3));
+      tl.fromTo("#s4-legend .chip", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out", stagger: 0.15 }, at(104.35));
+
+      /* ---------- "…quelle institution répond dans les délais (106.4) … où se situent les blocages (108.24)" ---------- */
+      tl.to("#s4-legend", { opacity: 0, y: 20, duration: 0.3, ease: "power2.in" }, at(106.3));
+      tl.to("#s4-sc", Object.assign({ duration: 0.9, ease: "power2.inOut" }, SCROLL(0, 960)), at(105.25));
+      tl.to("#s4-cam", Object.assign({ duration: 0.95, ease: "power2.inOut" }, camAt(848, 1510 - 960, 1.18)), at(105.2));
+      const ROWS = [[1205, 91], [1296, 113], [1409, 114], [1523, 113], [1636, 91], [1727, 91]];
+      ROWS.forEach(([y, h], i) => over("#s4-h-r" + i, { x: 289, y, w: 1119, h }, 1));
+      for (let i = 0; i < 5; i++) hlOn(tl, "#s4-h-r" + i, at(106.2) + i * 0.13);
+      hlOff(tl, ["#s4-h-r0", "#s4-h-r1", "#s4-h-r2", "#s4-h-r3", "#s4-h-r4"], at(107.9));
+      hlOn(tl, "#s4-h-r5", at(108.2));
+      tl.fromTo("#s4-h-r5", { boxShadow: "0 0 0 5px rgba(194,65,47,.18), 0 0 26px rgba(194,65,47,.5)" }, { boxShadow: "0 0 0 12px rgba(194,65,47,.10), 0 0 40px rgba(194,65,47,.7)", duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1, immediateRender: false }, at(108.4));
+      tl.set("#s4-late", { opacity: 1, left: 1260, top: 774 }, at(108.3));
+      tl.fromTo("#s4-late .chip", { opacity: 0, x: 30, scale: 0.85 }, { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, at(108.35));
+
+      /* ---------- change workstation: the CENAREF focal point (109.3 – 110.4) ---------- */
+      tl.to("#s4-late", { opacity: 0, duration: 0.2 }, at(109.45));
+      hlOff(tl, "#s4-h-r5", at(109.2));
+      tl.to("#s4-cam", Object.assign({ duration: 0.75, ease: "power2.inOut" }, camAt(560, 520, 1.05)), at(109.15));
+      const fsw = B.c_home.n_switch;
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(420, 600)), at(109.1));
+      clickAt(tl, cur, rip, fsw.x + 30, fsw.y + fsw.h / 2, at(109.55), 0.4);
+      swap(tl, "#s4-coord", "#s4-conn", at(109.65));
+      tl.set("#s4-h-wc", { opacity: 0 }, at(109.65));
+      tl.set("#s4-csc", SCROLL(0, 560), at(109.65));
+      const wf = B.connexion.w_cenaref;
+      over("#s4-h-wf", wf, 4);
+      over("#s4-h-strike", { x: 692, y: 1184, w: 640, h: 66 }, 4);
+      tl.to("#s4-cam", Object.assign({ duration: 0.6, ease: "power2.inOut" }, camAt(1015, wf.y + 165 - 560, 1.35)), at(109.7));
+      hlOn(tl, "#s4-h-wf", at(109.75), 0.25);
+      hlOn(tl, "#s4-h-strike", at(109.95), 0.25);
+      clickAt(tl, cur, rip, 900, wf.y + 70 - 560, at(110.3), 0.4);
+      swap(tl, "#s4-conn", "#s4-fhome", at(110.4));
+      tl.set("#s4-pF", { opacity: 1 }, at(110.45));
+      personaIn(tl, "#s4-pF", at(110.45), at(113.3));
+
+      /* ---------- "Vu depuis la CENAREF, le même dossier se réduit à une seule demande" 110.58 – 114.02 ---------- */
+      tl.set(cur, { opacity: 0 }, at(110.6));
+      tl.to("#s4-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(848, 600, 1.2)), at(110.5));
+      const F = B.f_home;
+      over("#s4-h-vue", { x: 288, y: 404, w: 1120, h: 78 }, 3);
+      over("#s4-h-er", { x: 305, y: 728, w: 330, h: 50 }, 4);
+      hlOn(tl, "#s4-h-vue", at(111.1));
+      hlOff(tl, "#s4-h-vue", at(113.1));
+      hlOn(tl, "#s4-h-er", at(113.5));
+      // "ni pièces sous scellé (114.82), ni personnes mises en cause (116.10)"
+      over("#s4-h-locks", { x: 14, y: 182, w: 228, h: 290 }, 2);
+      hlOn(tl, "#s4-h-locks", at(114.8));
+      over("#s4-h-h1", F.h1, 8);
+      over("#s4-h-h2", F.h2, 8);
+      hlOn(tl, ["#s4-h-h1", "#s4-h-h2"], at(116.1));
+
+      /* ---------- "Le secret de l'instruction est appliqué par le système lui-même" 117.50 – 120.81 ---------- */
+      hlOff(tl, ["#s4-h-er", "#s4-h-locks", "#s4-h-h1", "#s4-h-h2"], at(117.3));
+      tl.to("#s4-cam", { opacity: 0, scale: 0.9, filter: "blur(12px)", duration: 0.5, ease: "power2.in" }, at(117.3));
+      tl.set("#s4-per", { opacity: 1 }, at(117.55));
+      tl.fromTo("#s4-per h2", { opacity: 0, y: -16, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, at(117.6));
+      ["#s4-c0", "#s4-c1", "#s4-c2"].forEach((c, i) => tl.fromTo(c, { opacity: 0, y: 50, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, at(117.75) + i * 0.15));
+      // the locked modules of the CENAREF post (sidebar y of each lock in page px)
+      const LK = [203, 251, 310, 443], lks = $("#s4-lks");
+      const S = 300 / 256;
+      LK.forEach((y, i) => {
+        const d = document.createElement("div"); d.className = "s4-lk"; d.id = "s4-lk" + i;
+        d.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2" fill="#fff" stroke="none"/><path d="M8 11 V8 a4 4 0 0 1 8 0 V11"/></svg>';
+        d.style.left = (1225 + 222 * S) + "px"; d.style.top = (170 + 118 + (y - 120) * S) + "px";
+        lks.appendChild(d);
+        tl.fromTo(d, { opacity: 0, scale: 2 }, { opacity: 1, scale: 1, duration: 0.22, ease: "power4.in" }, at(119.0) + i * 0.12);
+      });
+
+      /* ---------- hand-over to chapter 5 ---------- */
+      tl.to("#s4-per", { opacity: 0, scale: 1.04, filter: "blur(12px)", duration: 0.45, ease: "power2.in" }, at(121.0));
+      tl.set("#s4-cam", Object.assign({ filter: "blur(0px)" }, CHP), at(121.3));
+      tl.to("#s4-cam", { opacity: 1, duration: 0.45, ease: "power2.out" }, at(121.32));
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(700, 560)), at(121.5));
+      window.__timelines["s4"] = tl;
+    })();
+  </script>
+</template>

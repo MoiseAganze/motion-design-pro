@@ -1,49 +1,74 @@
-# REVIEW — KWIKAMA, « Un dossier, dix-huit institutions »
+# REVIEW — KWIKAMA v2, « Le dossier en cinq écrans »
 
-Film 1920 x 1080, 30 fps, 127 s (3 810 images). Rendu : `renders/kwikama-presentation.mp4`.
+- **Format :** 1920 x 1080, 30 fps, 153 s.
+- **Rendu :** `renders/kwikama-demonstration.mp4`.
+- **Application filmée :** https://kwikamademo.vercel.app/.
 
-## Choix créatifs
+## Ce qui a changé par rapport à la v1, et pourquoi
 
-- **Un seul dossier traverse le film.** DPJ-2026-014 (Kolwezi, 12,6 M$US de redevances minières non reversées) va du signalement du sonneur d'alerte au Parquet. Chaque étape suit le manuel EFP : vérification §9.3, numéro unique, 23 étapes et réquisitions, traçage des flux, scellés et chaîne de possession, avoirs, assurance qualité en 7 stations, Parquet, journal d'audit.
-- **Chaîne d'objets plutôt que des coupes.** Chaque plan finit sur l'objet qui ouvre le suivant : lettre → 18 tuiles → bouclier → Mac → carte « Validée » → numéro → graphe → scellé → montant → rapport → Parquet → logo. Les seules coupes franches sont le flash du bouclier (28,6 s) et le fouet entre les avoirs et l'AQ (98,4 s).
-- **Deux mondes.** Une « nuit » marine reprend le vrai fond du site (#031829), avec les arcs or et bleu inspirés des vidéos de référence. Le « papier » est l'UI réelle, filmée dans un MacBook en 3D. L'or est réservé à l'argent, au montant, au bouclier et au bouton final.
-- **Les écrans sont les vrais.** Ce sont des captures 2x de kwikama.vercel.app, prises avec les comptes de démo (Coordonnateur, Chef d'équipe, Magistrat, Administrateur). Les cartes « extraites » (rôles, SIG-2026-0163, RQ-2026-0102/0103, PRV-2026-0355, avoirs) sont reconstruites à partir des mêmes données.
-- **Voix off.** ElevenLabs, voix `PSVUmed8NvS8aUA3d5oO`, modèle eleven_v4, en 14 phrases. La voix sert d'horloge et l'image est calée au mot près grâce à la transcription Scribe.
-- **Musique composée pour le film** (`tools/music/compose.py`).
-  - Elle part d'un drone et d'une horloge pendant le problème, puis tient une respiration quasi silencieuse après le tampon « Classé sans suite ».
-  - Elle s'ouvre en ré majeur sur le bouclier, avec un groove à 100 BPM pendant le parcours, un sommet sur le flux d'argent (76,6 s) et une résolution sur le logo (115,0 s).
-  - Les 84 effets sonores ont tous une cause à l'écran.
+| Point | Choix | Pourquoi |
+|---|---|---|
+| Parcours | Les cinq écrans de la note de démonstration, dans son ordre : contrôle de légalité, preuves et scellés, analyse et enquête financière, coordination, avoirs (RI 8) | « En 5 clics, pas un de plus » |
+| Fil rouge | Le dossier DPJ-2026-014 | Il est présent sur chaque écran |
+| Messages au Ministre | Repris presque mot pour mot ; seule la formule « Monsieur le Ministre » est retirée | Le film peut ainsi être montré à d'autres publics |
+| Changement de rôle | Montré deux fois en vrai, avec le bouton « Changer de rôle » et la page « Choisir un poste de travail » : Magistrat → Coordonnateur UNICEP, puis → Point focal CENAREF pendant 15 s (modules verrouillés, « hors habilitation »), enfin retour au Magistrat pour les avoirs | Conseil de la note, et « chorégraphie conseillée » de l'app |
+| Écrans à double tranchant | Passerelles d'interconnexion (les trois registres de l'État) et sélecteur de rôles laissés hors champ | Avertissement de la note (« à réfléchir avec Zaina ») |
+| « Bandeau jaune » | L'encadré « Infrastructure requise » de l'écran d'analyse est surligné en or au moment de la phrase sur l'infrastructure souveraine | Dans la nouvelle version, c'est cet encadré qui porte le message |
+| Apothéose | Le panneau bleu nuit « Résultat immédiat 8 du GAFI » de l'écran Avoirs s'ouvre en plein cadre (3 550 000 $US acquis, 3 436 000 $US sous main de justice, 73 %), puis la signature | Conclusion demandée par la note |
+| Pied de page final | Libellé de la nouvelle app : « Supervision : Ministère de la Justice, autorité de tutelle de l'UNICEP » | L'hébergement APLC et les bailleurs, cités en v1, n'apparaissent plus dans la nouvelle version |
 
-## Pistes non construites (voir STORYLINES.md)
+## Cohérence des animations
 
-- **B — « Suivre l'argent »** : le résultat d'abord. On montre les 12,6 M$ en traits d'or jusqu'à l'immeuble de Lubumbashi, puis on remonte comment KWIKAMA a rendu ce trajet visible.
-- **C — « La procédure, en typographie »** : les 23 étapes du manuel en typographie cinétique géante, coupées sur le temps, avec des éclats d'écrans réels.
+Chaque chapitre suit la même grammaire :
 
-## Ce qui a été mesuré, regardé, ou pas vérifié
+1. **Carte de chapitre :** le Mac recule à droite (position `CHP`) et le numéro or 01–05 entre à gauche, avec le titre et une ligne-message.
+2. **Clic :** le curseur clique le module dans la vraie barre latérale (anneau or).
+3. **Plongée :** la caméra entre dans l'écran, et des cadres or désignent chaque élément au mot près de la voix.
+4. **Illustration :** quand l'idée dépasse l'écran, une illustration réutilise les composants de l'app (cartes blanches, puces de statut, hexagone des six institutions).
 
-- **Mesuré**
-  - `hyperframes check` : 0 erreur (lint, runtime, layout, motion, contraste).
-  - Mix de référence : −16,2 LUFS intégré, crête vraie −1,6 dBTP.
-  - Voix à −19 LUFS en mono, avec un ducking de la musique de 11 dB.
-  - MP4 livré (ffprobe et `hyperframes audio`) : 127,000 s, H.264 1920 x 1080 30 fps, AAC 48 kHz stéréo, 54 Mo. Audio : −16,3 LUFS intégré, crête vraie −1,6 dBTP, aucun écrêtage, silence seulement sur les 0,2 dernières secondes.
-- **Regardé** : planches de revue (17 temps forts, 8 raccords à ±0,2 s, version « téléphone ») et instantanés ciblés après chaque correction.
-- **Jamais écouté** : la musique, le mix et la synchronisation des effets ont été mesurés et calés sur des timecodes, mais **personne ne les a entendus**. À écouter en priorité :
-  - la respiration de 26,5 à 28,6 s ;
-  - le sommet de 76,6 s ;
-  - l'équilibre voix et musique entre 110 et 113 s.
-- Les liens Pinterest étaient bloqués par le réseau du conteneur. L'inspiration vient des trois MP4 de référence fournis.
+L'hexagone des six institutions de l'écran Coordination ouvre aussi le film (les six silos qui se rejoignent) et le referme (l'anneau autour du logo).
+
+Les illustrations :
+
+- verrou de légalité (signalement validé / article de presse bloqué) ;
+- pièce perdue « sur papier », puis chaîne horodatée, nominative et scellée ;
+- les deux dossiers sur la carte de la RDC (Matadi, Kolwezi) reliés au compte BCF 00214-…-77 avec la jauge 84 % ;
+- la météo posée sur l'hexagone réel ;
+- trois périmètres d'habilitation (les barres latérales des trois postes) ;
+- la trajectoire identifié → gelé → saisi → confisqué → Trésor.
+
+## Pistes non construites
+
+Le parcours a été fixé par la note de démonstration, donc pas de choix de piste cette fois.
+
+Deux variantes restent possibles :
+
+- **une version 60 s,** qui ne garde que les cartes de chapitre et un plan par écran ;
+- **une version « présentateur »,** sans voix, à projeter derrière la démonstration en direct.
+
+## Mesuré, regardé, non vérifié
+
+- **Mesuré :**
+  - `hyperframes check` : 0 erreur ;
+  - mix de référence à −16,1 LUFS intégré, crête vraie −2,0 dBTP ;
+  - voix ramenée à −19 LUFS en mono, musique atténuée de 11 dB sous la voix ;
+  - durée et pistes du MP4 contrôlées après rendu.
+- **Regardé :** instantanés de chaque scène à chaque correction, planche de revue complète (temps forts, 6 raccords à ±0,2 s : tous continus).
+- **Jamais écouté :** la musique (nouvelle partition, une phrase par chapitre), le mix et les 122 bruitages sont mesurés, pas entendus. À écouter en priorité :
+  - la respiration avant « KWIKAMA » (13,5–14,3 s) ;
+  - le passage dépouillé de la vue CENAREF (110–117 s) ;
+  - l'apothéose RI 8 (137,7–143,3 s).
+- **Données :** toutes reprises des écrans capturés le 9 novembre 2026. Si l'application change d'ici la présentation, les captures sont à refaire (`assets/ui/`, script de capture décrit dans le README).
 
 ## Plan le plus faible
 
-- **Acte 5 (67,8–80,6 s), le monde du graphe.** La plongée dans l'écran « Enquête financière » fonctionne, mais le graphe reconstruit reste plat. Les montants et l'alerte arrivent vite, et l'alerte quitte l'écran 0,2 s avant son seuil de lecture.
-- Avec plus de temps, j'aurais :
-  - tenu l'alerte 1 s de plus, quitte à raccourcir le compteur « 5 / 6 transactions » ;
-  - ajouté une vraie profondeur aux nœuds (taille et flou selon la distance) ;
-  - fait voyager les montants le long des arêtes au lieu de les poser.
-- **Le « Hébergement souverain » (≈ 109–111 s)** est aussi un peu court. C'est la voix qui porte l'information.
+- **Le passage 87,5–93,5 s** (graphe des flux puis infrastructure souveraine) enchaîne deux défilements rapides dans l'écran d'analyse. C'est lisible, mais dense.
+- **Avec plus de temps,** je remplacerais le défilement vers le graphe par une coupe nette, et je tiendrais l'encadré « Infrastructure requise » une seconde de plus.
 
-## Avertissements conservés volontairement
+## Avertissements conservés
 
-- `composition_file_too_large` (act1) : l'acte 1 est un seul mouvement continu de 28,6 s (carte → lettre → montant → silos → tampon). Le découper casserait la chaîne d'objets. Le source lisible est dans `src/acts/act1.html`.
-- `text_below_floor` : il porte sur les libellés fins dans l'UI réelle et sur les cartes (statuts, dates, mentions). Le film est livré en desktop, pas pour un téléphone. Les informations clés sont toujours à 28 px ou plus, ou agrandies par un punch caméra.
-- `line_unread` : il s'agit surtout des rouleaux de chiffres J+12 → J+90 (illisibles volontairement, c'est le temps qui passe) et de sous-titres de cartes que la voix prononce en même temps. Le pied de page final a été allongé pour tenir plus de 5,5 s.
+- **`composition_file_too_large`** (s0 et s4, environ 320 lignes) : chaque scène reste une seule continuité de caméra. La source lisible est dans `src/acts/`.
+- **`text_below_floor`** : libellés fins de l'UI réelle et mentions secondaires. Le film est fait pour un écran de présentation, pas un téléphone ; l'information clé est toujours surlignée ou agrandie.
+- **`line_unread`** :
+  - pour les compteurs, ce sont des faux positifs (les bandes de chiffres comptent comme des mots) ;
+  - pour les lignes-messages des cartes de chapitre (2,3–2,5 s), la voix dit la même chose au même moment.

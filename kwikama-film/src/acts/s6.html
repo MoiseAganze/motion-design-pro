@@ -1,0 +1,110 @@
+<template>
+  <style>
+    /*@BASE*/
+    #s6-panel { position: absolute; inset: 0; background: #061d30; }
+    #s6-pbar { position: absolute; left: 0; top: 0; width: 10px; height: 1080px; background: var(--gold); }
+    #s6-ring { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    .s6-lab { position: absolute; width: 300px; margin-left: -150px; text-align: center; font-size: 24px; font-weight: 600; color: rgba(244,241,234,.78); white-space: nowrap; }
+    #s6-flash { position: absolute; left: 0; top: 0; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; border: 3px solid var(--gold2); opacity: 0; }
+    #s6-logo-wrap { position: absolute; left: 430px; top: 290px; width: 240px; height: 300px; }
+    #s6-logo { width: 240px; height: 300px; overflow: visible; }
+    #s6-word { position: absolute; left: 720px; top: 318px; font-family: "Fraunces", serif; font-weight: 700; font-size: 132px; letter-spacing: .14em; color: var(--cream); line-height: 1; white-space: nowrap; }
+    #s6-rule { position: absolute; left: 726px; top: 466px; width: 120px; height: 3px; background: var(--gold); transform-origin: 0 50%; }
+    #s6-tag { position: absolute; left: 726px; top: 482px; font-family: "Fraunces", serif; font-weight: 600; font-size: 44px; color: var(--gold); white-space: nowrap; }
+    #s6-word, #s6-tag, .s6-pl b, .s6-pl span { text-shadow: 0 0 22px #031829, 0 0 8px #031829; }
+    #s6-pillars { position: absolute; left: 0; top: 650px; width: 1920px; display: flex; justify-content: center; gap: 120px; }
+    .s6-pl { text-align: center; width: 300px; }
+    .s6-pl i { display: block; width: 46px; height: 3px; margin: 0 auto 16px; background: var(--gold); }
+    .s6-pl b { display: block; font-size: 36px; font-weight: 700; color: var(--cream); }
+    .s6-pl span { display: block; font-size: 23px; font-weight: 600; letter-spacing: .08em; color: var(--gold2); margin-top: 6px; }
+    #s6-foot { position: absolute; left: 0; width: 1920px; top: 975px; text-align: center; font-size: 23px; font-weight: 500; color: rgba(244,241,234,.62); line-height: 1.55; }
+  </style>
+  <div id="root" data-composition-id="s6" data-width="1920" data-height="1080">
+    <svg id="s6-ring" viewBox="0 0 1920 1080"></svg>
+    <div id="s6-labs"></div>
+    <div id="s6-flash"></div>
+    <div id="s6-logo-wrap"><!--@LOGO:s6-logo--></div>
+    <div id="s6-word">KWIKAMA</div>
+    <div id="s6-rule"></div>
+    <div id="s6-tag">Le bouclier numérique de l'UNICEP</div>
+    <div id="s6-pillars">
+      <div class="s6-pl"><i></i><b>Détection</b><span>RI 6 · GAFI</span></div>
+      <div class="s6-pl"><i></i><b>Répression</b><span>RI 7 · GAFI</span></div>
+      <div class="s6-pl"><i></i><b>Recouvrement</b><span>RI 8 · GAFI</span></div>
+    </div>
+    <div id="s6-foot">Supervision : Ministère de la Justice, autorité de tutelle de l'UNICEP · Loi 22/068 · CNUCC<br/>Prototype de démonstration — données simulées, personnes et affaires fictives.</div>
+    <div id="s6-panel"></div>
+    <div id="s6-pbar"></div>
+  </div>
+  <script>
+    /*@HELPERS*/
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const NS = "http://www.w3.org/2000/svg";
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 143.8;
+      const at = (t) => t - T0;
+      gsap.set(["#s6-word", "#s6-tag", "#s6-rule", ".s6-pl", "#s6-foot"], { opacity: 0 });
+
+      // the night-blue panel of the last screen opens onto the night of the film
+      tl.to("#s6-panel", { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 0.1);
+      tl.to("#s6-pbar", { scaleX: 0, opacity: 0, transformOrigin: "0 50%", duration: 0.5, ease: "power2.in" }, 0.1);
+
+      /* the shield forms on "KWIKAMA" (144.46) */
+      const svg = $("#s6-logo");
+      svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+      const NODES = [[164.9, 47.2, 9.6], [239.9, 102.7, 10.6], [138.5, 158.5, 7.0], [256.0, 165.4, 6.4], [226.3, 182.5, 12.6], [105.4, 258.6, 10.6], [165.9, 282.8, 8.8]];
+      const C = [1104, 1384];
+      const defs = document.createElementNS(NS, "defs");
+      defs.innerHTML = '<mask id="s6-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="2208" height="2768"><circle id="s6-mc" cx="1104" cy="1384" r="0" fill="#fff"/></mask>';
+      svg.insertBefore(defs, svg.firstChild);
+      $("#s6-logo-gold").setAttribute("mask", "url(#s6-mask)");
+      const ng = document.createElementNS(NS, "g");
+      NODES.forEach(([x, y, r], i) => { const c = document.createElementNS(NS, "circle"); c.setAttribute("fill", "#D5AC3C"); c.setAttribute("cx", C[0]); c.setAttribute("cy", C[1]); c.setAttribute("r", 0); c.id = "s6-n" + i; ng.appendChild(c); });
+      svg.appendChild(ng);
+      gsap.set(["#s6-logo-navy", "#s6-logo-sil"], { opacity: 0 });
+      const R = at(144.46);
+      tl.set("#s6-flash", { x: 550, y: 440 }, 0);
+      tl.fromTo("#s6-flash", { scale: 0.4, opacity: 1 }, { scale: 22, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }, R - 0.05);
+      NODES.forEach(([x, y, r], i) => {
+        tl.fromTo("#s6-n" + i, { attr: { cx: C[0], cy: C[1], r: 0 } }, { attr: { cx: x * 8, cy: y * 8, r: r * 8 }, duration: 0.7, ease: "expo.out" }, R + i * 0.04);
+      });
+      tl.fromTo("#s6-mc", { attr: { r: 0 } }, { attr: { r: 1900 }, duration: 0.8, ease: "power2.inOut" }, R + 0.3);
+      tl.to("#s6-logo-navy", { opacity: 1, duration: 0.5, ease: "power3.out" }, R + 0.7);
+      tl.to("#s6-logo-sil", { opacity: 1, duration: 0.45, ease: "power2.out" }, R + 0.95);
+      tl.fromTo("#s6-word", { opacity: 1, clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", opacity: 1, duration: 0.75, ease: "power3.out" }, R + 0.15);
+      // "Le bouclier numérique de l'UNICEP" 145.38
+      tl.fromTo("#s6-rule", { opacity: 1, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.45, ease: "power3.out" }, at(145.25));
+      tl.fromTo("#s6-tag", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power2.out" }, at(145.38));
+
+      /* the six institutions around the shield, as in the opening */
+      const NAMES = ["Parquet Général", "CENAREF", "APLC", "COGEBISCO", "GUCE", "IGF"];
+      const ring = $("#s6-ring"), labs = $("#s6-labs");
+      let rs = "";
+      NAMES.forEach((n, i) => {
+        const a = -Math.PI / 2 + i * (Math.PI / 3);
+        const x = 960 + 860 * Math.cos(a), y = 520 + 360 * Math.sin(a);
+        const L = Math.hypot(x - 550, y - 440);
+        rs += `<line id="s6-l${i}" x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="550" y2="440" stroke="#D8A828" stroke-width="1.8" opacity="0.4" stroke-dasharray="${L.toFixed(1)} ${L.toFixed(1)}" stroke-dashoffset="${L.toFixed(1)}"/>`;
+        rs += `<circle id="s6-d${i}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="10" fill="#ECC657" opacity="0"/>`;
+        const lb = document.createElement("div"); lb.className = "s6-lab"; lb.id = "s6-lb" + i; lb.textContent = n;
+        lb.style.left = x + "px"; lb.style.top = (y + (Math.sin(a) < -0.5 ? -48 : 20)) + "px";
+        labs.appendChild(lb);
+      });
+      ring.innerHTML = rs;
+      NAMES.forEach((n, i) => {
+        tl.fromTo("#s6-d" + i, { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)", immediateRender: false }, at(146.3) + i * 0.08);
+        tl.to("#s6-l" + i, { attr: { "stroke-dashoffset": 0 }, duration: 0.8, ease: "power2.out" }, at(146.4) + i * 0.08);
+        tl.fromTo("#s6-lb" + i, { opacity: 0 }, { opacity: 1, duration: 0.4 }, at(146.45) + i * 0.08);
+      });
+      // détecter, réprimer, recouvrer
+      $$(".s6-pl").forEach((p, i) => {
+        tl.fromTo(p, { opacity: 0, y: 18, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, at(146.2) + i * 0.22);
+        tl.fromTo(p.querySelector("i"), { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power3.out" }, at(146.25) + i * 0.22);
+      });
+      tl.fromTo("#s6-foot", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power1.out" }, at(147.0));
+      window.__timelines["s6"] = tl;
+    })();
+  </script>
+</template>

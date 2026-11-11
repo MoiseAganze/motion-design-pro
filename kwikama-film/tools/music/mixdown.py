@@ -19,7 +19,7 @@ from pedalboard import Compressor, HighpassFilter, Limiter, Pedalboard, PeakFilt
 from scipy.signal import resample_poly
 
 SR = 48000
-DUR = 127.0
+DUR = 153.0
 N = int(DUR * SR)
 PROJ, MUSIC_FREE, WORK = sys.argv[1], sys.argv[2], sys.argv[3]
 SFX_LIB = os.path.join(PROJ, "..", ".claude", "skills", "media-use", "audio", "assets", "sfx")
@@ -132,36 +132,44 @@ lib = {
     "pop-hi": prep("pop-hi", sfx_src("pop"), pitch=3),
     "pop-lo": prep("pop-lo", sfx_src("pop"), pitch=-3),
     "key": prep("key", sfx_src("key-press")),
-    "typing": prep("typing", sfx_src("typing")),
     "whoosh": prep("whoosh", sfx_src("whoosh")),
     "whoosh-short": prep("whoosh-short", sfx_src("whoosh-short")),
     "whoosh-cine": prep("whoosh-cine", sfx_src("whoosh-cinematic"), trim=(0, 2.4), fade_out=0.4),
     "stamp": prep("stamp", os.path.join(FOLEY, "stamp1.wav"), trim=(1.255, 1.95), fade_out=0.15),
-    "envelope": prep("envelope", os.path.join(FOLEY, "env1.wav"), trim=(0.25, 2.6), fade_out=0.2),
 }
 # (time, effect, volume) — every cue has a cause on screen
 CUES = [
-    (1.48, "envelope", 1.6), (7.58, "pop-lo", 0.35), (9.18, "whoosh", 0.45),
-    (17.2, "whoosh-cine", 0.35), (19.92, "pop-lo", 0.25), (21.35, "pop", 0.3), (21.75, "pop-hi", 0.22), (22.2, "pop-hi", 0.22),
-    (22.95, "key", 0.4), (23.15, "key", 0.4), (23.35, "key", 0.45), (23.45, "pop", 0.3), (23.78, "whoosh-short", 0.25),
-    (25.9, "stamp", 1.0),
-    (32.95, "whoosh-cine", 0.28), (36.05, "whoosh-short", 0.3), (37.2, "whoosh", 0.35),
-    (40.05, "whoosh-short", 0.3), (43.6, "click", 0.7), (44.55, "click", 0.7), (45.6, "click", 0.7), (45.66, "whoosh-short", 0.2),
-    (47.55, "click", 0.7), (48.95, "click", 0.7), (50.35, "click", 0.7), (50.98, "click", 0.65), (51.65, "click", 0.75),
-    (52.55, "whoosh-short", 0.3), (53.45, "whoosh-short", 0.3), (54.0, "key", 0.3), (54.2, "key", 0.3), (54.38, "key", 0.3), (54.56, "key", 0.32),
-    (56.45, "click", 0.7), (58.6, "pop-hi", 0.22), (59.45, "pop-hi", 0.22), (60.78, "click", 0.7),
-    (61.7, "whoosh-short", 0.25), (62.5, "whoosh-short", 0.25), (64.4, "pop", 0.25), (64.6, "pop", 0.25), (65.15, "pop-hi", 0.28), (65.35, "pop-hi", 0.28),
-    (66.15, "whoosh-short", 0.25), (67.25, "click", 0.7),
-    (67.8, "whoosh-cine", 0.4), (73.05, "pop-lo", 0.22), (73.5, "pop-lo", 0.22), (73.95, "pop-lo", 0.22), (75.5, "pop-lo", 0.22), (77.65, "pop-lo", 0.22),
-    (79.8, "whoosh-short", 0.3),
-    (81.94, "stamp", 0.9), (82.6, "typing", 0.45), (84.5, "whoosh-short", 0.22), (85.05, "pop-hi", 0.2), (85.6, "pop-hi", 0.2), (86.15, "pop-hi", 0.2),
-    (86.45, "whoosh", 0.35), (88.35, "pop", 0.22), (89.2, "whoosh-short", 0.25),
-    (89.9, "pop-lo", 0.22), (90.9, "pop-lo", 0.22), (92.0, "pop-lo", 0.22), (92.8, "pop-lo", 0.22), (93.35, "pop-lo", 0.22), (93.6, "whoosh", 0.35), (96.55, "pop", 0.28),
-    (98.3, "whoosh-cine", 0.38),
-    (99.4, "pop-hi", 0.2), (100.0, "pop-hi", 0.2), (100.9, "pop-hi", 0.22), (101.9, "pop-hi", 0.22), (103.2, "pop-hi", 0.24), (103.9, "pop", 0.26),
-    (105.35, "whoosh", 0.32), (107.75, "whoosh-short", 0.25), (108.25, "key", 0.28), (108.8, "key", 0.28), (109.3, "key", 0.28), (111.0, "whoosh-short", 0.22),
-    (113.95, "whoosh-short", 0.25), (114.72, "whoosh-cine", 0.4),
-    (121.4, "pop", 0.25),
+    # intro: Kolwezi, six silos, KWIKAMA
+    (0.75, "pop-lo", 0.25), (1.9, "pop-hi", 0.12), (3.9, "whoosh-short", 0.2), (6.9, "pop-lo", 0.3), (7.45, "pop", 0.2), (8.25, "whoosh", 0.3),
+    (9.1, "pop-lo", 0.18), (9.3, "pop-lo", 0.18), (9.5, "pop-lo", 0.18), (10.15, "pop-hi", 0.14), (12.95, "key", 0.32), (13.05, "key", 0.28),
+    (14.36, "whoosh-cine", 0.4), (17.0, "whoosh-short", 0.25), (17.85, "pop", 0.25), (19.75, "pop-hi", 0.14), (19.93, "pop-hi", 0.14), (20.11, "pop-hi", 0.14),
+    (20.6, "whoosh", 0.35),
+    # 1 · contrôle de légalité
+    (22.45, "click", 0.7), (23.0, "whoosh-short", 0.22), (24.35, "click", 0.7), (26.15, "whoosh-short", 0.22), (26.6, "pop-hi", 0.15), (28.1, "pop-lo", 0.22),
+    (30.55, "click", 0.7), (30.65, "whoosh-short", 0.25), (36.57, "pop-hi", 0.18), (38.46, "pop-hi", 0.18), (39.9, "pop-hi", 0.18), (40.62, "pop-hi", 0.16),
+    (40.85, "pop", 0.25), (41.6, "whoosh", 0.3), (43.04, "pop-hi", 0.22), (43.85, "pop", 0.25), (45.0, "whoosh-short", 0.22), (46.3, "key", 0.3),
+    (47.45, "stamp", 0.9), (48.3, "whoosh-short", 0.22),
+    # 2 · chaîne de garde
+    (50.05, "click", 0.7), (51.85, "pop-lo", 0.2), (53.95, "pop-lo", 0.22), (56.55, "whoosh", 0.25), (57.5, "pop-hi", 0.15), (60.55, "pop-hi", 0.15),
+    (61.1, "click", 0.7), (61.2, "whoosh-short", 0.25), (62.83, "pop", 0.22), (63.67, "pop", 0.22), (64.75, "stamp", 0.35), (66.15, "pop-hi", 0.25),
+    (67.45, "whoosh-short", 0.2),
+    # 3 · croisement des dossiers
+    (69.25, "click", 0.7), (70.55, "whoosh-short", 0.2), (71.25, "click", 0.7), (71.45, "key", 0.18), (71.75, "key", 0.18), (72.05, "key", 0.2),
+    (72.4, "pop-hi", 0.15), (73.9, "pop-hi", 0.15), (75.0, "whoosh-short", 0.2), (78.25, "whoosh-cine", 0.35), (79.95, "pop-lo", 0.25), (81.25, "pop-lo", 0.25),
+    (82.4, "whoosh-short", 0.22), (84.5, "pop", 0.25), (86.55, "whoosh", 0.3), (86.85, "pop-hi", 0.15), (87.55, "whoosh-short", 0.2), (88.4, "pop-hi", 0.18),
+    (89.35, "whoosh-short", 0.2), (90.1, "whoosh", 0.25), (92.1, "pop", 0.25), (93.75, "whoosh-short", 0.2),
+    # 4 · météo de la coopération, CENAREF
+    (95.7, "click", 0.7), (96.85, "click", 0.7), (97.7, "click", 0.7), (98.2, "whoosh-short", 0.2), (100.3, "pop-hi", 0.15), (100.95, "pop-lo", 0.2),
+    (101.55, "pop-hi", 0.15), (102.15, "whoosh", 0.25), (103.6, "pop-hi", 0.12), (103.84, "pop-hi", 0.12), (104.08, "pop-hi", 0.12), (104.35, "pop", 0.2),
+    (105.2, "whoosh-short", 0.2), (106.2, "pop-hi", 0.12), (108.2, "pop-lo", 0.3), (109.15, "whoosh-short", 0.2), (109.55, "click", 0.7), (110.3, "click", 0.7),
+    (110.5, "whoosh-short", 0.2), (111.1, "pop-hi", 0.12), (113.5, "pop-hi", 0.15), (114.8, "key", 0.25), (116.1, "key", 0.25), (117.3, "whoosh-cine", 0.3),
+    (119.0, "key", 0.28), (119.12, "key", 0.28), (119.24, "key", 0.28), (119.36, "key", 0.3), (121.0, "whoosh-short", 0.2),
+    # 5 · reversement au Trésor, résultat immédiat 8
+    (122.05, "click", 0.6), (122.6, "click", 0.6), (123.25, "click", 0.7), (125.05, "whoosh", 0.3), (125.45, "whoosh-short", 0.2),
+    (127.88, "pop", 0.15), (128.7, "pop", 0.15), (129.38, "pop", 0.15), (130.1, "pop", 0.15), (131.2, "whoosh-short", 0.2), (132.55, "whoosh", 0.3),
+    (134.77, "pop-hi", 0.15), (136.3, "pop-hi", 0.15), (137.75, "whoosh-cine", 0.35), (141.85, "stamp", 0.9),
+    # signature
+    (146.2, "pop", 0.15), (146.3, "pop-hi", 0.12), (146.5, "pop-hi", 0.12), (146.7, "pop-hi", 0.12),
 ]
 sfx_track = np.zeros((N, 1))
 cues_out = []

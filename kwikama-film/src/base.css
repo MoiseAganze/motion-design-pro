@@ -55,3 +55,33 @@
 .digit { display: inline-block; overflow: hidden; position: relative; }
 .digit .strip { display: flex; flex-direction: column; }
 .digit .strip span { display: block; text-align: center; }
+/* ---------- v2: screens, scrolling composite, highlights, clicks ---------- */
+.scr { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; background-size: 1400px auto; background-repeat: no-repeat; background-color: var(--paper); }
+.pg { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; overflow: hidden; background: var(--paper); }
+.pg-sc { position: absolute; left: 0; top: 0; width: 1400px; }
+.pg-img { position: absolute; left: 0; top: 0; width: 1400px; background-size: 1400px auto; background-repeat: no-repeat; }
+/* sticky header (217 page px) and fixed sidebar (256 page px) of the app, from the viewport capture */
+.pg-chrome { position: absolute; left: 0; top: 0; width: 1400px; height: 875px; background-size: 1400px auto; background-repeat: no-repeat;
+  clip-path: polygon(0 0, 100% 0, 100% 211px, 249px 211px, 249px 100%, 0 100%); }
+.hl { position: absolute; border: 3px solid var(--gold); border-radius: 10px; opacity: 0; pointer-events: none;
+  box-shadow: 0 0 0 5px rgba(216,168,40,.20), 0 0 26px rgba(216,168,40,.55); }
+.hl.red { border-color: #c2412f; box-shadow: 0 0 0 5px rgba(194,65,47,.18), 0 0 26px rgba(194,65,47,.5); }
+.hl.green { border-color: #2f8a63; box-shadow: 0 0 0 5px rgba(47,138,99,.18), 0 0 26px rgba(47,138,99,.5); }
+.rip { position: absolute; left: 0; top: 0; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; border: 3px solid var(--gold); opacity: 0; z-index: 49; }
+/* right-hand drawer of the app (page x 880..1440, y 255..900) */
+.drw { position: absolute; left: 855.6px; top: 247.9px; width: 544.4px; height: 627.1px; overflow: hidden; background: #fff; }
+.drw-img { position: absolute; left: 0; top: 0; width: 544.4px; background-size: 544.4px auto; background-repeat: no-repeat; }
+/* chapter card */
+.chap { position: absolute; left: 118px; top: 0; width: 760px; height: 1080px; }
+.chap-n { position: absolute; left: 0; top: 214px; font-family: "Fraunces", serif; font-weight: 600; font-size: 210px; line-height: 1; color: var(--gold); letter-spacing: -0.02em; }
+.chap-k { position: absolute; left: 6px; top: 452px; font-size: 25px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold2); white-space: nowrap; }
+.chap-r { position: absolute; left: 6px; top: 498px; width: 96px; height: 3px; background: var(--gold); transform-origin: 0 50%; }
+.chap-t { position: absolute; left: 0; top: 530px; width: 760px; font-family: "Fraunces", serif; font-weight: 600; font-size: 70px; line-height: 1.08; color: var(--cream); letter-spacing: -0.01em; }
+.chap-m { position: absolute; left: 4px; top: 720px; width: 700px; font-size: 32px; line-height: 1.35; font-weight: 500; color: rgba(244,241,234,.78); }
+/* floating white card rebuilt from the app */
+.uic { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 16px; color: var(--ink); padding: 26px 30px;
+  box-shadow: 0 30px 70px rgba(3,24,41,.42), 0 4px 14px rgba(3,24,41,.18); font-family: "Inter", sans-serif; }
+.uic .ref { font-size: 22px; font-weight: 600; letter-spacing: .04em; color: #6b7480; }
+.uic .kind { font-size: 21px; font-weight: 700; letter-spacing: .1em; color: var(--amber); text-transform: uppercase; }
+.uic .tt { font-size: 32px; font-weight: 600; color: #0a2c47; line-height: 1.2; margin-top: 10px; }
+.uic .mt { font-size: 22px; font-weight: 500; color: var(--muted); margin-top: 10px; }

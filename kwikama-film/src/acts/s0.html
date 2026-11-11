@@ -1,0 +1,271 @@
+<template>
+  <style>
+    /*@BASE*/
+    /* ---------- A : Kolwezi ---------- */
+    #s0-A { position: absolute; inset: 0; }
+    #s0-mapg { position: absolute; left: 150px; top: 190px; width: 710px; height: 700px; }
+    #s0-map { position: absolute; left: 0; top: 0; width: 710px; height: 700px; overflow: visible; }
+    #s0-pin { position: absolute; left: 484px; top: 589px; width: 18px; height: 18px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px rgba(216,168,40,.25); }
+    .s0-rip { position: absolute; left: 463px; top: 568px; width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--gold); opacity: 0; }
+    #s0-kin { position: absolute; left: 107px; top: 352px; width: 16px; height: 16px; border-radius: 50%; background: var(--cream); }
+    #s0-tresor { position: absolute; left: -15px; top: 222px; width: 260px; text-align: center; white-space: nowrap; }
+    #s0-tresor svg { width: 84px; height: 76px; }
+    #s0-tresor .t { font-size: 28px; font-weight: 600; color: var(--cream); margin-top: 4px; }
+    #s0-zero { position: absolute; left: 30px; top: 424px; }
+    #s0-x { position: absolute; width: 44px; height: 44px; }
+    #s0-title { position: absolute; left: 960px; top: 200px; }
+    #s0-kol { font-family: "Fraunces", serif; font-weight: 600; font-size: 170px; line-height: 1; letter-spacing: -0.015em; color: var(--cream); white-space: nowrap; }
+    #s0-kol span { display: inline-block; }
+    #s0-sub { font-size: 30px; font-weight: 500; color: rgba(244,241,234,.72); margin-top: 14px; white-space: nowrap; }
+    #s0-q { position: absolute; left: 966px; top: 462px; display: flex; gap: 14px; align-items: center; }
+    #s0-q i { display: block; width: 50px; height: 50px; border-radius: 9px; border: 2.5px solid var(--gold); background: rgba(216,168,40,.85); }
+    #s0-q span { font-size: 28px; font-weight: 600; color: rgba(244,241,234,.85); margin-left: 16px; white-space: nowrap; }
+    #s0-num { position: absolute; left: 960px; top: 560px; white-space: nowrap; transform-origin: 0 0; }
+    #s0-numv { font-family: "Fraunces", serif; font-weight: 600; font-size: 118px; color: var(--gold); display: inline-flex; vertical-align: top; }
+    #s0-numv .sep { display: inline-block; width: 0.26em; }
+    #s0-numu { font-family: "Fraunces", serif; font-weight: 600; font-size: 118px; color: rgba(244,241,234,.78); display: inline-block; vertical-align: top; line-height: 142px; margin-left: 20px; }
+    #s0-numl { font-size: 30px; font-weight: 500; color: rgba(244,241,234,.8); margin-top: 4px; }
+    /* ---------- B : six institutions ---------- */
+    #s0-B { position: absolute; inset: 0; }
+    #s0-links { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: visible; }
+    .s0-t { position: absolute; left: 0; top: 0; width: 400px; height: 150px; margin: -75px 0 0 -200px; border-radius: 24px; background: rgba(10,44,71,.86);
+      border: 1.5px solid rgba(244,241,234,.18); box-shadow: 0 22px 50px rgba(0,0,0,.35); padding: 26px 24px 0 112px; }
+    .s0-t svg.ic { position: absolute; left: 26px; top: 36px; width: 64px; height: 64px; fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .s0-t .ac { font-size: 35px; font-weight: 700; color: var(--cream); line-height: 1.1; white-space: nowrap; }
+    .s0-t .fn { font-size: 23px; font-weight: 500; color: rgba(244,241,234,.66); margin-top: 6px; white-space: nowrap; }
+    .s0-t .wall { position: absolute; left: -16px; top: -16px; width: 432px; height: 182px; overflow: visible; }
+    .s0-f { position: absolute; left: 0; top: 0; width: 76px; height: 50px; margin: -25px 0 0 -38px; border-radius: 6px; background: var(--paper); box-shadow: 0 8px 18px rgba(0,0,0,.35); padding: 10px 10px; }
+    .s0-f b { display: block; height: 6px; border-radius: 3px; background: #c9bfae; margin-bottom: 7px; }
+    .s0-cut { position: absolute; width: 40px; height: 40px; margin: -20px 0 0 -20px; }
+    #s0-hub { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 960px 470px; }
+    #s0-flash { position: absolute; left: 960px; top: 470px; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; border: 3px solid var(--gold2); opacity: 0; }
+    #s0-logo-wrap { position: absolute; left: 892px; top: 385px; width: 136px; height: 170px; }
+    #s0-logo { width: 136px; height: 170px; overflow: visible; }
+    #s0-word { position: absolute; left: 0; width: 1920px; top: 572px; text-align: center; font-family: "Fraunces", serif; font-weight: 700; font-size: 66px; letter-spacing: .14em; padding-left: .14em; color: var(--cream); line-height: 1; }
+    #s0-tag { position: absolute; left: 0; width: 1920px; top: 652px; text-align: center; font-size: 30px; font-weight: 500; color: var(--gold); }
+    #s0-dos { position: absolute; left: 750px; top: 568px; width: 420px; height: 122px; border-radius: 14px; background: var(--paper); color: var(--ink); padding: 18px 26px; border-top: 5px solid var(--gold);
+      box-shadow: 0 26px 60px rgba(0,0,0,.45); }
+    #s0-dos .r { font-size: 21px; font-weight: 700; letter-spacing: .1em; color: var(--amber); }
+    #s0-dos .n { font-family: "Fraunces", serif; font-size: 40px; font-weight: 600; color: #0a2c47; margin-top: 6px; white-space: nowrap; }
+    #s0-steps { position: absolute; left: 0; width: 1920px; top: 900px; display: flex; justify-content: center; gap: 16px; }
+    .s0-st { display: flex; align-items: center; gap: 12px; padding: 12px 22px 12px 12px; border-radius: 40px; background: rgba(10,44,71,.9); border: 1.5px solid rgba(244,241,234,.2); white-space: nowrap; }
+    .s0-st b { width: 40px; height: 40px; border-radius: 50%; background: var(--gold); color: #031829; font-size: 22px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .s0-st span { font-size: 24px; font-weight: 600; color: var(--cream); }
+  </style>
+  <div id="root" data-composition-id="s0" data-width="1920" data-height="1080">
+    <!-- ===== A : Kolwezi, the money that never arrived ===== -->
+    <div id="s0-A">
+      <div id="s0-mapg">
+        <svg id="s0-map" viewBox="0 0 710 700">
+          <path id="s0-out" d="{{DRC}}" fill="rgba(216,168,40,0.06)" stroke="#D8A828" stroke-width="2.4" stroke-linejoin="round" opacity="0.6"/>
+          <path id="s0-scan" d="{{DRC}}" fill="none" stroke="#ECC657" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path id="s0-flow" d="M493 598 C 430 470, 260 470, 115 360" fill="none" stroke="#ECC657" stroke-width="5" stroke-linecap="round"/>
+          <path id="s0-flowdots" d="M493 598 C 430 470, 260 470, 115 360" fill="none" stroke="#fff3c9" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 26"/>
+        </svg>
+        <div class="s0-rip" id="s0-rip1"></div>
+        <div class="s0-rip" id="s0-rip2"></div>
+        <div id="s0-pin"></div>
+        <div id="s0-kin"></div>
+        <div id="s0-tresor">
+          <svg viewBox="0 0 92 82" fill="none" stroke="#F4F1EA" stroke-width="3" stroke-linejoin="round"><path d="M6 26 L46 6 L86 26 Z"/><line x1="10" y1="32" x2="82" y2="32"/><line x1="18" y1="36" x2="18" y2="66"/><line x1="34" y1="36" x2="34" y2="66"/><line x1="58" y1="36" x2="58" y2="66"/><line x1="74" y1="36" x2="74" y2="66"/><line x1="6" y1="72" x2="86" y2="72"/><line x1="2" y1="78" x2="90" y2="78"/></svg>
+          <div class="t">Trésor public</div>
+        </div>
+        <div id="s0-zero"><span class="chip red">0 $US reçu</span></div>
+        <svg id="s0-x" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#9B2C24"/><path d="M14 14 L30 30 M30 14 L14 30" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
+      </div>
+      <div id="s0-title">
+        <div id="s0-kol"><span>K</span><span>o</span><span>l</span><span>w</span><span>e</span><span>z</span><span>i</span></div>
+        <div id="s0-sub"><span class="w">Lualaba</span> <span class="w">·</span> <span class="w">République</span> <span class="w">démocratique</span> <span class="w">du</span> <span class="w">Congo</span></div>
+      </div>
+      <div id="s0-q"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span>8 trimestres de redevances</span></div>
+    </div>
+    <div id="s0-num">
+      <div><span id="s0-numv" data-layout-ignore></span><span id="s0-numu">$US</span></div>
+      <div id="s0-numl"><span class="w">jamais</span> <span class="w">arrivés</span> <span class="w">au</span> <span class="w">Trésor</span> <span class="w">public</span></div>
+    </div>
+    <!-- ===== B : six institutions, then one file ===== -->
+    <div id="s0-B">
+      <div id="s0-hub">
+        <svg id="s0-links" viewBox="0 0 1920 1080"></svg>
+        <div id="s0-tiles"></div>
+        <div id="s0-flash"></div>
+        <div id="s0-logo-wrap"><!--@LOGO:s0-logo--></div>
+        <div id="s0-word">KWIKAMA</div>
+        <div id="s0-tag"><span class="w">«</span> <span class="w">intégrité</span> <span class="w">»</span> <span class="w">en</span> <span class="w">kikongo</span></div>
+        <div id="s0-dos"><div class="r">DPJ-2026-014</div><div class="n">Un seul dossier</div></div>
+      </div>
+      <div id="s0-steps">
+        <div class="s0-st"><b>1</b><span>Contrôle de légalité</span></div>
+        <div class="s0-st"><b>2</b><span>Chaîne de garde</span></div>
+        <div class="s0-st"><b>3</b><span>Croisement des dossiers</span></div>
+        <div class="s0-st"><b>4</b><span>Météo de la coopération</span></div>
+        <div class="s0-st"><b>5</b><span>Reversement au Trésor</span></div>
+      </div>
+    </div>
+    <!-- ===== C : the MacBook rises on the workstation choice ===== -->
+    <div class="stage">
+      <div class="cam" id="s0-cam">
+<!--@MAC:s0-->
+        <div class="scr" style="background-image:url(assets/ui/connexion.webp)"></div>
+<!--@/MAC-->
+      </div>
+    </div>
+  </div>
+  <script>
+    /*@HELPERS*/
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const NS = "http://www.w3.org/2000/svg";
+      const tl = gsap.timeline({ paused: true });
+      gsap.set("#s0-cam", { y: 1150, scale: 0.8, rotationX: 24, rotationY: -6 });
+      gsap.set("#s0-cur", { opacity: 0 });
+
+      /* ---------- A : Kolwezi (vo01 0.80 – 8.20) ---------- */
+      const scan = $("#s0-scan");
+      const L = scan.getTotalLength ? (scan.getTotalLength() || 4200) : 4200;
+      gsap.set(scan, { attr: { "stroke-dasharray": `150 ${L}` } });
+      tl.fromTo(scan, { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -L }, duration: 2.4, ease: "power1.inOut" }, 0.1);
+      tl.to(scan, { opacity: 0, duration: 0.4 }, 2.2);
+      tl.fromTo("#s0-out", { opacity: 0.25 }, { opacity: 1, duration: 1.4, ease: "power1.out" }, 0.1);
+      tl.fromTo("#s0-rip1", { scale: 0.3, opacity: 0.9 }, { scale: 2.6, opacity: 0, duration: 1.3, ease: "power2.out", immediateRender: false }, 0.8);
+      tl.fromTo("#s0-rip2", { scale: 0.3, opacity: 0.9 }, { scale: 2.6, opacity: 0, duration: 1.3, ease: "power2.out", immediateRender: false }, 1.35);
+      tl.fromTo("#s0-pin", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, 0.75);
+      tl.fromTo("#s0-kol span", { opacity: 0, filter: "blur(8px)", y: 18 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.4, ease: "power3.out", stagger: 0.05 }, 0.8);
+      wordsIn(tl, $$("#s0-sub .w"), 1.2, 0.05);
+      // eight quarters of royalties ("Huit trimestres" 1.84)
+      tl.fromTo("#s0-q i", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", stagger: 0.07 }, 1.84);
+      tl.fromTo("#s0-q span", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 2.5);
+      // the amount ("12 600 000 dollars" 4.05)
+      const strips = odo($("#s0-numv"), "12 600 000", 142);
+      $$("#s0-numv > span:not(.digit)").forEach((n) => { n.className = "sep"; n.textContent = ""; });
+      tl.fromTo("#s0-num", { opacity: 0, y: 24, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, 3.9);
+      odoRoll(tl, strips, 142, 3.9, 1.4);
+      // never reached the Treasury ("jamais arrivés" 6.32 – "Trésor public" 7.24)
+      tl.fromTo("#s0-tresor", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 5.7);
+      tl.fromTo("#s0-kin", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, 5.7);
+      const flow = $("#s0-flow"), dots = $("#s0-flowdots");
+      const FL = flow.getTotalLength ? (flow.getTotalLength() || 470) : 470;
+      tl.fromTo(flow, { attr: { "stroke-dasharray": `${FL} ${FL}`, "stroke-dashoffset": FL } }, { attr: { "stroke-dashoffset": FL * 0.42 }, duration: 1.0, ease: "power1.out" }, 5.85);
+      tl.fromTo(dots, { opacity: 0, attr: { "stroke-dashoffset": 0 } }, { opacity: 1, attr: { "stroke-dashoffset": -84 }, duration: 1.0, ease: "none" }, 5.85);
+      tl.set(dots, { opacity: 0 }, 6.86);
+      const brk = flow.getPointAtLength ? flow.getPointAtLength(FL * 0.58) : { x: 270, y: 460 };
+      gsap.set("#s0-x", { left: brk.x - 22, top: brk.y - 22 });
+      tl.to(flow, { attr: { stroke: "#B3463A" }, opacity: 0.75, duration: 0.25 }, 6.88);
+      tl.fromTo("#s0-x", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 6.9);
+      tl.to("#s0-q i", { backgroundColor: "rgba(216,168,40,0)", borderColor: "rgba(208,71,58,.85)", duration: 0.35, ease: "power2.out", stagger: 0.04 }, 6.95);
+      wordsIn(tl, $$("#s0-numl .w"), 6.3, 0.18);
+      tl.fromTo("#s0-zero", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 7.45);
+      // A leaves; the amount stays as the thing to follow
+      tl.to("#s0-A", { x: -900, opacity: 0, filter: "blur(14px)", duration: 0.6, ease: "power3.in" }, 8.25);
+      tl.to("#s0-numl", { opacity: 0, filter: "blur(8px)", duration: 0.25 }, 8.25);
+      tl.to("#s0-num", { x: -186, y: -510, scale: 0.42, duration: 0.85, ease: "power3.inOut" }, 8.35);
+
+      /* ---------- B : six institutions (vo02 8.90 – 13.58) ---------- */
+      const ICON = {
+        PG: '<line x1="32" y1="8" x2="32" y2="52"/><line x1="12" y1="16" x2="52" y2="16"/><path d="M12 16 L4 34 H20 Z"/><path d="M52 16 L44 34 H60 Z"/><line x1="20" y1="54" x2="44" y2="54"/>',
+        CE: '<circle cx="26" cy="26" r="15"/><line x1="37" y1="37" x2="52" y2="52"/><polyline points="17,30 22,23 27,27 34,18"/>',
+        AP: '<path d="M32 6 L54 14 V30 C54 44 44 53 32 58 C20 53 10 44 10 30 V14 Z"/><polyline points="22,31 29,38 43,24"/>',
+        CO: '<rect x="8" y="12" width="48" height="40" rx="4"/><circle cx="32" cy="32" r="9"/><line x1="32" y1="23" x2="32" y2="27"/><line x1="14" y1="52" x2="14" y2="58"/><line x1="50" y1="52" x2="50" y2="58"/>',
+        GU: '<path d="M8 24 L32 10 L56 24"/><line x1="12" y1="28" x2="52" y2="28"/><line x1="18" y1="32" x2="18" y2="50"/><line x1="32" y1="32" x2="32" y2="50"/><line x1="46" y1="32" x2="46" y2="50"/><line x1="8" y1="54" x2="56" y2="54"/>',
+        IG: '<rect x="14" y="8" width="36" height="48" rx="5"/><line x1="22" y1="20" x2="42" y2="20"/><line x1="22" y1="28" x2="38" y2="28"/><polyline points="22,40 28,46 42,34"/>'
+      };
+      // name, role (as the app labels them), icon, silo position, hexagon position (app order: top, then clockwise)
+      const T = [
+        ["Parquet Général", "Direction de l'enquête", "PG", [440, 330, -2], [960, 160]],
+        ["CENAREF", "Renseignement financier", "CE", [985, 290, 1.5], [1400, 320]],
+        ["APLC", "Enquête et investigation", "AP", [1500, 390, -1], [1400, 640]],
+        ["COGEBISCO", "Garde des biens saisis", "CO", [1440, 780, 2], [960, 800]],
+        ["GUCE", "Registre des sociétés", "GU", [935, 830, -1.5], [520, 640]],
+        ["IGF", "Finances publiques", "IG", [450, 745, 1], [520, 320]]
+      ];
+      const tiles = $("#s0-tiles"), links = $("#s0-links");
+      let ls = "";
+      T.forEach(([n, fn, ic, s, h], i) => {
+        const d = document.createElement("div"); d.className = "s0-t"; d.id = "s0-t" + i;
+        d.innerHTML = `<svg class="ic" viewBox="0 0 64 64">${ICON[ic]}</svg><div class="ac">${n}</div><div class="fn">${fn}</div>` +
+          `<svg class="wall" viewBox="0 0 432 182"><rect x="2" y="2" width="428" height="178" rx="34" fill="none" stroke="rgba(244,241,234,.6)" stroke-width="3"/></svg>`;
+        tiles.appendChild(d);
+        const f = document.createElement("div"); f.className = "s0-f"; f.id = "s0-f" + i; f.innerHTML = "<b></b><b style='width:70%'></b><b style='width:84%'></b>";
+        tiles.appendChild(f);
+        const len = Math.hypot(h[0] - 960, h[1] - 470);
+        ls += `<line id="s0-l${i}" x1="960" y1="470" x2="${h[0]}" y2="${h[1]}" stroke="#D8A828" stroke-width="2.5" stroke-dasharray="${len.toFixed(1)} ${len.toFixed(1)}" stroke-dashoffset="${len.toFixed(1)}" opacity="0.8"/>`;
+      });
+      // broken paper routes between neighbours while they work in silos
+      const PAIRS = [[0, 1], [1, 2], [5, 4], [4, 3], [0, 5]];
+      PAIRS.forEach(([a, b], k) => {
+        const A = T[a][3], B = T[b][3];
+        ls += `<line id="s0-pp${k}" x1="${A[0]}" y1="${A[1]}" x2="${B[0]}" y2="${B[1]}" stroke="rgba(244,241,234,.45)" stroke-width="3" stroke-dasharray="10 12" opacity="0"/>`;
+      });
+      links.innerHTML = ls;
+      PAIRS.forEach(([a, b], k) => {
+        const A = T[a][3], B = T[b][3];
+        const c = document.createElementNS(NS, "g"); c.id = "s0-cx" + k; c.setAttribute("opacity", "0");
+        c.setAttribute("transform", `translate(${(A[0] + B[0]) / 2},${(A[1] + B[1]) / 2})`);
+        c.innerHTML = '<circle r="17" fill="#9B2C24"/><path d="M-6 -6 L6 6 M6 -6 L-6 6" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>';
+        links.appendChild(c);
+      });
+      T.forEach(([n, fn, ic, s, h], i) => {
+        tl.fromTo("#s0-t" + i, { x: s[0], y: s[1] + 40, rotation: s[2], opacity: 0, scale: 0.85, filter: "blur(12px)" }, { y: s[1], opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 9.1 + i * 0.1);
+        // each holds a piece of the file ("détiennent chacune une partie" 10.15)
+        tl.fromTo("#s0-f" + i, { x: s[0] + 190, y: s[1] - 96, opacity: 0, scale: 0.5, rotation: -14 + i * 5 }, { y: s[1] - 78, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 10.15 + i * 0.09);
+        const rect = $(`#s0-t${i} .wall rect`);
+        tl.fromTo(rect, { attr: { "stroke-dasharray": "1160 1160", "stroke-dashoffset": 1160 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.7, ease: "power2.inOut" }, 11.84 + i * 0.05);
+      });
+      // on paper they do not talk ("Sur papier" 11.84 – "pas" 13.36)
+      PAIRS.forEach((p, k) => {
+        tl.fromTo("#s0-pp" + k, { opacity: 0 }, { opacity: 1, duration: 0.3 }, 12.1 + k * 0.06);
+        tl.to("#s0-pp" + k, { attr: { stroke: "rgba(208,71,58,.55)" }, duration: 0.25 }, 12.95 + k * 0.05);
+        tl.fromTo("#s0-cx" + k, { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.28, ease: "back.out(2)" }, 12.95 + k * 0.05);
+      });
+      tl.to("#s0-num", { opacity: 0, filter: "blur(10px)", duration: 0.35 }, 13.9);
+
+      /* ---------- C : KWIKAMA joins them around one file (vo03 14.30 – 20.75) ---------- */
+      const svg = $("#s0-logo");
+      svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+      const NODES = [[164.9, 47.2, 9.6], [239.9, 102.7, 10.6], [138.5, 158.5, 7.0], [256.0, 165.4, 6.4], [226.3, 182.5, 12.6], [105.4, 258.6, 10.6], [165.9, 282.8, 8.8]];
+      const C = [1104, 1384];
+      const defs = document.createElementNS(NS, "defs");
+      defs.innerHTML = '<mask id="s0-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="2208" height="2768"><circle id="s0-mc" cx="1104" cy="1384" r="0" fill="#fff"/></mask>';
+      svg.insertBefore(defs, svg.firstChild);
+      $("#s0-logo-gold").setAttribute("mask", "url(#s0-mask)");
+      const ng = document.createElementNS(NS, "g");
+      NODES.forEach(([x, y, r], i) => { const c = document.createElementNS(NS, "circle"); c.setAttribute("fill", "#D5AC3C"); c.setAttribute("cx", C[0]); c.setAttribute("cy", C[1]); c.setAttribute("r", 0); c.id = "s0-n" + i; ng.appendChild(c); });
+      svg.appendChild(ng);
+      gsap.set(["#s0-logo-navy", "#s0-logo-sil"], { opacity: 0 });
+      const R = 14.36; // "KWIKAMA"
+      tl.fromTo("#s0-flash", { scale: 0.4, opacity: 1 }, { scale: 26, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }, R);
+      // silos dissolve, routes vanish, the six move into the app's hexagon
+      PAIRS.forEach((p, k) => tl.to(["#s0-pp" + k, "#s0-cx" + k], { opacity: 0, duration: 0.25 }, R));
+      T.forEach(([n, fn, ic, s, h], i) => {
+        tl.to(`#s0-t${i} .wall`, { opacity: 0, duration: 0.25 }, R);
+        tl.to("#s0-t" + i, { x: h[0], y: h[1], rotation: 0, scale: 0.82, duration: 0.95, ease: "power3.inOut" }, R + 0.05 + i * 0.03);
+        tl.to("#s0-f" + i, { x: h[0] + 156, y: h[1] - 64, rotation: 0, scale: 0.8, duration: 0.95, ease: "power3.inOut" }, R + 0.05 + i * 0.03);
+        tl.to("#s0-l" + i, { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, R + 0.7 + i * 0.05);
+      });
+      NODES.forEach(([x, y, r], i) => {
+        tl.fromTo("#s0-n" + i, { attr: { cx: C[0], cy: C[1], r: 0 } }, { attr: { cx: x * 8, cy: y * 8, r: r * 8 }, duration: 0.7, ease: "expo.out" }, R + 0.06 + i * 0.04);
+      });
+      tl.fromTo("#s0-mc", { attr: { r: 0 } }, { attr: { r: 1900 }, duration: 0.85, ease: "power2.inOut" }, R + 0.4);
+      tl.to("#s0-logo-navy", { opacity: 1, duration: 0.5, ease: "power3.out" }, R + 0.85);
+      tl.to("#s0-logo-sil", { opacity: 1, duration: 0.45, ease: "power2.out" }, R + 1.15);
+      tl.fromTo("#s0-word", { clipPath: "inset(0 100% 0 0)", opacity: 1 }, { clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "power3.out" }, R + 0.3);
+      wordsIn(tl, $$("#s0-tag .w"), 15.15, 0.09);
+      // "les réunit autour d'un seul dossier" 16.96 – 18.44: every piece flies to the centre and becomes one file
+      tl.to(["#s0-word", "#s0-tag"], { opacity: 0, filter: "blur(10px)", duration: 0.3, ease: "power2.in" }, 16.9);
+      T.forEach((t, i) => {
+        tl.to("#s0-f" + i, { x: 960, y: 629, scale: 0.6, rotation: (i - 2.5) * 6, duration: 0.75, ease: "power3.in" }, 17.0 + i * 0.05);
+        tl.to("#s0-f" + i, { opacity: 0, duration: 0.15 }, 17.72 + i * 0.05);
+      });
+      tl.fromTo("#s0-dos", { opacity: 0, scale: 0.6, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.55, ease: "back.out(1.6)" }, 17.85);
+      // "Suivons-le, en cinq écrans" 19.24 / "cinq" 20.16
+      tl.to("#s0-hub", { y: -70, scale: 0.86, duration: 0.8, ease: "power3.inOut" }, 19.2);
+      tl.fromTo(".s0-st", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out", stagger: 0.09 }, 19.75);
+      // into the MacBook, on the workstation choice
+      tl.to("#s0-hub", { opacity: 0, scale: 0.7, filter: "blur(12px)", duration: 0.45, ease: "power2.in" }, 20.55);
+      tl.to("#s0-steps", { opacity: 0, y: 60, filter: "blur(10px)", duration: 0.45, ease: "power2.in" }, 20.6);
+      tl.to("#s0-cam", Object.assign({ duration: 1.0, ease: "power3.out" }, OV), 20.6);
+      window.__timelines["s0"] = tl;
+    })();
+  </script>
+</template>

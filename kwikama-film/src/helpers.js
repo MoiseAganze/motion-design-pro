@@ -48,3 +48,41 @@ function odoRoll(tl, strips, h, t, dur) {
 }
 // mulberry32 PRNG
 function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* ---- v2 helpers ---- */
+const BOX = {{BOXES}};
+// put an absolutely positioned element over a page box (page px -> screen px), with padding
+function over(el, b, pad, dy) {
+  pad = pad === undefined ? 6 : pad; dy = dy || 0;
+  const e = typeof el === "string" ? document.querySelector(el) : el;
+  Object.assign(e.style, { left: ((b.x - pad) * K) + "px", top: ((b.y - pad + dy) * K) + "px", width: ((b.w + 2 * pad) * K) + "px", height: ((b.h + 2 * pad) * K) + "px" });
+  return e;
+}
+function hlOn(tl, el, t, d) { tl.fromTo(el, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: d || 0.35, ease: "expo.out" }, t); }
+function hlOff(tl, el, t, d) { tl.to(el, { opacity: 0, duration: d || 0.25, ease: "power2.in" }, t); }
+// move the cursor to page point (sx, sy), arriving at t, then click with a gold ring
+function clickAt(tl, cur, rip, sx, sy, t, move) {
+  move = move === undefined ? 0.6 : move;
+  const p = curPos(sx, sy);
+  if (move > 0) tl.to(cur, { x: p.x, y: p.y, duration: move, ease: "power2.inOut" }, t - move);
+  else tl.set(cur, { x: p.x, y: p.y }, t);
+  click(tl, cur, t);
+  if (rip) { tl.set(rip, { left: sx * K, top: sy * K }, t); tl.fromTo(rip, { scale: 0.2, opacity: 1 }, { scale: 1.6, opacity: 0, duration: 0.45, ease: "power2.out", immediateRender: false }, t); }
+}
+// chapter card: numeral wipes in, label, rule, title words, message; leaves at tout
+function chapter(tl, root, tin, tout) {
+  const q = (s) => root.querySelector(s);
+  tl.fromTo(q(".chap-n"), { opacity: 1, clipPath: "inset(0 100% 0 0)", x: -30 }, { clipPath: "inset(0 0% 0 0)", x: 0, duration: 0.7, ease: "expo.out" }, tin);
+  tl.fromTo(q(".chap-k"), { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, tin + 0.12);
+  tl.fromTo(q(".chap-r"), { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, tin + 0.18);
+  wordsIn(tl, root.querySelectorAll(".chap-t .w"), tin + 0.22, 0.06, 0.4);
+  wordsIn(tl, root.querySelectorAll(".chap-m .w"), tin + 0.5, 0.025, 0.35);
+  tl.to(root, { opacity: 0, x: -60, filter: "blur(10px)", duration: 0.4, ease: "power3.in" }, tout);
+}
+function personaIn(tl, el, tin, tout) {
+  tl.fromTo(el, { opacity: 0, y: 24, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, tin);
+  if (tout) tl.to(el, { opacity: 0, y: 14, duration: 0.3, ease: "power2.in" }, tout);
+}
+// the Mac seen from the chapter position (room on the left for the card)
+const CHP = { x: 300, y: 18, scale: 0.64, rotationX: 5, rotationY: -13 };
+const OV = { x: 0, y: 30, scale: 0.8, rotationX: 8, rotationY: -6 };

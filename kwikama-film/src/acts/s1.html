@@ -1,0 +1,180 @@
+<template>
+  <style>
+    /*@BASE*/
+    .s1-dhead { position: absolute; left: 0; top: 0; width: 544.4px; height: 86.5px; background-size: 544.4px auto; background-repeat: no-repeat; }
+    .s1-dwin { position: absolute; left: 0; top: 86.5px; width: 544.4px; height: 540.6px; overflow: hidden; }
+    .s1-dimg { position: absolute; left: 0; top: -86.5px; width: 544.4px; height: 957.6px; background-size: 544.4px auto; background-repeat: no-repeat; }
+    #s1-ok { position: absolute; left: 150px; top: 880px; }
+    #s1-ok .chip { font-size: 26px; padding: 12px 20px 12px 16px; box-shadow: 0 14px 30px rgba(0,0,0,.3); }
+    /* the two seizures, side by side outside the screen */
+    #s1-cards { position: absolute; left: 110px; top: 0; width: 760px; height: 1080px; }
+    #s1-cA { left: 0; top: 168px; width: 720px; }
+    #s1-cB { left: 0; top: 610px; width: 720px; }
+    .s1-row { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+    .s1-row .chip { font-size: 22px; }
+    #s1-fold { position: absolute; left: 150px; top: 430px; width: 520px; height: 120px; }
+    #s1-fold .tab { position: absolute; left: 0; top: -34px; width: 210px; height: 44px; border-radius: 12px 12px 0 0; background: #e9e1cf; color: var(--ink);
+      font-size: 21px; font-weight: 700; padding: 9px 18px; letter-spacing: .02em; white-space: nowrap; }
+    #s1-fold .body { position: absolute; inset: 0; border-radius: 0 14px 14px 14px; background: var(--paper); color: var(--ink); padding: 20px 26px; border-top: 5px solid var(--green);
+      box-shadow: 0 26px 60px rgba(0,0,0,.45); }
+    #s1-fold .t1 { font-size: 20px; font-weight: 700; letter-spacing: .1em; color: var(--green); }
+    #s1-fold .t2 { font-size: 28px; font-weight: 600; color: #0a2c47; margin-top: 8px; white-space: nowrap; }
+    #s1-xq { display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 24px; font-weight: 600; color: var(--red); }
+    #s1-xq i { width: 34px; height: 34px; border-radius: 50%; background: var(--redbg); display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 20px; font-weight: 800; color: var(--red); }
+    #s1-lock { position: absolute; left: 610px; top: 576px; width: 96px; height: 96px; border-radius: 50%; background: #9b2c24; display: flex; align-items: center; justify-content: center; box-shadow: 0 16px 34px rgba(0,0,0,.4); }
+    #s1-lock svg { width: 48px; height: 48px; }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080">
+    <div class="stage">
+      <div class="cam" id="s1-cam">
+<!--@MAC:s1-->
+        <div class="scr" id="s1-conn" style="background-image:url(assets/ui/connexion.webp)"></div>
+        <div class="scr" id="s1-home" style="background-image:url(assets/ui/m_home.webp)"></div>
+        <div class="scr" id="s1-verif" style="background-image:url(assets/ui/m_verif.webp)"></div>
+        <div class="scr" id="s1-dim" style="background-image:url(assets/ui/m_sig0163_a.webp); clip-path: inset(0 544.4px 0 0); background-color: transparent"></div>
+        <div class="drw" id="s1-d163">
+          <div class="s1-dhead" style="background-image:url(assets/ui/drawer_0163.webp)"></div>
+          <div class="s1-dwin"><div class="s1-dimg" id="s1-b163" style="background-image:url(assets/ui/drawer_0163.webp)"></div></div>
+        </div>
+        <div class="drw" id="s1-d186">
+          <div class="s1-dhead" style="background-image:url(assets/ui/drawer_0186.webp)"></div>
+          <div class="s1-dwin"><div class="s1-dimg" id="s1-b186" style="background-image:url(assets/ui/drawer_0186.webp); height: 936.2px"></div></div>
+        </div>
+        <div class="hl" id="s1-h-card"></div>
+        <div class="hl" id="s1-h-nav"></div>
+        <div class="hl" id="s1-h-verrou"></div>
+        <div class="hl red" id="s1-h-bloc"></div>
+        <div class="hl" id="s1-h-q1"></div>
+        <div class="hl" id="s1-h-q2"></div>
+        <div class="hl" id="s1-h-q3"></div>
+        <div class="hl" id="s1-h-q4"></div>
+        <div class="hl red" id="s1-h-x2"></div>
+        <div class="rip" id="s1-rip"></div>
+<!--@/MAC-->
+      </div>
+    </div>
+    <div id="s1-ok"><span class="chip green">4 contrôles sur 4 · régularité établie</span></div>
+    <div class="persona" id="s1-who" style="left:60px; top:930px"><div class="av">MK</div><div><div class="nm">Mulumba Kanyinda Victor</div><div class="rl">Magistrat du Parquet · secret judiciaire, niveau 1</div></div></div>
+    <div class="chap" id="s1-chap">
+      <div class="chap-n">01</div>
+      <div class="chap-k">Premier écran · 1 / 5</div>
+      <div class="chap-r"></div>
+      <div class="chap-t"><span class="w">Le</span> <span class="w">contrôle</span> <span class="w">de</span> <span class="w">légalité</span></div>
+      <div class="chap-m"><span class="w">Rien</span> <span class="w">n'entre</span> <span class="w">dans</span> <span class="w">le</span> <span class="w">système</span> <span class="w">sans</span> <span class="w">contrôle</span> <span class="w">de</span> <span class="w">validité</span> <span class="w">juridique.</span></div>
+    </div>
+    <div id="s1-cards">
+      <div class="uic" id="s1-cA">
+        <div><span class="ref">SIG-2026-0163</span> &nbsp;<span class="kind">Dissémination CENAREF</span></div>
+        <div class="tt">Redevances minières non reversées au Trésor</div>
+        <div class="s1-row"><span class="chip beige">4 contrôles sur 4</span><span class="chip green" id="s1-cA-ok">Validée</span></div>
+      </div>
+      <div id="s1-fold"><div class="tab">DPJ-2026-014</div><div class="body"><div class="t1">DOSSIER OUVERT</div><div class="t2">Redevances minières — Kolwezi</div></div></div>
+      <div class="uic" id="s1-cB">
+        <div><span class="ref">SIG-2026-0186</span> &nbsp;<span class="kind">Média</span></div>
+        <div class="tt">Rétrocessions provinciales non reversées</div>
+        <div id="s1-xq"><i>✕</i>Références procédurales : non</div>
+        <div class="s1-row"><span class="chip amber" id="s1-cB-st">Clarification demandée</span><span class="chip red" id="s1-cB-no">Aucune enquête ouverte</span></div>
+      </div>
+      <div id="s1-lock"><svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><rect x="10" y="21" width="28" height="21" rx="4" fill="#fff" stroke="none"/><path d="M16 21 V15 a8 8 0 0 1 16 0 V21"/></svg></div>
+    </div>
+  </div>
+  <script>
+    /*@HELPERS*/
+    (function () {
+      const $ = (s) => document.querySelector(s);
+      const $$ = (s) => Array.from(document.querySelectorAll(s));
+      const tl = gsap.timeline({ paused: true });
+      const T0 = 21.6; // scene start on the film clock: local = film - T0
+      const at = (t) => t - T0;
+      const cur = "#s1-cur", rip = "#s1-rip";
+      gsap.set("#s1-cam", OV);
+      gsap.set(["#s1-home", "#s1-verif", "#s1-dim", "#s1-d163", "#s1-d186", "#s1-ok", "#s1-who", "#s1-cards"], { opacity: 0 });
+      gsap.set(cur, { opacity: 0 });
+      const B = BOX;
+
+      /* ---------- the magistrate's workstation ---------- */
+      const card = B.connexion.w_parquet;
+      over("#s1-h-card", card, 4);
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(1180, 860)), 0.05);
+      tl.to("#s1-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, camAt(1015, 470, 1.02, 1000, 560)), 0.0);
+      hlOn(tl, "#s1-h-card", 0.45);
+      clickAt(tl, cur, rip, 960, 352, at(22.45), 0.75);
+      swap(tl, "#s1-conn", "#s1-home", at(22.55));
+      tl.set("#s1-h-card", { opacity: 0 }, at(22.55));
+      tl.set("#s1-who", { opacity: 1 }, at(22.55));
+      personaIn(tl, "#s1-who", at(22.6), at(24.6));
+
+      /* ---------- chapter 1: one click on "Contrôle de légalité" ---------- */
+      tl.to("#s1-cam", Object.assign({ duration: 1.05, ease: "power2.inOut" }, CHP), at(23.0));
+      tl.set("#s1-chap", { opacity: 1 }, 0);
+      gsap.set("#s1-chap", { opacity: 0 });
+      tl.set("#s1-chap", { opacity: 1 }, at(23.7));
+      chapter(tl, $("#s1-chap"), at(23.7), at(26.25));
+      const nv = B.m_home.n_verif;
+      over("#s1-h-nav", nv, 2);
+      clickAt(tl, cur, rip, nv.x + 40, nv.y + nv.h / 2, at(24.35), 0.8);
+      hlOn(tl, "#s1-h-nav", at(24.35), 0.25);
+      hlOff(tl, "#s1-h-nav", at(25.3));
+      swap(tl, "#s1-home", "#s1-verif", at(24.45));
+
+      /* ---------- "KWIKAMA empêche les enquêtes sauvages ou politisées" 26.59 – 29.40 ---------- */
+      tl.to("#s1-cam", Object.assign({ duration: 1.1, ease: "power2.inOut" }, camAt(848, 520, 1.32)), at(26.15));
+      over("#s1-h-verrou", { x: 288, y: 381, w: 1120, h: 78 }, 4);
+      over("#s1-h-bloc", { x: 1046, y: 484, w: 362, h: 122 }, 4);
+      hlOn(tl, "#s1-h-verrou", at(26.6));
+      hlOff(tl, "#s1-h-verrou", at(27.95));
+      hlOn(tl, "#s1-h-bloc", at(28.1));
+      hlOff(tl, "#s1-h-bloc", at(30.0));
+      tl.to(cur, Object.assign({ duration: 0.8, ease: "power2.inOut" }, curPos(1250, 760)), at(27.6));
+
+      /* ---------- "Rien n'entre…" 30.34: open the CENAREF seizure, read its four controls ---------- */
+      clickAt(tl, cur, rip, 700, 700, at(30.55), 0.6);
+      tl.fromTo("#s1-dim", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, at(30.65));
+      tl.set("#s1-d163", { opacity: 1, x: 544.4 }, at(30.64));
+      tl.to("#s1-d163", { x: 0, duration: 0.45, ease: "power3.out" }, at(30.65));
+      tl.set(cur, { opacity: 0 }, at(31.0));
+      tl.to("#s1-cam", Object.assign({ duration: 1.1, ease: "power2.inOut" }, camAt(1160, 578, 1.42, 1060, 540)), at(30.75));
+      // the drawer scrolls to the controls ("validité juridique, selon le manuel" 33.3 – 35.6)
+      tl.to("#s1-b163", { y: -340 * K, duration: 1.3, ease: "power2.inOut" }, at(33.9));
+      const Q = B.m_sig0163_b;
+      ["q1", "q2", "q3", "q4"].forEach((q) => over("#s1-h-" + q, Q[q], 3));
+      const QT = [36.57, 38.46, 39.9, 40.62];
+      QT.forEach((t, i) => {
+        hlOn(tl, "#s1-h-q" + (i + 1), at(t));
+        if (i < 3) tl.to("#s1-h-q" + (i + 1), { borderColor: "#2f8a63", boxShadow: "0 0 0 4px rgba(47,138,99,.14), 0 0 0 rgba(0,0,0,0)", duration: 0.35 }, at(QT[i + 1]) - 0.05);
+      });
+      tl.to("#s1-h-q4", { borderColor: "#2f8a63", boxShadow: "0 0 0 4px rgba(47,138,99,.14), 0 0 0 rgba(0,0,0,0)", duration: 0.35 }, at(41.1));
+      tl.fromTo("#s1-ok", { opacity: 0, y: 16, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, at(40.85));
+
+      /* ---------- "Le signalement de la CENAREF est validé… l'article de presse reste bloqué" 41.44 – 48.04 ---------- */
+      tl.to("#s1-ok", { opacity: 0, y: 10, duration: 0.3, ease: "power2.in" }, at(43.2));
+      tl.to(["#s1-h-q1", "#s1-h-q2", "#s1-h-q3", "#s1-h-q4"], { opacity: 0, duration: 0.3 }, at(41.7));
+      tl.to("#s1-cam", Object.assign({ duration: 1.0, ease: "power2.inOut" }, CHP), at(41.6));
+      tl.set("#s1-cards", { opacity: 1 }, at(41.6));
+      tl.fromTo("#s1-cA", { opacity: 0, x: -80, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, at(41.75));
+      tl.fromTo("#s1-cA-ok", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, at(43.04));
+      tl.fromTo("#s1-fold", { opacity: 0, y: -90, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.4)" }, at(43.85));
+      // the media seizure: shown in the screen and as a card
+      tl.set("#s1-d186", { opacity: 1, x: 0 }, at(44.85));
+      tl.set("#s1-b186", { y: -318 * K }, 0);
+      tl.fromTo("#s1-d186", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.35, ease: "power2.inOut" }, at(44.85));
+      over("#s1-h-x2", B.m_sig0186_b.q2, 3);
+      hlOn(tl, "#s1-h-x2", at(46.3));
+      tl.fromTo("#s1-cB", { opacity: 0, x: -80, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, at(45.0));
+      tl.fromTo("#s1-xq", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, at(46.3));
+      tl.fromTo(["#s1-cB-st", "#s1-cB-no"], { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", stagger: 0.12 }, at(47.3));
+      tl.fromTo("#s1-lock", { opacity: 0, scale: 2.2, rotation: -16 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.2, ease: "power4.in" }, at(47.45));
+      tl.to("#s1-cB", { x: 8, duration: 0.04, ease: "none" }, at(47.66));
+      tl.to("#s1-cB", { x: -6, duration: 0.05, ease: "none" }, at(47.70));
+      tl.to("#s1-cB", { x: 0, duration: 0.06, ease: "none" }, at(47.75));
+
+      /* ---------- hand-over to chapter 2: the drawer closes, the list is back ---------- */
+      tl.to("#s1-cards", { opacity: 0, x: -80, filter: "blur(12px)", duration: 0.45, ease: "power3.in" }, at(48.3));
+      tl.to("#s1-h-x2", { opacity: 0, duration: 0.2 }, at(48.3));
+      tl.to(["#s1-d186", "#s1-d163"], { x: 544.4, duration: 0.35, ease: "power3.in" }, at(48.4));
+      tl.to("#s1-dim", { opacity: 0, duration: 0.3 }, at(48.45));
+      tl.set(cur, Object.assign({ opacity: 1 }, curPos(700, 560)), at(48.8));
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>
