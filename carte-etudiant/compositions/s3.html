@@ -1,0 +1,131 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #s3-wipe { position: absolute; left: -760px; top: -340px; width: 2600px; height: 2600px; transform: rotate(-18deg); }
+    .s3-band { position: absolute; inset: 0; }
+    #s3-rows { position: absolute; inset: 0; opacity: 0; }
+    .s3-rowtxt { position: absolute; left: 0; white-space: nowrap; font: 900 190px/1 Montserrat, sans-serif; color: transparent;
+      -webkit-text-stroke: 2px rgba(255,255,255,.11); letter-spacing: -0.01em; }
+    #s3-rdc { position: absolute; left: 0; right: 0; top: 250px; text-align: center; font: 700 30px/1 'Open Sans', sans-serif;
+      color: #A9C8F2; letter-spacing: .2em; }
+    #s3-stage { position: absolute; inset: 0; perspective: 2400px; }
+    #s3-card { left: 110px; top: 360px; }
+    .s3-glosswrap { position: absolute; inset: 0; overflow: hidden; border-radius: 34px; }
+    #s3-gloss { position: absolute; left: -500px; top: -300px; width: 260px; height: 1200px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0)); }
+    .s3-t { position: absolute; left: 0; right: 0; text-align: center; font: 900 96px/1 Montserrat, sans-serif; letter-spacing: -0.02em; }
+    #s3-t1 { top: 968px; color: #fff; }
+    #s3-t2 { top: 1076px; color: #FCD116; }
+    #s3-plate { position: absolute; left: 0; right: 0; top: 1206px; display: flex; justify-content: center; }
+    #s3-platein { display: flex; align-items: center; gap: 18px; background: #fff; border-radius: 999px; padding: 10px 38px 10px 10px; }
+    #s3-platein img { width: 84px; height: 84px; border-radius: 50%; }
+    #s3-platein span { font: 800 32px/1 Montserrat, sans-serif; color: #0B2C5A; white-space: nowrap; }
+
+.card { position: absolute; width: 860px; height: 540px; transform-style: preserve-3d; }
+.card .face { position: absolute; inset: 0; border-radius: 34px; background: #fff; overflow: hidden;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 30px 60px rgba(11,44,90,.28), 0 6px 14px rgba(11,44,90,.12); }
+.card .face.back { transform: rotateY(180deg); }
+.card .c-head { position: absolute; left: 0; right: 0; top: 0; height: 168px; background: linear-gradient(100deg,#1957B8,#2F86E0); }
+.card .c-cap { position: absolute; left: 34px; top: 32px; width: 104px; height: 104px; border-radius: 50%; background: #fff;
+  color: #1957B8; display: flex; align-items: center; justify-content: center; }
+.card .c-cap svg { width: 60px; height: 60px; }
+.card .c-inst { position: absolute; left: 150px; right: 150px; top: 30px; text-align: center; color: #fff;
+  font: 800 31px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .c-pill { position: absolute; left: 150px; right: 150px; top: 84px; display: flex; justify-content: center; }
+.card .c-pill span { background: #fff; color: #1957B8; font: 800 19px/1 Montserrat, sans-serif; padding: 11px 20px;
+  border-radius: 999px; letter-spacing: .04em; white-space: nowrap; }
+.card .c-seal { position: absolute; right: 30px; top: 30px; width: 108px; height: 108px; border-radius: 50%; background: #fff; padding: 4px; }
+.card .c-seal img { width: 100%; height: 100%; display: block; }
+.card .c-photo { position: absolute; left: 44px; top: 200px; width: 200px; height: 252px; border-radius: 14px; background: #DDE6F2; overflow: hidden; }
+.card .c-photo svg { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; }
+.card .c-name { position: absolute; left: 284px; top: 192px; font: 800 40px/1.2 Montserrat, sans-serif; color: #0B2C5A; }
+.card .c-rows { position: absolute; left: 284px; right: 44px; top: 256px; }
+.card .c-row { display: flex; align-items: center; height: 38px; }
+.card .c-row b { width: 168px; font: 600 19px/1 'Open Sans', sans-serif; color: #4A5A70; }
+.card .c-row i { display: block; height: 14px; border-radius: 7px; background: #DCE3EC; }
+.card .c-status { position: absolute; right: 44px; bottom: 42px; font: 800 20px/1 'Open Sans', sans-serif; color: #1E8E4A; }
+.card .c-tri { position: absolute; left: 0; right: 0; bottom: 0; height: 16px;
+  background: linear-gradient(90deg,#2F86E0 0 33.33%,#FCD116 33.33% 66.66%,#D21034 66.66%); }
+.card .b-head { position: absolute; left: 0; right: 0; top: 0; height: 124px; background: linear-gradient(100deg,#1957B8,#2F86E0);
+  padding: 24px 40px 0; color: #fff; }
+.card .b-head h4 { font: 800 33px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .b-head p { font: 600 20px/1.4 'Open Sans', sans-serif; opacity: .92; margin-top: 6px; }
+.card .b-left { position: absolute; left: 40px; top: 160px; width: 400px; }
+.card .b-left b { display: block; font: 600 20px/1 'Open Sans', sans-serif; color: #4A5A70; margin-bottom: 12px; }
+.card .b-left i { display: block; height: 16px; border-radius: 8px; background: #DCE3EC; margin-bottom: 30px; }
+.card .b-left h5 { font: 800 24px/1.2 Montserrat, sans-serif; color: #0B2C5A; margin-top: 4px; }
+.card .b-left p { font: 600 18px/1.35 'Open Sans', sans-serif; color: #4A5A70; margin-top: 6px; }
+.card .b-qr { position: absolute; right: 40px; top: 152px; width: 330px; height: 330px; padding: 14px; background: #fff;
+  border-radius: 18px; border: 3px solid #E3EAF3; }
+.card .b-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+    <div id="s3-wipe">
+      <div class="s3-band" id="s3-w1" style="background:#2F86E0"></div>
+      <div class="s3-band" id="s3-w2" style="background:#FCD116"></div>
+      <div class="s3-band" id="s3-w3" style="background:#D21034"></div>
+      <div class="s3-band" id="s3-w4" style="background:#0B2C5A"></div>
+    </div>
+    <div id="s3-rows" data-layout-ignore><div class="s3-rowtxt" id="s3-row0" style="top:110px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div><div class="s3-rowtxt" id="s3-row1" style="top:550px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div><div class="s3-rowtxt" id="s3-row2" style="top:990px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div><div class="s3-rowtxt" id="s3-row3" style="top:1430px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div></div>
+    <div id="s3-rdc">RÉPUBLIQUE DÉMOCRATIQUE DU CONGO</div>
+    <div id="s3-stage">
+      <div class="card" id="s3-card">
+<div class="face front" data-layout-ignore id="s3c-front">
+  <div class="c-head">
+    <div class="c-cap"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm-7 10.2v4L12 21l7-3.8v-4L12 17l-7-3.8Z"/></svg></div>
+    <div class="c-inst">NOM DE L'ÉTABLISSEMENT</div>
+    <div class="c-pill"><span>CARTE NATIONALE D'ÉTUDIANT</span></div>
+    <div class="c-seal"><img src="assets/img/seal.png" alt=""></div>
+  </div>
+  <div class="c-photo"><svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="98" r="50" fill="#AFC0D6"/><path d="M14 252c0-58 38-94 86-94s86 36 86 94Z" fill="#AFC0D6"/></svg></div>
+  <div class="c-name">NOM Prénom</div>
+  <div class="c-rows">
+    <div class="c-row"><b>Numéro carte</b><i style="width:300px"></i></div>
+    <div class="c-row"><b>Numéro national</b><i style="width:340px"></i></div>
+    <div class="c-row"><b>Sexe</b><i style="width:60px"></i></div>
+    <div class="c-row"><b>Année</b><i style="width:170px"></i></div>
+    <div class="c-row"><b>Promotion</b><i style="width:110px"></i></div>
+  </div>
+  <div class="c-status">Statut : valide</div>
+  <div class="c-tri"></div>
+<div class="s3-glosswrap"><div id="s3-gloss"></div></div>
+</div>
+      </div>
+    </div>
+    <div class="s3-t" id="s3-t1">CARTE NATIONALE</div>
+    <div class="s3-t" id="s3-t2">DE L'ÉTUDIANT</div>
+    <div id="s3-plate"><div id="s3-platein"><img src="assets/img/seal.png" alt=""><span>MINISTÈRE DE L'ESURSI</span></div></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      ["#s3-w1", "#s3-w2", "#s3-w3", "#s3-w4"].forEach((s, i) => {
+        tl.fromTo(s, { xPercent: -105 }, { xPercent: 0, duration: 0.48, ease: "power3.inOut" }, i * 0.07);
+      });
+      // background type drifts (continues in s4 at the same speed)
+      tl.fromTo("#s3-rows", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.5);
+      [0, 1, 2, 3].forEach((k) => {
+        const from = k % 2 ? -400 : 0, dir = k % 2 ? 1 : -1;
+        tl.fromTo("#s3-row" + k, { x: from }, { x: from + dir * 60, duration: 3.95, ease: "none" }, 0);
+      });
+      tl.fromTo("#s3-rdc", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, 0.5);
+      // the card turns from its edge to face camera
+      tl.fromTo("#s3-card", { rotationY: 88, rotationX: 14, scale: 0.55, y: 140, opacity: 0 },
+        { rotationY: 0, rotationX: 0, scale: 1, y: 0, opacity: 1, duration: 0.95, ease: "expo.out" }, 0.55);
+      tl.fromTo("#s3-gloss", { x: 0, rotation: 20 }, { x: 1700, rotation: 20, duration: 0.75, ease: "power2.inOut" }, 1.25);
+      // title on "Carte Nationale" / "de l'Étudiant"
+      tl.fromTo("#s3-t1", { opacity: 0, scale: 1.08, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 0.94);
+      tl.fromTo("#s3-t2", { opacity: 0, scale: 1.08, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 1.77);
+      // ministry plate on "Ministère"
+      tl.fromTo("#s3-platein", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(1.6)" }, 2.54);
+      // clear the type, keep the card for s4
+      tl.to(["#s3-rdc", "#s3-t1", "#s3-t2", "#s3-platein"], { opacity: 0, y: -24, filter: "blur(8px)", duration: 0.2, ease: "power3.in", stagger: 0.04 }, 3.6);
+
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

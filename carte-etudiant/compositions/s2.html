@@ -1,0 +1,53 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #s2-ground { position: absolute; inset: 0; background: #EFE7DA; }
+    #s2-cam { position: absolute; inset: 0; }
+    .s2-pc { position: absolute; left: 230px; width: 620px; height: 390px; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 24px 50px rgba(60,40,10,.22); }
+    #s2-a { top: 640px; background: #E7D6AE; border: 2px solid #CDB98A; }
+    #s2-a .t1 { position: absolute; left: 34px; top: 30px; font: 400 24px/1 'Space Mono', monospace; color: #6B5530; }
+    #s2-a .t2 { position: absolute; left: 34px; top: 66px; font: 700 40px/1 'Space Mono', monospace; color: #4E3B1C; }
+    #s2-a .ph { position: absolute; left: 34px; top: 132px; width: 150px; height: 190px; background: #B9B2A4; filter: blur(1.5px); }
+    #s2-a .ln { position: absolute; left: 214px; height: 3px; background: repeating-linear-gradient(90deg,#8B7550 0 6px,transparent 6px 12px); }
+    #s2-a .st { position: absolute; right: 40px; bottom: 34px; width: 150px; height: 150px; border-radius: 50%; border: 6px solid #3A59A8;
+      opacity: .5; filter: blur(1.4px); font: 700 22px/150px 'Space Mono', monospace; color: #3A59A8; text-align: center; }
+    #s2-b { top: 480px; background: #EFC4BC; }
+    #s2-b .t1 { position: absolute; left: 40px; top: 34px; font: italic 700 52px/1 'Playfair Display', serif; color: #7A2E2E; }
+    #s2-b .ln { position: absolute; left: 40px; right: 40px; height: 2px; background: #B97D74; }
+    #s2-c { top: 330px; background: #D9E3CF; }
+    #s2-c .t1 { position: absolute; left: 36px; top: 34px; font: 400 40px/1 Oswald, sans-serif; color: #5D6B57; letter-spacing: .04em; }
+    #s2-c .ln { position: absolute; left: 36px; height: 12px; border-radius: 3px; background: #AAB8A1; }
+    #s2-stamp { position: absolute; left: 90px; right: 90px; top: 760px; display: flex; justify-content: center; }
+    #s2-stamp span { display: block; border: 12px solid #D21034; border-radius: 22px; padding: 18px 34px; color: #D21034;
+      font: 900 90px/1 Montserrat, sans-serif; letter-spacing: .01em; background: rgba(255,255,255,.72); white-space: nowrap; }
+
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+    <div id="s2-ground"></div>
+    <div id="s2-cam">
+      <div class="s2-pc" data-layout-ignore id="s2-c"><div class="t1">ATTESTATION D'INSCRIPTION</div><div class="ln" style="top:120px;width:520px"></div><div class="ln" style="top:170px;width:380px"></div><div class="ln" style="top:220px;width:520px"></div><div class="ln" style="top:270px;width:380px"></div><div class="ln" style="top:320px;width:520px"></div></div>
+      <div class="s2-pc" data-layout-ignore id="s2-b"><div class="t1">Carte d'étudiant</div><div class="ln" style="top:140px"></div><div class="ln" style="top:194px"></div><div class="ln" style="top:248px"></div><div class="ln" style="top:302px"></div></div>
+      <div class="s2-pc" data-layout-ignore id="s2-a"><div class="t1">UNIVERSITÉ ..........</div><div class="t2">CARTE D'ÉTUDIANT</div><div class="ph"></div><div class="ln" style="top:150px;width:300px"></div><div class="ln" style="top:196px;width:270px"></div><div class="ln" style="top:242px;width:240px"></div><div class="ln" style="top:288px;width:210px"></div><div class="st">CACHET</div></div>
+      <div id="s2-stamp"><span id="s2-stampin">NON VÉRIFIABLE</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      const land = [["#s2-c", 0.0, 9, -40], ["#s2-b", 0.1, -10, 30], ["#s2-a", 0.2, -4, 0]];
+      land.forEach(([sel, t, rot, x]) => {
+        tl.fromTo(sel, { y: -1500, x: x, rotation: rot - 30, filter: "blur(18px)" },
+          { y: 0, x: x, rotation: rot, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, t);
+      });
+      // NON VÉRIFIABLE stamp on "suffit plus"
+      tl.fromTo("#s2-stampin", { opacity: 0, scale: 2.6, rotation: -12 }, { opacity: 0.96, scale: 1, rotation: -12, duration: 0.16, ease: "power3.in" }, 1.09);
+      tl.to("#s2-cam", { keyframes: [{ x: 16, y: -8, duration: 0.04 }, { x: -13, y: 7, duration: 0.05 }, { x: 8, y: -4, duration: 0.05 }, { x: -4, y: 2, duration: 0.05 }, { x: 0, y: 0, duration: 0.06 }] }, 1.25);
+      tl.to(["#s2-a", "#s2-b", "#s2-c"], { filter: "saturate(.4) brightness(.92)", duration: 0.3, ease: "power2.out" }, 1.25);
+
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>

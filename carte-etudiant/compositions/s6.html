@@ -1,0 +1,89 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #root { background: #F4F7FB; }
+    #s6-all { position: absolute; inset: 0; }
+    .s6-gl { position: absolute; left: 0; width: 1080px; }
+    #s6-panel { position: absolute; left: 70px; top: 250px; width: 940px; height: 540px; border-radius: 34px; background: #fff; overflow: hidden;
+      box-shadow: 0 30px 60px rgba(11,44,90,.16), 0 4px 12px rgba(11,44,90,.08); }
+    #s6-head { position: absolute; left: 0; right: 0; top: 0; height: 110px; background: #0B2C5A; }
+    #s6-head img { position: absolute; left: 26px; top: 19px; width: 72px; height: 72px; border-radius: 50%; background: #fff; }
+    #s6-head b { position: absolute; left: 116px; top: 26px; font: 800 36px/1 Montserrat, sans-serif; color: #fff; }
+    #s6-head span { position: absolute; left: 116px; top: 70px; font: 600 21px/1 'Open Sans', sans-serif; color: #A9C8F2; }
+    #s6-search { position: absolute; left: 36px; right: 36px; top: 138px; height: 96px; border: 3px solid #D5DEEA; border-radius: 22px; background: #F8FAFD; }
+    #s6-search svg { position: absolute; left: 26px; top: 26px; width: 40px; height: 40px; color: #7B8BA1; }
+    #s6-typed { position: absolute; left: 88px; top: 26px; font: 700 40px/1.1 Montserrat, sans-serif; color: #0B2C5A; white-space: nowrap; }
+    #s6-typed i { font-style: normal; opacity: 0; }
+    #s6-ph { position: absolute; left: 88px; top: 30px; font: 600 34px/1 'Open Sans', sans-serif; color: #9AA8BA; }
+    #s6-caret { display: inline-block; width: 4px; height: 42px; margin-left: 4px; background: #1957B8; vertical-align: -6px; opacity: 0; }
+    .s6-row { position: absolute; left: 36px; right: 36px; height: 86px; border-radius: 18px; background: #F4F7FB; }
+    .s6-ico { position: absolute; left: 18px; top: 15px; width: 56px; height: 56px; border-radius: 50%; background: #E3EAF3; color: #0B2C5A; }
+    .s6-ico svg { position: absolute; inset: 12px; width: 32px; height: 32px; }
+    .s6-bar { position: absolute; left: 96px; top: 36px; height: 16px; border-radius: 8px; background: #CBD5E2; }
+    .s6-ok { position: absolute; right: 18px; top: 20px; height: 46px; padding: 0 20px 0 14px; border-radius: 23px; background: #E3F4EA; color: #1E8E4A;
+      font: 800 24px/46px 'Open Sans', sans-serif; display: flex; align-items: center; gap: 6px; }
+    .s6-ok svg { width: 26px; height: 26px; }
+    #s6-me { top: 256px; opacity: 0; }
+    #s6-mebg { position: absolute; inset: 0; border-radius: 18px; background: #FDE8EB; border: 3px solid #D21034; opacity: 0; }
+    #s6-me b { position: absolute; left: 96px; top: 24px; font: 800 36px/1 Montserrat, sans-serif; color: #0B2C5A; }
+    #s6-load { position: absolute; right: 18px; top: 20px; height: 46px; width: 130px; border-radius: 23px; background: #E3EAF3;
+      display: flex; align-items: center; justify-content: center; gap: 10px; }
+    #s6-load i { width: 12px; height: 12px; border-radius: 50%; background: #7B8BA1; }
+    #s6-no { position: absolute; right: 18px; top: 18px; height: 50px; padding: 0 22px 0 14px; border-radius: 25px; background: #D21034; color: #fff;
+      font: 800 25px/50px Montserrat, sans-serif; display: flex; align-items: center; gap: 6px; opacity: 0; white-space: nowrap; }
+    #s6-no svg { width: 28px; height: 28px; }
+    #s6-empty { position: absolute; left: 270px; top: 826px; width: 540px; height: 326px; border-radius: 30px; border: 6px dashed #D21034;
+      background: rgba(210,16,52,.05); opacity: 0; }
+    #s6-eph { position: absolute; left: 34px; top: 58px; width: 140px; height: 190px; border-radius: 14px; border: 4px dashed rgba(210,16,52,.55);
+      font: 900 110px/182px Montserrat, sans-serif; color: #D21034; text-align: center; }
+    #s6-et { position: absolute; left: 200px; top: 82px; font: 900 66px/1.02 Montserrat, sans-serif; color: #D21034; letter-spacing: -0.02em; }
+
+  </style>
+  <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+    <div id="s6-all">
+      <div id="s6-panel">
+        <div id="s6-head"><img src="assets/img/seal.png" alt=""><b>ESURSI Connect</b><span>Établissements de l'ESU</span></div>
+        <div id="s6-search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><div id="s6-ph">Rechercher un établissement…</div><div id="s6-typed"><i id="s6-ch0">T</i><i id="s6-ch1">o</i><i id="s6-ch2">n</i><i id="s6-ch3">&nbsp;</i><i id="s6-ch4">u</i><i id="s6-ch5">n</i><i id="s6-ch6">i</i><i id="s6-ch7">v</i><i id="s6-ch8">e</i><i id="s6-ch9">r</i><i id="s6-ch10">s</i><i id="s6-ch11">i</i><i id="s6-ch12">t</i><i id="s6-ch13">é</i><span id="s6-caret"></span></div></div>
+        <div class="s6-row" id="s6-o0" style="top:256px"><div class="s6-ico"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5 2.5 8v2h19V8L12 2.5ZM4.5 11.5v6h2.6v-6H4.5Zm4.5 0v6h2.6v-6H9Zm4.4 0v6H16v-6h-2.6Zm4.5 0v6h2.6v-6h-2.6ZM2.5 19v2.5h19V19h-19Z"/></svg></div><div class="s6-bar" style="width:420px"></div><div class="s6-ok"><svg viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Inscrit</div></div><div class="s6-row" id="s6-o1" style="top:352px"><div class="s6-ico"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5 2.5 8v2h19V8L12 2.5ZM4.5 11.5v6h2.6v-6H4.5Zm4.5 0v6h2.6v-6H9Zm4.4 0v6H16v-6h-2.6Zm4.5 0v6h2.6v-6h-2.6ZM2.5 19v2.5h19V19h-19Z"/></svg></div><div class="s6-bar" style="width:340px"></div><div class="s6-ok"><svg viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Inscrit</div></div><div class="s6-row" id="s6-o2" style="top:448px"><div class="s6-ico"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5 2.5 8v2h19V8L12 2.5ZM4.5 11.5v6h2.6v-6H4.5Zm4.5 0v6h2.6v-6H9Zm4.4 0v6H16v-6h-2.6Zm4.5 0v6h2.6v-6h-2.6ZM2.5 19v2.5h19V19h-19Z"/></svg></div><div class="s6-bar" style="width:470px"></div><div class="s6-ok"><svg viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Inscrit</div></div>
+        <div class="s6-row" id="s6-me"><div id="s6-mebg"></div><div class="s6-ico"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5 2.5 8v2h19V8L12 2.5ZM4.5 11.5v6h2.6v-6H4.5Zm4.5 0v6h2.6v-6H9Zm4.4 0v6H16v-6h-2.6Zm4.5 0v6h2.6v-6h-2.6ZM2.5 19v2.5h19V19h-19Z"/></svg></div><b>Ton université</b>
+          <div id="s6-load"><i id="s6-d0"></i><i id="s6-d1"></i><i id="s6-d2"></i></div>
+          <div id="s6-no"><svg viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>NON INSCRITE</div></div>
+      </div>
+      <div id="s6-empty"><div id="s6-eph">?</div><div id="s6-et">AUCUNE<br>CARTE</div></div>
+    </div>
+    <div class="s6-gl" id="s6-gl1" style="top:560px;height:90px;background:#D21034"></div>
+    <div class="s6-gl" id="s6-gl2" style="top:980px;height:46px;background:#2F86E0"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // glitch cut in
+      tl.fromTo("#s6-all", { x: 46, skewX: 9 }, { keyframes: [{ x: -34, skewX: -6, duration: 0.034 }, { x: 18, skewX: 3, duration: 0.033 }, { x: 0, skewX: 0, duration: 0.05 }] }, 0);
+      tl.fromTo("#s6-gl1", { x: -1080 }, { x: 1080, duration: 0.12, ease: "none" }, 0);
+      tl.fromTo("#s6-gl2", { x: 1080 }, { x: -1080, duration: 0.1, ease: "none" }, 0.03);
+      // typing "Ton université"
+      tl.to("#s6-ph", { opacity: 0, duration: 0.05 }, 0.33);
+      tl.set("#s6-caret", { opacity: 1 }, 0.33);
+      for (let k = 0; k < 14; k++) tl.set("#s6-ch" + k, { opacity: 1 }, 0.33 + k * 0.055);
+      tl.set("#s6-caret", { opacity: 0 }, 1.25);
+      // the registered ones filter away, yours stays
+      tl.to(["#s6-o0", "#s6-o1", "#s6-o2"], { opacity: 0, y: -22, duration: 0.24, ease: "power3.in", stagger: 0.05 }, 1.12);
+      tl.fromTo("#s6-me", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 1.4);
+      [0, 1, 2, 3, 4].forEach((step) => {
+        [0, 1, 2].forEach((d) => tl.set("#s6-d" + d, { opacity: d === step % 3 ? 1 : 0.3 }, 1.5 + step * 0.14));
+      });
+      // NON INSCRITE on "plateforme"
+      tl.to("#s6-load", { opacity: 0, scale: 0.7, duration: 0.1 }, 2.18);
+      tl.fromTo("#s6-no", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.38, ease: "back.out(2.2)" }, 2.21);
+      tl.to("#s6-mebg", { opacity: 1, duration: 0.15 }, 2.21);
+      tl.to("#s6-me", { keyframes: [{ x: -15, duration: 0.05 }, { x: 12, duration: 0.06 }, { x: -8, duration: 0.06 }, { x: 4, duration: 0.06 }, { x: 0, duration: 0.07 }] }, 2.24);
+      // no card for you
+      tl.fromTo("#s6-empty", { opacity: 0, scale: 1.25, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "power4.out" }, 3.05);
+      tl.to("#s6-empty", { keyframes: [{ x: -14, rotation: -1.2, duration: 0.05 }, { x: 11, rotation: 1, duration: 0.06 }, { x: -6, rotation: -0.5, duration: 0.06 }, { x: 0, rotation: 0, duration: 0.07 }] }, 3.69);
+
+      window.__timelines["s6"] = tl;
+    })();
+  </script>
+</template>

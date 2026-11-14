@@ -1,0 +1,63 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #s7-flood { position: absolute; inset: 0; background: #FCD116; clip-path: circle(0px at 540px 980px); }
+    #s7-cam { position: absolute; inset: 0; }
+    #s7-head { position: absolute; left: 0; right: 0; top: 540px; height: 400px; }
+    #s7-alors { position: absolute; left: 0; right: 0; top: 0; text-align: center; font: 900 78px/1 Montserrat, sans-serif; color: #0B2C5A; opacity: 0; }
+    #s7-bouge { position: absolute; left: 0; right: 0; top: 100px; text-align: center; font: 900 224px/1 Montserrat, sans-serif; color: #0B2C5A;
+      letter-spacing: -0.03em; opacity: 0; }
+    #s7-parle { position: absolute; left: 90px; top: 600px; font: 900 82px/1 Montserrat, sans-serif; color: #0B2C5A; opacity: 0; }
+    .s7-c { position: absolute; left: 90px; width: 900px; height: 170px; border-radius: 34px; background: #0B2C5A;
+      box-shadow: 0 24px 48px rgba(11,44,90,.28); }
+    .s7-c .ic { position: absolute; left: 28px; top: 28px; width: 114px; height: 114px; border-radius: 50%; background: #FCD116; color: #0B2C5A; }
+    .s7-c .ic svg { position: absolute; inset: 24px; width: 66px; height: 66px; }
+    .s7-c b { position: absolute; left: 172px; top: 52px; font: 900 64px/1 Montserrat, sans-serif; color: #fff; letter-spacing: -0.01em; white-space: nowrap; }
+    #s7-c1 { top: 740px; }
+    #s7-c2 { top: 944px; }
+    .s7-r { position: absolute; left: 0; right: 0; text-align: center; font: 900 150px/1 Montserrat, sans-serif; color: #0B2C5A; letter-spacing: -0.03em; opacity: 0; }
+    #s7-r1 { top: 470px; }
+    #s7-r2 { top: 640px; }
+    #s7-r3 { position: absolute; left: 0; right: 0; top: 856px; display: flex; justify-content: center; }
+    #s7-r3in { display: block; background: #D21034; color: #fff; font: 900 104px/1 Montserrat, sans-serif; letter-spacing: -0.02em;
+      padding: 26px 44px 30px; border-radius: 24px; white-space: nowrap; opacity: 0; box-shadow: 0 24px 50px rgba(210,16,52,.35); }
+
+  </style>
+  <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+    <div id="s7-flood"></div>
+    <div id="s7-cam">
+      <div id="s7-head"><div id="s7-alors">ALORS</div><div id="s7-bouge">BOUGE !</div></div>
+      <div id="s7-parle">PARLE À…</div>
+      <div class="s7-c" id="s7-c1"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.2" fill="currentColor"/><path d="M3.5 21c0-4.6 3.8-7.6 8.5-7.6s8.5 3 8.5 7.6Z" fill="currentColor"/></svg></div><b>TON DÉLÉGUÉ</b></div>
+      <div class="s7-c" id="s7-c2"><div class="ic"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5 2.5 8v2h19V8L12 2.5ZM4.5 11.5v6h2.6v-6H4.5Zm4.5 0v6h2.6v-6H9Zm4.4 0v6H16v-6h-2.6Zm4.5 0v6h2.6v-6h-2.6ZM2.5 19v2.5h19V19h-19Z"/></svg></div><b>TON SECRÉTARIAT</b></div>
+      <div class="s7-r" id="s7-r1">RÉCLAME</div>
+      <div class="s7-r" id="s7-r2">TA CARTE</div>
+      <div id="s7-r3"><span id="s7-r3in">MAINTENANT !</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#s7-flood", { clipPath: "circle(0px at 540px 980px)" }, { clipPath: "circle(1250px at 540px 980px)", duration: 0.42, ease: "power3.inOut" }, 0);
+      tl.fromTo("#s7-alors", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power3.out" }, 0.23);
+      tl.fromTo("#s7-bouge", { opacity: 0, scale: 1.7, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.28, ease: "expo.out" }, 0.47);
+      const shake = (t, a) => tl.to("#s7-cam", { keyframes: [{ x: a, y: -a / 2, duration: 0.04 }, { x: -a * 0.8, y: a / 2, duration: 0.05 }, { x: a * 0.5, y: -a / 4, duration: 0.05 }, { x: 0, y: 0, duration: 0.06 }] }, t);
+      shake(0.52, 18);
+      // parle à ton délégué / ton secrétariat
+      tl.to("#s7-head", { y: -330, scale: 0.55, transformOrigin: "50% 0%", duration: 0.42, ease: "power3.inOut" }, 1.2);
+      tl.fromTo("#s7-parle", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power3.out" }, 1.3);
+      tl.fromTo("#s7-c1", { opacity: 1, x: -1150, filter: "blur(16px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 1.62);
+      tl.fromTo("#s7-c2", { opacity: 1, x: 1150, filter: "blur(16px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 2.46);
+      // réclame ta carte, maintenant
+      tl.to(["#s7-head", "#s7-parle", "#s7-c1", "#s7-c2"], { opacity: 0, y: "-=160", filter: "blur(8px)", duration: 0.24, ease: "power3.in", stagger: 0.035 }, 3.22);
+      tl.fromTo("#s7-r1", { opacity: 0, scale: 1.3, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 3.45);
+      tl.fromTo("#s7-r2", { opacity: 0, scale: 1.3, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 3.93);
+      tl.fromTo("#s7-r3in", { opacity: 0, scale: 2.1, rotation: -10 }, { opacity: 1, scale: 1, rotation: -4, duration: 0.22, ease: "power4.out" }, 4.6);
+      shake(4.7, 22);
+
+      window.__timelines["s7"] = tl;
+    })();
+  </script>
+</template>

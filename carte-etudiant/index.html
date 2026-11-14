@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Carte Nationale de l'Étudiant — TikTok</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #F4F7FB; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #F4F7FB; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="38.0" data-width="1080" data-height="1920">
+      <div id="s1" data-composition-id="s1" data-composition-src="compositions/s1.html" data-start="0.0" data-duration="7.55" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:1"></div>
+      <div id="s2" data-composition-id="s2" data-composition-src="compositions/s2.html" data-start="7.55" data-duration="2.07" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:2"></div>
+      <div id="s3" data-composition-id="s3" data-composition-src="compositions/s3.html" data-start="9.3" data-duration="3.95" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:3"></div>
+      <div id="s4" data-composition-id="s4" data-composition-src="compositions/s4.html" data-start="13.25" data-duration="5.8" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:4"></div>
+      <div id="s5" data-composition-id="s5" data-composition-src="compositions/s5.html" data-start="19.0" data-duration="4.35" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:5"></div>
+      <div id="s6" data-composition-id="s6" data-composition-src="compositions/s6.html" data-start="23.35" data-duration="4.15" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:6"></div>
+      <div id="s7" data-composition-id="s7" data-composition-src="compositions/s7.html" data-start="27.35" data-duration="5.5" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:7"></div>
+      <div id="s8" data-composition-id="s8" data-composition-src="compositions/s8.html" data-start="32.75" data-duration="5.25" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:8"></div>
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="38.0"
+        data-track-index="4" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index:50"></div>
+      <audio id="voix" class="clip" src="assets/audio/voix.mp3" data-start="0" data-duration="35.36" data-track-index="10" data-volume="1"></audio>
+      <audio id="sfx0" class="clip" src="assets/sfx/pop.mp3" data-start="1.513" data-duration="0.72" data-track-index="11" data-volume="0.32"></audio><!-- coche 1 -->
+      <audio id="sfx1" class="clip" src="assets/sfx/pop.mp3" data-start="1.913" data-duration="0.72" data-track-index="12" data-volume="0.32"></audio><!-- coche 2 -->
+      <audio id="sfx2" class="clip" src="assets/sfx/pop.mp3" data-start="2.313" data-duration="0.72" data-track-index="13" data-volume="0.32"></audio><!-- coche 3 -->
+      <audio id="sfx3" class="clip" src="assets/sfx/error.mp3" data-start="3.648" data-duration="1.62" data-track-index="11" data-volume="0.28"></audio><!-- preuve manquante -->
+      <audio id="sfx4" class="clip" src="assets/sfx/impact-bass-2.mp3" data-start="4.527" data-duration="2.592" data-track-index="12" data-volume="0.5"></audio><!-- point d'interrogation -->
+      <audio id="sfx5" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="7.271" data-duration="0.575" data-track-index="13" data-volume="0.42"></audio><!-- whip vers le papier -->
+      <audio id="sfx6" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="8.76" data-duration="2.116" data-track-index="11" data-volume="0.55"></audio><!-- tampon -->
+      <audio id="sfx7" class="clip" src="assets/sfx/whoosh.mp3" data-start="9.421" data-duration="0.575" data-track-index="12" data-volume="0.42"></audio><!-- balayage tricolore -->
+      <audio id="sfx8" class="clip" src="assets/sfx/sparkle.mp3" data-start="10.606" data-duration="1.802" data-track-index="13" data-volume="0.28"></audio><!-- reflet sur la carte -->
+      <audio id="sfx9" class="clip" src="assets/sfx/pop.mp3" data-start="11.813" data-duration="0.72" data-track-index="11" data-volume="0.32"></audio><!-- plaque Ministère -->
+      <audio id="sfx10" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="13.671" data-duration="0.575" data-track-index="12" data-volume="0.34"></audio><!-- carte retournée -->
+      <audio id="sfx11" class="clip" src="assets/sfx/ping.mp3" data-start="15.069" data-duration="1.32" data-track-index="13" data-volume="0.32"></audio><!-- base nationale -->
+      <audio id="sfx12" class="clip" src="assets/sfx/whoosh.mp3" data-start="16.021" data-duration="0.575" data-track-index="11" data-volume="0.34"></audio><!-- téléphone -->
+      <audio id="sfx13" class="clip" src="assets/sfx/click.mp3" data-start="16.313" data-duration="0.37" data-track-index="12" data-volume="0.3"></audio><!-- scan -->
+      <audio id="sfx14" class="clip" src="assets/sfx/chime.mp3" data-start="17.565" data-duration="2.544" data-track-index="13" data-volume="0.4"></audio><!-- carte valide -->
+      <audio id="sfx15" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="18.721" data-duration="0.575" data-track-index="11" data-volume="0.38"></audio><!-- écran plein cadre -->
+      <audio id="sfx16" class="clip" src="assets/sfx/sparkle.mp3" data-start="20.006" data-duration="1.802" data-track-index="12" data-volume="0.26"></audio><!-- 26 cartes -->
+      <audio id="sfx17" class="clip" src="assets/sfx/ping.mp3" data-start="20.789" data-duration="1.32" data-track-index="13" data-volume="0.36"></audio><!-- 26 -->
+      <audio id="sfx18" class="clip" src="assets/sfx/pop.mp3" data-start="22.713" data-duration="0.72" data-track-index="11" data-volume="0.38"></audio><!-- la norme -->
+      <audio id="sfx19" class="clip" src="assets/sfx/glitch-1.mp3" data-start="23.293" data-duration="2.638" data-track-index="12" data-volume="0.28"></audio><!-- coupe glitch -->
+      <audio id="sfx20" class="clip" src="assets/sfx/typing.mp3" data-start="23.713" data-duration="1.5" data-track-index="13" data-volume="0.26"></audio><!-- frappe recherche -->
+      <audio id="sfx21" class="clip" src="assets/sfx/error.mp3" data-start="24.848" data-duration="1.62" data-track-index="11" data-volume="0.32"></audio><!-- non inscrite -->
+      <audio id="sfx22" class="clip" src="assets/sfx/impact-bass-2.mp3" data-start="24.447" data-duration="2.592" data-track-index="12" data-volume="0.45"></audio><!-- aucune carte -->
+      <audio id="sfx23" class="clip" src="assets/sfx/whoosh.mp3" data-start="27.421" data-duration="0.575" data-track-index="13" data-volume="0.4"></audio><!-- aplat jaune -->
+      <audio id="sfx24" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="27.8" data-duration="2.116" data-track-index="11" data-volume="0.55"></audio><!-- bouge -->
+      <audio id="sfx25" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="28.921" data-duration="0.575" data-track-index="12" data-volume="0.36"></audio><!-- ton délégué -->
+      <audio id="sfx26" class="clip" src="assets/sfx/whoosh.mp3" data-start="29.771" data-duration="0.575" data-track-index="13" data-volume="0.34"></audio><!-- ton secrétariat -->
+      <audio id="sfx27" class="clip" src="assets/sfx/impact-bass-2.mp3" data-start="30.007" data-duration="2.592" data-track-index="11" data-volume="0.55"></audio><!-- maintenant -->
+      <audio id="sfx28" class="clip" src="assets/sfx/whoosh.mp3" data-start="32.771" data-duration="0.575" data-track-index="12" data-volume="0.32"></audio><!-- iris blanc -->
+      <audio id="sfx29" class="clip" src="assets/sfx/typing.mp3" data-start="32.983" data-duration="1.5" data-track-index="13" data-volume="0.24"></audio><!-- url 1 -->
+      <audio id="sfx30" class="clip" src="assets/sfx/typing.mp3" data-start="34.483" data-duration="1.5" data-track-index="11" data-volume="0.24"></audio><!-- url 2 -->
+      <audio id="sfx31" class="clip" src="assets/sfx/sparkle.mp3" data-start="35.406" data-duration="1.802" data-track-index="12" data-volume="0.28"></audio><!-- bandeau final -->
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

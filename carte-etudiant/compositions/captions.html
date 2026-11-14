@@ -1,0 +1,52 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    .cap { position: absolute; left: 0; width: 1080px; top: 1166px; height: 140px; display: flex; align-items: center; justify-content: center; }
+    .capbox { display: inline-block; max-width: 940px; text-align: center; background: #0B2C5A; color: #fff; border: 4px solid rgba(255,255,255,.92);
+      border-radius: 22px; padding: 16px 32px 20px; font: 800 62px/1.1 Montserrat, sans-serif; letter-spacing: -0.01em;
+      box-shadow: 0 16px 34px rgba(11,44,90,.32); }
+    .capbox em { font-style: normal; color: #FCD116; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+      <div class="cap clip" id="cap0" data-start="3.48" data-duration="0.68" data-track-index="1"><span class="capbox" id="capb0">et on te demande</span></div>
+      <div class="cap clip" id="cap1" data-start="4.16" data-duration="0.64" data-track-index="1"><span class="capbox" id="capb1">de <em>PROUVER</em></span></div>
+      <div class="cap clip" id="cap2" data-start="4.8" data-duration="0.52" data-track-index="1"><span class="capbox" id="capb2">que tu étais</span></div>
+      <div class="cap clip" id="cap3" data-start="5.32" data-duration="0.98" data-track-index="1"><span class="capbox" id="capb3">bien <em>étudiant.</em></span></div>
+      <div class="cap clip" id="cap4" data-start="6.48" data-duration="0.94" data-track-index="1"><span class="capbox" id="capb4">Tu peux le <em>prouver ?</em></span></div>
+      <div class="cap clip" id="cap5" data-start="7.58" data-duration="1.03" data-track-index="1"><span class="capbox" id="capb5">Une carte en <em>papier ?</em></span></div>
+      <div class="cap clip" id="cap6" data-start="8.61" data-duration="0.84" data-track-index="1"><span class="capbox" id="capb6">Ça ne suffit <em>plus.</em></span></div>
+      <div class="cap clip" id="cap7" data-start="13.28" data-duration="1.36" data-track-index="1"><span class="capbox" id="capb7">Un <em>QR code</em> unique,</span></div>
+      <div class="cap clip" id="cap8" data-start="14.64" data-duration="0.56" data-track-index="1"><span class="capbox" id="capb8">relié à la</span></div>
+      <div class="cap clip" id="cap9" data-start="15.2" data-duration="1.0" data-track-index="1"><span class="capbox" id="capb9"><em>base nationale.</em></span></div>
+      <div class="cap clip" id="cap10" data-start="16.2" data-duration="0.88" data-track-index="1"><span class="capbox" id="capb10">Un <em>scan…</em></span></div>
+      <div class="cap clip" id="cap11" data-start="17.08" data-duration="0.76" data-track-index="1"><span class="capbox" id="capb11">et ton <em>identité</em></span></div>
+      <div class="cap clip" id="cap12" data-start="17.84" data-duration="1.01" data-track-index="1"><span class="capbox" id="capb12">est <em>vérifiée.</em></span></div>
+      <div class="cap clip" id="cap13" data-start="23.48" data-duration="1.04" data-track-index="1"><span class="capbox" id="capb13">Mais si ton <em>université</em></span></div>
+      <div class="cap clip" id="cap14" data-start="24.52" data-duration="0.72" data-track-index="1"><span class="capbox" id="capb14">n'est pas encore</span></div>
+      <div class="cap clip" id="cap15" data-start="25.24" data-duration="1.16" data-track-index="1"><span class="capbox" id="capb15">sur la <em>plateforme…</em></span></div>
+      <div class="cap clip" id="cap16" data-start="26.4" data-duration="1.05" data-track-index="1"><span class="capbox" id="capb16"><em>pas de carte</em> pour toi.</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#capb0", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 3.48);
+      tl.fromTo("#capb1", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 4.16);
+      tl.fromTo("#capb2", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 4.8);
+      tl.fromTo("#capb3", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 5.32);
+      tl.fromTo("#capb4", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 6.48);
+      tl.fromTo("#capb5", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 7.58);
+      tl.fromTo("#capb6", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 8.61);
+      tl.fromTo("#capb7", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 13.28);
+      tl.fromTo("#capb8", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 14.64);
+      tl.fromTo("#capb9", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 15.2);
+      tl.fromTo("#capb10", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 16.2);
+      tl.fromTo("#capb11", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 17.08);
+      tl.fromTo("#capb12", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 17.84);
+      tl.fromTo("#capb13", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 23.48);
+      tl.fromTo("#capb14", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 24.52);
+      tl.fromTo("#capb15", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 25.24);
+      tl.fromTo("#capb16", { opacity: 0, scale: 0.9, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: "power3.out" }, 26.4);
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

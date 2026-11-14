@@ -1,0 +1,178 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #root { background: #0B2C5A; }
+    .s3-rowtxt { position: absolute; left: 0; white-space: nowrap; font: 900 190px/1 Montserrat, sans-serif; color: transparent;
+      -webkit-text-stroke: 2px rgba(255,255,255,.11); letter-spacing: -0.01em; }
+    #s4-world { position: absolute; inset: 0; }
+    #s4-stage { position: absolute; inset: 0; perspective: 2400px; }
+    #s4-card { left: 110px; top: 360px; }
+    #s4-lines { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+    #s4-node { position: absolute; left: 110px; top: 196px; width: 170px; height: 170px; border-radius: 50%; background: #fff; color: #0B2C5A; }
+    #s4-node svg { position: absolute; inset: 38px; width: 94px; height: 94px; }
+    #s4-ring { position: absolute; left: 110px; top: 196px; width: 170px; height: 170px; border-radius: 50%; border: 6px solid #FCD116; opacity: 0; }
+    #s4-lbl { position: absolute; left: 312px; top: 222px; }
+    #s4-lbl b { display: block; font: 900 50px/1 Montserrat, sans-serif; color: #fff; letter-spacing: -0.01em; }
+    #s4-lbl span { display: block; margin-top: 14px; font: 600 29px/1 'Open Sans', sans-serif; color: #A9C8F2; }
+    #s4-phone { position: absolute; left: 305px; top: 360px; width: 470px; height: 940px; border-radius: 70px; background: #E8EEF7; padding: 16px;
+      box-shadow: 0 40px 80px rgba(0,0,0,.35); }
+    #s4-screen { position: absolute; inset: 16px; border-radius: 54px; background: #fff; overflow: hidden; }
+    #s4-notch { position: absolute; left: 50%; top: 16px; width: 130px; height: 30px; margin-left: -65px; border-radius: 15px; background: #0B2C5A; }
+    #s4-sh { position: absolute; left: 0; right: 0; top: 0; height: 130px; background: linear-gradient(100deg,#1957B8,#2F86E0);
+      color: #fff; font: 800 38px/1 Montserrat, sans-serif; text-align: center; padding-top: 66px; }
+    #s4-vf { position: absolute; left: 34px; top: 160px; width: 370px; height: 370px; border-radius: 26px; background: #14263F; overflow: hidden;
+      border: 6px solid #14263F; }
+    #s4-vftile { position: absolute; left: 50px; top: 50px; width: 258px; height: 258px; background: #fff; border-radius: 14px; padding: 16px; }
+    #s4-vftile img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+    .s4-cn { position: absolute; width: 54px; height: 54px; border-color: #FCD116; border-style: solid; border-width: 0; }
+    #s4-scan { position: absolute; left: 14px; right: 14px; top: 0; height: 90px;
+      background: linear-gradient(to bottom, rgba(59,227,138,0), rgba(59,227,138,.35)); border-bottom: 5px solid #3BE38A; }
+    #s4-hint { position: absolute; left: 30px; right: 30px; top: 566px; text-align: center; font: 600 27px/1.3 'Open Sans', sans-serif; color: #4A5A70; }
+    #s4-ok { position: absolute; left: 159px; top: 562px; width: 120px; height: 120px; border-radius: 50%; background: #1E8E4A; color: #fff; opacity: 0; }
+    #s4-ok svg { position: absolute; inset: 20px; width: 80px; height: 80px; }
+    #s4-okt { position: absolute; left: 0; right: 0; top: 708px; text-align: center; opacity: 0; }
+    #s4-okt b { display: block; font: 800 48px/1 Montserrat, sans-serif; color: #1E8E4A; }
+    #s4-okt span { display: block; margin-top: 14px; font: 600 29px/1 'Open Sans', sans-serif; color: #4A5A70; }
+    #s4-flood { position: absolute; inset: 0; background: #fff; clip-path: inset(376px 321px 636px 321px round 54px); opacity: 0; }
+
+.card { position: absolute; width: 860px; height: 540px; transform-style: preserve-3d; }
+.card .face { position: absolute; inset: 0; border-radius: 34px; background: #fff; overflow: hidden;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 30px 60px rgba(11,44,90,.28), 0 6px 14px rgba(11,44,90,.12); }
+.card .face.back { transform: rotateY(180deg); }
+.card .c-head { position: absolute; left: 0; right: 0; top: 0; height: 168px; background: linear-gradient(100deg,#1957B8,#2F86E0); }
+.card .c-cap { position: absolute; left: 34px; top: 32px; width: 104px; height: 104px; border-radius: 50%; background: #fff;
+  color: #1957B8; display: flex; align-items: center; justify-content: center; }
+.card .c-cap svg { width: 60px; height: 60px; }
+.card .c-inst { position: absolute; left: 150px; right: 150px; top: 30px; text-align: center; color: #fff;
+  font: 800 31px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .c-pill { position: absolute; left: 150px; right: 150px; top: 84px; display: flex; justify-content: center; }
+.card .c-pill span { background: #fff; color: #1957B8; font: 800 19px/1 Montserrat, sans-serif; padding: 11px 20px;
+  border-radius: 999px; letter-spacing: .04em; white-space: nowrap; }
+.card .c-seal { position: absolute; right: 30px; top: 30px; width: 108px; height: 108px; border-radius: 50%; background: #fff; padding: 4px; }
+.card .c-seal img { width: 100%; height: 100%; display: block; }
+.card .c-photo { position: absolute; left: 44px; top: 200px; width: 200px; height: 252px; border-radius: 14px; background: #DDE6F2; overflow: hidden; }
+.card .c-photo svg { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; }
+.card .c-name { position: absolute; left: 284px; top: 192px; font: 800 40px/1.2 Montserrat, sans-serif; color: #0B2C5A; }
+.card .c-rows { position: absolute; left: 284px; right: 44px; top: 256px; }
+.card .c-row { display: flex; align-items: center; height: 38px; }
+.card .c-row b { width: 168px; font: 600 19px/1 'Open Sans', sans-serif; color: #4A5A70; }
+.card .c-row i { display: block; height: 14px; border-radius: 7px; background: #DCE3EC; }
+.card .c-status { position: absolute; right: 44px; bottom: 42px; font: 800 20px/1 'Open Sans', sans-serif; color: #1E8E4A; }
+.card .c-tri { position: absolute; left: 0; right: 0; bottom: 0; height: 16px;
+  background: linear-gradient(90deg,#2F86E0 0 33.33%,#FCD116 33.33% 66.66%,#D21034 66.66%); }
+.card .b-head { position: absolute; left: 0; right: 0; top: 0; height: 124px; background: linear-gradient(100deg,#1957B8,#2F86E0);
+  padding: 24px 40px 0; color: #fff; }
+.card .b-head h4 { font: 800 33px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .b-head p { font: 600 20px/1.4 'Open Sans', sans-serif; opacity: .92; margin-top: 6px; }
+.card .b-left { position: absolute; left: 40px; top: 160px; width: 400px; }
+.card .b-left b { display: block; font: 600 20px/1 'Open Sans', sans-serif; color: #4A5A70; margin-bottom: 12px; }
+.card .b-left i { display: block; height: 16px; border-radius: 8px; background: #DCE3EC; margin-bottom: 30px; }
+.card .b-left h5 { font: 800 24px/1.2 Montserrat, sans-serif; color: #0B2C5A; margin-top: 4px; }
+.card .b-left p { font: 600 18px/1.35 'Open Sans', sans-serif; color: #4A5A70; margin-top: 6px; }
+.card .b-qr { position: absolute; right: 40px; top: 152px; width: 330px; height: 330px; padding: 14px; background: #fff;
+  border-radius: 18px; border: 3px solid #E3EAF3; }
+.card .b-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
+    <div id="s4-rows" data-layout-ignore><div class="s3-rowtxt" id="s4-row0" style="top:110px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div><div class="s3-rowtxt" id="s4-row1" style="top:550px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div><div class="s3-rowtxt" id="s4-row2" style="top:990px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div><div class="s3-rowtxt" id="s4-row3" style="top:1430px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div></div>
+    <div id="s4-world">
+      <div id="s4-ring"></div>
+      <div id="s4-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v13c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-13"/><path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></svg></div>
+      <div id="s4-lbl"><b>BASE NATIONALE</b><span>Ministère de l'ESURSI · temps réel</span></div>
+      <div id="s4-stage">
+        <div class="card" id="s4-card">
+<div class="face front" data-layout-ignore id="s4c-front">
+  <div class="c-head">
+    <div class="c-cap"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm-7 10.2v4L12 21l7-3.8v-4L12 17l-7-3.8Z"/></svg></div>
+    <div class="c-inst">NOM DE L'ÉTABLISSEMENT</div>
+    <div class="c-pill"><span>CARTE NATIONALE D'ÉTUDIANT</span></div>
+    <div class="c-seal"><img src="assets/img/seal.png" alt=""></div>
+  </div>
+  <div class="c-photo"><svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="98" r="50" fill="#AFC0D6"/><path d="M14 252c0-58 38-94 86-94s86 36 86 94Z" fill="#AFC0D6"/></svg></div>
+  <div class="c-name">NOM Prénom</div>
+  <div class="c-rows">
+    <div class="c-row"><b>Numéro carte</b><i style="width:300px"></i></div>
+    <div class="c-row"><b>Numéro national</b><i style="width:340px"></i></div>
+    <div class="c-row"><b>Sexe</b><i style="width:60px"></i></div>
+    <div class="c-row"><b>Année</b><i style="width:170px"></i></div>
+    <div class="c-row"><b>Promotion</b><i style="width:110px"></i></div>
+  </div>
+  <div class="c-status">Statut : valide</div>
+  <div class="c-tri"></div>
+</div>
+<div class="face back" data-layout-ignore id="s4c-back">
+  <div class="b-head"><h4>CONDITIONS / VALIDATION</h4><p>Cette carte est personnelle et ne peut être cédée.</p></div>
+  <div class="b-left">
+    <b>Cycle / Mention</b><i style="width:360px"></i>
+    <b>Niveau</b><i style="width:250px"></i>
+    <h5>DÉLIVRÉE PAR LE MINISTÈRE</h5>
+    <p>Vérifier le QR pour confirmer la validité.</p>
+  </div>
+  <div class="b-qr" id="s4c-qr"><img src="assets/img/qr.svg" alt=""></div>
+  <div class="c-tri"></div>
+</div>
+        </div>
+      </div>
+      <svg id="s4-lines" viewBox="0 0 1080 1920"><path id="s4-pb0" d="M 470 600 C 470 470, 196 500, 196 370" pathLength="1" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/><path id="s4-pb1" d="M 540 600 C 540 450, 240 480, 232 366" pathLength="1" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/><path id="s4-pb2" d="M 610 600 C 610 430, 290 460, 266 358" pathLength="1" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/><path id="s4-pf0" d="M 470 600 C 470 470, 196 500, 196 370" pathLength="100" fill="none" stroke="#FCD116" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 10" opacity="0"/><path id="s4-pf1" d="M 540 600 C 540 450, 240 480, 232 366" pathLength="100" fill="none" stroke="#FCD116" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 10" opacity="0"/><path id="s4-pf2" d="M 610 600 C 610 430, 290 460, 266 358" pathLength="100" fill="none" stroke="#FCD116" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 10" opacity="0"/></svg>
+    </div>
+    <div id="s4-phone">
+      <div id="s4-screen">
+        <div id="s4-sh">Vérification</div>
+        <div id="s4-notch"></div>
+        <div id="s4-vf"><div id="s4-vftile"><img src="assets/img/qr.svg" alt=""></div><div class="s4-cn" style="left:18px;top:18px;border-left-width:7px;border-top-width:7px;border-top-left-radius:16px"></div><div class="s4-cn" style="right:18px;top:18px;border-right-width:7px;border-top-width:7px;border-top-right-radius:16px"></div><div class="s4-cn" style="left:18px;bottom:18px;border-left-width:7px;border-bottom-width:7px;border-bottom-left-radius:16px"></div><div class="s4-cn" style="right:18px;bottom:18px;border-right-width:7px;border-bottom-width:7px;border-bottom-right-radius:16px"></div><div id="s4-scan"></div></div>
+        <div id="s4-hint">Scanner le QR code<br>de la carte</div>
+        <div id="s4-ok"><svg viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div id="s4-okt"><b>Carte valide</b><span>Identité vérifiée</span></div>
+      </div>
+    </div>
+    <div id="s4-flood"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      // background type continues from s3 (same speed, 15 px/s)
+      [0, 1, 2, 3].forEach((k) => {
+        const from = k % 2 ? -340 : -60, dir = k % 2 ? 1 : -1;
+        tl.fromTo("#s4-row" + k, { x: from }, { x: from + dir * 87, duration: 5.8, ease: "none" }, 0);
+      });
+      tl.set(["#s4-node", "#s4-lbl"], { opacity: 0 }, 0);
+      tl.set("#s4-phone", { y: 1700 }, 0);
+      // flip to the back on "QR"
+      tl.fromTo("#s4-card", { rotationY: 0, scale: 1, x: 0, y: 0 }, { rotationY: 180, duration: 0.72, ease: "power3.inOut" }, 0.19);
+      tl.to("#s4-card", { keyframes: [{ scale: 0.9, duration: 0.36, ease: "power2.out" }, { scale: 1, duration: 0.36, ease: "power2.in" }] }, 0.19);
+      // push onto the QR code
+      tl.to("#s4-card", { scale: 1.4, x: -315, y: 140, duration: 0.7, ease: "power2.inOut" }, 0.88);
+      // linked to the national database
+      tl.fromTo("#s4-node", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 1.39);
+      tl.fromTo("#s4-lbl", { opacity: 0, filter: "blur(8px)", x: -14 }, { opacity: 1, filter: "blur(0px)", x: 0, duration: 0.25, ease: "power3.out" }, 1.52);
+      [0, 1, 2].forEach((i) => {
+        tl.to("#s4-pb" + i, { attr: { "stroke-dashoffset": 0 }, duration: 0.55, ease: "power2.out" }, 1.4 + i * 0.06);
+        tl.to("#s4-pf" + i, { attr: { opacity: 1 }, duration: 0.2 }, 1.8 + i * 0.06);
+        tl.fromTo("#s4-pf" + i, { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -140 }, duration: 1.9, ease: "none" }, 1.8);
+      });
+      tl.fromTo("#s4-ring", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.8, duration: 0.6, ease: "power2.out", immediateRender: false }, 2.11);
+      // the world steps back, the phone rises
+      tl.to("#s4-world", { scale: 0.84, y: -150, opacity: 0.28, filter: "blur(6px)", duration: 0.5, ease: "power3.inOut" }, 2.72);
+      tl.to("#s4-phone", { y: 0, duration: 0.6, ease: "expo.out" }, 2.72);
+      // scanning passes
+      tl.fromTo("#s4-scan", { y: -90 }, { y: 290, duration: 0.55, ease: "power1.inOut" }, 3.05);
+      tl.to("#s4-scan", { y: -60, duration: 0.5, ease: "power1.inOut" }, 3.6);
+      tl.to("#s4-scan", { y: 290, duration: 0.5, ease: "power1.inOut" }, 4.1);
+      // verified on "vérifiée"
+      tl.to("#s4-scan", { opacity: 0, duration: 0.12 }, 4.68);
+      tl.to("#s4-vf", { borderColor: "#1E8E4A", duration: 0.15 }, 4.7);
+      tl.to("#s4-hint", { opacity: 0, filter: "blur(6px)", duration: 0.15 }, 4.66);
+      tl.fromTo("#s4-ok", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 4.7);
+      tl.fromTo("#s4-okt", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 4.82);
+      // the white screen becomes the next world
+      tl.set("#s4-flood", { opacity: 1 }, 5.35);
+      tl.fromTo("#s4-flood", { clipPath: "inset(376px 321px 636px 321px round 54px)" }, { clipPath: "inset(0px 0px 0px 0px round 0px)", duration: 0.42, ease: "power3.in" }, 5.35);
+
+      window.__timelines["s4"] = tl;
+    })();
+  </script>
+</template>
