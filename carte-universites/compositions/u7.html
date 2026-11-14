@@ -1,0 +1,176 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #root { background: #F4F7FB; }
+    #u7-a { position: absolute; inset: 0; }
+    .u7-l { position: absolute; left: 90px; font: 900 86px/1 Montserrat, sans-serif; color: #0B2C5A; letter-spacing: -0.02em; opacity: 0; }
+    #u7-l1 { top: 196px; }
+    #u7-l2 { top: 290px; }
+    #u7-l3w { position: absolute; left: 90px; top: 384px; }
+    #u7-mk { position: absolute; left: -14px; right: -14px; bottom: 4px; height: 56%; background: #FCD116; border-radius: 6px; transform-origin: 0 50%; }
+    #u7-l3 { position: relative; display: block; font: 900 86px/1 Montserrat, sans-serif; color: #0B2C5A; letter-spacing: -0.02em; opacity: 0; }
+    #u7-stage { position: absolute; inset: 0; perspective: 2400px; }
+    .u7-cd { left: 110px; top: 520px; opacity: 0; }
+    #u7-stamp { position: absolute; left: 330px; top: 846px; display: flex; align-items: center; gap: 16px; padding: 14px 28px 14px 14px;
+      border: 8px solid #0B2C5A; border-radius: 22px; background: rgba(255,255,255,.94); opacity: 0; box-shadow: 0 16px 34px rgba(11,44,90,.25); }
+    #u7-stamp img { width: 96px; height: 96px; border-radius: 50%; }
+    #u7-stamp b { font: 900 36px/1.05 Montserrat, sans-serif; color: #0B2C5A; white-space: nowrap; }
+    #u7-flood { position: absolute; inset: 0; background: #FCD116; clip-path: circle(0px at 640px 920px); }
+    #u7-b { position: absolute; inset: 0; }
+    #u7-shield { position: absolute; left: 465px; top: 300px; width: 150px; height: 150px; border-radius: 50%; background: #0B2C5A; color: #FCD116; opacity: 0; }
+    #u7-shield svg { position: absolute; inset: 32px; width: 86px; height: 86px; }
+    .u7-r { position: absolute; left: 0; right: 0; text-align: center; font: 900 74px/1 Montserrat, sans-serif; color: #0B2C5A; letter-spacing: -0.02em; opacity: 0; }
+    #u7-r1 { top: 500px; }
+    #u7-r2 { top: 590px; }
+    #u7-r3 { top: 700px; font-size: 48px; }
+    #u7-r4w { position: absolute; left: 0; right: 0; top: 784px; display: flex; justify-content: center; }
+    #u7-r4 { display: block; background: #D21034; color: #fff; font: 900 76px/1 Montserrat, sans-serif; padding: 20px 40px 24px; border-radius: 20px;
+      letter-spacing: -0.02em; opacity: 0; box-shadow: 0 20px 44px rgba(210,16,52,.3); }
+    #u7-r5 { top: 940px; font-size: 72px; }
+
+.card { position: absolute; width: 860px; height: 540px; transform-style: preserve-3d; }
+.card .face { position: absolute; inset: 0; border-radius: 34px; background: #fff; overflow: hidden;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 30px 60px rgba(11,44,90,.28), 0 6px 14px rgba(11,44,90,.12); }
+.card .face.back { transform: rotateY(180deg); }
+.card .c-head { position: absolute; left: 0; right: 0; top: 0; height: 168px; background: linear-gradient(100deg,#1957B8,#2F86E0); }
+.card .c-cap { position: absolute; left: 34px; top: 32px; width: 104px; height: 104px; border-radius: 50%; background: #fff;
+  color: #1957B8; display: flex; align-items: center; justify-content: center; }
+.card .c-cap svg { width: 60px; height: 60px; }
+.card .c-inst { position: absolute; left: 150px; right: 150px; top: 30px; text-align: center; color: #fff;
+  font: 800 31px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .c-pill { position: absolute; left: 150px; right: 150px; top: 84px; display: flex; justify-content: center; }
+.card .c-pill span { background: #fff; color: #1957B8; font: 800 19px/1 Montserrat, sans-serif; padding: 11px 20px;
+  border-radius: 999px; letter-spacing: .04em; white-space: nowrap; }
+.card .c-seal { position: absolute; right: 30px; top: 30px; width: 108px; height: 108px; border-radius: 50%; background: #fff; padding: 4px; }
+.card .c-seal img { width: 100%; height: 100%; display: block; }
+.card .c-photo { position: absolute; left: 44px; top: 200px; width: 200px; height: 252px; border-radius: 14px; background: #DDE6F2; overflow: hidden; }
+.card .c-photo svg { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; }
+.card .c-name { position: absolute; left: 284px; top: 192px; font: 800 40px/1.2 Montserrat, sans-serif; color: #0B2C5A; }
+.card .c-rows { position: absolute; left: 284px; right: 44px; top: 256px; }
+.card .c-row { display: flex; align-items: center; height: 38px; }
+.card .c-row b { width: 168px; font: 600 19px/1 'Open Sans', sans-serif; color: #4A5A70; }
+.card .c-row i { display: block; height: 14px; border-radius: 7px; background: #DCE3EC; }
+.card .c-status { position: absolute; right: 44px; bottom: 42px; font: 800 20px/1 'Open Sans', sans-serif; color: #1E8E4A; }
+.card .c-tri { position: absolute; left: 0; right: 0; bottom: 0; height: 16px;
+  background: linear-gradient(90deg,#2F86E0 0 33.33%,#FCD116 33.33% 66.66%,#D21034 66.66%); }
+.card .b-head { position: absolute; left: 0; right: 0; top: 0; height: 124px; background: linear-gradient(100deg,#1957B8,#2F86E0);
+  padding: 24px 40px 0; color: #fff; }
+.card .b-head h4 { font: 800 33px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .b-head p { font: 600 20px/1.4 'Open Sans', sans-serif; opacity: .92; margin-top: 6px; }
+.card .b-left { position: absolute; left: 40px; top: 160px; width: 400px; }
+.card .b-left b { display: block; font: 600 20px/1 'Open Sans', sans-serif; color: #4A5A70; margin-bottom: 12px; }
+.card .b-left i { display: block; height: 16px; border-radius: 8px; background: #DCE3EC; margin-bottom: 30px; }
+.card .b-left h5 { font: 800 24px/1.2 Montserrat, sans-serif; color: #0B2C5A; margin-top: 4px; }
+.card .b-left p { font: 600 18px/1.35 'Open Sans', sans-serif; color: #4A5A70; margin-top: 6px; }
+.card .b-qr { position: absolute; right: 40px; top: 152px; width: 330px; height: 330px; padding: 14px; background: #fff;
+  border-radius: 18px; border: 3px solid #E3EAF3; }
+.card .b-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+
+  </style>
+  <div id="root" data-composition-id="u7" data-width="1080" data-height="1920">
+    <div id="u7-a">
+      <div class="u7-l" id="u7-l1">SEULS LES</div>
+      <div class="u7-l" id="u7-l2">ÉTABLISSEMENTS</div>
+      <div id="u7-l3w"><div id="u7-mk"></div><span id="u7-l3">AGRÉÉS.</span></div>
+      <div id="u7-stage"><div class="card u7-cd" id="u7-c1"><div class="face front" data-layout-ignore id="u7c1-front">
+  <div class="c-head">
+    <div class="c-cap"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm-7 10.2v4L12 21l7-3.8v-4L12 17l-7-3.8Z"/></svg></div>
+    <div class="c-inst">NOM DE L'ÉTABLISSEMENT</div>
+    <div class="c-pill"><span>CARTE NATIONALE D'ÉTUDIANT</span></div>
+    <div class="c-seal"><img src="assets/img/seal.png" alt=""></div>
+  </div>
+  <div class="c-photo"><svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="98" r="50" fill="#AFC0D6"/><path d="M14 252c0-58 38-94 86-94s86 36 86 94Z" fill="#AFC0D6"/></svg></div>
+  <div class="c-name">NOM Prénom</div>
+  <div class="c-rows">
+    <div class="c-row"><b>Numéro carte</b><i style="width:300px"></i></div>
+    <div class="c-row"><b>Numéro national</b><i style="width:340px"></i></div>
+    <div class="c-row"><b>Sexe</b><i style="width:60px"></i></div>
+    <div class="c-row"><b>Année</b><i style="width:170px"></i></div>
+    <div class="c-row"><b>Promotion</b><i style="width:110px"></i></div>
+  </div>
+  <div class="c-status">Statut : valide</div>
+  <div class="c-tri"></div>
+</div></div><div class="card u7-cd" id="u7-c2"><div class="face front" data-layout-ignore id="u7c2-front">
+  <div class="c-head">
+    <div class="c-cap"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm-7 10.2v4L12 21l7-3.8v-4L12 17l-7-3.8Z"/></svg></div>
+    <div class="c-inst">NOM DE L'ÉTABLISSEMENT</div>
+    <div class="c-pill"><span>CARTE NATIONALE D'ÉTUDIANT</span></div>
+    <div class="c-seal"><img src="assets/img/seal.png" alt=""></div>
+  </div>
+  <div class="c-photo"><svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="98" r="50" fill="#AFC0D6"/><path d="M14 252c0-58 38-94 86-94s86 36 86 94Z" fill="#AFC0D6"/></svg></div>
+  <div class="c-name">NOM Prénom</div>
+  <div class="c-rows">
+    <div class="c-row"><b>Numéro carte</b><i style="width:300px"></i></div>
+    <div class="c-row"><b>Numéro national</b><i style="width:340px"></i></div>
+    <div class="c-row"><b>Sexe</b><i style="width:60px"></i></div>
+    <div class="c-row"><b>Année</b><i style="width:170px"></i></div>
+    <div class="c-row"><b>Promotion</b><i style="width:110px"></i></div>
+  </div>
+  <div class="c-status">Statut : valide</div>
+  <div class="c-tri"></div>
+</div></div><div class="card u7-cd" id="u7-c0"><div class="face front" data-layout-ignore id="u7c0-front">
+  <div class="c-head">
+    <div class="c-cap"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm-7 10.2v4L12 21l7-3.8v-4L12 17l-7-3.8Z"/></svg></div>
+    <div class="c-inst">NOM DE L'ÉTABLISSEMENT</div>
+    <div class="c-pill"><span>CARTE NATIONALE D'ÉTUDIANT</span></div>
+    <div class="c-seal"><img src="assets/img/seal.png" alt=""></div>
+  </div>
+  <div class="c-photo"><svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="98" r="50" fill="#AFC0D6"/><path d="M14 252c0-58 38-94 86-94s86 36 86 94Z" fill="#AFC0D6"/></svg></div>
+  <div class="c-name">NOM Prénom</div>
+  <div class="c-rows">
+    <div class="c-row"><b>Numéro carte</b><i style="width:300px"></i></div>
+    <div class="c-row"><b>Numéro national</b><i style="width:340px"></i></div>
+    <div class="c-row"><b>Sexe</b><i style="width:60px"></i></div>
+    <div class="c-row"><b>Année</b><i style="width:170px"></i></div>
+    <div class="c-row"><b>Promotion</b><i style="width:110px"></i></div>
+  </div>
+  <div class="c-status">Statut : valide</div>
+  <div class="c-tri"></div>
+</div></div></div>
+      <div id="u7-stamp"><img src="assets/img/seal.png" alt=""><b>AGRÉÉ PAR LE<br>MINISTÈRE</b></div>
+    </div>
+    <div id="u7-flood"></div>
+    <div id="u7-b">
+      <div id="u7-shield"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.2-3.6-3.6 1.4-1.4 2.2 2.2 5-5 1.4 1.4-6.4 6.4Z"/></svg></div>
+      <div class="u7-r" id="u7-r1">L'identification</div>
+      <div class="u7-r" id="u7-r2">de chaque étudiant</div>
+      <div class="u7-r" id="u7-r3">est une</div>
+      <div id="u7-r4w"><span id="u7-r4">RESPONSABILITÉ</span></div>
+      <div class="u7-r" id="u7-r5">INSTITUTIONNELLE.</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      const shake = (sel, t, a) => tl.to(sel, { keyframes: [{ x: a, y: -a / 2, duration: 0.04 }, { x: -a * 0.8, y: a / 2, duration: 0.05 }, { x: a * 0.5, y: -a / 4, duration: 0.05 }, { x: 0, y: 0, duration: 0.06 }] }, t);
+
+      tl.set("#u7-mk", { scaleX: 0 }, 0);
+      tl.fromTo("#u7-l1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 0.06);
+      tl.fromTo("#u7-l2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 0.3);
+      tl.fromTo("#u7-l3", { opacity: 0, scale: 1.15, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.25, ease: "expo.out" }, 1.1);
+      tl.to("#u7-mk", { scaleX: 1, duration: 0.35, ease: "power3.out" }, 1.25);
+      tl.fromTo("#u7-c0", { opacity: 0, y: 260, rotationX: 30 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.7, ease: "expo.out" }, 0.1);
+      // stamp on "Ministère"
+      tl.fromTo("#u7-stamp", { opacity: 0, scale: 2.4, rotation: -8 }, { opacity: 1, scale: 1, rotation: -8, duration: 0.16, ease: "power3.in" }, 1.6);
+      shake("#u7-a", 1.76, 14);
+      // "peuvent émettre ces cartes"
+      tl.fromTo("#u7-c1", { opacity: 0, x: 0, rotation: 0 }, { opacity: 1, x: -120, y: 40, rotation: -9, duration: 0.5, ease: "power3.out" }, 2.68);
+      tl.fromTo("#u7-c2", { opacity: 0, x: 0, rotation: 0 }, { opacity: 1, x: 120, y: 40, rotation: 9, duration: 0.5, ease: "power3.out" }, 2.76);
+      // yellow flood from the stamp
+      tl.fromTo("#u7-flood", { clipPath: "circle(0px at 640px 920px)" }, { clipPath: "circle(1500px at 640px 920px)", duration: 0.45, ease: "power3.inOut" }, 3.75);
+      tl.set("#u7-a", { opacity: 0 }, 4.2);
+      tl.fromTo("#u7-shield", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 3.95);
+      tl.fromTo("#u7-r1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 3.87);
+      tl.fromTo("#u7-r2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 4.88);
+      tl.fromTo("#u7-r3", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 5.68);
+      tl.fromTo("#u7-r4", { opacity: 0, scale: 1.9, rotation: -6 }, { opacity: 1, scale: 1, rotation: -2, duration: 0.22, ease: "power4.out" }, 6.12);
+      shake("#u7-b", 6.3, 12);
+      tl.fromTo("#u7-r5", { opacity: 0, scale: 1.12, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.25, ease: "expo.out" }, 6.88);
+
+      window.__timelines["u7"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,75 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #root { background: #EFE7DA; }
+    #u2-pile { position: absolute; inset: 0; }
+    .u2-pc { position: absolute; left: 230px; width: 620px; height: 390px; border-radius: 10px; overflow: hidden; box-shadow: 0 24px 50px rgba(60,40,10,.22); }
+    #u2-a { top: 640px; background: #E7D6AE; border: 2px solid #CDB98A; }
+    #u2-a .t1 { position: absolute; left: 34px; top: 30px; font: 400 26px/1 'Space Mono', monospace; color: #6B5530; }
+    #u2-a .t2 { position: absolute; left: 34px; top: 68px; font: 700 40px/1 'Space Mono', monospace; color: #4E3B1C; }
+    #u2-a .ph { position: absolute; left: 34px; top: 132px; width: 150px; height: 190px; background: #B9B2A4; filter: blur(1.5px); }
+    #u2-a .ln { position: absolute; left: 214px; height: 3px; background: repeating-linear-gradient(90deg,#8B7550 0 6px,transparent 6px 12px); }
+    #u2-a .st { position: absolute; right: 40px; bottom: 34px; width: 150px; height: 150px; border-radius: 50%; border: 6px solid #3A59A8;
+      opacity: .5; filter: blur(1.4px); }
+    #u2-b { top: 480px; background: #EFC4BC; }
+    #u2-b .t1 { position: absolute; left: 40px; top: 34px; font: italic 700 52px/1 'Playfair Display', serif; color: #7A2E2E; }
+    #u2-b .ln { position: absolute; left: 40px; right: 40px; height: 2px; background: #B97D74; }
+    #u2-c { top: 330px; background: #D9E3CF; }
+    #u2-c .t1 { position: absolute; left: 36px; top: 34px; font: 400 40px/1 Oswald, sans-serif; color: #5D6B57; letter-spacing: .04em; }
+    #u2-c .ln { position: absolute; left: 36px; height: 12px; border-radius: 3px; background: #AAB8A1; }
+    #u2-stamp { position: absolute; left: 90px; right: 90px; top: 760px; display: flex; justify-content: center; }
+    #u2-stampin { display: block; border: 12px solid #D21034; border-radius: 22px; padding: 18px 34px; color: #D21034; opacity: 0;
+      font: 900 90px/1 Montserrat, sans-serif; background: rgba(255,255,255,.72); white-space: nowrap; }
+    #u2-cred { position: absolute; left: 0; right: 0; top: 600px; height: 150px; }
+    .u2-half { position: absolute; left: 0; right: 0; top: 0; text-align: center; font: 900 116px/150px Montserrat, sans-serif; color: #0B2C5A;
+      letter-spacing: -0.03em; opacity: 0; }
+    #u2-h1 { clip-path: polygon(0 0,100% 0,100% 40%,78% 56%,61% 38%,44% 63%,27% 44%,12% 60%,0 48%); }
+    #u2-h2 { clip-path: polygon(0 48%,12% 60%,27% 44%,44% 63%,61% 38%,78% 56%,100% 40%,100% 100%,0 100%); }
+    #u2-crack { position: absolute; left: 0; top: 0; width: 1080px; height: 150px; overflow: visible; }
+
+  </style>
+  <div id="root" data-composition-id="u2" data-width="1080" data-height="1920">
+    <div id="u2-pile">
+      <div class="u2-pc" data-layout-ignore id="u2-c"><div class="t1">ATTESTATION D'INSCRIPTION</div><div class="ln" style="top:120px;width:520px"></div><div class="ln" style="top:170px;width:380px"></div><div class="ln" style="top:220px;width:520px"></div><div class="ln" style="top:270px;width:380px"></div><div class="ln" style="top:320px;width:520px"></div></div>
+      <div class="u2-pc" data-layout-ignore id="u2-b"><div class="t1">Carte d'étudiant</div><div class="ln" style="top:140px"></div><div class="ln" style="top:194px"></div><div class="ln" style="top:248px"></div><div class="ln" style="top:302px"></div></div>
+      <div class="u2-pc" data-layout-ignore id="u2-a"><div class="t1">UNIVERSITÉ ......</div><div class="t2">CARTE D'ÉTUDIANT</div><div class="ph"></div><div class="ln" style="top:150px;width:300px"></div><div class="ln" style="top:196px;width:270px"></div><div class="ln" style="top:242px;width:240px"></div><div class="ln" style="top:288px;width:210px"></div><div class="st"></div></div>
+      <div id="u2-stamp" data-layout-allow-occlusion data-layout-allow-overlap><span id="u2-stampin">NON VÉRIFIABLE</span></div>
+    </div>
+    <div id="u2-cred" data-layout-allow-overlap>
+      <div class="u2-half" id="u2-h1">CRÉDIBILITÉ</div>
+      <div class="u2-half" id="u2-h2">CRÉDIBILITÉ</div>
+      <svg id="u2-crack" viewBox="0 0 1080 150"><polyline id="u2-line" points="0,72 130,90 292,66 475,94 659,57 842,84 1080,60" pathLength="1" fill="none" stroke="#D21034" stroke-width="7"
+        stroke-linejoin="round" stroke-dasharray="1 1" stroke-dashoffset="1"/></svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      const shake = (sel, t, a) => tl.to(sel, { keyframes: [{ x: a, y: -a / 2, duration: 0.04 }, { x: -a * 0.8, y: a / 2, duration: 0.05 }, { x: a * 0.5, y: -a / 4, duration: 0.05 }, { x: 0, y: 0, duration: 0.06 }] }, t);
+
+      const land = [["#u2-c", 0.13, 9, -40], ["#u2-b", 0.35, -10, 30], ["#u2-a", 0.57, -4, 0]];
+      land.forEach(([sel, t, rot, x]) => {
+        tl.fromTo(sel, { y: -1500, x: x, rotation: rot - 30, filter: "blur(18px)" },
+          { y: 0, x: x, rotation: rot, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, t);
+      });
+      // "formats différents": they spread apart
+      tl.to("#u2-c", { x: -150, rotation: 14, duration: 0.5, ease: "power3.out" }, 1.27);
+      tl.to("#u2-b", { x: 150, rotation: -14, duration: 0.5, ease: "power3.out" }, 1.33);
+      // "vérification" : stamp
+      tl.fromTo("#u2-stampin", { opacity: 0, scale: 2.6, rotation: -12 }, { opacity: 0.96, scale: 1, rotation: -12, duration: 0.16, ease: "power3.in" }, 2.55);
+      shake("#u2-pile", 2.71, 16);
+      // "crédibilité"
+      tl.to("#u2-pile", { scale: 0.66, y: -40, opacity: 0.22, filter: "blur(3px)", duration: 0.5, ease: "power3.inOut" }, 4.1);
+      tl.fromTo(["#u2-h1", "#u2-h2"], { opacity: 0, scale: 1.12, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.25, ease: "expo.out" }, 4.45);
+      // "souffre" : it cracks
+      tl.to("#u2-line", { attr: { "stroke-dashoffset": 0 }, duration: 0.14, ease: "power2.out" }, 6.36);
+      tl.to("#u2-h1", { x: -22, y: -16, rotation: -3, color: "#D21034", duration: 0.35, ease: "power3.out" }, 6.42);
+      tl.to("#u2-h2", { x: 22, y: 18, rotation: 2.5, color: "#D21034", duration: 0.35, ease: "power3.out" }, 6.42);
+      shake("#u2-cred", 6.42, 12);
+
+      window.__timelines["u2"] = tl;
+    })();
+  </script>
+</template>

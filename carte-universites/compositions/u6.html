@@ -1,0 +1,41 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #root { background: #FFFFFF; }
+    #u6-h { position: absolute; left: 80px; top: 200px; }
+    #u6-h b { display: block; font: 900 58px/1 Montserrat, sans-serif; color: #0B2C5A; letter-spacing: -0.01em; }
+    #u6-h span { display: block; margin-top: 14px; font: 600 30px/1 'Open Sans', sans-serif; color: #4A5A70; }
+    .u6-t { position: absolute; width: 450px; height: 210px; border-radius: 26px; background: #F4F7FB; border: 2px solid #E3EAF3; overflow: hidden; opacity: 0; }
+    .u6-t i { position: absolute; left: 0; top: 0; bottom: 0; width: 10px; }
+    .u6-t span { position: absolute; left: 34px; top: 30px; font: 700 28px/1 'Open Sans', sans-serif; color: #4A5A70; }
+    .u6-t b { position: absolute; left: 32px; top: 86px; font: 900 76px/1 Montserrat, sans-serif; color: #0B2C5A; letter-spacing: -0.02em; }
+    .u6-bar { position: absolute; left: 34px; right: 34px; bottom: 28px; height: 12px; border-radius: 6px; background: #DCE3EC; overflow: hidden; }
+    .u6-bar u { position: absolute; inset: 0; border-radius: 6px; transform-origin: 0 50%; }
+
+  </style>
+  <div id="root" data-composition-id="u6" data-width="1080" data-height="1920">
+    <div id="u6-h"><b>Tableau de bord</b><span>Cockpit de pilotage académique</span></div>
+    <div class="u6-t" id="u6-t0" style="left:80px;top:340px"><i style="background:#1957B8"></i><span>Étudiants (total)</span><b id="u6-v0">0</b></div><div class="u6-t" id="u6-t1" style="left:550px;top:340px"><i style="background:#2F86E0"></i><span>Cartes générées</span><b id="u6-v1">0</b></div><div class="u6-t" id="u6-t2" style="left:80px;top:570px"><i style="background:#1E8E4A"></i><span>Étudiants avec photo</span><b id="u6-v2">0</b></div><div class="u6-t" id="u6-t3" style="left:550px;top:570px"><i style="background:#FCD116"></i><span>Cartes distribuées</span><b id="u6-v3">0</b></div><div class="u6-t" id="u6-t4" style="left:80px;top:800px"><i style="background:#1E8E4A"></i><span>Couverture photos</span><b id="u6-v4">0 %</b><div class="u6-bar"><u id="u6-u4" style="background:#1E8E4A"></u></div></div><div class="u6-t" id="u6-t5" style="left:550px;top:800px"><i style="background:#D21034"></i><span>Progression cartes</span><b id="u6-v5">0 %</b><div class="u6-bar"><u id="u6-u5" style="background:#D21034"></u></div></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const VALS = [[1250, ''], [1250, ''], [1238, ''], [980, ''], [99, ' %'], [100, ' %']];
+
+      tl.fromTo("#u6-h", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 0.02);
+      VALS.forEach(([v, unit], k) => {
+        const t = 0.12 + k * 0.06;
+        tl.fromTo("#u6-t" + k, { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "expo.out" }, t);
+        const o = { n: 0 };
+        tl.to(o, { n: v, duration: 0.9, ease: "power2.out", onUpdate: () => {
+          const n = Math.round(o.n);
+          document.querySelector("#u6-v" + k).textContent = (n >= 1000 ? Math.floor(n / 1000) + " " + String(n % 1000).padStart(3, "0") : String(n)) + unit;
+        } }, t + 0.1);
+        if (unit) tl.fromTo("#u6-u" + k, { scaleX: 0 }, { scaleX: v / 100, duration: 0.9, ease: "power2.out" }, t + 0.1);
+      });
+
+      window.__timelines["u6"] = tl;
+    })();
+  </script>
+</template>

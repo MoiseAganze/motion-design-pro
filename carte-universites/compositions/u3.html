@@ -1,0 +1,73 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #u3-wipe { position: absolute; left: -760px; top: -340px; width: 2600px; height: 2600px; transform: rotate(-18deg); }
+    .u3-band { position: absolute; inset: 0; }
+
+    #u3-plate { position: absolute; left: 0; right: 0; top: 228px; display: flex; justify-content: center; }
+    #u3-platein { display: flex; align-items: center; gap: 18px; background: #fff; border-radius: 999px; padding: 10px 38px 10px 10px; opacity: 0; }
+    #u3-platein img { width: 84px; height: 84px; border-radius: 50%; }
+    #u3-platein span { font: 800 32px/1 Montserrat, sans-serif; color: #0B2C5A; white-space: nowrap; }
+    #u3-login { position: absolute; left: 110px; top: 380px; width: 860px; height: 740px; border-radius: 36px; background: #fff; opacity: 0;
+      box-shadow: 0 40px 80px rgba(0,0,0,.3); }
+    #u3-lh img { position: absolute; left: 40px; top: 40px; width: 96px; height: 96px; border-radius: 50%; }
+    #u3-lh b { position: absolute; left: 156px; top: 44px; font: 900 52px/1 Montserrat, sans-serif; color: #0B2C5A; }
+    #u3-lh span { position: absolute; left: 158px; top: 106px; font: 600 25px/1.2 'Open Sans', sans-serif; color: #4A5A70; }
+    .u3-lab { position: absolute; left: 40px; font: 700 26px/1 'Open Sans', sans-serif; color: #0B2C5A; }
+    .u3-in { position: absolute; left: 40px; right: 40px; height: 88px; border: 3px solid #D5DEEA; border-radius: 18px; background: #F8FAFD; }
+    .u3-in div { position: absolute; left: 26px; top: 24px; font: 700 32px/1.2 Montserrat, sans-serif; color: #0B2C5A; white-space: nowrap; }
+    .u3-in i { font-style: normal; opacity: 0; }
+    #u3-btn { position: absolute; left: 40px; right: 40px; top: 560px; height: 96px; border-radius: 20px; background: #1957B8; color: #fff;
+      font: 800 36px/96px Montserrat, sans-serif; text-align: center; }
+    #u3-sec { position: absolute; left: 0; right: 0; top: 680px; text-align: center; font: 600 24px/1 'Open Sans', sans-serif; color: #4A5A70;
+      display: flex; justify-content: center; align-items: center; gap: 8px; }
+    #u3-sec svg { width: 26px; height: 26px; color: #1E8E4A; }
+    #u3-zoom { position: absolute; inset: 0; background: #1957B8; opacity: 0; clip-path: inset(940px 150px 884px 150px round 20px); }
+
+  </style>
+  <div id="root" data-composition-id="u3" data-width="1080" data-height="1920">
+    <div id="u3-wipe">
+      <div class="u3-band" id="u3-w1" style="background:#2F86E0"></div>
+      <div class="u3-band" id="u3-w2" style="background:#FCD116"></div>
+      <div class="u3-band" id="u3-w3" style="background:#D21034"></div>
+      <div class="u3-band" id="u3-w4" style="background:#0B2C5A"></div>
+    </div>
+    <div id="u3-plate"><div id="u3-platein"><img src="assets/img/seal.png" alt=""><span>MINISTÈRE DE L'ESURSI</span></div></div>
+    <div id="u3-login">
+      <div id="u3-lh"><img src="assets/img/seal.png" alt=""><b>ESURSI Connect</b><span>Plateforme intégrée des<br>établissements de l'ESU</span></div>
+      <div class="u3-lab" style="top:210px">Adresse e-mail</div>
+      <div class="u3-in" style="top:250px"><div><i id="u3-e0">v</i><i id="u3-e1">o</i><i id="u3-e2">t</i><i id="u3-e3">r</i><i id="u3-e4">e</i><i id="u3-e5">-</i><i id="u3-e6">e</i><i id="u3-e7">t</i><i id="u3-e8">a</i><i id="u3-e9">b</i><i id="u3-e10">l</i><i id="u3-e11">i</i><i id="u3-e12">s</i><i id="u3-e13">s</i><i id="u3-e14">e</i><i id="u3-e15">m</i><i id="u3-e16">e</i><i id="u3-e17">n</i><i id="u3-e18">t</i><i id="u3-e19">@</i><i id="u3-e20">e</i><i id="u3-e21">s</i><i id="u3-e22">u</i><i id="u3-e23">.</i><i id="u3-e24">a</i><i id="u3-e25">c</i><i id="u3-e26">.</i><i id="u3-e27">c</i><i id="u3-e28">d</i></div></div>
+      <div class="u3-lab" style="top:380px">Mot de passe</div>
+      <div class="u3-in" style="top:420px"><div style="letter-spacing:.12em"><i id="u3-p0">•</i><i id="u3-p1">•</i><i id="u3-p2">•</i><i id="u3-p3">•</i><i id="u3-p4">•</i><i id="u3-p5">•</i><i id="u3-p6">•</i><i id="u3-p7">•</i><i id="u3-p8">•</i><i id="u3-p9">•</i></div></div>
+      <div id="u3-btn">Se connecter</div>
+      <div id="u3-sec"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 10V7a5 5 0 0 1 10 0v3h1.5v11h-13V10H7Zm2 0h6V7a3 3 0 0 0-6 0v3Z"/></svg>Sécurisé</div>
+    </div>
+    <div id="u3-zoom"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      ["#u3-w1", "#u3-w2", "#u3-w3", "#u3-w4"].forEach((s, i) => {
+        tl.fromTo(s, { xPercent: -105 }, { xPercent: 0, duration: 0.48, ease: "power3.inOut" }, i * 0.07);
+      });
+
+      tl.fromTo("#u3-platein", { opacity: 0, scale: 1.05, y: 420 }, { opacity: 1, scale: 1.5, y: 420, duration: 0.45, ease: "back.out(1.6)" }, 0.52);
+      tl.to("#u3-platein", { scale: 1, y: 0, duration: 0.55, ease: "power3.inOut" }, 2.6);
+      // ESURSI Connect
+      tl.fromTo("#u3-login", { opacity: 0, scale: 0.88, y: 60 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "expo.out" }, 3.0);
+      for (let k = 0; k < 29; k++) tl.set("#u3-e" + k, { opacity: 1 }, 4.25 + k * 0.047);
+      for (let k = 0; k < 10; k++) tl.set("#u3-p" + k, { opacity: 1 }, 5.75 + k * 0.05);
+      tl.to("#u3-btn", { keyframes: [{ scale: 0.95, duration: 0.08 }, { scale: 1, duration: 0.14 }] }, 6.75);
+      tl.to("#u3-btn", { backgroundColor: "#0B2C5A", duration: 0.08 }, 6.75);
+      tl.to("#u3-btn", { backgroundColor: "#1957B8", duration: 0.2 }, 6.9);
+      // zoom through the button
+      tl.to("#u3-platein", { opacity: 0, y: -20, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, 7.5);
+      tl.set("#u3-zoom", { opacity: 1 }, 7.75);
+      tl.fromTo("#u3-zoom", { clipPath: "inset(940px 150px 884px 150px round 20px)" }, { clipPath: "inset(0px 0px 0px 0px round 0px)", duration: 0.5, ease: "power3.in" }, 7.75);
+
+      window.__timelines["u3"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,146 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #u9-flood { position: absolute; inset: 0; background: #FFFFFF; clip-path: circle(0px at 540px 960px); }
+    #u9-head { position: absolute; left: 200px; top: 196px; width: 680px; opacity: 0; }
+    #u9-tri { position: absolute; left: 90px; top: 450px; width: 900px; height: 12px; display: flex; }
+    #u9-tri i { flex: 1; height: 12px; transform-origin: 0 50%; }
+    #u9-stage { position: absolute; inset: 0; perspective: 2400px; }
+    #u9-card { left: 110px; top: 470px; opacity: 0; }
+    #u9-url { position: absolute; left: 0; right: 0; top: 1004px; display: flex; justify-content: center; }
+    #u9-urlin { display: flex; align-items: center; gap: 18px; height: 116px; padding: 0 46px 0 34px; border-radius: 58px; background: #0B2C5A;
+      box-shadow: 0 24px 50px rgba(11,44,90,.3); opacity: 0; }
+    #u9-urlin svg { width: 56px; height: 56px; color: #FCD116; flex: none; }
+    #u9-urltxt { font: 800 50px/1 Montserrat, sans-serif; color: #fff; white-space: nowrap; letter-spacing: -0.01em; }
+    #u9-urltxt i { font-style: normal; opacity: 0; }
+    #u9-band { position: absolute; left: 0; right: 0; top: 1158px; height: 160px; background: #FCD116; clip-path: inset(0px 100% 0px 0px); }
+    #u9-bandtxt { position: absolute; left: 90px; right: 90px; top: 30px; font: 800 46px/1.1 Montserrat, sans-serif; color: #0B2C5A; opacity: 0; }
+
+    .phone { position: absolute; width: 470px; height: 940px; border-radius: 70px; background: #E8EEF7; box-shadow: 0 40px 80px rgba(11,44,90,.32); }
+    .phone .scr { position: absolute; inset: 16px; border-radius: 54px; background: #fff; overflow: hidden; }
+    .phone .notch { position: absolute; left: 50%; top: 16px; width: 130px; height: 30px; margin-left: -65px; border-radius: 15px; background: #0B2C5A; }
+    .phone .sh { position: absolute; left: 0; right: 0; top: 0; height: 130px; background: linear-gradient(100deg,#1957B8,#2F86E0);
+      color: #fff; font: 800 38px/1 Montserrat, sans-serif; text-align: center; padding-top: 66px; }
+    .phone .vf { position: absolute; left: 34px; top: 160px; width: 370px; height: 370px; border-radius: 26px; background: #14263F; overflow: hidden;
+      border: 6px solid #14263F; }
+    .phone .cn { position: absolute; width: 54px; height: 54px; border-color: #FCD116; border-style: solid; border-width: 0; }
+    .phone .scan { position: absolute; left: 14px; right: 14px; top: 0; height: 90px;
+      background: linear-gradient(to bottom, rgba(59,227,138,0), rgba(59,227,138,.35)); border-bottom: 5px solid #3BE38A; }
+    .phone .hint { position: absolute; left: 30px; right: 30px; top: 566px; text-align: center; font: 600 28px/1.3 'Open Sans', sans-serif; color: #4A5A70; }
+    .phone .ric { position: absolute; left: 159px; top: 562px; width: 120px; height: 120px; border-radius: 50%; color: #fff; opacity: 0; }
+    .phone .ric svg { position: absolute; inset: 20px; width: 80px; height: 80px; }
+    .phone .rt { position: absolute; left: 20px; right: 20px; top: 704px; text-align: center; opacity: 0; }
+    .phone .rt b { display: block; font: 900 36px/1.1 Montserrat, sans-serif; }
+    .phone .rt span { display: block; margin-top: 12px; font: 600 26px/1.25 'Open Sans', sans-serif; color: #4A5A70; }
+    .vtile { position: absolute; left: 50px; top: 50px; width: 258px; height: 258px; background: #fff; border-radius: 14px; padding: 16px; }
+    .vtile img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+
+.card { position: absolute; width: 860px; height: 540px; transform-style: preserve-3d; }
+.card .face { position: absolute; inset: 0; border-radius: 34px; background: #fff; overflow: hidden;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 30px 60px rgba(11,44,90,.28), 0 6px 14px rgba(11,44,90,.12); }
+.card .face.back { transform: rotateY(180deg); }
+.card .c-head { position: absolute; left: 0; right: 0; top: 0; height: 168px; background: linear-gradient(100deg,#1957B8,#2F86E0); }
+.card .c-cap { position: absolute; left: 34px; top: 32px; width: 104px; height: 104px; border-radius: 50%; background: #fff;
+  color: #1957B8; display: flex; align-items: center; justify-content: center; }
+.card .c-cap svg { width: 60px; height: 60px; }
+.card .c-inst { position: absolute; left: 150px; right: 150px; top: 30px; text-align: center; color: #fff;
+  font: 800 31px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .c-pill { position: absolute; left: 150px; right: 150px; top: 84px; display: flex; justify-content: center; }
+.card .c-pill span { background: #fff; color: #1957B8; font: 800 19px/1 Montserrat, sans-serif; padding: 11px 20px;
+  border-radius: 999px; letter-spacing: .04em; white-space: nowrap; }
+.card .c-seal { position: absolute; right: 30px; top: 30px; width: 108px; height: 108px; border-radius: 50%; background: #fff; padding: 4px; }
+.card .c-seal img { width: 100%; height: 100%; display: block; }
+.card .c-photo { position: absolute; left: 44px; top: 200px; width: 200px; height: 252px; border-radius: 14px; background: #DDE6F2; overflow: hidden; }
+.card .c-photo svg { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; }
+.card .c-name { position: absolute; left: 284px; top: 192px; font: 800 40px/1.2 Montserrat, sans-serif; color: #0B2C5A; }
+.card .c-rows { position: absolute; left: 284px; right: 44px; top: 256px; }
+.card .c-row { display: flex; align-items: center; height: 38px; }
+.card .c-row b { width: 168px; font: 600 19px/1 'Open Sans', sans-serif; color: #4A5A70; }
+.card .c-row i { display: block; height: 14px; border-radius: 7px; background: #DCE3EC; }
+.card .c-status { position: absolute; right: 44px; bottom: 42px; font: 800 20px/1 'Open Sans', sans-serif; color: #1E8E4A; }
+.card .c-tri { position: absolute; left: 0; right: 0; bottom: 0; height: 16px;
+  background: linear-gradient(90deg,#2F86E0 0 33.33%,#FCD116 33.33% 66.66%,#D21034 66.66%); }
+.card .b-head { position: absolute; left: 0; right: 0; top: 0; height: 124px; background: linear-gradient(100deg,#1957B8,#2F86E0);
+  padding: 24px 40px 0; color: #fff; }
+.card .b-head h4 { font: 800 33px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .b-head p { font: 600 20px/1.4 'Open Sans', sans-serif; opacity: .92; margin-top: 6px; }
+.card .b-left { position: absolute; left: 40px; top: 160px; width: 400px; }
+.card .b-left b { display: block; font: 600 20px/1 'Open Sans', sans-serif; color: #4A5A70; margin-bottom: 12px; }
+.card .b-left i { display: block; height: 16px; border-radius: 8px; background: #DCE3EC; margin-bottom: 30px; }
+.card .b-left h5 { font: 800 24px/1.2 Montserrat, sans-serif; color: #0B2C5A; margin-top: 4px; }
+.card .b-left p { font: 600 18px/1.35 'Open Sans', sans-serif; color: #4A5A70; margin-top: 6px; }
+.card .b-qr { position: absolute; right: 40px; top: 152px; width: 330px; height: 330px; padding: 14px; background: #fff;
+  border-radius: 18px; border: 3px solid #E3EAF3; }
+.card .b-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+
+  </style>
+  <div id="root" data-composition-id="u9" data-width="1080" data-height="1920">
+    <div id="u9-flood"></div>
+    <div class="phone" id="u9-ph" style="left:305px;top:330px">
+  <div class="scr">
+    <div class="sh">Vérification</div>
+    <div class="notch"></div>
+    <div class="vf" id="u9-ph-vf"><div class="vtile"><img src="assets/img/qr.svg" alt=""></div><div class="cn" style="left:18px;top:18px;border-left-width:7px;border-top-width:7px;border-top-left-radius:16px"></div><div class="cn" style="right:18px;top:18px;border-right-width:7px;border-top-width:7px;border-top-right-radius:16px"></div><div class="cn" style="left:18px;bottom:18px;border-left-width:7px;border-bottom-width:7px;border-bottom-left-radius:16px"></div><div class="cn" style="right:18px;bottom:18px;border-right-width:7px;border-bottom-width:7px;border-bottom-right-radius:16px"></div><div class="scan" id="u9-ph-scan"></div></div>
+    <div class="hint" id="u9-ph-hint">Scanner le QR code<br>de la carte</div>
+    <div class="ric" id="u9-ph-ric" style="background:#1E8E4A"><svg viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="rt" id="u9-ph-rt"><b style="color:#1E8E4A">ÉTABLISSEMENT<br>RECONNU</b><span>Carte valide · base nationale</span></div>
+  </div>
+</div>
+    <img id="u9-head" src="assets/img/ministere_header.png" alt="Ministère de l'ESURSI">
+    <div id="u9-tri"><i id="u9-t0" style="background:#2F86E0"></i><i id="u9-t1" style="background:#FCD116"></i><i id="u9-t2" style="background:#D21034"></i></div>
+    <div id="u9-stage"><div class="card" id="u9-card"><div class="face front" data-layout-ignore id="u9c-front">
+  <div class="c-head">
+    <div class="c-cap"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3Zm-7 10.2v4L12 21l7-3.8v-4L12 17l-7-3.8Z"/></svg></div>
+    <div class="c-inst">NOM DE L'ÉTABLISSEMENT</div>
+    <div class="c-pill"><span>CARTE NATIONALE D'ÉTUDIANT</span></div>
+    <div class="c-seal"><img src="assets/img/seal.png" alt=""></div>
+  </div>
+  <div class="c-photo"><svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMax meet"><circle cx="100" cy="98" r="50" fill="#AFC0D6"/><path d="M14 252c0-58 38-94 86-94s86 36 86 94Z" fill="#AFC0D6"/></svg></div>
+  <div class="c-name">NOM Prénom</div>
+  <div class="c-rows">
+    <div class="c-row"><b>Numéro carte</b><i style="width:300px"></i></div>
+    <div class="c-row"><b>Numéro national</b><i style="width:340px"></i></div>
+    <div class="c-row"><b>Sexe</b><i style="width:60px"></i></div>
+    <div class="c-row"><b>Année</b><i style="width:170px"></i></div>
+    <div class="c-row"><b>Promotion</b><i style="width:110px"></i></div>
+  </div>
+  <div class="c-status">Statut : valide</div>
+  <div class="c-tri"></div>
+</div></div></div>
+    <div id="u9-url"><div id="u9-urlin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M4.5 7.5h15M4.5 16.5h15"/></svg><span id="u9-urltxt"><i id="u9-u0">c</i><i id="u9-u1">a</i><i id="u9-u2">r</i><i id="u9-u3">t</i><i id="u9-u4">e</i><i id="u9-u5">.</i><i id="u9-u6">m</i><i id="u9-u7">i</i><i id="u9-u8">n</i><i id="u9-u9">e</i><i id="u9-u10">s</i><i id="u9-u11">u</i><i id="u9-u12">r</i><i id="u9-u13">s</i><i id="u9-u14">i</i><i id="u9-u15">.</i><i id="u9-u16">g</i><i id="u9-u17">o</i><i id="u9-u18">u</i><i id="u9-u19">v</i><i id="u9-u20">.</i><i id="u9-u21">c</i><i id="u9-u22">d</i></span></div></div>
+    <div id="u9-band"><div id="u9-bandtxt">Un établissement organisé,<br>des étudiants identifiés !</div></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      const shake = (sel, t, a) => tl.to(sel, { keyframes: [{ x: a, y: -a / 2, duration: 0.04 }, { x: -a * 0.8, y: a / 2, duration: 0.05 }, { x: a * 0.5, y: -a / 4, duration: 0.05 }, { x: 0, y: 0, duration: 0.06 }] }, t);
+
+      tl.fromTo("#u9-flood", { clipPath: "circle(0px at 540px 960px)" }, { clipPath: "circle(1250px at 540px 960px)", duration: 0.36, ease: "power3.inOut" }, 0);
+      tl.set(["#u9-t0", "#u9-t1", "#u9-t2"], { scaleX: 0 }, 0);
+      // the same scan as the opening, now it works
+      tl.fromTo("#u9-ph", { y: 1700, opacity: 1 }, { y: 0, duration: 0.55, ease: "expo.out" }, 0.08);
+      tl.fromTo("#u9-ph-scan", { y: -90 }, { y: 290, duration: 0.5, ease: "power1.inOut" }, 0.5);
+      tl.to("#u9-ph-scan", { opacity: 0, duration: 0.1 }, 1.0);
+      tl.to("#u9-ph-vf", { borderColor: "#1E8E4A", duration: 0.12 }, 1.05);
+      tl.to("#u9-ph-hint", { opacity: 0, duration: 0.12 }, 1.03);
+      tl.fromTo("#u9-ph-ric", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(2)" }, 1.05);
+      tl.fromTo("#u9-ph-rt", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 1.15);
+      tl.to("#u9-ph", { y: 1750, rotation: -6, duration: 0.45, ease: "power3.in" }, 2.2);
+      // end card
+      tl.fromTo("#u9-head", { opacity: 0, filter: "blur(10px)", y: 14 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.3, ease: "power3.out" }, 2.45);
+      ["#u9-t0", "#u9-t1", "#u9-t2"].forEach((s, i) => tl.to(s, { scaleX: 1, duration: 0.3, ease: "power3.out" }, 2.55 + i * 0.08));
+      tl.fromTo("#u9-card", { opacity: 0, y: 420, rotationX: 38, rotationY: 0, scale: 0.8 },
+        { opacity: 1, y: 0, rotationX: 0, rotationY: -7, scale: 0.8, duration: 0.75, ease: "expo.out" }, 2.45);
+      tl.to("#u9-card", { rotationY: 7, duration: 4.4, ease: "sine.inOut" }, 3.2);
+      tl.fromTo("#u9-urlin", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.6)" }, 2.35);
+      for (let k = 0; k < 23; k++) tl.set("#u9-u" + k, { opacity: 1 }, 2.48 + k * 0.11);
+      tl.fromTo("#u9-band", { clipPath: "inset(0px 100% 0px 0px)" }, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.45, ease: "power3.out" }, 5.2);
+      tl.fromTo("#u9-bandtxt", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, 5.35);
+
+      window.__timelines["u9"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,154 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+
+    #root { background: #0B2C5A; }
+    .u5-row { position: absolute; left: 0; white-space: nowrap; font: 900 190px/1 Montserrat, sans-serif; color: transparent;
+      -webkit-text-stroke: 2px rgba(255,255,255,.11); }
+    #u5-world { position: absolute; inset: 0; }
+    #u5-stage { position: absolute; inset: 0; perspective: 2400px; }
+    #u5-card { left: 110px; top: 360px; opacity: 0; }
+    #u5-lines { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+    #u5-node { position: absolute; left: 110px; top: 196px; width: 170px; height: 170px; border-radius: 50%; background: #fff; color: #0B2C5A; opacity: 0; }
+    #u5-node svg { position: absolute; inset: 38px; width: 94px; height: 94px; }
+    #u5-ring { position: absolute; left: 110px; top: 196px; width: 170px; height: 170px; border-radius: 50%; border: 6px solid #FCD116; opacity: 0; }
+    #u5-lbl { position: absolute; left: 312px; top: 222px; opacity: 0; }
+    #u5-lbl b { display: block; font: 900 50px/1 Montserrat, sans-serif; color: #fff; }
+    #u5-lbl span { display: block; margin-top: 14px; font: 600 29px/1 'Open Sans', sans-serif; color: #A9C8F2; }
+    #u5-24 { position: absolute; left: 690px; top: 286px; width: 190px; height: 190px; border-radius: 50%; background: #FCD116; color: #0B2C5A;
+      text-align: center; opacity: 0; box-shadow: 0 20px 40px rgba(0,0,0,.3); }
+    #u5-24 b { display: block; margin-top: 50px; font: 900 56px/1 Montserrat, sans-serif; }
+    #u5-24 span { display: block; margin-top: 8px; font: 800 26px/1 Montserrat, sans-serif; }
+    #u5-flood { position: absolute; inset: 0; background: #fff; opacity: 0; clip-path: inset(376px 321px 636px 321px round 54px); }
+
+    .phone { position: absolute; width: 470px; height: 940px; border-radius: 70px; background: #E8EEF7; box-shadow: 0 40px 80px rgba(11,44,90,.32); }
+    .phone .scr { position: absolute; inset: 16px; border-radius: 54px; background: #fff; overflow: hidden; }
+    .phone .notch { position: absolute; left: 50%; top: 16px; width: 130px; height: 30px; margin-left: -65px; border-radius: 15px; background: #0B2C5A; }
+    .phone .sh { position: absolute; left: 0; right: 0; top: 0; height: 130px; background: linear-gradient(100deg,#1957B8,#2F86E0);
+      color: #fff; font: 800 38px/1 Montserrat, sans-serif; text-align: center; padding-top: 66px; }
+    .phone .vf { position: absolute; left: 34px; top: 160px; width: 370px; height: 370px; border-radius: 26px; background: #14263F; overflow: hidden;
+      border: 6px solid #14263F; }
+    .phone .cn { position: absolute; width: 54px; height: 54px; border-color: #FCD116; border-style: solid; border-width: 0; }
+    .phone .scan { position: absolute; left: 14px; right: 14px; top: 0; height: 90px;
+      background: linear-gradient(to bottom, rgba(59,227,138,0), rgba(59,227,138,.35)); border-bottom: 5px solid #3BE38A; }
+    .phone .hint { position: absolute; left: 30px; right: 30px; top: 566px; text-align: center; font: 600 28px/1.3 'Open Sans', sans-serif; color: #4A5A70; }
+    .phone .ric { position: absolute; left: 159px; top: 562px; width: 120px; height: 120px; border-radius: 50%; color: #fff; opacity: 0; }
+    .phone .ric svg { position: absolute; inset: 20px; width: 80px; height: 80px; }
+    .phone .rt { position: absolute; left: 20px; right: 20px; top: 704px; text-align: center; opacity: 0; }
+    .phone .rt b { display: block; font: 900 36px/1.1 Montserrat, sans-serif; }
+    .phone .rt span { display: block; margin-top: 12px; font: 600 26px/1.25 'Open Sans', sans-serif; color: #4A5A70; }
+    .vtile { position: absolute; left: 50px; top: 50px; width: 258px; height: 258px; background: #fff; border-radius: 14px; padding: 16px; }
+    .vtile img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+
+.card { position: absolute; width: 860px; height: 540px; transform-style: preserve-3d; }
+.card .face { position: absolute; inset: 0; border-radius: 34px; background: #fff; overflow: hidden;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 30px 60px rgba(11,44,90,.28), 0 6px 14px rgba(11,44,90,.12); }
+.card .face.back { transform: rotateY(180deg); }
+.card .c-head { position: absolute; left: 0; right: 0; top: 0; height: 168px; background: linear-gradient(100deg,#1957B8,#2F86E0); }
+.card .c-cap { position: absolute; left: 34px; top: 32px; width: 104px; height: 104px; border-radius: 50%; background: #fff;
+  color: #1957B8; display: flex; align-items: center; justify-content: center; }
+.card .c-cap svg { width: 60px; height: 60px; }
+.card .c-inst { position: absolute; left: 150px; right: 150px; top: 30px; text-align: center; color: #fff;
+  font: 800 31px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .c-pill { position: absolute; left: 150px; right: 150px; top: 84px; display: flex; justify-content: center; }
+.card .c-pill span { background: #fff; color: #1957B8; font: 800 19px/1 Montserrat, sans-serif; padding: 11px 20px;
+  border-radius: 999px; letter-spacing: .04em; white-space: nowrap; }
+.card .c-seal { position: absolute; right: 30px; top: 30px; width: 108px; height: 108px; border-radius: 50%; background: #fff; padding: 4px; }
+.card .c-seal img { width: 100%; height: 100%; display: block; }
+.card .c-photo { position: absolute; left: 44px; top: 200px; width: 200px; height: 252px; border-radius: 14px; background: #DDE6F2; overflow: hidden; }
+.card .c-photo svg { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; }
+.card .c-name { position: absolute; left: 284px; top: 192px; font: 800 40px/1.2 Montserrat, sans-serif; color: #0B2C5A; }
+.card .c-rows { position: absolute; left: 284px; right: 44px; top: 256px; }
+.card .c-row { display: flex; align-items: center; height: 38px; }
+.card .c-row b { width: 168px; font: 600 19px/1 'Open Sans', sans-serif; color: #4A5A70; }
+.card .c-row i { display: block; height: 14px; border-radius: 7px; background: #DCE3EC; }
+.card .c-status { position: absolute; right: 44px; bottom: 42px; font: 800 20px/1 'Open Sans', sans-serif; color: #1E8E4A; }
+.card .c-tri { position: absolute; left: 0; right: 0; bottom: 0; height: 16px;
+  background: linear-gradient(90deg,#2F86E0 0 33.33%,#FCD116 33.33% 66.66%,#D21034 66.66%); }
+.card .b-head { position: absolute; left: 0; right: 0; top: 0; height: 124px; background: linear-gradient(100deg,#1957B8,#2F86E0);
+  padding: 24px 40px 0; color: #fff; }
+.card .b-head h4 { font: 800 33px/1.1 Montserrat, sans-serif; letter-spacing: .02em; }
+.card .b-head p { font: 600 20px/1.4 'Open Sans', sans-serif; opacity: .92; margin-top: 6px; }
+.card .b-left { position: absolute; left: 40px; top: 160px; width: 400px; }
+.card .b-left b { display: block; font: 600 20px/1 'Open Sans', sans-serif; color: #4A5A70; margin-bottom: 12px; }
+.card .b-left i { display: block; height: 16px; border-radius: 8px; background: #DCE3EC; margin-bottom: 30px; }
+.card .b-left h5 { font: 800 24px/1.2 Montserrat, sans-serif; color: #0B2C5A; margin-top: 4px; }
+.card .b-left p { font: 600 18px/1.35 'Open Sans', sans-serif; color: #4A5A70; margin-top: 6px; }
+.card .b-qr { position: absolute; right: 40px; top: 152px; width: 330px; height: 330px; padding: 14px; background: #fff;
+  border-radius: 18px; border: 3px solid #E3EAF3; }
+.card .b-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+
+  </style>
+  <div id="root" data-composition-id="u5" data-width="1080" data-height="1920">
+    <div id="u5-rows" data-layout-ignore><div class="u5-row" id="u5-row0" style="top:110px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div><div class="u5-row" id="u5-row1" style="top:550px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div><div class="u5-row" id="u5-row2" style="top:990px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div><div class="u5-row" id="u5-row3" style="top:1430px">CARTE NATIONALE · CARTE NATIONALE · CARTE NATIONALE · </div></div>
+    <div id="u5-world">
+      <div id="u5-ring"></div>
+      <div id="u5-node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v13c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-13"/><path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></svg></div>
+      <div id="u5-lbl"><b>BASE NATIONALE</b><span>Ministère de l'ESURSI · temps réel</span></div>
+      <div id="u5-stage"><div class="card" id="u5-card"><div class="face back" style="transform:none" data-layout-ignore id="u5c-back">
+  <div class="b-head"><h4>CONDITIONS / VALIDATION</h4><p>Cette carte est personnelle et ne peut être cédée.</p></div>
+  <div class="b-left">
+    <b>Cycle / Mention</b><i style="width:360px"></i>
+    <b>Niveau</b><i style="width:250px"></i>
+    <h5>DÉLIVRÉE PAR LE MINISTÈRE</h5>
+    <p>Vérifier le QR pour confirmer la validité.</p>
+  </div>
+  <div class="b-qr" id="u5c-qr"><img src="assets/img/qr.svg" alt=""></div>
+  <div class="c-tri"></div>
+</div></div></div>
+      <svg id="u5-lines" viewBox="0 0 1080 1920"><path id="u5-pb0" d="M 470 600 C 470 470, 196 500, 196 370" pathLength="1" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/><path id="u5-pb1" d="M 540 600 C 540 450, 240 480, 232 366" pathLength="1" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/><path id="u5-pb2" d="M 610 600 C 610 430, 290 460, 266 358" pathLength="1" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="5" stroke-dasharray="1 1" stroke-dashoffset="1"/><path id="u5-pf0" d="M 470 600 C 470 470, 196 500, 196 370" pathLength="100" fill="none" stroke="#FCD116" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 10" opacity="0"/><path id="u5-pf1" d="M 540 600 C 540 450, 240 480, 232 366" pathLength="100" fill="none" stroke="#FCD116" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 10" opacity="0"/><path id="u5-pf2" d="M 610 600 C 610 430, 290 460, 266 358" pathLength="100" fill="none" stroke="#FCD116" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 10" opacity="0"/></svg>
+    </div>
+    <div class="phone" id="u5-ph" style="left:305px;top:360px">
+  <div class="scr">
+    <div class="sh">Vérification</div>
+    <div class="notch"></div>
+    <div class="vf" id="u5-ph-vf"><div class="vtile"><img src="assets/img/qr.svg" alt=""></div><div class="cn" style="left:18px;top:18px;border-left-width:7px;border-top-width:7px;border-top-left-radius:16px"></div><div class="cn" style="right:18px;top:18px;border-right-width:7px;border-top-width:7px;border-top-right-radius:16px"></div><div class="cn" style="left:18px;bottom:18px;border-left-width:7px;border-bottom-width:7px;border-bottom-left-radius:16px"></div><div class="cn" style="right:18px;bottom:18px;border-right-width:7px;border-bottom-width:7px;border-bottom-right-radius:16px"></div><div class="scan" id="u5-ph-scan"></div></div>
+    <div class="hint" id="u5-ph-hint">Scanner le QR code<br>de la carte</div>
+    <div class="ric" id="u5-ph-ric" style="background:#1E8E4A"><svg viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="rt" id="u5-ph-rt"><b style="color:#1E8E4A">Carte valide</b><span>Identité vérifiée</span></div>
+  </div>
+</div>
+    <div id="u5-24"><b>24h</b><span>sur 24</span></div>
+    <div id="u5-flood"></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+
+      const shake = (sel, t, a) => tl.to(sel, { keyframes: [{ x: a, y: -a / 2, duration: 0.04 }, { x: -a * 0.8, y: a / 2, duration: 0.05 }, { x: a * 0.5, y: -a / 4, duration: 0.05 }, { x: 0, y: 0, duration: 0.06 }] }, t);
+
+      [0, 1, 2, 3].forEach((k) => {
+        const from = k % 2 ? -300 : 0, dir = k % 2 ? 1 : -1;
+        tl.fromTo("#u5-row" + k, { x: from }, { x: from + dir * 110, duration: 7.4, ease: "none" }, 0);
+      });
+      tl.set("#u5-ph", { y: 1700 }, 0);
+      tl.fromTo("#u5-card", { opacity: 0, scale: 0.8, y: 80 }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: "expo.out" }, 0.02);
+      tl.to("#u5-card", { scale: 1.4, x: -315, y: 140, duration: 0.7, ease: "power2.inOut" }, 1.08);
+      tl.fromTo("#u5-node", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)", immediateRender: false }, 2.28);
+      tl.fromTo("#u5-lbl", { opacity: 0, filter: "blur(8px)", x: -14 }, { opacity: 1, filter: "blur(0px)", x: 0, duration: 0.25, ease: "power3.out", immediateRender: false }, 2.4);
+      [0, 1, 2].forEach((i) => {
+        tl.to("#u5-pb" + i, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 2.3 + i * 0.06);
+        tl.to("#u5-pf" + i, { attr: { opacity: 1 }, duration: 0.2 }, 2.7 + i * 0.06);
+        tl.fromTo("#u5-pf" + i, { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -110 }, duration: 1.5, ease: "none", immediateRender: false }, 2.7);
+      });
+      tl.fromTo("#u5-ring", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.8, duration: 0.6, ease: "power2.out", immediateRender: false }, 3.04);
+      // verified anywhere
+      tl.to("#u5-world", { scale: 0.84, y: -150, opacity: 0.28, filter: "blur(6px)", duration: 0.5, ease: "power3.inOut" }, 3.8);
+      tl.to("#u5-ph", { y: 0, duration: 0.6, ease: "expo.out" }, 3.8);
+      tl.fromTo("#u5-ph-scan", { y: -90 }, { y: 290, duration: 0.45, ease: "power1.inOut" }, 4.1);
+      tl.to("#u5-ph-scan", { opacity: 0, duration: 0.1 }, 4.55);
+      tl.to("#u5-ph-vf", { borderColor: "#1E8E4A", duration: 0.12 }, 4.6);
+      tl.to("#u5-ph-hint", { opacity: 0, duration: 0.12 }, 4.58);
+      tl.fromTo("#u5-ph-ric", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(2)", immediateRender: false }, 4.6);
+      tl.fromTo("#u5-ph-rt", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out", immediateRender: false }, 4.7);
+      tl.fromTo("#u5-24", { opacity: 0, scale: 0.3, rotation: -40 }, { opacity: 1, scale: 1, rotation: -10, duration: 0.5, ease: "back.out(1.8)", immediateRender: false }, 5.32);
+      // the screen becomes the dashboard
+      tl.to("#u5-24", { opacity: 0, scale: 0.8, duration: 0.15 }, 6.8);
+      tl.set("#u5-flood", { opacity: 1 }, 6.88);
+      tl.fromTo("#u5-flood", { clipPath: "inset(376px 321px 636px 321px round 54px)" }, { clipPath: "inset(0px 0px 0px 0px round 0px)", duration: 0.42, ease: "power3.in", immediateRender: false }, 6.88);
+
+      window.__timelines["u5"] = tl;
+    })();
+  </script>
+</template>
