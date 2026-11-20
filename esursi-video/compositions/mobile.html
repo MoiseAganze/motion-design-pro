@@ -11,7 +11,7 @@
     #mob-head { position: absolute; left: 0; top: 190px; width: 1920px; text-align: center; }
     #mob-head h2 { font-family: "Source Serif 4", serif; font-weight: 700; font-size: 104px; color: #fff; line-height: 1.05; }
     #mob-head p { font-size: 38px; color: #e8f4ff; margin-top: 14px; }
-    .mob-card { position: absolute; top: 470px; width: 740px; height: 420px; border-radius: 22px; background: rgba(255, 255, 255, 0.08);
+    .mob-card { position: absolute; top: 450px; width: 740px; height: 420px; border-radius: 22px; background: rgba(255, 255, 255, 0.08);
       border: 2px solid rgba(255, 255, 255, 0.22); text-align: center; }
     #mob-c1 { left: 180px; }
     #mob-c2 { left: 1000px; }
@@ -21,6 +21,8 @@
     .mob-btn b { display: block; font-size: 46px; line-height: 1.05; font-weight: 600; }
     .mob-url { font-size: 28px; color: #b9d7f5; margin-top: 30px; padding: 0 30px; word-break: break-all; line-height: 1.35; }
     .mob-ok { position: absolute; right: 26px; top: 26px; background: #f7d618; color: #002654; font-weight: 800; font-size: 28px; border-radius: 8px; padding: 6px 14px; }
+    #mob-cta { position: absolute; left: 560px; top: 935px; width: 800px; height: 80px; border-radius: 40px; background: #f7d618; color: #002654;
+      font-size: 40px; font-weight: 800; text-align: center; line-height: 80px; opacity: 0; }
     #mob-b { position: absolute; left: 0; top: 330px; width: 1920px; text-align: center; }
     .mob-w { display: block; font-family: "Source Serif 4", serif; font-weight: 700; font-size: 120px; line-height: 1.12; color: #fff; opacity: 0; }
     .mob-w span { color: #f7d618; }
@@ -38,7 +40,7 @@
   <div id="root" data-composition-id="mobile" data-width="1920" data-height="1080">
     <div id="mob-stripe"></div>
     <div id="mob-a">
-      <div id="mob-kicker">BONNE NOUVELLE</div>
+      <div id="mob-kicker">SIGNALEZ DEPUIS VOTRE TÉLÉPHONE</div>
       <div id="mob-head"><h2>L'application Signal ESURSI</h2><p>est déjà disponible sur mobile</p></div>
       <div id="mob-c1" class="mob-card">
         <div class="mob-ok">DISPONIBLE</div>
@@ -52,6 +54,7 @@
         <div class="mob-btn"><small>Disponible sur</small><b>Google Play</b></div>
         <div class="mob-url">play.google.com/store/apps/details?id=cd.gouv.esursi.signal</div>
       </div>
+      <div id="mob-cta">Téléchargez-la dès aujourd'hui !</div>
     </div>
     <div id="mob-b">
       <span id="mob-w1" class="mob-w">Signalez<span>.</span></span>
@@ -70,26 +73,31 @@
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#mob-stripe", { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 0);
+    // "Et maintenant, signalez depuis votre téléphone !"
     tl.fromTo("#mob-kicker", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.3);
-    tl.fromTo("#mob-head h2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.25);
-    tl.fromTo("#mob-head p", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.3);
+    // "L'application Signal ESURSI est disponible…"
+    tl.fromTo("#mob-head h2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.2);
+    tl.fromTo("#mob-head p", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 4.2);
     // "sur iPhone, dans l'App Store"
-    tl.fromTo("#mob-c1", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.9);
-    tl.fromTo("#mob-c1 .mob-btn", { scale: 0.85 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 4.9);
+    tl.fromTo("#mob-c1", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 5.0);
+    tl.fromTo("#mob-c1 .mob-btn", { scale: 0.85 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 6.0);
     // "et sur Android, dans Google Play"
-    tl.fromTo("#mob-c2", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.0);
-    tl.fromTo("#mob-c2 .mob-btn", { scale: 0.85 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 7.05);
-    tl.to("#mob-a", { opacity: 0, y: -60, duration: 0.35, ease: "power2.in" }, 7.95);
-    [["#mob-w1", 8.1], ["#mob-w2", 8.85], ["#mob-w3", 9.6]].forEach(([s, t]) => {
+    tl.fromTo("#mob-c2", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 7.45);
+    tl.fromTo("#mob-c2 .mob-btn", { scale: 0.85 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 8.3);
+    // "Téléchargez-la dès aujourd'hui !"
+    tl.fromTo("#mob-cta", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 9.45);
+    tl.to(".mob-btn", { scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out" }, 9.6);
+    tl.to("#mob-a", { opacity: 0, y: -60, duration: 0.35, ease: "power2.in" }, 10.85);
+    [["#mob-w1", 11.05], ["#mob-w2", 12.1], ["#mob-w3", 12.95]].forEach(([s, t]) => {
       tl.fromTo(s, { opacity: 0, y: 50, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "power4.out" }, t);
     });
-    tl.to("#mob-b", { opacity: 0, scale: 0.95, duration: 0.35, ease: "power2.in" }, 10.85);
-    tl.fromTo("#mob-end", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 11.1);
-    tl.fromTo("#mob-logo", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.5)" }, 11.1);
-    tl.fromTo("#mob-name", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 11.35);
-    tl.fromTo("#mob-sub, #mob-motto", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.12, ease: "power3.out" }, 11.55);
-    tl.fromTo("#mob-web", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 11.8);
-    tl.fromTo("#mob-stores", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 12.0);
+    tl.to("#mob-b", { opacity: 0, scale: 0.95, duration: 0.35, ease: "power2.in" }, 14.6);
+    tl.fromTo("#mob-end", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 14.85);
+    tl.fromTo("#mob-logo", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.5)" }, 14.85);
+    tl.fromTo("#mob-name", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 15.1);
+    tl.fromTo("#mob-sub, #mob-motto", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.12, ease: "power3.out" }, 15.3);
+    tl.fromTo("#mob-web", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 15.3);
+    tl.fromTo("#mob-stores", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 15.35);
     window.__timelines["mobile"] = tl;
   </script>
 </template>

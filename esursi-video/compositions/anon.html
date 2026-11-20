@@ -38,21 +38,19 @@
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#anon-panel", { opacity: 0, x: 160 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 0);
     tl.fromTo([".anon-opt"], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.35, ease: "power3.out" }, 0.3);
-    tl.fromTo("#anon-sel", { opacity: 0, y: 0 }, { opacity: 1, y: 0, duration: 0.25 }, 0.5);
-    tl.to("#anon-o1", { color: "#ffffff", duration: 0.2 }, 0.5);
-    // "c'est vous qui choisissez": the choice moves between the two modes
-    tl.to("#anon-sel", { y: 120, duration: 0.35, ease: "power3.inOut" }, 1.9);
-    tl.to("#anon-o1", { color: "rgba(255,255,255,0.45)", duration: 0.2 }, 1.9);
-    tl.to("#anon-o2", { color: "#ffffff", duration: 0.2 }, 2.0);
-    tl.to("#anon-sel", { y: 0, duration: 0.35, ease: "power3.inOut" }, 2.7);
-    tl.to("#anon-o2", { color: "rgba(255,255,255,0.45)", duration: 0.2 }, 2.7);
-    tl.to("#anon-o1", { color: "#ffffff", duration: 0.2 }, 2.8);
+    tl.fromTo("#anon-sel", { opacity: 0, y: 120 }, { opacity: 1, y: 120, duration: 0.25 }, 0.9);
+    tl.to("#anon-o2", { color: "#ffffff", duration: 0.2 }, 0.9);
+    // "Restez anonyme !": the choice moves to Anonyme
+    tl.to("#anon-sel", { y: 0, duration: 0.35, ease: "power3.inOut" }, 2.0);
+    tl.to("#anon-o2", { color: "rgba(255,255,255,0.45)", duration: 0.2 }, 2.0);
+    tl.to("#anon-o1", { color: "#ffffff", duration: 0.2 }, 2.1);
+    tl.fromTo("#anon-o1", { scale: 1 }, { scale: 1.08, duration: 0.18, yoyo: true, repeat: 1, transformOrigin: "0 50%" }, 2.2);
     // "Votre identité est chiffrée"
-    tl.fromTo("#anon-lock", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 3.25);
-    tl.fromTo("#anon-shackle", { y: -16 }, { y: 0, duration: 0.2, ease: "power4.in" }, 3.65);
-    tl.fromTo("#anon-lock-txt", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 3.7);
+    tl.fromTo("#anon-lock", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 3.2);
+    tl.fromTo("#anon-shackle", { y: -16 }, { y: 0, duration: 0.2, ease: "power4.in" }, 3.55);
+    tl.fromTo("#anon-lock-txt", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 3.6);
     // "visible des seuls agents habilités"
-    tl.fromTo("#anon-hl", { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 4.9);
+    tl.fromTo("#anon-hl", { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.5, ease: "power2.out" }, 4.85);
     tl.fromTo("#anon-panel", { scale: 1 }, { scale: 1.04, duration: 6.4, ease: "none" }, 0.6);
     window.__timelines["anon"] = tl;
   </script>

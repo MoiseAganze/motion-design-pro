@@ -50,24 +50,25 @@
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#form-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.1);
+    tl.fromTo("#form-title span", { scale: 1 }, { scale: 1.25, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out" }, 1.65);
     tl.fromTo("#form-step-panel", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.25);
     tl.fromTo("#form-card", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.45);
     tl.fromTo("#form-line", { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 0.02, duration: 0.3 }, 0.6);
     const steps = [
-      ["#form-d1", "#form-b1", 2.55, 0.02],
-      ["#form-d2", "#form-b2", 3.3, 0.185],
-      ["#form-d3", "#form-b3", 4.0, 0.31],
-      ["#form-d5", "#form-b5", 4.75, 0.56],
-      ["#form-d6", "#form-b6", 5.6, 0.69],
+      ["#form-d1", "#form-b1", 2.9, 0.02],
+      ["#form-d2", "#form-b2", 3.65, 0.185],
+      ["#form-d3", "#form-b3", 4.4, 0.31],
+      ["#form-d5", "#form-b5", 5.3, 0.56],
+      ["#form-d6", "#form-b6", 6.4, 0.69],
     ];
     steps.forEach(([d, b, t, fill]) => {
       tl.fromTo(d, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, t);
       tl.to("#form-line", { scaleX: fill, duration: 0.35, ease: "power2.out" }, t);
       tl.fromTo(b, { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, t + 0.05);
     });
-    tl.fromTo("#form-d4", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 4.6);
-    tl.fromTo("#form-b6 .form-chip", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25, stagger: 0.07, ease: "power3.out" }, 5.85);
-    tl.fromTo("#form-ten", { opacity: 0, scale: 0.7, transformOrigin: "100% 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 6.45);
+    tl.fromTo("#form-d4", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 5.15);
+    tl.fromTo("#form-b6 .form-chip", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.25, stagger: 0.07, ease: "power3.out" }, 6.6);
+    tl.fromTo("#form-ten", { opacity: 0, scale: 0.7, transformOrigin: "100% 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 7.3);
     window.__timelines["form"] = tl;
   </script>
 </template>

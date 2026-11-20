@@ -22,10 +22,10 @@
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#stats-panel", { opacity: 0, y: 120, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 0);
     // "les statistiques nationales sont publiques": push toward the 12-month chart
-    tl.fromTo("#stats-cam", { scale: 1, x: 0, y: 0 }, { scale: 1.45, x: -598, y: -339, duration: 0.7, ease: "power3.inOut" }, 2.6);
-    tl.to("#stats-cam", { scale: 1.5, duration: 2.6, ease: "none" }, 3.3);
+    tl.fromTo("#stats-cam", { scale: 1, x: 0, y: 0 }, { scale: 1.45, x: -598, y: -339, duration: 0.7, ease: "power3.inOut" }, 1.9);
+    tl.to("#stats-cam", { scale: 1.5, duration: 3.0, ease: "none" }, 2.6);
     // "mises à jour chaque heure"
-    tl.fromTo("#stats-chip", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 4.0);
+    tl.fromTo("#stats-chip", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 3.9);
     window.__timelines["stats"] = tl;
   </script>
 </template>
