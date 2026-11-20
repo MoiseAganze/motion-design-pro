@@ -1,0 +1,45 @@
+<template>
+  <style>
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:Inter,sans-serif;background:#EEF2F7;}
+#root .rule{position:absolute;inset:0;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 53px,rgba(19,32,50,.07) 53px,rgba(19,32,50,.07) 54px);}
+#root .margin{position:absolute;top:0;bottom:0;left:220px;width:2px;background:rgba(220,38,38,.14);}
+
+#root .clock{position:absolute;left:300px;top:250px;display:flex;font-weight:900;font-size:250px;line-height:250px;letter-spacing:-.04em;color:#132032;font-variant-numeric:tabular-nums;}
+#root .dg{display:inline-block;height:250px;overflow:hidden;}
+#root .dg .stk{display:flex;flex-direction:column;}
+#root .dg .stk span{height:250px;}
+#root .colon{padding:0 6px;}
+#root .place{position:absolute;left:306px;top:540px;font-weight:600;font-size:52px;color:#132032;letter-spacing:-.01em;}
+#root .place .w{display:inline-block;margin-right:.25em;color:rgba(19,32,50,.18);}
+#root .line{position:absolute;left:300px;top:700px;height:4px;width:1320px;background:#132032;transform-origin:0 50%;}
+#root .juste{position:absolute;left:300px;top:812px;display:flex;align-items:center;gap:26px;font-weight:900;font-size:120px;letter-spacing:-.03em;color:#132032;}
+#root .chk{width:118px;height:118px;border-radius:50%;background:#15803D;display:flex;align-items:center;justify-content:center;}
+#root .lbl{position:absolute;left:300px;top:742px;font-weight:600;font-size:46px;color:rgba(19,32,50,.55);}
+  </style>
+  <div id="root" data-composition-id="s01" data-width="1920" data-height="1080">
+    <div class="rule"></div><div class="margin"></div>
+    <div class="clock"><span class="dg" id="s01-d0" data-layout-ignore><span class="stk" id="s01-k0" data-layout-ignore><span>5</span><span>8</span><span>3</span><span>0</span><span>0</span></span></span><span class="dg" id="s01-d1" data-layout-ignore><span class="stk" id="s01-k1" data-layout-ignore><span>2</span><span>9</span><span>4</span><span>7</span><span>7</span></span></span><span class="dg colon" id="s01-d2">:</span><span class="dg" id="s01-d3" data-layout-ignore><span class="stk" id="s01-k3" data-layout-ignore><span>8</span><span>1</span><span>6</span><span>3</span><span>3</span></span></span><span class="dg" id="s01-d4" data-layout-ignore><span class="stk" id="s01-k4" data-layout-ignore><span>5</span><span>8</span><span>3</span><span>0</span><span>0</span></span></span></div>
+    <div class="place" id="s01-place"><span class="w">Bukavu</span><span class="w">·</span><span class="w">vendredi</span><span class="w">20</span><span class="w">novembre</span><span class="w">2026</span></div>
+    <div class="line" id="s01-line"></div>
+    <div class="lbl" id="s01-lbl">Écart de caisse en fin de journée :</div>
+    <div class="juste" id="s01-juste"><div class="chk" id="s01-chk"><svg width="70" height="70" viewBox="0 0 24 24"><path id="s01-tick" d="M4 12.5 L9.5 18 L20 6.5" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="30" stroke-dashoffset="30"/></svg></div><span>0 franc.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s01-k0",{y:0},{y:-1000,duration:0.65,ease:"power3.out"},0.12);
+tl.fromTo("#s01-k1",{y:0},{y:-1000,duration:0.65,ease:"power3.out"},0.21);
+tl.fromTo("#s01-d2",{opacity:0},{opacity:1,duration:0.1},0.32999999999999996);
+tl.fromTo("#s01-k3",{y:0},{y:-1000,duration:0.65,ease:"power3.out"},0.39);
+tl.fromTo("#s01-k4",{y:0},{y:-1000,duration:0.65,ease:"power3.out"},0.48);
+    tl.to("#s01-place .w",{color:"#132032",duration:0.1,stagger:0.08},1.0);
+    tl.fromTo("#s01-line",{scaleX:0},{scaleX:1,duration:1.1,ease:"power2.inOut"},3.0);
+    tl.fromTo("#s01-lbl",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.2},4.2);
+    tl.fromTo("#s01-juste",{opacity:0,filter:"blur(10px)"},{opacity:1,filter:"blur(0px)",duration:0.2,ease:"power4.out"},6.0);
+    tl.fromTo("#s01-chk",{scale:0.4},{scale:1,duration:0.45,ease:"back.out(2)"},6.0);
+    tl.to("#s01-tick",{strokeDashoffset:0,duration:0.3,ease:"power2.out"},6.1);
+    tl.to("#root .clock, #s01-place, #s01-line",{opacity:0.0,duration:0.2,ease:"power3.in"},6.3);
+    tl.set({}, {}, 6.5);
+    window.__timelines["s01"] = tl;
+  </script>
+</template>

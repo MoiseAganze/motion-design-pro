@@ -1,0 +1,83 @@
+<template>
+  <style>
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:Inter,sans-serif;}
+#root .ground{position:absolute;inset:0;}
+#root .rule{position:absolute;inset:0;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 53px,var(--rule) 53px,var(--rule) 54px);}
+#root .shift{position:absolute;inset:0;}
+#root .cam{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;}
+#root .win{position:absolute;left:160px;top:140px;width:1600px;height:900.0px;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35);background:#F9FAFC;}
+#root .inner{position:absolute;left:0;top:0;width:1536px;height:864px;transform:scale(1.041667);transform-origin:0 0;}
+#root .plate{position:absolute;left:0;top:0;width:1536px;height:auto;}
+#root .cur{position:absolute;left:0;top:0;width:28px;height:28px;}
+#root .hl{position:absolute;border:3.5px solid #5CB8DA;border-radius:9px;background:rgba(92,184,218,.10);}
+#root .role{position:absolute;left:44px;top:34px;height:66px;display:flex;align-items:center;gap:16px;padding:0 24px 0 12px;background:#132032;border-radius:12px;color:#fff;font-weight:600;font-size:28px;letter-spacing:-.01em;}
+#root .role .av{width:44px;height:44px;border-radius:50%;background:#1E4976;color:#fff;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #5CB8DA;}
+#root .role .clock{font-variant-numeric:tabular-nums;color:#5CB8DA;font-weight:700;}
+#root .role .who{color:rgba(255,255,255,.72);font-weight:500;}
+#root .co{position:absolute;padding:16px 26px;background:#132032;color:#fff;font-weight:700;font-size:40px;letter-spacing:-.015em;border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.28);white-space:nowrap;}
+#root .co .w{display:inline-block;margin-right:.26em;}
+#root .co .w:last-child{margin-right:0;}
+#root .co .acc{color:#5CB8DA;}
+#root .obj{position:absolute;left:0;top:0;box-shadow:0 40px 90px rgba(0,0,0,.45);border-radius:4px;}
+
+#root .ground{background:#1E4976;}
+#root{--rule:rgba(255,255,255,.06);}
+  </style>
+  <div id="root" data-composition-id="s06" data-width="1920" data-height="1080">
+    <div class="ground" id="s06-ground"></div>
+    <div class="rule"></div>
+    <div class="shift" id="s06-shift">
+      <div class="cam" id="s06-cam">
+        <div class="win"><div class="inner">
+<img id="s06-pl0" class="plate" src="assets/ui/c10-encaisser-adhesion.png" style="opacity:0" alt="">
+<img id="s06-pl1" class="plate" src="assets/ui/c11-adhesion-ok.png" style="opacity:0" alt="">
+<img id="s06-pl2" class="plate" src="assets/ui/c13-fiche-active.png" style="opacity:0" alt="">
+<div id="s06-hl2" class="hl" style="left:536.0px;top:488.0px;width:464px;height:104px;opacity:0"></div>
+<div id="s06-hl5" class="hl" style="left:762.0px;top:150.0px;width:68px;height:36px;opacity:0"></div>
+          <div class="cur" id="s06-cur"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M3 2 L3 22 L8.5 17 L12 25.5 L15.6 24 L12.2 15.8 L19.5 15.8 Z" fill="#0b0f19" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        </div></div>
+      </div>
+    </div>
+<div id="s06-role1" class="role" style="opacity:0"><div class="av" data-layout-ignore>EM</div><span class="clock">08:40</span><span>Caissière</span><span class="who">Esther Mwamini</span></div>
+<img id="s06-obj3" class="obj" src="assets/obj/recu-adhesion.png" style="width:640px;height:1636.1px;opacity:0" alt="">
+<div id="s06-co4" class="co" style="left:200px;top:860px;opacity:0"><span class="w">Montant</span><span class="w">en</span><span class="w">lettres</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s06-shift",{x:1300,filter:"blur(18px)"},{x:0,filter:"blur(0px)",duration:0.4,ease:"power3.out"},0);
+    tl.set("#s06-pl0",{opacity:1},0);
+    tl.set("#s06-cam",{x:-336.0,y:-233.7,scale:1.35},0.0);
+    tl.fromTo("#s06-role1",{opacity:0,x:-30,filter:"blur(6px)"},{opacity:1,x:0,filter:"blur(0px)",duration:0.45,ease:"expo.out"},0.2);
+    tl.to("#s06-cam",{x:-912.0,y:-820.0,scale:1.95,duration:0.8,ease:"power2.inOut"},1.4);
+    tl.fromTo("#s06-hl2",{opacity:0,scale:1.08},{opacity:1,scale:1,duration:0.35,ease:"expo.out"},2.3);
+    tl.to("#s06-hl2",{opacity:0,duration:0.2},3.6);
+    tl.set("#s06-cur",{x:700,y:610,opacity:0},0);
+    tl.to("#s06-cur",{opacity:1,duration:0.15},2.6);
+    tl.to("#s06-cur",{x:972,y:641,duration:0.6,ease:"power2.inOut"},3.15);
+    tl.to("#s06-cur",{scale:0.82,duration:0.07,ease:"power2.in",transformOrigin:"3px 2px"},3.77);
+    tl.to("#s06-cur",{scale:1,duration:0.12,ease:"power2.out",transformOrigin:"3px 2px"},3.84);
+    tl.fromTo("#s06-pl1",{opacity:0},{opacity:1,duration:0.15,ease:"none",immediateRender:false},3.9);
+    tl.to("#s06-cam",{x:0.0,y:0.0,scale:1.0,duration:0.6,ease:"power2.inOut"},3.95);
+    tl.to("#s06-cur",{opacity:0,duration:0.12},4.0);
+    tl.set("#s06-obj3",{x:860.0,y:1120,opacity:1,rotation:-1.2},4.45);
+    tl.to("#s06-obj3",{y:180.1,rotation:0,duration:0.65,ease:"expo.out"},4.45);
+    tl.to("#s06-obj3",{y:-417.1,duration:0.8,ease:"power2.inOut"},5.45);
+    tl.to("#s06-obj3",{y:1150,duration:0.32,ease:"power3.in"},7.05);
+    tl.set("#s06-co4",{opacity:1},5.8);
+    tl.fromTo("#s06-co4",{clipPath:"inset(0 100% 0 0 round 12px)"},{clipPath:"inset(0 0% 0 0 round 12px)",duration:0.35,ease:"expo.out"},5.8);
+    tl.fromTo("#s06-co4 .w",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:0.13,stagger:0.07},5.88);
+    tl.to("#s06-co4",{opacity:0,filter:"blur(8px)",duration:0.2,ease:"power3.in"},7.0);
+    tl.fromTo("#s06-pl2",{opacity:0},{opacity:1,duration:0.15,ease:"none",immediateRender:false},7.2);
+    tl.set("#s06-cam",{x:0.0,y:0.0,scale:1.0},7.2);
+    tl.to("#s06-cam",{x:-797.5,y:-280.0,scale:2.0,duration:0.55,ease:"power2.inOut"},7.25);
+    tl.fromTo("#s06-hl5",{opacity:0,scale:1.08},{opacity:1,scale:1,duration:0.35,ease:"expo.out"},7.85);
+    tl.to("#s06-hl5",{opacity:0,duration:0.2},8.9);
+    tl.set("#s06-pl1,#s06-pl2",{opacity:0},0.0);
+    tl.set("#s06-pl0,#s06-pl2",{opacity:0},4.05);
+    tl.set("#s06-pl0,#s06-pl1",{opacity:0},7.35);
+    tl.to("#s06-shift",{x:-1300,filter:"blur(18px)",duration:0.2,ease:"power3.in"},8.8);
+    tl.set({}, {}, 9.0);
+    window.__timelines["s06"] = tl;
+  </script>
+</template>

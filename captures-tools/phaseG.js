@@ -1,0 +1,62 @@
+const L = require('./lib'); const fs = require('fs');
+const st = JSON.parse(fs.readFileSync('state.json'));
+const step = async (name, fn) => { try { await fn(); } catch (e) { console.error('FAIL', name, e.message.split('\n')[0]); throw e; } };
+async function choisir(page, libelle, option) { await page.getByLabel(libelle, { exact: true }).click(); await page.getByRole('option', { name: option }).click(); }
+(async () => {
+  await L.start();
+  const k = await L.login('credit');
+  await L.shot(k, 'g00-dashboard-credit');
+  await k.goto(L.BASE + '/credits'); await L.shot(k, 'g01-liste-credits');
+  let dossier;
+  await step('demande', async () => {
+    await k.goto(L.BASE + st.fiche);
+    await k.getByRole('tab', { name: /Crédits/ }).click();
+    await k.getByRole('link', { name: 'Nouvelle demande' }).click();
+    await k.getByLabel('Montant demandé').fill('1000000');
+    await k.getByLabel('Durée (mois)').fill('10');
+    await k.getByText('TEG').first().waitFor();
+    await choisir(k, 'Compte de versement', /EP-000016/);
+    await k.getByLabel('Objet du crédit').fill("Achat d'un stock de pagnes pour la boutique du marché de Nyawera");
+    await k.waitForTimeout(600);
+    await L.shot(k, 'g02-demande-simulation'); await L.shot(k, 'g02b-demande-simulation-full', { full: true });
+    await k.getByRole('button', { name: 'Enregistrer la demande' }).click();
+    await k.waitForURL(/\/credits\/[0-9a-f-]{36}$/);
+    dossier = new URL(k.url()).pathname;
+    fs.writeFileSync('state.json', JSON.stringify({ ...st, dossier }));
+    await L.shot(k, 'g03-dossier-brouillon');
+    await k.getByRole('button', { name: 'Soumettre' }).click();
+    await k.getByText("Demande soumise : elle passe à l'analyse.").waitFor();
+    await k.getByRole('button', { name: 'Analyser' }).click();
+    const d = k.getByRole('dialog');
+    await d.getByLabel('Revenus mensuels').fill('650000');
+    await d.getByLabel('Charges mensuelles').fill('180000');
+    await d.getByLabel('Motivation').fill('Commerce actif depuis six ans, épargne régulière, bonne moralité au marché.');
+    await L.shot(k, 'g04-analyse'); 
+    await d.getByRole('button', { name: "Enregistrer l'analyse" }).click();
+    await k.getByText(/Analyse enregistrée/).waitFor();
+    await k.waitForTimeout(800);
+    await L.shot(k, 'g05-analyse-ok'); await L.shot(k, 'g05b-analyse-ok-full', { full: true });
+  });
+  const dir = await L.login('directeur');
+  await step('comite', async () => {
+    await dir.goto(L.BASE + dossier);
+    await L.shot(dir, 'g10-comite'); await L.shot(dir, 'g10b-comite-full', { full: true });
+    await dir.getByRole('button', { name: 'Approuver' }).click();
+    await dir.waitForTimeout(500);
+    const dd = dir.getByRole('dialog'); if (await dd.count()) { await L.shot(dir, 'g11-vote-dialog'); await dd.getByRole('button', { name: /Approuver|Confirmer|Voter/ }).last().click(); }
+    await dir.getByText('Crédit approuvé : il peut être débloqué.').waitFor();
+    await L.shot(dir, 'g12-approuve');
+    await dir.reload();
+    const [contrat] = await Promise.all([dir.context().waitForEvent('page'), dir.getByRole('link', { name: 'Contrat et échéancier' }).click()]);
+    await contrat.setViewportSize({ width: 1536, height: 864 }); await contrat.waitForLoadState('networkidle');
+    await L.shot(contrat, 'g13-contrat'); await L.shot(contrat, 'g13b-contrat-full', { full: true }); await contrat.close();
+    await dir.getByRole('button', { name: 'Débloquer' }).click();
+    await dir.waitForTimeout(600); await L.shot(dir, 'g14-debloquer-dialog');
+    await dir.getByRole('dialog').getByRole('button', { name: 'Débloquer' }).click();
+    await dir.getByText(/Crédit débloqué/).waitFor();
+    await dir.reload(); await L.shot(dir, 'g15-credit-en-cours');
+    await dir.getByRole('tab', { name: 'Échéancier' }).click(); await dir.waitForTimeout(500);
+    await L.shot(dir, 'g16-echeancier'); await L.shot(dir, 'g16b-echeancier-full', { full: true });
+  });
+  await L.browser.close();
+})().catch(e => { console.error(e.message); process.exit(1); });

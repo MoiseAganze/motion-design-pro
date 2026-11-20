@@ -1,0 +1,30 @@
+<template>
+  <style>
+#root{position:absolute;inset:0;overflow:hidden;font-family:Inter,sans-serif;background:#EFE8DA;}
+#root .flood{position:absolute;inset:0;background:#132032;transform-origin:50% 0;}
+#root .rule{position:absolute;inset:0;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 53px,rgba(255,255,255,.05) 53px,rgba(255,255,255,.05) 54px);}
+#root .word{position:absolute;left:0;top:0;font-weight:900;font-size:140px;letter-spacing:-.045em;color:#fff;line-height:1;white-space:nowrap;}
+#root .word .l{display:inline-block;}
+#root .sub{position:absolute;left:0;top:0;font-weight:600;font-size:46px;color:rgba(255,255,255,.82);white-space:nowrap;}
+#root .sub .w{display:inline-block;margin-right:.25em;}
+  </style>
+  <div id="root" data-composition-id="s03" data-width="1920" data-height="1080">
+    <div class="flood" id="s03-flood"></div>
+    <div class="rule"></div>
+    <div id="s03-logo" style="position:absolute;left:830.0px;top:410.0px;width:260px;height:260px;border-radius:57px;background:#5CB8DA;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:114px;color:#172033;letter-spacing:-.02em">C+</div>
+    <div class="word" id="s03-word" style="left:655px;top:418px"><span class="l">C</span><span class="l">O</span><span class="l">O</span><span class="l">P</span><span class="l">E</span><span class="l">C</span><span class="l">P</span><span class="l">L</span><span class="l">U</span><span class="l">S</span></div>
+    <div class="sub" id="s03-sub" style="left:662px;top:590px"><span class="w">Gestion</span><span class="w">intégrée</span><span class="w">des</span><span class="w">coopératives</span><br><span class="w">d'épargne</span><span class="w">et</span><span class="w">de</span><span class="w">crédit</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s03-flood",{scaleY:0},{scaleY:1,duration:0.4,ease:"power2.inOut"},0);
+    tl.fromTo("#s03-logo",{scale:0,rotation:-25,x:-505},{scale:1,rotation:0,x:-505,duration:0.7,ease:"back.out(1.5)"},0.55);
+    tl.fromTo("#s03-word .l",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.14,stagger:0.06},0.9);
+    tl.fromTo("#s03-sub .w",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:0.13,stagger:0.07},2.1);
+    tl.to("#s03-sub",{opacity:0,filter:"blur(8px)",duration:0.2,ease:"power3.in"},5.75);
+    tl.to("#s03-word",{opacity:0,filter:"blur(10px)",x:60,duration:0.22,ease:"power3.in"},5.8);
+    tl.to("#s03-logo",{x:0,duration:0.5,ease:"power3.inOut"},6.0);
+    tl.set({}, {}, 6.599999999999998);
+    window.__timelines["s03"] = tl;
+  </script>
+</template>

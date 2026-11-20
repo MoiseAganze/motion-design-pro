@@ -1,0 +1,30 @@
+<template>
+  <style>
+#root{position:absolute;inset:0;overflow:hidden;font-family:Inter,sans-serif;background:#132032;}
+#root .rule{position:absolute;inset:0;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 53px,rgba(255,255,255,.05) 53px,rgba(255,255,255,.05) 54px);}
+#root .word{position:absolute;left:655px;top:398px;font-weight:900;font-size:140px;letter-spacing:-.045em;color:#fff;line-height:1;white-space:nowrap;}
+#root .word .l{display:inline-block;}
+#root .claim{position:absolute;left:0;right:0;top:720px;text-align:center;font-weight:800;font-size:72px;letter-spacing:-.03em;color:#fff;white-space:nowrap;}
+#root .claim .w{display:inline-block;margin-right:.24em;color:rgba(255,255,255,.18);}
+#root .claim .w.acc{}
+#root .sub{position:absolute;left:662px;top:560px;font-weight:600;font-size:40px;color:rgba(255,255,255,.7);white-space:nowrap;}
+  </style>
+  <div id="root" data-composition-id="s13" data-width="1920" data-height="1080">
+    <div class="rule"></div>
+    <div id="s13-logo" style="position:absolute;left:830.0px;top:410.0px;width:260px;height:260px;border-radius:57px;background:#5CB8DA;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:114px;color:#172033;letter-spacing:-.02em">C+</div>
+    <div class="word" id="s13-word"><span class="l">C</span><span class="l">O</span><span class="l">O</span><span class="l">P</span><span class="l">E</span><span class="l">C</span><span class="l">P</span><span class="l">L</span><span class="l">U</span><span class="l">S</span></div>
+    <div class="sub" id="s13-sub">Gestion intégrée des COOPEC</div>
+    <div class="claim" id="s13-claim"><span class="w">Votre</span><span class="w">coopérative,</span><span class="w">en</span><span class="w">toute</span><span class="w acc">confiance</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s13-logo",{x:0,y:0,scale:1},{x:-505,y:-60,scale:1,duration:0.7,ease:"power3.inOut"},0.15);
+    tl.fromTo("#s13-word",{clipPath:"inset(0 100% 0 0)"},{clipPath:"inset(0 0% 0 0)",duration:0.6,ease:"power3.out"},0.55);
+    tl.fromTo("#s13-sub",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:0.2},1.0);
+    tl.fromTo("#s13-claim",{opacity:0},{opacity:1,duration:0.2},0.85);
+    tl.to("#s13-claim .w",{color:"#ffffff",duration:0.1,stagger:0.09},1.1);
+    tl.to("#s13-claim .acc",{color:"#5CB8DA",duration:0.15},3.05);
+    tl.set({}, {}, 7.4);
+    window.__timelines["s13"] = tl;
+  </script>
+</template>

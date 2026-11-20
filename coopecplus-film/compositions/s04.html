@@ -1,0 +1,105 @@
+<template>
+  <style>
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:Inter,sans-serif;}
+#root .ground{position:absolute;inset:0;}
+#root .rule{position:absolute;inset:0;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 53px,var(--rule) 53px,var(--rule) 54px);}
+#root .shift{position:absolute;inset:0;}
+#root .cam{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;}
+#root .win{position:absolute;left:160px;top:140px;width:1600px;height:900.0px;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35);background:#F9FAFC;}
+#root .inner{position:absolute;left:0;top:0;width:1536px;height:864px;transform:scale(1.041667);transform-origin:0 0;}
+#root .plate{position:absolute;left:0;top:0;width:1536px;height:auto;}
+#root .cur{position:absolute;left:0;top:0;width:28px;height:28px;}
+#root .hl{position:absolute;border:3.5px solid #5CB8DA;border-radius:9px;background:rgba(92,184,218,.10);}
+#root .role{position:absolute;left:44px;top:34px;height:66px;display:flex;align-items:center;gap:16px;padding:0 24px 0 12px;background:#132032;border-radius:12px;color:#fff;font-weight:600;font-size:28px;letter-spacing:-.01em;}
+#root .role .av{width:44px;height:44px;border-radius:50%;background:#1E4976;color:#fff;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #5CB8DA;}
+#root .role .clock{font-variant-numeric:tabular-nums;color:#5CB8DA;font-weight:700;}
+#root .role .who{color:rgba(255,255,255,.72);font-weight:500;}
+#root .co{position:absolute;padding:16px 26px;background:#132032;color:#fff;font-weight:700;font-size:40px;letter-spacing:-.015em;border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.28);white-space:nowrap;}
+#root .co .w{display:inline-block;margin-right:.26em;}
+#root .co .w:last-child{margin-right:0;}
+#root .co .acc{color:#5CB8DA;}
+#root .obj{position:absolute;left:0;top:0;box-shadow:0 40px 90px rgba(0,0,0,.45);border-radius:4px;}
+
+#root .ground{background:#1E4976;}
+#root{--rule:rgba(255,255,255,.06);}
+  </style>
+  <div id="root" data-composition-id="s04" data-width="1920" data-height="1080">
+    <div class="ground" id="s04-ground"></div>
+    <div class="rule"></div>
+    <div class="shift" id="s04-shift">
+      <div class="cam" id="s04-cam">
+        <div class="win"><div class="inner">
+<img id="s04-pl0" class="plate" src="assets/ui/a11-caisse-journee-fermee.png" style="opacity:0" alt="">
+<img id="s04-pl1" class="plate" src="assets/ui/a12-journee-ouverte.png" style="opacity:0" alt="">
+<img id="s04-pl2" class="plate" src="assets/ui/a20-caisse-ouvrir-session.png" style="opacity:0" alt="">
+<img id="s04-pl3" class="plate" src="assets/ui/a20c-billetage-conforme.png" style="opacity:0" alt="">
+<img id="s04-pl4" class="plate" src="assets/ui/a21-session-ouverte.png" style="opacity:0" alt="">
+<div id="s04-hl5" class="hl" style="left:290.0px;top:679.0px;width:604px;height:112px;opacity:0"></div>
+          <div class="cur" id="s04-cur"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M3 2 L3 22 L8.5 17 L12 25.5 L15.6 24 L12.2 15.8 L19.5 15.8 Z" fill="#0b0f19" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        </div></div>
+      </div>
+    </div>
+<div id="s04-role1" class="role" style="opacity:0"><div class="av" data-layout-ignore>JK</div><span class="clock">07:30</span><span>Directeur</span><span class="who">Josué Kabila Mulumba</span></div>
+<div id="s04-co2" class="co" style="left:1240px;top:900px;opacity:0"><span class="w">Journée</span><span class="w acc">ouverte</span><span class="w">✓</span></div>
+<div id="s04-role3" class="role" style="opacity:0"><div class="av" data-layout-ignore>EM</div><span class="clock">07:42</span><span>Caissière</span><span class="who">Esther Mwamini</span></div>
+<div id="s04-co4" class="co" style="right:800px;top:900px;opacity:0"><span class="w">Billetage</span><span class="w">coupure</span><span class="w">par</span><span class="w">coupure</span></div>
+<div id="s04-co6" class="co" style="left:1240px;top:900px;opacity:0"><span class="w acc">Caisse</span><span class="w acc">juste</span><span class="w">✓</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#s04-pl0",{opacity:1},0);
+    tl.set("#s04-cam",{x:-515.5,y:-812.0,scale:7.8},0.0);
+    tl.to("#s04-cam",{x:0.0,y:0.0,scale:1,duration:1.0,ease:"power3.inOut"},0.05);
+    tl.fromTo("#s04-role1",{opacity:0,x:-30,filter:"blur(6px)"},{opacity:1,x:0,filter:"blur(0px)",duration:0.45,ease:"expo.out"},0.7);
+    tl.to("#s04-role1",{opacity:0,filter:"blur(6px)",duration:0.18,ease:"power3.in"},2.35);
+    tl.to("#s04-cam",{x:-288.0,y:-252.0,scale:1.8,duration:0.6,ease:"power2.inOut"},1.1);
+    tl.set("#s04-cur",{x:900,y:560,opacity:0},0);
+    tl.to("#s04-cur",{opacity:1,duration:0.15},1.0);
+    tl.to("#s04-cur",{x:392,y:263,duration:0.55,ease:"power2.inOut"},1.0);
+    tl.to("#s04-cur",{scale:0.82,duration:0.07,ease:"power2.in",transformOrigin:"3px 2px"},1.57);
+    tl.to("#s04-cur",{scale:1,duration:0.12,ease:"power2.out",transformOrigin:"3px 2px"},1.64);
+    tl.fromTo("#s04-pl1",{opacity:0},{opacity:1,duration:0.15,ease:"none",immediateRender:false},1.65);
+    tl.set("#s04-co2",{opacity:1},1.75);
+    tl.fromTo("#s04-co2",{clipPath:"inset(0 100% 0 0 round 12px)"},{clipPath:"inset(0 0% 0 0 round 12px)",duration:0.35,ease:"expo.out"},1.75);
+    tl.fromTo("#s04-co2 .w",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:0.13,stagger:0.07},1.83);
+    tl.to("#s04-co2",{opacity:0,filter:"blur(8px)",duration:0.2,ease:"power3.in"},2.35);
+    tl.to("#s04-cur",{opacity:0,duration:0.12},2.1);
+    tl.to("#s04-shift",{x:-1300,filter:"blur(18px)",duration:0.2,ease:"power3.in"},2.4);
+    tl.set("#s04-cam",{x:-216.0,y:-289.9,scale:1.35},2.6);
+    tl.set("#s04-cur",{opacity:0},2.6);
+    tl.fromTo("#s04-shift",{x:1300,filter:"blur(18px)"},{x:0,filter:"blur(0px)",duration:0.38,ease:"power3.out",immediateRender:false},2.6);
+    tl.fromTo("#s04-pl2",{opacity:0},{opacity:1,duration:0.01,ease:"none",immediateRender:false},2.6);
+    tl.fromTo("#s04-role3",{opacity:0,x:-30,filter:"blur(6px)"},{opacity:1,x:0,filter:"blur(0px)",duration:0.45,ease:"expo.out"},2.7);
+    tl.set("#s04-co4",{opacity:1},3.3);
+    tl.fromTo("#s04-co4",{clipPath:"inset(0 100% 0 0 round 12px)"},{clipPath:"inset(0 0% 0 0 round 12px)",duration:0.35,ease:"expo.out"},3.3);
+    tl.fromTo("#s04-co4 .w",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:0.13,stagger:0.07},3.38);
+    tl.to("#s04-co4",{opacity:0,filter:"blur(8px)",duration:0.2,ease:"power3.in"},5.5);
+    tl.set("#s04-pl3",{opacity:1},3.45);
+    tl.fromTo("#s04-pl3",{clipPath:"inset(0 0 100% 0)"},{clipPath:"inset(0 0 0% 0)",duration:1.5,ease:"power1.inOut"},3.45);
+    tl.to("#s04-cam",{x:-378.0,y:-792.0,scale:1.8,duration:0.7,ease:"power2.inOut"},5.4);
+    tl.fromTo("#s04-hl5",{opacity:0,scale:1.08},{opacity:1,scale:1,duration:0.35,ease:"expo.out"},5.95);
+    tl.to("#s04-hl5",{opacity:0,duration:0.2},7.1);
+    tl.set("#s04-co6",{opacity:1},6.0);
+    tl.fromTo("#s04-co6",{clipPath:"inset(0 100% 0 0 round 12px)"},{clipPath:"inset(0 0% 0 0 round 12px)",duration:0.35,ease:"expo.out"},6.0);
+    tl.fromTo("#s04-co6 .w",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:0.13,stagger:0.07},6.08);
+    tl.to("#s04-co6",{opacity:0,filter:"blur(8px)",duration:0.2,ease:"power3.in"},7.1);
+    tl.to("#s04-cam",{x:-720.0,y:-480.0,scale:1.5,duration:0.5,ease:"power2.inOut"},6.9);
+    tl.set("#s04-cur",{x:1150,y:600,opacity:0},0);
+    tl.to("#s04-cur",{opacity:1,duration:0.15},6.8);
+    tl.to("#s04-cur",{x:1418,y:826,duration:0.45,ease:"power2.inOut"},6.8);
+    tl.to("#s04-cur",{scale:0.82,duration:0.07,ease:"power2.in",transformOrigin:"3px 2px"},7.27);
+    tl.to("#s04-cur",{scale:1,duration:0.12,ease:"power2.out",transformOrigin:"3px 2px"},7.34);
+    tl.fromTo("#s04-pl4",{opacity:0},{opacity:1,duration:0.15,ease:"none",immediateRender:false},7.4);
+    tl.to("#s04-cam",{x:0.0,y:0.0,scale:1.0,duration:0.6,ease:"power2.inOut"},7.45);
+    tl.to("#s04-cur",{opacity:0,duration:0.12},7.6);
+    tl.set("#s04-pl1,#s04-pl2,#s04-pl3,#s04-pl4",{opacity:0},0.0);
+    tl.set("#s04-pl0,#s04-pl2,#s04-pl3,#s04-pl4",{opacity:0},1.8);
+    tl.set("#s04-pl0,#s04-pl1,#s04-pl3,#s04-pl4",{opacity:0},2.61);
+    tl.set("#s04-pl0,#s04-pl1,#s04-pl2,#s04-pl4",{opacity:0},4.95);
+    tl.set("#s04-pl0,#s04-pl1,#s04-pl2,#s04-pl3",{opacity:0},7.55);
+    tl.to("#s04-shift",{x:-1300,filter:"blur(18px)",duration:0.2,ease:"power3.in"},8.2);
+    tl.set({}, {}, 8.4);
+    window.__timelines["s04"] = tl;
+  </script>
+</template>
