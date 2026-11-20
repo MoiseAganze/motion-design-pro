@@ -34,9 +34,9 @@
     tl.to(["#hook-w1", "#hook-w2", "#hook-w3"], { opacity: 0.35, duration: 0.3 }, 3.2);
     tl.fromTo("#hook-w4", { scale: 1.25, transformOrigin: "0 50%" }, { scale: 1, duration: 0.35, ease: "power4.out" }, 3.2);
     // poster wipes in on "Dans l'enseignement supérieur"
-    tl.to("#hook-words", { x: -260, opacity: 0, duration: 0.5, ease: "power3.in" }, 4.15);
-    tl.fromTo("#hook-poster-wrap", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.7, ease: "power3.inOut" }, 4.2);
-    tl.fromTo("#hook-poster", { scale: 1.12, y: 0 }, { scale: 1.0, y: 60, duration: 3.8, ease: "power1.out" }, 4.2);
+    tl.to("#hook-words", { x: -260, opacity: 0, duration: 0.5, ease: "power3.in" }, 3.95);
+    tl.fromTo("#hook-poster-wrap", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.7, ease: "power3.inOut" }, 4.0);
+    tl.fromTo("#hook-poster", { scale: 1.12, y: 0 }, { scale: 1.0, y: 60, duration: 4.0, ease: "power1.out" }, 4.0);
     window.__timelines["hook"] = tl;
   </script>
 </template>
