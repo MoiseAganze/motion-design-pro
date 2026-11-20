@@ -1,0 +1,68 @@
+<template>
+  <style>
+    @font-face { font-family: "Source Serif 4"; src: url("assets/fonts/SourceSerif4-latin-var.woff2") format("woff2"); font-weight: 200 900; }
+    @font-face { font-family: "Source Sans 3"; src: url("assets/fonts/SourceSans3-latin-var.woff2") format("woff2"); font-weight: 200 900; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #f5f9fc; font-family: "Source Sans 3", sans-serif; }
+    #track-title { position: absolute; left: 100px; top: 120px; font-family: "Source Serif 4", serif; font-weight: 700; font-size: 72px; color: #0057b8; }
+    #track-panel { position: absolute; left: 100px; top: 300px; width: 920px; height: 412px; overflow: hidden; border-radius: 12px;
+      box-shadow: 0 24px 70px rgba(0, 38, 84, 0.18); background: #fff; }
+    #track-shot { position: absolute; left: -740px; top: -512.5px; width: 2400px; height: 1503.75px; }
+    .track-field { position: absolute; left: 44px; width: 830px; height: 50px; background: #fff; font-family: "Source Code Pro", monospace;
+      font-size: 28px; line-height: 50px; color: #0f2744; padding-left: 16px; white-space: nowrap; overflow: hidden; }
+    #track-btn { position: absolute; left: 41px; top: 311px; width: 229px; height: 61px; border-radius: 6px; }
+    #track-cursor { position: absolute; left: 0; top: 0; width: 64px; height: 64px; }
+    #track-right { position: absolute; left: 1110px; top: 120px; width: 710px; }
+    #track-rt { font-size: 30px; font-weight: 700; letter-spacing: 0.2em; color: #ce1021; }
+    #track-rh { font-family: "Source Serif 4", serif; font-weight: 700; font-size: 46px; color: #002654; margin: 8px 0 22px; }
+    .track-st { position: relative; height: 92px; border-radius: 10px; background: #fff; margin-bottom: 12px; border-top: 5px solid #007fff;
+      box-shadow: 0 6px 20px rgba(0, 38, 84, 0.08); font-size: 32px; font-weight: 600; color: #0f2744; line-height: 87px; padding-left: 96px; opacity: 0; }
+    .track-st i { position: absolute; left: 24px; top: 18px; width: 50px; height: 50px; border-radius: 50%; background: #d6e2ee; color: #fff;
+      font-style: normal; font-size: 28px; line-height: 50px; text-align: center; }
+    .track-st i b { position: absolute; inset: 0; border-radius: 50%; background: #0057b8; opacity: 0; }
+    .track-st i em { position: relative; font-style: normal; }
+    #track-now { position: absolute; right: 22px; top: 22px; font-size: 28px; font-weight: 700; color: #002654; background: #f7d618; border-radius: 6px;
+      line-height: 40px; padding: 0 12px; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="track" data-width="1920" data-height="1080">
+    <div id="track-title">Suivre un dossier</div>
+    <div id="track-panel" data-layout-allow-overflow>
+      <img id="track-shot" src="assets/img/suivi.png" alt="Page Suivre un signalement" />
+      <div id="track-f1" class="track-field" style="top: 96px"><span id="track-ref"></span></div>
+      <div id="track-f2" class="track-field" style="top: 206px"><span id="track-code"></span></div>
+      <div id="track-btn"></div>
+      <svg id="track-cursor" viewBox="0 0 64 64"><path d="M8 4 L8 52 L20 40 L29 60 L37 56 L28 37 L45 37 Z" fill="#0f2744" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></svg>
+    </div>
+    <div id="track-right">
+      <div id="track-rt">CIRCUIT OFFICIEL</div>
+      <div id="track-rh">Avancement du dossier</div>
+      <div id="track-s1" class="track-st"><i><b></b><em>1</em></i>Reçu</div>
+      <div id="track-s2" class="track-st"><i><b></b><em>2</em></i>En vérification</div>
+      <div id="track-s3" class="track-st"><i><b></b><em>3</em></i>Recevable</div>
+      <div id="track-s4" class="track-st"><i><b></b><em>4</em></i>Pris en charge<span id="track-now">Étape actuelle</span></div>
+      <div id="track-s5" class="track-st"><i><b></b><em>5</em></i>Investigation en cours</div>
+      <div id="track-s6" class="track-st"><i><b></b><em>…</em></i>Décision prise · Clôturé</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#track-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0);
+    tl.fromTo("#track-panel", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.1);
+    const ref = "SIG-ESURSI-2026-ABC123";
+    const r = { n: 0 };
+    tl.fromTo(r, { n: 0 }, { n: ref.length, duration: 1.0, ease: "none", onUpdate: () => { document.querySelector("#track-ref").textContent = ref.slice(0, Math.round(r.n)); } }, 0.5);
+    const c = { n: 0 };
+    tl.fromTo(c, { n: 0 }, { n: 10, duration: 0.6, ease: "none", onUpdate: () => { document.querySelector("#track-code").textContent = "•".repeat(Math.round(c.n)); } }, 1.65);
+    tl.fromTo("#track-cursor", { x: 900, y: 440 }, { x: 148, y: 336, duration: 0.6, ease: "power3.out" }, 1.9);
+    tl.to("#track-cursor", { scale: 0.85, duration: 0.08, yoyo: true, repeat: 1 }, 2.55);
+    tl.fromTo("#track-btn", { backgroundColor: "rgba(0,0,0,0)" }, { backgroundColor: "rgba(0,20,60,0.3)", duration: 0.08, yoyo: true, repeat: 1 }, 2.55);
+    // "vous consultez l'avancement de votre dossier"
+    tl.fromTo("#track-rt, #track-rh", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 2.7);
+    tl.fromTo(".track-st", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.12, ease: "power3.out" }, 2.85);
+    ["#track-s1", "#track-s2", "#track-s3", "#track-s4"].forEach((s, i) => {
+      tl.to(s + " i b", { opacity: 1, duration: 0.2 }, 3.7 + i * 0.3);
+    });
+    tl.to("#track-s4", { borderTopColor: "#f7d618", duration: 0.2 }, 4.6);
+    tl.fromTo("#track-now", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 4.65);
+    window.__timelines["track"] = tl;
+  </script>
+</template>

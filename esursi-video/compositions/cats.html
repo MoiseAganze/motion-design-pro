@@ -1,0 +1,52 @@
+<template>
+  <style>
+    @font-face { font-family: "Source Serif 4"; src: url("assets/fonts/SourceSerif4-latin-var.woff2") format("woff2"); font-weight: 200 900; }
+    @font-face { font-family: "Source Sans 3"; src: url("assets/fonts/SourceSans3-latin-var.woff2") format("woff2"); font-weight: 200 900; }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #f5f9fc; font-family: "Source Sans 3", sans-serif; }
+    #cats-left { position: absolute; left: 130px; top: 250px; width: 540px; }
+    #cats-kicker { font-size: 30px; font-weight: 700; letter-spacing: 0.22em; color: #ce1021; }
+    #cats-num { font-family: "Source Serif 4", serif; font-weight: 700; font-size: 260px; line-height: 1; color: #0057b8; margin-top: 10px; }
+    #cats-title { font-family: "Source Serif 4", serif; font-weight: 700; font-size: 58px; line-height: 1.1; color: #002654; }
+    #cats-sub { font-size: 30px; color: #4f6378; margin-top: 22px; line-height: 1.35; }
+    #cats-bar { width: 220px; height: 8px; background: #f7d618; border-radius: 4px; margin-top: 30px; }
+    #cats-panel { position: absolute; left: 720px; top: 138px; width: 1104px; height: 805px; overflow: hidden; border-radius: 14px;
+      background: #fff; box-shadow: 0 30px 80px rgba(0, 38, 84, 0.18); }
+    #cats-shot { position: absolute; left: -552px; top: -701.5px; width: 2208px; height: 2094px; }
+    .cats-hl { position: absolute; border: 5px solid #f7d618; border-radius: 10px; box-shadow: 0 0 0 8px rgba(247, 214, 24, 0.25); opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="cats" data-width="1920" data-height="1080">
+    <div id="cats-left">
+      <div id="cats-kicker">CATÉGORIES</div>
+      <div id="cats-num">13</div>
+      <div id="cats-title">catégories officielles</div>
+      <div id="cats-sub">pour orienter le traitement par les services du Ministère.</div>
+      <div id="cats-bar"></div>
+    </div>
+    <div id="cats-panel" data-layout-allow-overflow>
+      <img id="cats-shot" src="assets/img/signalement.png" alt="Formulaire : catégorie du signalement" />
+      <div id="cats-hl1" class="cats-hl" style="left: 14px; top: 6px; width: 535px; height: 118px"></div>
+      <div id="cats-hl2" class="cats-hl" style="left: 555px; top: 131px; width: 535px; height: 95px"></div>
+      <div id="cats-hl3" class="cats-hl" style="left: 14px; top: 354px; width: 535px; height: 95px"></div>
+      <div id="cats-hl4" class="cats-hl" style="left: 555px; top: 456px; width: 535px; height: 118px"></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cats-panel", { x: 200, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0);
+    tl.fromTo("#cats-kicker", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.2);
+    const n = { v: 1 };
+    tl.fromTo("#cats-num", { opacity: 0, scale: 0.8, transformOrigin: "0 70%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.35);
+    tl.fromTo(n, { v: 1 }, { v: 13, duration: 1.3, ease: "power2.out", onUpdate: () => { document.querySelector("#cats-num").textContent = Math.round(n.v); } }, 0.35);
+    tl.fromTo("#cats-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.3);
+    tl.fromTo("#cats-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.9);
+    tl.fromTo("#cats-bar", { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, 2.1);
+    // each category lights up as it is named
+    [["#cats-hl1", 3.3], ["#cats-hl2", 4.15], ["#cats-hl3", 4.85], ["#cats-hl4", 5.9]].forEach(([s, t]) => {
+      tl.fromTo(s, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power3.out" }, t);
+    });
+    // "et bien d'autres": the panel scrolls on to the rest of the list
+    tl.to("#cats-shot", { y: -180, duration: 1.0, ease: "power2.inOut" }, 7.3);
+    tl.to(".cats-hl", { y: -180, duration: 1.0, ease: "power2.inOut" }, 7.3);
+    window.__timelines["cats"] = tl;
+  </script>
+</template>

@@ -1,0 +1,31 @@
+<template>
+  <style>
+    @font-face { font-family: "Source Sans 3"; src: url("assets/fonts/SourceSans3-latin-var.woff2") format("woff2"); font-weight: 200 900; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Source Sans 3", sans-serif;
+      background: radial-gradient(120% 90% at 50% 0%, #0057b8 0%, #003a7a 45%, #002654 100%); }
+    #stats-cam { position: absolute; inset: 0; }
+    #stats-panel { position: absolute; left: 140px; top: 70px; width: 1640px; height: 906px; overflow: hidden; border-radius: 16px;
+      background: #fff; box-shadow: 0 40px 120px rgba(0, 10, 40, 0.55); }
+    #stats-shot { position: absolute; left: -561.6px; top: -230.4px; width: 2764.8px; height: 2592px; }
+    #stats-chip { position: absolute; left: 140px; top: 990px; height: 60px; border-radius: 30px; background: #f7d618; color: #002654;
+      font-size: 30px; font-weight: 700; line-height: 60px; padding: 0 30px; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="stats" data-width="1920" data-height="1080">
+    <div id="stats-cam">
+      <div id="stats-panel" data-layout-allow-overflow>
+        <img id="stats-shot" src="assets/img/statistiques.png" alt="Page Statistiques publiques" />
+      </div>
+    </div>
+    <div id="stats-chip">Données actualisées toutes les heures</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#stats-panel", { opacity: 0, y: 120, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 0);
+    // "les statistiques nationales sont publiques": push toward the 12-month chart
+    tl.fromTo("#stats-cam", { scale: 1, x: 0, y: 0 }, { scale: 1.45, x: -598, y: -339, duration: 0.7, ease: "power3.inOut" }, 2.6);
+    tl.to("#stats-cam", { scale: 1.5, duration: 2.6, ease: "none" }, 3.3);
+    // "mises à jour chaque heure"
+    tl.fromTo("#stats-chip", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.6)" }, 4.0);
+    window.__timelines["stats"] = tl;
+  </script>
+</template>
