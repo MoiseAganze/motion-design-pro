@@ -1,0 +1,76 @@
+<template>
+<style>
+@font-face{font-family:'Bricolage Grotesque';src:url('assets/fonts/BricolageGrotesque.woff2') format('woff2');font-weight:200 800;font-display:block}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/PlusJakartaSans.woff2') format('woff2');font-weight:200 800;font-display:block}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;color:#113F55;
+ --teal950:#07293A;--teal900:#113F55;--teal800:#0E5775;--teal700:#0B6B91;--teal600:#0A86B4;--teal500:#15A8D6;--mist:#EFFAFE;
+ --or:#E99841;--or6:#D4761B;--green:#10B981;--amber:#F59E0B;--grey:#94A3B8;}
+#root *{box-sizing:border-box}
+.disp{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:.92}
+.abs{position:absolute}
+.full{position:absolute;inset:0}
+.shot{position:absolute;inset:0;overflow:hidden;background:#fff}
+.cam{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0}
+.cam img{position:absolute;left:0;top:0;width:1440px;height:900px;display:block}
+.cursor{position:absolute;left:0;top:0;width:58px;height:58px;z-index:50}
+.ring{position:absolute;border-radius:50%;padding:12px;background:var(--or);box-shadow:0 18px 40px rgba(7,41,58,.25)}
+.ring.t{background:var(--teal500)}
+.ring>.in{width:100%;height:100%;border-radius:50%;padding:8px;background:#fff}
+.ring>.in>img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.band{position:absolute;transform-origin:50% 50%}
+.tag{position:absolute;padding:14px 30px;border-radius:999px;font-weight:700;font-size:30px;color:#fff;background:var(--teal700)}
+
+#root{background:#fff}
+#g-iris{position:absolute;inset:0}
+#g-s2,#g-s3,#g-s4{opacity:0}
+</style>
+<div id="root" data-composition-id="accueil" data-width="1920" data-height="1080" data-duration="8.2">
+
+<div id="g-iris">
+<div id="g-s1" class="shot"><div class="cam" id="g-cam1"><img src="assets/shots/acc-list.png" alt=""></div></div>
+<div id="g-s2" class="shot"><div class="cam" id="g-cam2"><img src="assets/shots/acc-detail.png" alt=""></div></div>
+<div id="g-s3" class="shot"><div class="cam" id="g-cam3"><img src="assets/shots/acc-plan-form.png" alt=""></div></div>
+<div id="g-s4" class="shot"><div class="cam" id="g-cam4"><img src="assets/shots/acc-planned.png" alt=""></div></div>
+</div>
+<div id="g-cur" class="cursor"><svg viewBox="0 0 24 24"><path d="M4 2.5 L4 19.5 L8.6 15.4 L11.6 22 L14.6 20.7 L11.7 14.2 L18 14.2 Z" fill="#fff" stroke="#07293A" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+
+</div>
+<script>
+
+const K0 = 1920/1440;
+function camS(x,y,s){const k=K0*s;return {x:960-x*k,y:540-y*k,scale:k};}
+function pt(px,py,cx,cy,s){const k=K0*s;return {x:960+(px-cx)*k,y:540+(py-cy)*k};}
+
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo('#g-iris', {clipPath:'circle(40px at 960px 560px)'}, {clipPath:'circle(1300px at 960px 560px)', duration:.5, ease:'power3.in'}, 0);
+tl.set('#g-cam1', camS(560,520,1.25), 0);
+tl.to('#g-cam1', {...camS(520,640,1.6), duration:1.0, ease:'power2.inOut'}, .3);
+// click the request
+tl.fromTo('#g-cur', {x:1500, y:1150}, {x:()=>pt(345,645,520,640,1.6).x, y:()=>pt(345,645,520,640,1.6).y, duration:.5, ease:'power3.out'}, .9);
+tl.to('#g-cur', {scale:.85, duration:.06, yoyo:true, repeat:1, transformOrigin:'10% 5%'}, 1.45);
+tl.set('#g-s2', {opacity:1}, 1.6);
+tl.set('#g-cam2', camS(520,640,1.6), 1.6);
+tl.set('#g-cur', {opacity:0}, 1.6);
+tl.to('#g-cam2', {...camS(1170,560,1.55), duration:.8, ease:'power2.inOut'}, 1.7);
+// call
+tl.to('#g-cam2', {...camS(1100,520,1.8), duration:.6, ease:'power2.inOut'}, 2.6);
+// plan
+tl.set('#g-s3', {opacity:1}, 3.5);
+tl.set('#g-cam3', camS(1170,700,1.6), 3.5);
+tl.fromTo('#g-s3', {opacity:0}, {opacity:1, duration:.2}, 3.5);
+tl.to('#g-cam3', {...camS(1170,660,1.75), duration:.6, ease:'power2.inOut'}, 4.4);
+tl.to('#g-cam3', {...camS(1170,760,1.7), duration:.6, ease:'power2.inOut'}, 5.4);
+tl.set('#g-cur', {opacity:1, x:1500, y:1150}, 5.8);
+tl.to('#g-cur', {x:()=>pt(1170,854,1170,760,1.7).x, y:()=>pt(1170,854,1170,760,1.7).y, duration:.5, ease:'power3.out'}, 5.9);
+tl.to('#g-cur', {scale:.85, duration:.06, yoyo:true, repeat:1, transformOrigin:'10% 5%'}, 6.45);
+// planned
+tl.set('#g-s4', {opacity:1}, 6.6);
+tl.set('#g-cur', {opacity:0}, 6.6);
+tl.fromTo('#g-cam4', camS(1180,330,1.45), {...camS(1180,320,1.3), duration:.6, ease:'expo.out'}, 6.6);
+tl.to('#g-cam4', {...camS(1180,560,1.35), duration:.7, ease:'power2.inOut'}, 7.35);
+
+window.__timelines["accueil"] = tl;
+</script>
+</template>

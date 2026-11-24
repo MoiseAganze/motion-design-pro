@@ -1,0 +1,79 @@
+<template>
+<style>
+@font-face{font-family:'Bricolage Grotesque';src:url('assets/fonts/BricolageGrotesque.woff2') format('woff2');font-weight:200 800;font-display:block}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/PlusJakartaSans.woff2') format('woff2');font-weight:200 800;font-display:block}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;color:#113F55;
+ --teal950:#07293A;--teal900:#113F55;--teal800:#0E5775;--teal700:#0B6B91;--teal600:#0A86B4;--teal500:#15A8D6;--mist:#EFFAFE;
+ --or:#E99841;--or6:#D4761B;--green:#10B981;--amber:#F59E0B;--grey:#94A3B8;}
+#root *{box-sizing:border-box}
+.disp{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:.92}
+.abs{position:absolute}
+.full{position:absolute;inset:0}
+.shot{position:absolute;inset:0;overflow:hidden;background:#fff}
+.cam{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0}
+.cam img{position:absolute;left:0;top:0;width:1440px;height:900px;display:block}
+.cursor{position:absolute;left:0;top:0;width:58px;height:58px;z-index:50}
+.ring{position:absolute;border-radius:50%;padding:12px;background:var(--or);box-shadow:0 18px 40px rgba(7,41,58,.25)}
+.ring.t{background:var(--teal500)}
+.ring>.in{width:100%;height:100%;border-radius:50%;padding:8px;background:#fff}
+.ring>.in>img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.band{position:absolute;transform-origin:50% 50%}
+.tag{position:absolute;padding:14px 30px;border-radius:999px;font-weight:700;font-size:30px;color:#fff;background:var(--teal700)}
+
+#root{background:var(--teal950)}
+#a-clock{left:150px;top:150px;font-size:330px;color:#fff}
+#a-city{left:160px;top:470px;font-size:120px;color:var(--teal500);letter-spacing:.04em}
+#a-city span{display:inline-block}
+#a-joel{left:1160px;top:200px;width:560px;height:560px}
+#a-cap{left:1040px;top:790px;width:800px;text-align:center;font-size:40px;font-weight:600;color:#fff}
+#a-cap b{color:var(--or)}
+#a-q{left:150px;top:330px;font-size:170px;color:#fff;width:1500px}
+#a-q em{font-style:normal;color:var(--or)}
+#a-iris{position:absolute;inset:0;z-index:30}
+#a-iris img{width:1920px;height:1200px;position:absolute;left:0;top:0}
+</style>
+<div id="root" data-composition-id="nuit" data-width="1920" data-height="1080" data-duration="9.0">
+
+<div id="a-bg1" class="band" style="left:900px;top:-300px;width:1800px;height:420px;background:var(--teal900);transform:rotate(-45deg)"></div>
+<div id="a-bg2" class="band" style="left:1100px;top:620px;width:1500px;height:120px;background:var(--teal800);transform:rotate(-45deg)"></div>
+<div id="a-clock" class="abs disp">21:00</div>
+<div id="a-city" class="abs disp"><span>K</span><span>I</span><span>N</span><span>S</span><span>H</span><span>A</span><span>S</span><span>A</span></div>
+<div id="a-joel" class="ring"><div class="in"><img src="assets/img/pole4.jpg" alt=""></div></div>
+<div id="a-cap" class="abs">Joël — <b>une cheville tordue</b> au foot</div>
+<div id="a-q" class="abs disp">Où se faire<br><em>soigner&nbsp;?</em></div>
+<div id="a-bt" class="band" style="left:-300px;top:560px;width:2600px;height:120px;background:var(--teal500);transform:rotate(-45deg);z-index:20"></div>
+<div id="a-bo" class="band" style="left:-300px;top:706px;width:2600px;height:40px;background:var(--or);transform:rotate(-45deg);z-index:20"></div>
+<div id="a-iris"><img src="assets/shots/home.png" alt=""></div>
+
+</div>
+<script>
+
+const K0 = 1920/1440;
+function camS(x,y,s){const k=K0*s;return {x:960-x*k,y:540-y*k,scale:k};}
+function pt(px,py,cx,cy,s){const k=K0*s;return {x:960+(px-cx)*k,y:540+(py-cy)*k};}
+
+const tl = gsap.timeline({ paused: true });
+
+tl.set('#a-iris', {clipPath:'circle(0px at 1460px 560px)'}, 0);
+tl.set('#a-bt,#a-bo', {xPercent:-110}, 0);
+// frame 0 already shows the clock
+tl.fromTo('#a-clock', {opacity:.35, filter:'blur(6px)'}, {opacity:1, filter:'blur(0px)', duration:.5, ease:'expo.out'}, 0);
+tl.fromTo('#a-city span', {opacity:0, y:30}, {opacity:1, y:0, duration:.5, ease:'expo.out', stagger:.06}, .9);
+tl.fromTo('#a-bg1', {xPercent:30, opacity:.0}, {xPercent:0, opacity:1, duration:1.4, ease:'power2.out'}, 0);
+tl.fromTo('#a-bg2', {xPercent:40}, {xPercent:0, duration:1.6, ease:'power2.out'}, .2);
+// Joël
+tl.fromTo('#a-joel', {scale:.2, opacity:0}, {scale:1, opacity:1, duration:.8, ease:'back.out(1.5)'}, 2.6);
+tl.fromTo('#a-cap', {opacity:0, filter:'blur(8px)'}, {opacity:1, filter:'blur(0px)', duration:.4}, 3.0);
+// question replaces clock
+tl.to('#a-clock,#a-city', {opacity:0, filter:'blur(8px)', duration:.3, ease:'power3.in'}, 4.8);
+tl.fromTo('#a-q', {opacity:0, filter:'blur(10px)'}, {opacity:1, filter:'blur(0px)', duration:.35, ease:'expo.out'}, 5.0);
+// band sweeps, iris opens on the CMKS poster
+tl.to('#a-bt', {xPercent:0, duration:.6, ease:'power3.inOut'}, 6.6);
+tl.to('#a-bo', {xPercent:0, duration:.6, ease:'power3.inOut'}, 6.68);
+tl.to('#a-iris', {clipPath:'circle(1400px at 1460px 560px)', duration:1.0, ease:'power3.inOut'}, 7.1);
+tl.to('#a-bt,#a-bo', {xPercent:110, duration:.7, ease:'power3.in'}, 7.6);
+
+window.__timelines["nuit"] = tl;
+</script>
+</template>

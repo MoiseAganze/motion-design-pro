@@ -1,0 +1,57 @@
+<template>
+<style>
+@font-face{font-family:'Bricolage Grotesque';src:url('assets/fonts/BricolageGrotesque.woff2') format('woff2');font-weight:200 800;font-display:block}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/PlusJakartaSans.woff2') format('woff2');font-weight:200 800;font-display:block}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;color:#113F55;
+ --teal950:#07293A;--teal900:#113F55;--teal800:#0E5775;--teal700:#0B6B91;--teal600:#0A86B4;--teal500:#15A8D6;--mist:#EFFAFE;
+ --or:#E99841;--or6:#D4761B;--green:#10B981;--amber:#F59E0B;--grey:#94A3B8;}
+#root *{box-sizing:border-box}
+.disp{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:.92}
+.abs{position:absolute}
+.full{position:absolute;inset:0}
+.shot{position:absolute;inset:0;overflow:hidden;background:#fff}
+.cam{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0}
+.cam img{position:absolute;left:0;top:0;width:1440px;height:900px;display:block}
+.cursor{position:absolute;left:0;top:0;width:58px;height:58px;z-index:50}
+.ring{position:absolute;border-radius:50%;padding:12px;background:var(--or);box-shadow:0 18px 40px rgba(7,41,58,.25)}
+.ring.t{background:var(--teal500)}
+.ring>.in{width:100%;height:100%;border-radius:50%;padding:8px;background:#fff}
+.ring>.in>img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.band{position:absolute;transform-origin:50% 50%}
+.tag{position:absolute;padding:14px 30px;border-radius:999px;font-weight:700;font-size:30px;color:#fff;background:var(--teal700)}
+
+#root{background:var(--teal950)}
+.shot{transform-origin:0 0}
+#h-s1,#h-s2,#h-s3{opacity:0}
+</style>
+<div id="root" data-composition-id="modules" data-width="1920" data-height="1080" data-duration="8.8">
+<div id="h-s0" class="shot" style="z-index:1"><div class="cam" id="h-cam0"><img src="assets/shots/mod-kine-toast.png" alt=""></div><div class="tag disp" id="h-t0" style="left:110px;bottom:90px;font-size:84px;padding:18px 48px;background:var(--or);box-shadow:0 18px 40px rgba(7,41,58,.3)">Kiné</div></div><div id="h-s1" class="shot" style="z-index:2"><div class="cam" id="h-cam1"><img src="assets/shots/mod-medecin-toast.png" alt=""></div><div class="tag disp" id="h-t1" style="left:110px;bottom:90px;font-size:84px;padding:18px 48px;background:var(--or);box-shadow:0 18px 40px rgba(7,41,58,.3)">Médecin</div></div><div id="h-s2" class="shot" style="z-index:3"><div class="cam" id="h-cam2"><img src="assets/shots/mod-coach-toast.png" alt=""></div><div class="tag disp" id="h-t2" style="left:110px;bottom:90px;font-size:84px;padding:18px 48px;background:var(--or);box-shadow:0 18px 40px rgba(7,41,58,.3)">Coach</div></div><div id="h-s3" class="shot" style="z-index:4"><div class="cam" id="h-cam3"><img src="assets/shots/mod-caisse-toast.png" alt=""></div><div class="tag disp" id="h-t3" style="left:110px;bottom:90px;font-size:84px;padding:18px 48px;background:var(--or);box-shadow:0 18px 40px rgba(7,41,58,.3)">Caisse</div></div>
+</div>
+<script>
+
+const K0 = 1920/1440;
+function camS(x,y,s){const k=K0*s;return {x:960-x*k,y:540-y*k,scale:k};}
+function pt(px,py,cx,cy,s){const k=K0*s;return {x:960+(px-cx)*k,y:540+(py-cy)*k};}
+
+const tl = gsap.timeline({ paused: true });
+
+const C = [0, 2.3, 4.0, 5.5]; const Q = [[0, 0], [960, 0], [0, 540], [960, 540]];
+for (let i=0;i<4;i++) {
+  tl.set('#h-cam'+i, camS(760,250,1.15), 0);
+  tl.set('#h-s'+i, {opacity:1}, C[i]);
+  if (i>0) tl.set('#h-s'+(i-1), {opacity:0}, C[i]+0.02);
+  tl.fromTo('#h-cam'+i, camS(760,250,1.22), {...camS(760,250,1.15), duration:1.6, ease:'power2.out'}, C[i]);
+  tl.fromTo('#h-t'+i, {opacity:0, x:-40}, {opacity:1, x:0, duration:.35, ease:'expo.out'}, C[i]+.15);
+}
+// all four side by side: each in its own module
+const g = 7.550000000000001;
+for (let i=0;i<4;i++) {
+  tl.to('#h-s'+i, {x:Q[i][0]+8, y:Q[i][1]+8, scale:(944/1920), duration:.7, ease:'power3.inOut'}, g);
+  tl.to('#h-t'+i, {opacity:0, duration:.2}, g);
+  tl.set('#h-s'+i, {opacity:1}, g);
+}
+
+window.__timelines["modules"] = tl;
+</script>
+</template>

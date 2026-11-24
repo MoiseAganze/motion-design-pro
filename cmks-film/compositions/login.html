@@ -1,0 +1,64 @@
+<template>
+<style>
+@font-face{font-family:'Bricolage Grotesque';src:url('assets/fonts/BricolageGrotesque.woff2') format('woff2');font-weight:200 800;font-display:block}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/PlusJakartaSans.woff2') format('woff2');font-weight:200 800;font-display:block}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;color:#113F55;
+ --teal950:#07293A;--teal900:#113F55;--teal800:#0E5775;--teal700:#0B6B91;--teal600:#0A86B4;--teal500:#15A8D6;--mist:#EFFAFE;
+ --or:#E99841;--or6:#D4761B;--green:#10B981;--amber:#F59E0B;--grey:#94A3B8;}
+#root *{box-sizing:border-box}
+.disp{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:.92}
+.abs{position:absolute}
+.full{position:absolute;inset:0}
+.shot{position:absolute;inset:0;overflow:hidden;background:#fff}
+.cam{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0}
+.cam img{position:absolute;left:0;top:0;width:1440px;height:900px;display:block}
+.cursor{position:absolute;left:0;top:0;width:58px;height:58px;z-index:50}
+.ring{position:absolute;border-radius:50%;padding:12px;background:var(--or);box-shadow:0 18px 40px rgba(7,41,58,.25)}
+.ring.t{background:var(--teal500)}
+.ring>.in{width:100%;height:100%;border-radius:50%;padding:8px;background:#fff}
+.ring>.in>img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.band{position:absolute;transform-origin:50% 50%}
+.tag{position:absolute;padding:14px 30px;border-radius:999px;font-weight:700;font-size:30px;color:#fff;background:var(--teal700)}
+
+#root{background:var(--teal950)}
+#f-wrap{position:absolute;inset:0}
+#f-s2{opacity:0}
+</style>
+<div id="root" data-composition-id="login" data-width="1920" data-height="1080" data-duration="4.8">
+
+<div id="f-wrap">
+<div id="f-s1" class="shot"><div class="cam" id="f-cam1"><img src="assets/shots/login.png" alt=""></div></div>
+<div id="f-s2" class="shot"><div class="cam" id="f-cam2"><img src="assets/shots/login-demo.png" alt=""></div></div>
+</div>
+<div id="f-cur" class="cursor"><svg viewBox="0 0 24 24"><path d="M4 2.5 L4 19.5 L8.6 15.4 L11.6 22 L14.6 20.7 L11.7 14.2 L18 14.2 Z" fill="#fff" stroke="#07293A" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+
+</div>
+<script>
+
+const K0 = 1920/1440;
+function camS(x,y,s){const k=K0*s;return {x:960-x*k,y:540-y*k,scale:k};}
+function pt(px,py,cx,cy,s){const k=K0*s;return {x:960+(px-cx)*k,y:540+(py-cy)*k};}
+
+const tl = gsap.timeline({ paused: true });
+
+tl.fromTo('#f-wrap', {clipPath:'polygon(0 0,0 0,0 100%,0 100%)'}, {clipPath:'polygon(0 0,140% 0,100% 100%,0 100%)', duration:.6, ease:'power3.inOut'}, 0);
+tl.set('#f-cam1', camS(1040,560,1.5), 0);
+tl.fromTo('#f-cur', {x:1700, y:1150}, {x:()=>pt(1010,653,1040,560,1.5).x, y:()=>pt(1010,653,1040,560,1.5).y, duration:.6, ease:'power3.out'}, .4);
+tl.to('#f-cur', {scale:.85, duration:.06, yoyo:true, repeat:1, transformOrigin:'10% 5%'}, 1.05);
+// the demo list opens (page scrolled 150 px on the second capture)
+tl.set('#f-s2', {opacity:1}, 1.2);
+tl.set('#f-cam2', camS(1040,410,1.5), 1.2);
+tl.to('#f-cam2', {...camS(1040,640,1.3), duration:.8, ease:'power2.inOut'}, 1.3);
+tl.set('#f-cur', {opacity:0}, 1.2);
+// "chacun arrive directement dans son module": the left panel
+tl.to('#f-cam2', {...camS(330,580,1.45), duration:.8, ease:'power2.inOut'}, 2.1);
+// back to the list, click Nadine (Accueil)
+tl.to('#f-cam2', {...camS(1040,640,1.3), duration:.6, ease:'power2.inOut'}, 3.2);
+tl.set('#f-cur', {opacity:1, x:1700, y:1150}, 3.3);
+tl.to('#f-cur', {x:()=>pt(1110,722,1040,640,1.3).x, y:()=>pt(1110,722,1040,640,1.3).y, duration:.5, ease:'power3.out'}, 3.5);
+tl.to('#f-cur', {scale:.85, duration:.06, yoyo:true, repeat:1, transformOrigin:'10% 5%'}, 4.05);
+
+window.__timelines["login"] = tl;
+</script>
+</template>

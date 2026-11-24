@@ -1,0 +1,100 @@
+<template>
+<style>
+@font-face{font-family:'Bricolage Grotesque';src:url('assets/fonts/BricolageGrotesque.woff2') format('woff2');font-weight:200 800;font-display:block}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/PlusJakartaSans.woff2') format('woff2');font-weight:200 800;font-display:block}
+
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;color:#113F55;
+ --teal950:#07293A;--teal900:#113F55;--teal800:#0E5775;--teal700:#0B6B91;--teal600:#0A86B4;--teal500:#15A8D6;--mist:#EFFAFE;
+ --or:#E99841;--or6:#D4761B;--green:#10B981;--amber:#F59E0B;--grey:#94A3B8;}
+#root *{box-sizing:border-box}
+.disp{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:.92}
+.abs{position:absolute}
+.full{position:absolute;inset:0}
+.shot{position:absolute;inset:0;overflow:hidden;background:#fff}
+.cam{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0}
+.cam img{position:absolute;left:0;top:0;width:1440px;height:900px;display:block}
+.cursor{position:absolute;left:0;top:0;width:58px;height:58px;z-index:50}
+.ring{position:absolute;border-radius:50%;padding:12px;background:var(--or);box-shadow:0 18px 40px rgba(7,41,58,.25)}
+.ring.t{background:var(--teal500)}
+.ring>.in{width:100%;height:100%;border-radius:50%;padding:8px;background:#fff}
+.ring>.in>img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.band{position:absolute;transform-origin:50% 50%}
+.tag{position:absolute;padding:14px 30px;border-radius:999px;font-weight:700;font-size:30px;color:#fff;background:var(--teal700)}
+
+#root{background:#fff}
+.blab{z-index:11;width:360px;text-align:center;font-size:30px;font-weight:700;color:var(--teal900)}
+.blab i,.bname i{font-style:normal;display:inline-flex;width:46px;height:46px;border-radius:50%;background:var(--or);color:#fff;font-size:28px;align-items:center;justify-content:center;margin-right:10px;vertical-align:3px}
+.brow{left:320px;height:80px;display:flex;align-items:center;gap:30px}
+.bname{width:430px;font-size:34px;font-weight:700;color:var(--teal900)}
+.bbar{display:flex;gap:10px}
+.seg{width:74px;height:30px;border-radius:15px;background:#E2E8F0}
+.seg.g{--c:var(--green)}.seg.a{--c:var(--amber)}.seg.e{--c:var(--grey)}
+#b-hero{z-index:1}
+#b-title{left:150px;top:70px;font-size:96px;color:var(--teal700);z-index:12}
+#b-title em{font-style:normal;color:var(--or)}
+.chip{position:absolute;left:1340px;display:flex;align-items:center;gap:18px;font-size:40px;font-weight:700;color:var(--teal900);z-index:12}
+.chip b{display:inline-block;width:34px;height:34px;border-radius:50%}
+.chip span{font-family:'Bricolage Grotesque';font-weight:800;font-size:76px;width:100px;text-align:right}
+</style>
+<div id="root" data-composition-id="poles" data-width="1920" data-height="1080" data-duration="11.6">
+
+<div id="b-hero" class="shot"><div class="cam" id="b-cam"><img src="assets/shots/home.png" alt=""></div></div>
+<div id="b-white" class="full" style="background:#fff;z-index:5"></div>
+<div id="b1-bt" class="band" style="left:-520px;top:-60px;width:1100px;height:110px;background:var(--teal500);transform:rotate(-45deg);z-index:6"></div>
+<div id="b1-bo" class="band" style="left:-520px;top:76px;width:1100px;height:36px;background:var(--or);transform:rotate(-45deg);z-index:6"></div>
+<div id="b2-bt" class="band" style="left:1480px;top:930px;width:1100px;height:110px;background:var(--teal500);transform:rotate(-45deg);z-index:6"></div>
+<div id="b2-bo" class="band" style="left:1480px;top:1066px;width:1100px;height:36px;background:var(--or);transform:rotate(-45deg);z-index:6"></div>
+<div id="b-title" class="abs disp">Huit <em>pôles</em></div>
+<div id="b-r0" class="ring" style="left:215px;top:215px;width:230px;height:230px;z-index:10"><div class="in"><img src="assets/img/pole1.jpg" alt=""></div></div><div id="b-r1" class="ring t" style="left:615px;top:215px;width:230px;height:230px;z-index:10"><div class="in"><img src="assets/img/pole2.jpg" alt=""></div></div><div id="b-r2" class="ring" style="left:1015px;top:215px;width:230px;height:230px;z-index:10"><div class="in"><img src="assets/img/pole3.jpg" alt=""></div></div><div id="b-r3" class="ring t" style="left:1415px;top:215px;width:230px;height:230px;z-index:10"><div class="in"><img src="assets/img/pole4.jpg" alt=""></div></div><div id="b-r4" class="ring" style="left:375px;top:635px;width:230px;height:230px;z-index:10"><div class="in"><img src="assets/img/pole5.jpg" alt=""></div></div><div id="b-r5" class="ring t" style="left:775px;top:635px;width:230px;height:230px;z-index:10"><div class="in"><img src="assets/img/pole6.jpg" alt=""></div></div><div id="b-r6" class="ring" style="left:1175px;top:635px;width:230px;height:230px;z-index:10"><div class="in"><img src="assets/img/pole7.jpg" alt=""></div></div><div id="b-r7" class="ring t" style="left:1575px;top:635px;width:230px;height:230px;z-index:10"><div class="in"><img src="assets/img/pole8.jpg" alt=""></div></div>
+<div id="b-l0" class="abs blab" style="left:150px;top:462px"><i>1</i>Kinésithérapie</div><div id="b-l1" class="abs blab" style="left:550px;top:462px"><i>2</i>Médecine</div><div id="b-l2" class="abs blab" style="left:950px;top:462px"><i>3</i>Nutrition</div><div id="b-l3" class="abs blab" style="left:1350px;top:462px"><i>4</i>Sport-santé</div><div id="b-l4" class="abs blab" style="left:310px;top:882px"><i>5</i>Périnatalité</div><div id="b-l5" class="abs blab" style="left:710px;top:882px"><i>6</i>Bien-être</div><div id="b-l6" class="abs blab" style="left:1110px;top:882px"><i>7</i>Médico-technique</div><div id="b-l7" class="abs blab" style="left:1510px;top:882px"><i>8</i>Restauration</div>
+<div id="b-board" style="position:absolute;inset:0;z-index:11"><div id="b-row0" class="abs brow" style="top:214px"><div class="bname"><i>1</i>Kinésithérapie</div><div class="bbar"><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span><span class="seg a"></span><span class="seg e"></span></div></div><div id="b-row1" class="abs brow" style="top:314px"><div class="bname"><i>2</i>Médecine</div><div class="bbar"><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span></div></div><div id="b-row2" class="abs brow" style="top:414px"><div class="bname"><i>3</i>Nutrition</div><div class="bbar"><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span></div></div><div id="b-row3" class="abs brow" style="top:514px"><div class="bname"><i>4</i>Sport-santé</div><div class="bbar"><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span></div></div><div id="b-row4" class="abs brow" style="top:614px"><div class="bname"><i>5</i>Périnatalité</div><div class="bbar"><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span><span class="seg a"></span></div></div><div id="b-row5" class="abs brow" style="top:714px"><div class="bname"><i>6</i>Bien-être</div><div class="bbar"><span class="seg g"></span><span class="seg g"></span><span class="seg a"></span><span class="seg a"></span><span class="seg e"></span></div></div><div id="b-row6" class="abs brow" style="top:814px"><div class="bname"><i>7</i>Médico-technique</div><div class="bbar"><span class="seg g"></span><span class="seg g"></span><span class="seg g"></span><span class="seg a"></span><span class="seg e"></span></div></div><div id="b-row7" class="abs brow" style="top:914px"><div class="bname"><i>8</i>Restauration</div><div class="bbar"><span class="seg a"></span><span class="seg e"></span><span class="seg e"></span><span class="seg e"></span></div></div></div>
+<div id="b-c1" class="chip" style="top:330px"><span>24</span><b style="background:var(--green)"></b>Opérationnels</div>
+<div id="b-c2" class="chip" style="top:470px"><span>6</span><b style="background:var(--amber)"></b>En développement</div>
+<div id="b-c3" class="chip" style="top:610px"><span>6</span><b style="background:var(--grey)"></b>Envisagés</div>
+
+</div>
+<script>
+
+const K0 = 1920/1440;
+function camS(x,y,s){const k=K0*s;return {x:960-x*k,y:540-y*k,scale:k};}
+function pt(px,py,cx,cy,s){const k=K0*s;return {x:960+(px-cx)*k,y:540+(py-cy)*k};}
+
+const tl = gsap.timeline({ paused: true });
+
+const G = [[330, 330], [730, 330], [1130, 330], [1530, 330], [490, 750], [890, 750], [1290, 750], [1690, 750]]; const BXY = [[250, 254], [250, 354], [250, 454], [250, 554], [250, 654], [250, 754], [250, 854], [250, 954]];
+// 0-2.6: the poster (continues the iris from the night scene)
+tl.set('#b-cam', camS(720,600,1.0), 0);
+tl.to('#b-cam', {...camS(480,330,1.45), duration:2.2, ease:'power2.inOut'}, .2);
+tl.set('#b-white,#b-title,.blab,[id^=b-r],#b-board .brow,.chip', {opacity:0}, 0);
+tl.set('#b1-bt,#b1-bo,#b2-bt,#b2-bo', {xPercent:-100, opacity:1}, 0);
+// wipe to white with the bands
+tl.to('#b1-bt,#b2-bt', {xPercent:0, duration:.6, ease:'power3.out'}, 2.35);
+tl.to('#b1-bo,#b2-bo', {xPercent:0, duration:.6, ease:'power3.out'}, 2.42);
+tl.fromTo('#b-white', {clipPath:'polygon(0 0,0 0,0 0,0 0)'}, {opacity:1, clipPath:'polygon(0 0,200% 0,0 200%,0 0)', duration:.6, ease:'power3.inOut'}, 2.35);
+tl.fromTo('#b-title', {opacity:0, filter:'blur(8px)'}, {opacity:1, filter:'blur(0px)', duration:.3}, 2.6);
+for (let i=0;i<8;i++) {
+  tl.fromTo('#b-r'+i, {opacity:0, scale:.3}, {opacity:1, scale:1, duration:.7, ease:'back.out(1.6)'}, 2.7+i*.32);
+  tl.fromTo('#b-l'+i, {opacity:0, filter:'blur(6px)'}, {opacity:1, filter:'blur(0px)', duration:.25}, 2.85+i*.32);
+}
+// rebuild into the status board
+tl.to('.blab', {opacity:0, duration:.25, ease:'power3.in'}, 6.1);
+tl.to('#b-title', {opacity:0, duration:.25}, 6.1);
+for (let i=0;i<8;i++) {
+  tl.to('#b-r'+i, {x:BXY[i][0]-G[i][0], y:BXY[i][1]-G[i][1], scale:80/230, duration:.8, ease:'power3.inOut'}, 6.2+i*.03);
+  tl.fromTo('#b-row'+i, {opacity:0, x:-30}, {opacity:1, x:0, duration:.4, ease:'expo.out'}, 6.75+i*.04);
+}
+// status segments light up with the three words
+const segG = gsap.utils.toArray('#b-board .seg.g'), segA = gsap.utils.toArray('#b-board .seg.a'), segE = gsap.utils.toArray('#b-board .seg.e');
+tl.to(segG, {backgroundColor:'#10B981', duration:.2, stagger:.025}, 8.4);
+tl.fromTo('#b-c1', {opacity:0, scale:.6}, {opacity:1, scale:1, duration:.4, ease:'back.out(1.8)'}, 8.5);
+tl.to(segA, {backgroundColor:'#F59E0B', duration:.2, stagger:.04}, 9.3);
+tl.fromTo('#b-c2', {opacity:0, scale:.6}, {opacity:1, scale:1, duration:.4, ease:'back.out(1.8)'}, 9.35);
+tl.to(segE, {backgroundColor:'#94A3B8', duration:.2, stagger:.04}, 10.1);
+tl.fromTo('#b-c3', {opacity:0, scale:.6}, {opacity:1, scale:1, duration:.4, ease:'back.out(1.8)'}, 10.15);
+// pole 1 circle grows: becomes the service page
+tl.to('#b-board,.chip,#b1-bt,#b1-bo,#b2-bt,#b2-bo,[id^=b-r]:not(#b-r0)', {opacity:0, duration:.3, ease:'power3.in'}, 10.7);
+tl.to('#b-r0', {x:350-G[0][0], y:585-G[0][1], scale:350/230, duration:.8, ease:'power3.inOut'}, 10.7);
+
+window.__timelines["poles"] = tl;
+</script>
+</template>

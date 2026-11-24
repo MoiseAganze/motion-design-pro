@@ -1,0 +1,11 @@
+{
+  "name": "cmks-film",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.9.89 preview",
+    "check": "npx --yes hyperframes@0.9.89 check",
+    "render": "npx --yes hyperframes@0.9.89 render",
+    "publish": "npx --yes hyperframes@0.9.89 publish"
+  }
+}
